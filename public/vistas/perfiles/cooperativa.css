@@ -26,7 +26,7 @@ li.lis a.text{
   border-top:3px solid teal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   ul.uls.activa li.activa a.text.activa:hover{
     border-top:none;
     border-left: 3px solid teal;
