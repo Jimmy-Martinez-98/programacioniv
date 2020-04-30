@@ -3,13 +3,16 @@
 h1.h1s{
 	display: flex;
 	justify-content: center;
-	color: blanchedalmond;
+	color: black;
 }
 hr.hrs{
-	background-color: blanchedalmond;
+	background-color: black;
 }
 label{
-	color: blanchedalmond;
+	color: black;
+}
+button.btn{
+	color: black;
 }
 
 div.tiempo  {
@@ -21,4 +24,7 @@ div.botones{
 	display: flex;
 	justify-content: center;
 	
+}
+div.bg{
+	background: #5fb677;
 }

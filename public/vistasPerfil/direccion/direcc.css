@@ -1,4 +1,4 @@
-h5,p{
+h1,p{
 	color: black;
 }
 p{
@@ -8,7 +8,7 @@ div.bg{
 	background: #5fb677;
 }
 
-img.img-fluid{
-	height: 200px;
-	width: 100%;
+.btn-lg{
+color: black;
 }
+

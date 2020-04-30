@@ -1,46 +1,55 @@
 
-<form action="#" method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
-	
-	<div class="bg-dark container">
-		<h1 class=" h1s">Nuevo Producto</h1>
-		<hr class="hrs">
-
-		<div class="form-group">
-			<label for="nameproduct">Nombre  Producto</label>
-			<input type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
-		  </div>
-		  <div class="form-group">
-			<label for="desc">Descripcion Producto</label>
-			<input type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
-		  </div>
-		  <div class="row">
-			  <div class="col-6">
+</head>
+<body>
+	<div class="container bg">
+		<form action="#" method="post">
+				<h1 class=" h1s">Nuevo Producto</h1>
+				<hr class="hrs">
+		
 				<div class="form-group">
-					<label for="categoria">Categoria Producto</label>
-					<input type="text" class="form-control" id="categoria" placeholder="Ingresa Categoria">
+					<label for="nameproduct">Nombre  Producto</label>
+					<input type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
 				  </div>
-			  </div>
-			  <div class="col-6">
-				<div class="form-group">
-					<label for="cantidad">Cantidad  Existencias</label>
-					<input type="text" class="form-control" id="antidad" placeholder="Ingresa Cantidad">
+				  <div class="form-group">
+					<label for="desc">Descripcion Producto</label>
+					<input type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
 				  </div>
-			  </div>
-		  </div>
-		  <div class="tiempo mb-2">
-			<input  type="date" >
-		  </div>
-		 
-		  	<div class="card-footer">
-			<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-				<button type="button" class="btn btn-danger  btn-lg btn-small ">Cancelar</button>
-				<button type="button" class="btn btn-secondary btn-lg btn-small ">Modificar Producto</button>
-				<button type="button" class="btn btn-success btn-lg btn-small ">Publicar</button>
-			  </div>
-			
-			</div>
-
+				  <div class="row">
+					  <div class="col-6">
+						<div class="form-group">
+							<label for="categoria">Categoria Producto</label>
+							<input type="text" class="form-control" id="categoria" placeholder="Ingresa Categoria">
+						  </div>
+					  </div>
+					  <div class="col-6">
+						<div class="form-group">
+							<label for="cantidad">Cantidad  Existencias</label>
+							<input type="text" class="form-control" id="antidad" placeholder="Ingresa Cantidad">
+						  </div>
+					  </div>
+				  </div>
+				  <div class="tiempo mb-2">
+					<input  type="date" >
+				  </div>
+				 
+					  <div class="card-footer-fluid pb-2">
+					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
+					
+						<button type="button" class="btn btn-secondary btn-lg btn-small ">Modificar Producto</button>
+						<button type="button" class="btn btn-success btn-lg btn-small ">Publicar</button>
+					  </div>
+					
+					</div>
+		
+		
+		
+		</form>
 	</div>
-
-</form>
+</body>
+</html>
