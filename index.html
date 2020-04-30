@@ -5,35 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--css-->
+    
     <link rel="stylesheet" href="public/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>APP ACADEMICA</title>
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
+    <title>ALQUILER DE PELICULAS</title>
 </head>
 <body class="bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">::.. APP ..::</a>
+        <a class="navbar-brand" href="#">::.. ALQUILER PELICULAS ..::</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link mostrar-alumnos" data-modulo="alumnos" data-form="alumnos" href="#">Alumnos</a>
-            <a class="nav-link mostrar-docentes" data-modulo="docentes" data-form="docentes" href="#">Docentes</a>
-            <a class="nav-link mostrar-materias" data-modulo="materias" data-form="materias"  href="#">Materias</a>
-            <a class="nav-link mostrar-matricula" data-modulo="matricula" href="#">Matricula</a>
-            <a class="nav-link mostrar-inscripcion" data-modulo="inscripcion" href="#">Inscripcion</a>
-            <a class="nav-link mostrar-notas" data-modulo="notas" href="#">Notas</a>
+            <a class="nav-link mostrar-cliente" data-modulo="cliente" data-form="cliente" href="#">cliente</a>
+            <a class="nav-link mostrar-alquiler" data-modulo="alquiler" data-form="alquiler" href="#">alquiler</a>
+            <a class="nav-link mostrar-pelicula" data-modulo="pelicula" data-form="pelicula"  href="#">pelicula</a>
           </div>
         </div>
       </nav>
     <div class="container">
-        <div class="modulos" id="vista-alumnos"></div>
-        <div class="modulos" id="vista-buscar-alumnos"></div>
-        <div class="modulos" id="vista-docentes"></div>
-        <div class="modulos" id="vista-buscar-docentes"></div>
-        <div class="modulos" id="vista-materias"></div>
-        <div class="modulos" id="vista-buscar-materias"></div>
+        <div class="modulos" id="vista-cliente"></div>
+        <div class="modulos" id="vista-buscar-cliente"></div>
+        <div class="modulos" id="vista-alquiler"></div>
+        <div class="modulos" id="vista-buscar-alquiler"></div>
+        <div class="modulos" id="vista-pelicula"></div>
+        <div class="modulos" id="vista-buscar-pelicula"></div>
         <div class="modulos" id="vista-matricula"></div>
         <div class="modulos" id="vista-inscripcion"></div>
         <div class="modulos" id="vista-notas"></div>
@@ -45,6 +44,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="module" src="public/js/app.js"></script>
 
+    <script src="https://unpkg.com/vue-select@3.0.0"></script>
     
 </form>
 </body>
