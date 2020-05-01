@@ -11,13 +11,13 @@ body{
 	position: absolute;
 	width: 250px;
 	height: 100%;
-	background-color: #82D19B;
+	background-color: rgb(230, 230, 230);
 	color: #000000	;
 	padding: 1px 0; 
 	
 }
 .sidebar{
-	outline: .5px solid #d4d4d4;
+	outline: .5px solid #e7e7e7;
 }
 
 
@@ -25,7 +25,7 @@ body{
 	text-align: center;
 	margin: 0;
 	padding: 10px;
-	background: #2a2a2a2a;
+	background: #0c0c0c2a;
 }
 .sidebar .sideul{
 	list-style: none;
@@ -37,7 +37,7 @@ body{
 .sidebar .sideli{
 	
 	transition: border 0.3s;
-	outline: 0.5px solid #2a2a2a;
+	outline: 0.5px solid #babbbb;
 }
 
 .sidebar .sideli:hover{
