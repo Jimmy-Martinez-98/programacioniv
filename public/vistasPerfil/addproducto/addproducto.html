@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
 </head>
 <body>
@@ -41,7 +42,7 @@
 					  <div class="card-footer-fluid pb-2">
 					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
 					
-						<button type="button" class="btn btn-secondary btn-lg btn-small ">Modificar Producto</button>
+						<button type="button" class="btn btn-secondary btn-lg btn-small " data-toggle="modal" data-target=".bd-example-modal-lg">Modificar Producto</button>
 						<button type="button" class="btn btn-success btn-lg btn-small ">Publicar</button>
 					  </div>
 					
@@ -51,5 +52,63 @@
 		
 		</form>
 	</div>
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
+<!-- modal -->
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<table class="table table-bordered">
+			<thead>
+				<form class="form-inline mt-1 ml-1 mr-1 mb-1">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					
+				  </form>
+			  <tr>
+				
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Existencias</th>
+				<th scope="col">Fecha</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">Tomate</th>
+				<td>Tomate Rojo Fresco</td>
+				<td>Verdura</td>
+				<td>1000</td>
+				<td>20/03/12</td>
+			
+			  </tr>
+			  <tr>
+				<th scope="row">Chile</th>
+				<td>Chile verde</td>
+				<td>Verdura</td>
+				<td>1000</td>
+				<td>20/03/12</td>
+				
+				
+			  </tr>
+			  <tr>
+				<th scope="row">Mango</th>
+				<td>Mango de Azucaron</td>
+				<td>Fruto</td>
+				<td>1000</td>
+				<td>20/03/12</td>
+				
+			  </tr>
+			</tbody>
+		  </table>
+	  </div>
+	</div>
+  </div>
+  
+  

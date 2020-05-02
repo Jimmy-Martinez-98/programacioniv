@@ -9,6 +9,11 @@ ul.uls li.lis a.text{
    
 }
 
+
+
+
+
+
 img.image{
   width: 70px;
   height: 70px;
@@ -25,6 +30,11 @@ li.lis a.text{
  .active{
   border-top:3px solid teal;
 }
+
+
+
+
+
 
 @media (max-width: 700px) {
   ul.uls.activa li.activa a.text.activa:hover{
