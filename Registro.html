@@ -43,7 +43,7 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-users"></i></span>
 					</div>
-					<input type="text" required class="form-control"  v-model="usuario.nombrecooperativa" placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
+					<input type="text"  id="cooperativa" class="form-control" disabled v-model="usuario.nombrecooperativa" placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
 				  </div>
 			</div>
 			<div class="col-6">
@@ -79,7 +79,7 @@
 				  </div>
 			</div>
 			<div class="col-6">
-				<input type="date" v-model="usuario.fecha"  id="fecha">
+				<input type="date" required v-model="usuario.fecha"  id="fecha">
 			</div>
 		</div>
 		

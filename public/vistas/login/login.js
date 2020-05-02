@@ -19,6 +19,7 @@ var applogin = new Vue({
 					this.name.correo='';
 					this.name.pass='';
 					this.name.msg=resp.msg;
+					alert(this.name.msg)
 				}
 				
 				

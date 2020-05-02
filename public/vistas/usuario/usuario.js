@@ -20,7 +20,7 @@ var appusuario = new Vue({
     },
     methods:{
         guardarusuario:function( event){
-
+          
           
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if(resp.msg=='usuario registrado correctamente'){
@@ -45,11 +45,27 @@ var appusuario = new Vue({
         },
         IniciarSesion:function(){
             location.href="login.html";
-        }
+        },
+       
+        
        
         
     }
 });
 
-   
+ 
+$( function() {
+    $(".custom-select").change( function() {
+         if ($(this).val() === "Cooperativa") {
+             $("#cooperativa").prop("disabled", false);
+             
+         } else if($(this).val() === "Productor Pequeño") {
+            
+              $("#cooperativa").prop("disabled", true,'');
+            
+            
+             
+        }
+      });
+  });
      
