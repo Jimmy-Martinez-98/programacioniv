@@ -63,13 +63,14 @@
 	  </div>
 	  <script src="public/js/jquery-3.5.js"></script>
 	  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+
 </body>
 </html>
 
 
 
 <!-- Modal1 -->
-<div class="modal fade" id="foto" tabindex="-1" role="dialog" aria-labelledby="foto" aria-hidden="true">
+<div class="modal fade" id="foto" tabindex="-1" v-on:submit.prevent="guardarFoto" role="dialog" aria-labelledby="foto" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -87,7 +88,11 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
-			<button type="button" class="btn btn-secondary btn-lg">Subir foto</button>
+		<div class="div_file">
+			<p class="text"><img id="icono" src="public/img/arrows.png"></img> Subir Foto</p>
+			<input type="file" name="fperfil" v-model="perfil.imagen" id="fperfil" class="inputfile inputfile-1">
+		</div>
+			
 		</div>
 	  </div>
 	</div>

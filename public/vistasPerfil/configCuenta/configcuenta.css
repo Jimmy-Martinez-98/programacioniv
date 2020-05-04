@@ -1,6 +1,48 @@
+*{
+	margin: 0px;
+	padding: 0px;
+
+}
 div.colores{
 	background: #5fb677;
 }
 button.btn{
 	color: black;
+}
+
+.text{
+	text-align: center;
+	top: 4px;
+	color: black;
+	cursor: pointer;
+}
+div.div_file{
+	position: relative;
+	padding: 10px;
+	width: 150px;
+	height: 50px;
+	background-color: rgb(197, 197, 197);
+	-webkit-border-radius:5px;
+		
+	
+
+}
+div.div_file:hover{
+	background: rgb(155, 155, 155);
+	transition: 0.5s;
+}
+input#fperfil{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+#icono{
+	width: 20px;
+	height: 20px;
 }
