@@ -32,23 +32,27 @@ class login{
         } else {
             $correo = $this->datos['correo'];
             $contraseña = $this->datos['pass'];
-            $_SESSION['usuario']=$correo;
+            $consulta='select * from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" limit 1';
 
-           $this->db->consultas('select usuario.correo, usuario.passwords from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" limit 1');
+         $this->db->consultas($consulta);
             $this->respuesta['msg'] = $this->db->obtener_datos();
             $usuario = $this->respuesta['msg'];
+               
             
             if (empty($this->respuesta['msg'])) {
                 $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
-            } else {
-                
-                return $this->respuesta['msg'] = 'Bienvenido';
-                
-                
                
-            }
-           
+            } else {     
+               $this->respuesta['msg'] = 'Bienvenido'; 
+               foreach ($usuario as $user) {
+                $fila=$user;
+            }  
+               $_SESSION['usuario'] =$fila['nombreu'];
+               
+            }    
+          
         }
+      
     }
 
     public function recibirregistro($login)

@@ -1,7 +1,9 @@
 <?php
 	session_start();
-	
 
+	if(isset($_SESSION['usuario'])){
+	 header("Location: cooperativa.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

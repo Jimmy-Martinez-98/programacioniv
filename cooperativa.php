@@ -1,11 +1,16 @@
 <?php
   session_start();
-  error_reporting(0);
   $varsesion=$_SESSION['usuario'];
+error_reporting(0);
   if(empty($varsesion)|| $varsesion==null){
    echo 'usted no tiene acceso';
+   header("Location:login.php");
    die();
   }
+  
+
+  
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@
     <a class="navbar-brand"i style="color: black;" href="index.html " > <img class="image" src="public/img/agromark.png" alt=""></a>
     <ul class="navbar-nav ml-auto uls">
       <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="#">  <h6><?php echo   $_SESSION['usuario']; ?></h6></a>
+        <a class="nav-link  text" id="perfil"  href="#">  <h6> <?php  echo $varsesion; ?></h6></a>
       </li>
       <li class=" lis">
         <a class="nav-link  text" id="perfil"  href="cerrarsesion.php">  <h6>Cerrar Sesión</h6></a>
