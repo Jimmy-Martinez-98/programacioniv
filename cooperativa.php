@@ -1,5 +1,11 @@
 <?php
   session_start();
+  error_reporting(0);
+  $varsesion=$_SESSION['usuario'];
+  if(empty($varsesion)|| $varsesion==null){
+   echo 'usted no tiene acceso';
+   die();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +30,7 @@
         <a class="nav-link  text" id="perfil"  href="#">  <h6><?php echo   $_SESSION['usuario']; ?></h6></a>
       </li>
       <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="# ">  <h6>Cerrar Sesión</h6></a>
+        <a class="nav-link  text" id="perfil"  href="cerrarsesion.php">  <h6>Cerrar Sesión</h6></a>
       </li>
     </ul>
  
