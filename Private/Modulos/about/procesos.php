@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../../Config/Config.php');
 $fotoP = new fotoP($Conexion);
 
@@ -45,10 +45,6 @@ class fotoP{
                 $this->respuesta['msg'] = 'Registro insertado correctamente';
              } 
         }
-    }
-  
-
- 
- 
+	}
 }
 ?>

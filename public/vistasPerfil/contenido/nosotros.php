@@ -1,3 +1,8 @@
+<?php
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,40 +13,37 @@
 </head>
 <body>
 	<div class="container bg">
-	<form action="#" method="post">
-		
+	<form action="#" method="post" id="frm-nosotros" >
 	
-	
-			
 			<div class="col-12 d-flex justify-content-center ">		
 			<img src="public/img/imgpeque.jpg" class="img-fluid max-width mt-2" alt="Responsive image">
 			</div>
 			<div class="col-12 d-flex justify-content-center mt-2">
-				<h1>Nombre Productor</h1>
+				<h1><?php echo $_SESSION['usuario']?> </h1>
 			</div>
 			
 				<div class="col-12 text-white  mt-2">
 					<div class= "form-group">
 						<h5 for="misionh5">Mision</h5>
-						<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium esse eveniet atque beatae inventore deserunt molestias officiis ratione similique mollitia neque totam illo quas ut vel, repudiandae quaerat illum?</p>
+						<p v-for='nosotros in about'>{{nosotros.mision}}  </p>
 				</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 				<h5 for="visionh5">Vision</h5>
-				<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium esse eveniet atque beatae inventore deserunt molestias officiis ratione similique mollitia neque totam illo quas ut vel, repudiandae quaerat illum?</p>
+				<p></p>
 			</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 					<h5 for="valoresh5">Valores</h5>
-					<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium esse eveniet atque beatae inventore deserunt molestias officiis ratione similique mollitia neque totam illo quas ut vel, repudiandae quaerat illum?</p>
+					<p v-for='nosotros in about'>{{nosotros.valores}} </p>
 			</div>
 			</div>
 			<div class="col-12  text-white">
 			  <div class="form-group">
 				<h5 for="principiosh5">Principios</h5>
-				<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae praesentium esse eveniet atque beatae inventore deserunt molestias officiis ratione similique mollitia neque totam illo quas ut vel, repudiandae quaerat illum?</p>
+				<p v-for='nosotros in about'>{{nosotros.principios}} </p>
 			  </div>
 		</div>
 		<div class="card-foote-fluid pb-2">
@@ -68,6 +70,7 @@
 </div>
 <script src="public/js/jquery-3.5.js"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </body>
 </html>
 

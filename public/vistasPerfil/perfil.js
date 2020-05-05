@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$('#nosotros').click(()=>{
-		$('.contenidoP').load("public/vistasPerfil/contenido/nosotros.html", function (data) {
+		$('.contenidoP').load("public/vistasPerfil/contenido/nosotros.php", function (data) {
 		$(this).html(data);;
 			
 		});
