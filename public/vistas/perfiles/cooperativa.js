@@ -42,17 +42,19 @@ $(document).ready(function () {
 	});
 
 
-	$('ul.activa li.activa a.activa:first').addClass('active');
-
-   $('ul.activa li.activa a.activa').click(function (e) { 
-      $('ul.activa li.activa a.activa').removeClass('active');
-      $(this).addClass('active');
-      
-   });
+	cambiar_clase();
 });
 
 
 
+
+function cambiar_clase() {
+	$('ul.activa li.activa a.activa:first').addClass('active');
+	$('ul.activa li.activa a.activa').click(function (e) {
+		$('ul.activa li.activa a.activa').removeClass('active');
+		$(this).addClass('active');
+	});
+}
 
 function toggle(){
 	$("#togglesss").click(function(){

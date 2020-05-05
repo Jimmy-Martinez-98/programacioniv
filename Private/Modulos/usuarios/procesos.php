@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include('../../Config/Config.php');
 $login = new login($Conexion);
 
@@ -31,15 +32,19 @@ class login{
         } else {
             $correo = $this->datos['correo'];
             $contraseña = $this->datos['pass'];
+            $_SESSION['usuario']=$correo;
 
-            $this->db->consultas('select usuario.correo, usuario.passwords from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" limit 1');
+           $this->db->consultas('select usuario.correo, usuario.passwords from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" limit 1');
             $this->respuesta['msg'] = $this->db->obtener_datos();
             $usuario = $this->respuesta['msg'];
-
+            
             if (empty($this->respuesta['msg'])) {
                 $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
             } else {
+                
                 return $this->respuesta['msg'] = 'Bienvenido';
+                
+                
                
             }
            

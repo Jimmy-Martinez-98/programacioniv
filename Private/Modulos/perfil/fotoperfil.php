@@ -6,7 +6,7 @@ $proceso = '';
 if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
 	$proceso = $_GET['proceso'];
 }
-$fotoP->$proceso( $_GET['fotoP'] );
+$fotoP->$proceso( $_GET['perfil'] );
 print_r(json_encode($fotoP->respuesta));
  
 class fotoP{
@@ -23,10 +23,13 @@ class fotoP{
     private function validar_datos(){
        
         if( empty($this->datos['imagen']) ){
-            $this->respuesta['msg'] = 'A ocurrido un error al subir archivo';
+            
+            $this->respuesta['msg'] = 'error al cargar archivo';
         }
-       
         $this->almacenar_fotoP();
+
+       
+      
     }
     private function almacenar_fotoP(){
         if( $this->respuesta['msg']==='correcto' ){
@@ -43,6 +46,7 @@ class fotoP{
              } 
         }
     }
+    validar
 
  
  

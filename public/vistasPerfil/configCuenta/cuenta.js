@@ -1,16 +1,16 @@
 var appperfilimg = new Vue({
-	el:'#foto',
+	el:'#fotoperfiledit',
 	data:{
 		perfil:{
-			accion:'',
+			accion:'nuevo',
 			imagen:'',
 			msg:''
 		}
 
 	},
 	method:{
-		guardarFoto:function(){
-			fetch(`/private/Modulos/perfil/fotoperfil.php?proceso=resibirFoto&perfil=${JSON.stringify(this.perfil)}`).then( resp=>resp.json() ).then(resp=>{
+		guardarfoto:function(){
+			fetch(`private/Modulos/perfil/fotoperfil.php?proceso=recibirDatos&perfil=${JSON.stringify(this.perfil)}`).then( resp=>resp.json() ).then(resp=>{
 
 
 			});

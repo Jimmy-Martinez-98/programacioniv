@@ -7,70 +7,70 @@
 </head>
 <body>
 	<div class="container colores">
-	<form>
-		<div class="row d-flex justify-content-center pt-2">
-			<div class="col-6">
-				<div class="card float-left" style="width: 18rem;">
-					<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
-				  </div>
-				  <div class="float-right">
-					<button type="button" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" data-target="#foto">Editar Foto de Perfil</button>
+		<form method="POST">
+			<div class="row d-flex justify-content-center pt-2">
+				<div class="col-6">
+					<div class="card float-left" style="width: 18rem;">
+						<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
+					</div>
+					<div class="float-right">
+						<button type="button" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
+					</div>
 				</div>
-			</div>
-			<div class="col-8 mt-3">
-				
-				<div class="form-group float-left">
-					<label for="nombre">Nombre de Usuario</label>
-					<input type="text" class="form-control" id="nombre">					
-				  </div>
-
-				  <div class="form-group float-right">
-					<label for="nombre">Nombre Cooperativa</label>
-					<input type="text" class="form-control" id="nombre">					
-				  </div>
-			</div>
-				
 				<div class="col-8 mt-3">
-					<div class="form-group ">
-						<label for="exampleInputEmail1">Correo ELectronico</label>
-						<input type="email" class="form-control" id="correoU">
-						
-					  </div>
-				</div>
-				<div class="col-8">
-					<label for="exampleInputEmail1">Telefono</label>
-					<div class="input-group ">
-						<input type="text" class="form-control" >
-						<div class="input-group-append ">
-						  <button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
-						</div>
-					  </div>
-				</div>  
-				<div class="col-8 mb-3">
-					<label for="contra">Contraseña</label>
-					<div class="input-group ">
-						<input type="password" class="form-control" >
-						<div class="input-group-append ">
-						  <button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
-						</div>
-					  </div>
-				</div>  
-				</div>
-				
+					
+					<div class="form-group float-left">
+						<label for="nombre">Nombre de Usuario</label>
+						<input type="text" class="form-control" id="nombre">					
+					</div>
 
-		</div>
-	  </form>
-	  </div>
+					<div class="form-group float-right">
+						<label for="nombre">Nombre Cooperativa</label>
+						<input type="text" class="form-control" id="nombre">					
+					</div>
+				</div>
+					
+					<div class="col-8 mt-3">
+						<div class="form-group ">
+							<label for="exampleInputEmail1">Correo ELectronico</label>
+							<input type="email" class="form-control" id="correoU">
+							
+						</div>
+					</div>
+					<div class="col-8">
+						<label for="exampleInputEmail1">Telefono</label>
+						<div class="input-group ">
+							<input type="text" class="form-control" >
+							<div class="input-group-append ">
+							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
+							</div>
+						</div>
+					</div>  
+					<div class="col-8 mb-3">
+						<label for="contra">Contraseña</label>
+						<div class="input-group ">
+							<input type="password" class="form-control" >
+							<div class="input-group-append ">
+							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
+							</div>
+						</div>
+					</div>  
+					</div>
+					
+				</form>
+				</div>
+		
+	 
 	  <script src="public/js/jquery-3.5.js"></script>
 	  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	  <script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
 
 </body>
 </html>
 
-
-
 <!-- Modal1 -->
-<div class="modal fade" id="foto" tabindex="-1" v-on:submit.prevent="guardarFoto" role="dialog" aria-labelledby="foto" aria-hidden="true">
+
+<div class="modal fade" id="fotoperfiledit" tabindex="-1"  role="dialog" aria-labelledby="foto" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -90,13 +90,14 @@
 			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
 		<div class="div_file">
 			<p class="text"><img id="icono" src="public/img/arrows.png"></img> Subir Foto</p>
-			<input type="file" name="fperfil" v-model="perfil.imagen" id="fperfil" class="inputfile inputfile-1">
+			<input type="file" name="fperfil"  id="fperfil"  class="inputfile inputfile-1">
 		</div>
-			
+		<button type="button" class="btn btn-primary btn-lg"  @click="guardarfoto" >Carcar foto</button>
 		</div>
 	  </div>
 	</div>
   </div>
+
 
 
   <!-- Modal2 -->

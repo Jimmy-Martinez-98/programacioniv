@@ -20,15 +20,10 @@ $(document).ready(function () {
    });
    $('#login').click(()=>{
      
-      location.href='login.html';
+      location.href='login.php';
    });
    
-   $('#newusuario').click(()=>{
-     
-    $('#contenedor').load("public/vistas/usuario/nuevousurario.html",function(data){
-       $(this).html(data);
-    });
-   });
+   
        
    
    

@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +21,10 @@
     <a class="navbar-brand"i style="color: black;" href="index.html " > <img class="image" src="public/img/agromark.png" alt=""></a>
     <ul class="navbar-nav ml-auto uls">
       <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="#">  <h6>Perfil</h6></a>
+        <a class="nav-link  text" id="perfil"  href="#">  <h6><?php echo   $_SESSION['usuario']; ?></h6></a>
       </li>
       <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="index.html">  <h6>Cerrar Sesión</h6></a>
+        <a class="nav-link  text" id="perfil"  href="# ">  <h6>Cerrar Sesión</h6></a>
       </li>
     </ul>
  
