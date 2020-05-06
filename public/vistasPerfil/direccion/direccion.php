@@ -1,3 +1,7 @@
+<?php
+	session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +14,14 @@
 	
 <div class="container bg">
 
-<form action="#" method="post">
+<form action="#" method="post" id="frm-direcciones">
 		<div class="d-flex justify-content-center">
 			<h1>
 				MI DIRECCION
 			</h1>
 		</div>
 		<div class="col-12 mt-3">
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci accusamus natus fuga vero. Aperiam veritatis assumenda at eius odit, quis perspiciatis earum necessitatibus in saepe tempore! Nesciunt laboriosam assumenda amet?</p>
+		<p v-for='direccion in direction' >{{direccion.Direccion}}</p>
 		</div>
 		<div class="row mb-3 mr-3 ml-3 mt-3">
 		<div class="col-6 mb-3">
@@ -33,6 +37,7 @@
 </div>
 <script src="public/js/jquery-3.5.js"></script>
  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+ <script src="public/vistasPerfil/direccion/direcciones.js"></script>
 </body>
 </html>
 

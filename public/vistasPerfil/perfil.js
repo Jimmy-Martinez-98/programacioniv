@@ -6,7 +6,7 @@ $(document).ready(function () {
 		});
 	});
 	$('#direccion').click(()=>{
-		$('.contenidoP').load("public/vistasPerfil/direccion/direccion.html", function (data) {
+		$('.contenidoP').load("public/vistasPerfil/direccion/direccion.php", function (data) {
 		$(this).html(data);
 			
 		});

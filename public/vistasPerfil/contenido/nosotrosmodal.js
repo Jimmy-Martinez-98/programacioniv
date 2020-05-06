@@ -1,7 +1,8 @@
 var appedit = new Vue({
-	el: '#modalEdit',
+	el: '#modaleditar',
 	data: {
-	 nosotross:{
+	
+	 abouts:{
 		
             infoperfil   : 0,
 			accion       : 'nuevo',
@@ -10,23 +11,20 @@ var appedit = new Vue({
             vision   	 : '',
             valores		 : '',
             principios	 : '',
-            msg      	 : ''
-		 },
-		 about:{}
+			msg      	 : ''
+	 }
+	
+		 
 
 	 },
 	 methods:{
-		guardar:function(){
-			console.log('hola');
+		guardar(){
+			console.log('hola',abouts);
 			
 		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotross=${this.nosotross}`).then( resp=>resp.json() ).then(resp=>{ 
-			this.nosotross = resp;          
+			this.about = resp;          
 		  });
 		},
-		actualizar:function(about){
-			appinfo.about=about;
-			appinfo.about.accion='modificar';
-		}
 	 }
 	
   });
