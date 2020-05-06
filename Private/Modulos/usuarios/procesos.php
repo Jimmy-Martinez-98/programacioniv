@@ -48,7 +48,6 @@ class login{
                 $fila=$user;
             }  
                $_SESSION['usuario'] =$fila['nombreu'];
-               
             }    
           
         }

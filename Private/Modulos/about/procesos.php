@@ -22,31 +22,36 @@ class about{
         $this->validar_datos();
     }
     private function validar_datos(){
-       
-        if( empty($this->datos['imagen']) ){
-            
-            $this->respuesta['msg'] = 'error al cargar archivo';
-        }
-        $this->almacenar_about();
-
-       
+        $this->actualizar(); 
       
     }
-    private function almacenar_about(){
+    private function actualizar(){
         if( $this->respuesta['msg']==='correcto' ){
-            if( $this->datos['accion']==='nuevo' ){
+            if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
-                    INSERT INTO about (fk_usuario,imagenabout,) VALUES(
-                        "'. $this->datos['fk_idusuario']['id'] .'",
-                        "'. $this->datos['nombreprod'] .'",
-                        "'. $this->datos['precio'] .'",
-                        "'. $this->datos[''] .'"
-                    )
+                UPDATE informacionnosotros SET
+                fk_idusuario      = "'. $this->datos['usuario']['id'] .'",
+                Mision         = "'. $this->datos['mision'] .'",
+                 Mision         = "'. $this->datos['mision'] .'",
+            WHERE infoUsuario = "'. $this->datos['infousuario'] .'"
                 ');
                 $this->respuesta['msg'] = 'Registro insertado correctamente';
              } 
         }
     }
+    public function traerusuario(){
+        $this->db->consultas('
+            select usuario.idusuario AS id, usuario.nombre AS label
+            from usuario
+        ');
+        $usuarion = $this->db->obtener_data();
+       
+       
+        return $this->respuesta = ['usuarios'=>$usuarion ];//array de php en v7+
+    }
+
+
+
     
     public function recibirinfo($about){
         $this->datos = json_decode($about, true);
