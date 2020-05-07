@@ -19,12 +19,14 @@ var appedit = new Vue({
 	 },
 	 methods:{
 		guardar(){
-			console.log('hola',abouts);
+		
 			
-		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotross=${this.nosotross}`).then( resp=>resp.json() ).then(resp=>{ 
-			this.about = resp;          
+		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotross=${this.abouts}`).then( resp=>resp.json() ).then(resp=>{ 
+			this.abouts = resp;   
+			
 		  });
 		},
-	 }
+	 },
+	
 	
   });

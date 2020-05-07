@@ -25,7 +25,7 @@ var applogin = new Vue({
             });
 		 },
 		 Registrate:function(){
-			location.href="Registro.html";
+			location.href="Registro.php";
 		},
 		Recuperar:function(){
 			location.href="password.html";

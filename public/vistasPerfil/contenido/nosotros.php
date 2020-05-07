@@ -16,9 +16,9 @@
 </head>
 <body>
 	<div class="container bg">
-	<form action="#" method="post" id="frm-nosotros" >
+	<form action="#" method="post" id="frm-nosotros"v-for='sobre in about':key="sobre.idusuario" >
 	
-			<div class="col-12 d-flex justify-content-center ">		
+			<div class="col-12 d-flex justify-content-center" >		
 			<img src="public/img/imgpeque.jpg" class="img-fluid max-width mt-2" alt="Responsive image">
 			</div>
 			<div class="col-12 d-flex justify-content-center mt-2">
@@ -28,26 +28,26 @@
 				<div class="col-12 text-white  mt-2">
 					<div class= "form-group">
 						<h5 for="misionh5">Mision</h5>
-						<p v-for='aserca in about' >{{aserca.Mision}}  </p>
+						<p  >{{sobre.Mision}}  </p>
 						
 				</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 				<h5 for="visionh5" >Vision</h5>
-				<p v-for="aserca in about"  >{{aserca.Vision}}</p>
+				<p v-for="aserca in about"  >{{sobre.Vision}}</p>
 			</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 					<h5 for="valoresh5">Valores</h5>
-					<p v-for='aserca in about' >{{aserca.Valores}} </p>
+					<p v-for='aserca in about' >{{sobre.Valores}} </p>
 			</div>
 			</div>
 			<div class="col-12  text-white">
 			  <div class="form-group">
 				<h5 for="principiosh5">Principios</h5>
-				<p v-for='aserca in about' >{{aserca.Principios}} </p>
+				<p  >{{sobre.Principios}} </p>
 			  </div>
 		</div>
 		<div class="card-foote-fluid pb-2">
@@ -91,8 +91,8 @@
 			<div class="col-12 text-dark mt-1">
 			<div class= "form-group">
 			<label for="misionlabel">Mision</label>
-			<input type="text" class="form-control" v-model="abouts" id="misions" aria-describedby="emailHelp" placeholder="Ingrese Mision">
-			<p>El mensaje es: {{ abouts.infoperfil }}</p>
+			<input type="text" class="form-control" v-model="abouts.infoperfil" id="misions" aria-describedby="emailHelp" placeholder="Ingrese Mision">
+			<p >El mensaje es: {{abouts}}</p>
 			</div>
 			</div>
 			<div class="col-12 text-dark">
@@ -104,13 +104,13 @@
 			<div class="col-12 text-dark">
 			<div class="form-group">
 				<label for="valoreslabel">Valores</label>
-				<input type="text" class="form-control"  v-model="abouts" id="valores" placeholder="Ingrese Valores">
+				<input type="text" class="form-control"  v-model="abouts" id="valoress" placeholder="Ingrese Valores">
 			</div>
 			</div>
 			<div class="col-12  text-dark">
 			<div class="form-group">
 				<label for="principioslabel">Principios</label>
-				<input type="text" class="form-control" v-model="abouts" id="principios" placeholder="Ingrese Principios">
+				<input type="text" class="form-control" v-model="abouts.Princios" id="principios" placeholder="Ingrese Principios">
 			</div>
 			</div>
 			
