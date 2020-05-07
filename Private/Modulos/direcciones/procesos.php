@@ -26,17 +26,26 @@ class direccion{
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
-                    INSERT INTO usuario (fk_idusuario,nombreprod,precio,descprod) VALUES(
-                        "'. $this->datos['fk_idusuario']['id'] .'",
-                        "'. $this->datos['nombreprod'] .'",
-                        "'. $this->datos['precio'] .'",
-                        "'. $this->datos['descprod'] .'"
+                    INSERT INTO direcciones (fkUsuario,Direccion) VALUES(
+                        "'. $this->datos['usuario']['id'] .'",
+                        "'. $this->datos['direccion'] .'"
                     )
                 ');
 				$this->respuesta['msg'] = 'Registro insertado correctamente';
 			}
 		}
-	}
+    }
+    
+    public function traerusuario(){
+        $this->db->consultas('
+            SELECT usuario.id AS id
+        ');
+        $usuario = $this->db->obtener_datos();
+        return $this->respuesta = ['usuario'=>$usuario ];//array de php en v7+
+    }
+
+
+
 
 	public function recibirdireccion($direccion){
         $this->datos = json_decode($direccion, true);

@@ -1,4 +1,4 @@
-var appdirecciones=new Vue({
+var mostrardirecciones=new Vue({
 	el:'#frm-direcciones',
 	data: {
 		direction:[] ,
@@ -13,7 +13,7 @@ var appdirecciones=new Vue({
    
 		info:function(){
 		   
-		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${this.direction}`).then( resp=>resp.json() ).then(resp=>{ 
+		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
 			   this.direction = resp;	
 			   
 		   });
@@ -23,4 +23,5 @@ var appdirecciones=new Vue({
 		}
 	}
 
-})
+});
+

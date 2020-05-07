@@ -24,7 +24,7 @@ var appusuario = new Vue({
           
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if(resp.msg=='usuario registrado correctamente'){
-                    location.href="cooperativa.html"
+                    location.href="cooperativa.php"
                 }else{
                 this.usuario.msg = resp.msg;
                 this.usuario.idUsuario = 0;

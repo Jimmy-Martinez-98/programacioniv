@@ -17,7 +17,7 @@
 <form action="#" method="post" id="frm-direcciones">
 		<div class="d-flex justify-content-center">
 			<h1>
-				MI DIRECCION
+			DIRECCION DE: <?php echo $_SESSION['usuario']?>
 			</h1>
 		</div>
 		<div class="col-12 mt-3">
@@ -25,7 +25,7 @@
 		</div>
 		<div class="row mb-3 mr-3 ml-3 mt-3">
 		<div class="col-6 mb-3">
-			<input type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#nuevaD1" value="Nueva Direccion" id="newdireccion">
+			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal" data-target="#nuevaD1" value="Nueva Direccion" id="newdireccion">
 		</div>
 		<div class="col-6 mb-3">
 			<input type="button" class="btn btn-secondary btn-lg btn-block" value="Modificar Direccion" data-toggle="modal" data-target="#moddirec" id="modificardireccion">
@@ -38,6 +38,7 @@
 <script src="public/js/jquery-3.5.js"></script>
  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
  <script src="public/vistasPerfil/direccion/direcciones.js"></script>
+ <script src="public/vistasPerfil/direccion/nueva.js"></script>
 </body>
 </html>
 
@@ -56,12 +57,12 @@
 		<div class="modal-body">
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Nueva Dirección</label>
-				<textarea class="form-control" id="ndireccion" rows="3"></textarea>
+				<textarea class="form-control" v-model="nuevaD" id="ndireccion" rows="3"></textarea>
 			  </div>
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-		  <button type="button" class="btn btn-primary">Guardar Dirección</button>
+		  <button type="button" v-on:click="almacenar" class="btn btn-primary">Guardar Dirección</button>
 		</div>
 	  </div>
 	</div>

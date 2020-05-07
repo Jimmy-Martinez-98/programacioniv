@@ -13,13 +13,13 @@ $(document).ready(function () {
 	});
 
 	$('#historial').click(()=>{
-		$('.contenidoP').load("public/vistasPerfil/historialCompras/historialCompras.html", function (data) {
+		$('.contenidoP').load("public/vistasPerfil/historialCompras/historialCompras.php", function (data) {
 		$(this).html(data);
 			
 		});
 	});
 	$('#productos').click(()=>{
-		$('.contenidoP').load("public/vistasPerfil/misproductos/mproductos.html", function (data) {
+		$('.contenidoP').load("public/vistasPerfil/misproductos/mproductos.php", function (data) {
 		$(this).html(data);
 			
 		});

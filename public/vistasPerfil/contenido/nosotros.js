@@ -13,7 +13,7 @@ var appinfo = new Vue({
 	
 		 todo:function(){
 			
-			fetch(`private/Modulos/about/procesos.php?proceso=recibirinfo&about=${this.about}`).then( resp=>resp.json() ).then(resp=>{ 
+			fetch(`private/Modulos/about/procesos.php?proceso=recibirinfo&about=${JSON.stringify(this.about)}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.about = resp;	
 				
 			});
