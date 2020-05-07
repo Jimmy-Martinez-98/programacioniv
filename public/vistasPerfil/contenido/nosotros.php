@@ -28,26 +28,26 @@
 				<div class="col-12 text-white  mt-2">
 					<div class= "form-group">
 						<h5 for="misionh5">Mision</h5>
-						<p  >{{sobre.Mision}}  </p>
+						<p class="text-justify" >{{sobre.Mision}}  </p>
 						
 				</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 				<h5 for="visionh5" >Vision</h5>
-				<p  >{{sobre.Vision}}</p>
+				<p class="text-justify" >{{sobre.Vision}}</p>
 			</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 					<h5 for="valoresh5">Valores</h5>
-					<p  >{{sobre.Valores}} </p>
+					<p class="text-justify" >{{sobre.Valores}} </p>
 			</div>
 			</div>
 			<div class="col-12  text-white">
 			  <div class="form-group">
 				<h5 for="principiosh5">Principios</h5>
-				<p  >{{sobre.Principios}} </p>
+				<p class="text-justify" >{{sobre.Principios}} </p>
 			  </div>
 		</div>
 		<div class="card-foote-fluid pb-2">

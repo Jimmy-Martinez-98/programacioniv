@@ -47,7 +47,7 @@ class about{
         $usuarion = $this->db->obtener_data();
        
        
-        return $this->respuesta = ['usuarios'=>$usuarion ];//array de php en v7+
+        return $this->respuesta = ['usuario'=>$usuarion ];//array de php en v7+
     }
 
 
