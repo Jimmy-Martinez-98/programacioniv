@@ -18,15 +18,15 @@ var appedit = new Vue({
 
 	 },
 	 methods:{
-		guardar(){
+		guardar:function(){
 		
 			
 		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotross=${this.abouts}`).then( resp=>resp.json() ).then(resp=>{ 
 			this.abouts = resp;   
 			
 		  });
-		},
-	 },
+		}
+	 }
 	
 	
   });

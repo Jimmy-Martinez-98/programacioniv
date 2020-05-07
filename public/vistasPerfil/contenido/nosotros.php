@@ -35,13 +35,13 @@
 			<div class="col-12 text-white">
 				<div class="form-group">
 				<h5 for="visionh5" >Vision</h5>
-				<p v-for="aserca in about"  >{{sobre.Vision}}</p>
+				<p  >{{sobre.Vision}}</p>
 			</div>
 			</div>
 			<div class="col-12 text-white">
 				<div class="form-group">
 					<h5 for="valoresh5">Valores</h5>
-					<p v-for='aserca in about' >{{sobre.Valores}} </p>
+					<p  >{{sobre.Valores}} </p>
 			</div>
 			</div>
 			<div class="col-12  text-white">
@@ -91,26 +91,26 @@
 			<div class="col-12 text-dark mt-1">
 			<div class= "form-group">
 			<label for="misionlabel">Mision</label>
-			<input type="text" class="form-control" v-model="abouts.infoperfil" id="misions" aria-describedby="emailHelp" placeholder="Ingrese Mision">
-			<p >El mensaje es: {{abouts}}</p>
+			<input type="text" class="form-control" v-model="abouts[0].Mision" id="misions" aria-describedby="emailHelp" placeholder="Ingrese Mision">
+		
 			</div>
 			</div>
 			<div class="col-12 text-dark">
 			<div class="form-group">
 			<label for="visionlabel">Vision</label>
-			<input type="text" class="form-control" v-model="abouts" id="visions" placeholder="Ingrese Vision">
+			<input type="text" class="form-control" v-model="abouts[0].Vision" id="visions" placeholder="Ingrese Vision">
 			</div>
 			</div>
 			<div class="col-12 text-dark">
 			<div class="form-group">
 				<label for="valoreslabel">Valores</label>
-				<input type="text" class="form-control"  v-model="abouts" id="valoress" placeholder="Ingrese Valores">
+				<input type="text" class="form-control"  v-model="abouts[0].Valores" id="valoress" placeholder="Ingrese Valores">
 			</div>
 			</div>
 			<div class="col-12  text-dark">
 			<div class="form-group">
 				<label for="principioslabel">Principios</label>
-				<input type="text" class="form-control" v-model="abouts.Princios" id="principios" placeholder="Ingrese Principios">
+				<input type="text" class="form-control" v-model="abouts[0].Principios" id="principios" placeholder="Ingrese Principios">
 			</div>
 			</div>
 			

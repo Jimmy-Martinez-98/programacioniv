@@ -7,6 +7,7 @@ var appinfo = new Vue({
 	 created:function(){
 		 
 		 this.todo();
+		 this.editar(abouts);
 		 
 	 },
 	 methods:{
@@ -15,17 +16,13 @@ var appinfo = new Vue({
 			
 			fetch(`private/Modulos/about/procesos.php?proceso=recibirinfo&about=${JSON.stringify(this.about)}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.about = resp;	
-				return console.log('objeto',this.about[0]);
-				
-			});
-			
-			
-			
+				return console.log('objeto',this.about[0]);				
+			});			
 		 },
 		
 		 editar:function(abouts){
-			appinfo.abouts= abouts;
-				appinfo.abouts[0].accion = 'modificar';
+			appedit.abouts= abouts;
+			appedit.abouts[0].accion = 'modificar';
 				console.log('array',abouts[0].Vision,abouts[0].Mision);	
 			 }
 		

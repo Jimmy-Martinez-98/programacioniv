@@ -23,7 +23,7 @@ session_start();
 							<label class="float-left" for="#">{{miprodc.precio}}</label>
 						</div>
 						<div class="col-3">
-							<label class="float-right" for="#">{{miprodc.tipoHortaliza}}</label>
+							<label class="float-right" for="#">{{miprodc.nombreu}}</label>
 							
 						</div>
 					</div>
