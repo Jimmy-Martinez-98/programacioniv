@@ -56,8 +56,8 @@
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-   
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	 <script src="public/vistas/login/login.js"></script>
-	 <script src="https://unpkg.com/vue-select@3.0.0"></script> 
+	
 </body>
 </html>

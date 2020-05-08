@@ -44,7 +44,7 @@ var appusuario = new Vue({
            
         },
         IniciarSesion:function(){
-            location.href="login.html";
+            location.href="login.php";
         },
        
         

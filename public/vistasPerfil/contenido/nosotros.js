@@ -16,7 +16,7 @@ var appinfo = new Vue({
 			
 			fetch(`private/Modulos/about/procesos.php?proceso=recibirinfo&about=${JSON.stringify(this.about)}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.about = resp;	
-				return console.log('objeto',this.about[0]);				
+					
 			});			
 		 },
 		

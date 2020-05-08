@@ -7,6 +7,7 @@ var mostrardirecciones=new Vue({
 	created:function(){
 		
 		this.info();
+		this.editardire(modificarD);
 		
 	},
 	methods:{
@@ -16,11 +17,15 @@ var mostrardirecciones=new Vue({
 		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
 			   this.direction = resp;	
 			   
-		   });
+		   });	   	   
 		   
-		   
-		   
+		},
+		editardire:function(modificarD){
+			guardardirecciones.modificarD=modificarD;
+			guardardirecciones.modificarD.accion='modificar';
+			console.log('array',modificarD[0].idusuario);	
 		}
+	
 	}
 
 });

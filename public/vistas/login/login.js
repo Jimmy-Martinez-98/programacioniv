@@ -17,7 +17,12 @@ var applogin = new Vue({
 				
 				}else{
 					this.name.pass='';
-					alert(this.name.msg)
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: resp.msg,
+						
+					  })
 				}
 				
 				

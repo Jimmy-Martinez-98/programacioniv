@@ -3,7 +3,7 @@ var appcontras = new Vue({
 	data:{
 		name:{
 			
-			antigua  	: '',
+			correo  	: '',
 			pass		:'',
 			confir		:'',
 			msg			:''
@@ -14,7 +14,7 @@ var appcontras = new Vue({
 		Recuperar:function(){
 			fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.name)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg=="Bienvenido"){
-					location.href='cooperativa.html';
+					location.href='cooperativa.php';
 				}else{
 					this.name.correo='';
 					this.name.pass='';
@@ -26,7 +26,7 @@ var appcontras = new Vue({
             });
 		 },
 		atras:function(){
-			location.href="login.html";
+			location.href="login.php";
 		},
 
 		

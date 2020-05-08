@@ -22,6 +22,7 @@ class about{
         $this->validar_datos();
     }
     private function validar_datos(){
+        
         $this->actualizar(); 
       
     }

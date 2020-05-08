@@ -58,7 +58,7 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
 					</div>
-					<input type="text" required class="form-control"  v-model="usuario.telefono" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
+					<input type="text"pattern="[0-9]{8}" maxlength="8" minlength="8" required class="form-control"  v-model="usuario.telefono" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
 				  </div>
 			</div>
 			<div class="col-6">
@@ -82,7 +82,8 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
 					</div>
-					<input type="password" required class="form-control"  v-model="usuario.pass" placeholder="Contraseña" aria-label="Correoelectronico" aria-describedby="basic-addon1">
+					<input type="password" minlength="8" required class="form-control"  v-model="usuario.pass" placeholder="Contraseña" aria-label="Correoelectronico" aria-describedby="basic-addon1">
+					<label for="ss">caracteres minimos 8 combinacion de letras M,m  y caracteres especiales: ._-</label>
 				  </div>
 			</div>
 			<div class="col-6">

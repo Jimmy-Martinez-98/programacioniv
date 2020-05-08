@@ -20,14 +20,22 @@ class direccion{
     }
     public function recibirDatos($direccion){
         $this->datos = json_decode($direccion, true);
-        $this->almacenar_direccion();
+       $this->validar();
+    }
+    public function validar(){
+        if(empty($this->datos['direccion'])){
+            $this->respuesta['msg']='por favor ingrese la Dirección';      
+        }else{
+            $this->almacenar_direccion();
+        }
+       
     }
     private function almacenar_direccion(){
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
                     INSERT INTO direcciones (fkUsuario,Direccion) VALUES(
-                        "'. $this->datos['usuario']['id'] .'",
+                        "'. $this->datos['idusuario'] .'",
                         "'. $this->datos['direccion'] .'"
                     )
                 ');
@@ -36,13 +44,11 @@ class direccion{
 		}
     }
     
-    public function traerusuario(){
-        $this->db->consultas('
-            SELECT usuario.id AS id
-        ');
-        $usuario = $this->db->obtener_datos();
-        return $this->respuesta = ['usuario'=>$usuario ];//array de php en v7+
+    public function verid($valor=''){
+        $this->db->consultas('select * from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
+        $this->respuesta=$this->db->obtener_datos();;
     }
+
 
 
 
