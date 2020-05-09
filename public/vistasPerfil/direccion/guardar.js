@@ -16,6 +16,7 @@ var nuevadireccion = new Vue({
 		almacenar:function(){
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
 				
+				
 				if(resp.msg=="por favor ingrese la Dirección"){
 					 
 					 
@@ -43,8 +44,9 @@ var nuevadireccion = new Vue({
 		},
 		obtenerlogin:function(){
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
+				console.log(this.resp);
 				this.almacenar();		
-				 console.log(resp);
+				
 				
 
 				

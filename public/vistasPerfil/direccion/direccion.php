@@ -61,7 +61,7 @@
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Nueva Dirección</label>
 				<textarea class="form-control" v-model="Ndireccion.Direccion"  id="ndireccion" rows="3"></textarea>
-				<p>{{Ndireccion.idusuario}}</p>
+			
 			  </div>
 		</div>
 		<div class="modal-footer">

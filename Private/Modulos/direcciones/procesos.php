@@ -48,7 +48,7 @@ class direccion{
     
     public function idlogueo($valor=''){
       $this->db->consultas('SELECT * from usuario where nombreu="'.$_SESSION['usuario'].'"');
-      return  $this->respuesta = $this->db->obtener_datos();
+       $this->respuesta = $this->db->obtener_datos();
        
     }
 
