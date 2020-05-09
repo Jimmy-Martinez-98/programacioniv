@@ -1,14 +1,7 @@
 var guardardirecciones= new Vue({
 	el:'#moddirec',
 	data:{
-		modificarD:{
-			iddireccion	:0,
-			idusuario	:0,
-			direccion	:'',
-			accion		:'nuevo'
-
-
-		},
+		modificarD:[],
 		
 	},
 	methods:{

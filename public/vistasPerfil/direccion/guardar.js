@@ -8,26 +8,35 @@ var nuevadireccion = new Vue({
 			accion		:'nuevo',
 			msg			:''
 		}
-		
+	
 	},
 	
 	methods:{
-
+		idlogueo:function(){	
+			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
+				this.Ndireccion.idusuarios=resp[0].idusuario;
+				console.log('identificador =',this.Ndireccion.idusuarios);
+				
+			})
+			
+			
+		},
+		
+		
 		almacenar:function(){
-			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
-				
-				
-				if(resp.msg=="por favor ingrese la Dirección"){
-					 
-					 
+			this.idlogueo();
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {	
+								
+				if(resp.msg!="Registro insertado correctamente"){
+					 	 
 					Swal.fire({
 						position: 'top-end',
-						icon: 'warning',
-						title: resp.msg,
+						icon: 'error',
+						title:resp.msg,
 						showConfirmButton: false,
 						timer: 1500
 					})
-				}else if(resp.msg=='Registro insertado correctamente'){
+				}else {
 					Swal.fire({
 						position: 'top-end',
 						icon: 'success',
@@ -35,25 +44,14 @@ var nuevadireccion = new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					  })
-				}
-				
+				}	
 				
 			});
-		
 			
-		},
-		obtenerlogin:function(){
-			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.Ndireccion.iddireccion = resp[0].iddireccion;
-				this.almacenar();		
-				
-				
-
-				
-			})
 		}
 		
 		
 	}
+
 
 })

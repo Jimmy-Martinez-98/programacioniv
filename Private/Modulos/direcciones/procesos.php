@@ -45,15 +45,13 @@ class direccion{
 			}
 		}
     }
-    
-    public function idlogueo($valor=''){
-      $this->db->consultas('SELECT * from usuario where nombreu="'.$_SESSION['usuario'].'"');
-       $this->respuesta = $this->db->obtener_datos();
-       
+
+ 
+    public function idlogueo($valor='')   {
+        $this->db->consultas('SELECT usuario.idusuario from usuario where nombreu="'.$_SESSION['usuario'].'"');
+      return  $this->respuesta = $this->db->obtener_datos();
     }
-
-
-
+    
 
 
 	public function recibirdireccion($direccion){
