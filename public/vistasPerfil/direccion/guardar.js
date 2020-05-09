@@ -3,7 +3,7 @@ var nuevadireccion = new Vue({
 	data:{
 		Ndireccion:{
 			iddireccion	:0,
-			idusuarios:'',
+			idusuarios:0,
 			Direccion	:'',
 			accion		:'nuevo',
 			msg			:''
@@ -44,7 +44,7 @@ var nuevadireccion = new Vue({
 		},
 		obtenerlogin:function(){
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				console.log(this.resp);
+				this.Ndireccion.iddireccion = resp[0].iddireccion;
 				this.almacenar();		
 				
 				
