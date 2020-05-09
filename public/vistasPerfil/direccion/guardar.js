@@ -15,7 +15,7 @@ var nuevadireccion = new Vue({
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
 				this.Ndireccion.idusuarios=resp[0].idusuario;
-				console.log('identificador =',this.Ndireccion.idusuarios);
+				
 				
 			})
 			
@@ -24,11 +24,10 @@ var nuevadireccion = new Vue({
 		
 		
 		almacenar:function(){
-			this.idlogueo();
-			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {	
-								
+			
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {						
 				if(resp.msg!="Registro insertado correctamente"){
-					 	 
+					
 					Swal.fire({
 						position: 'top-end',
 						icon: 'error',
@@ -46,7 +45,7 @@ var nuevadireccion = new Vue({
 					  })
 				}	
 				
-			});
+			}),this.idlogueo(); 
 			
 		}
 		

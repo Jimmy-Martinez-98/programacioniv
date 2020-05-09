@@ -21,7 +21,9 @@
 			</h1>
 		</div>
 		<div class="col-12 mt-3">
-		<p v-for='direccion in direction' >{{direccion.Direccion}}</p>
+		<ul>
+		<li v-for='direccion in direction' >{{direccion.Direccion}}</li>
+		</ul>
 		</div>
 		<div class="row mb-3 mr-3 ml-3 mt-3">
 		<div class="col-6 mb-3">

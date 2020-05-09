@@ -28,3 +28,12 @@ div.botones{
 div.bg{
 	background: #5fb677;
 }
+.close {
+    float: right;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}

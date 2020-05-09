@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-include('../../Config/Config.php');
+include("../../Config/Config.php");
 $direccion = new direccion($Conexion);
 
 $proceso = '';
@@ -35,12 +35,9 @@ class direccion{
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
                     INSERT INTO direcciones (idDireccion,fkUsuario,Direccion) VALUES(
-                       
+                         "'. $this->datos['iddireccion'].'",
                         "'. $this->datos['idusuarios'].'",
-                        "'. $this->datos['Direccion'] .'",
-                        now()
-                    )
-                ');
+                        "'. $this->datos['Direccion'] .'") ');
 				$this->respuesta['msg'] = 'Registro insertado correctamente';
 			}
 		}
