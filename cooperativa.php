@@ -1,14 +1,14 @@
 <?php
   session_start();
-  $varsesion=$_SESSION['usuario'];
- 
+
+  $varsesion= $_SESSION['usuario'];
+
 error_reporting(0);
-  if(empty($varsesion)|| $varsesion==null){
+  if(!isset($varsesion)){
    echo 'usted no tiene acceso';
    header("Location:login.php");
    die();
   }
-  
 
   
 

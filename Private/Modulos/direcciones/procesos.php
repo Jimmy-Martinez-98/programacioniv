@@ -23,20 +23,22 @@ class direccion{
        $this->validar();
     }
     public function validar(){
-        if(empty($this->datos['direccion'])){
+        if(empty($this->datos['Direccion'])){
             $this->respuesta['msg']='por favor ingrese la Dirección';      
-        }else{
-            $this->almacenar_direccion();
+        }else if (empty($this->datos['idusuarios'])) {
+            $this->respuesta['msg'] = 'Identificador Faltante';
         }
-       
+        $this->almacenar_direccion();
     }
     private function almacenar_direccion(){
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
-                    INSERT INTO direcciones (fkUsuario,Direccion) VALUES(
-                        "'. $this->datos['idusuario'] .'",
-                        "'. $this->datos['direccion'] .'"
+                    INSERT INTO direcciones (idDireccion,fkUsuario,Direccion) VALUES(
+                       
+                        "'. $this->datos['idusuarios'].'",
+                        "'. $this->datos['Direccion'] .'",
+                        now()
                     )
                 ');
 				$this->respuesta['msg'] = 'Registro insertado correctamente';
@@ -44,9 +46,10 @@ class direccion{
 		}
     }
     
-    public function verid($valor=''){
-        $this->db->consultas('select * from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
-        $this->respuesta=$this->db->obtener_datos();;
+    public function idlogueo($valor=''){
+      $this->db->consultas('SELECT * from usuario where nombreu="'.$_SESSION['usuario'].'"');
+      return  $this->respuesta = $this->db->obtener_datos();
+       
     }
 
 
@@ -58,9 +61,7 @@ class direccion{
         $this->mostrarinfo();
     }
     private function mostrarinfo(){
-      $sql=  $this->db->consultas('
-      SELECT usuario.idusuario,usuario.nombreu,direcciones.* from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.nombreu="'.$_SESSION['usuario'].'"
-         ');
+      $sql=  $this->db->consultas('SELECT usuario.idusuario,usuario.nombreu,direcciones.* from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.nombreu="'.$_SESSION['usuario'].'" ');
          return $this->respuesta = $this->db->obtener_datos();
     }
 		

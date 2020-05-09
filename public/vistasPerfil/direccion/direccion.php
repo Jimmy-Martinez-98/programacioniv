@@ -39,7 +39,7 @@
  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  <script src="public/vistasPerfil/direccion/direcciones.js"></script>
-
+<script src="public/vistasPerfil/direccion/guardar.js"></script>
  <script src="public/vistasPerfil/direccion/nueva.js"></script>
 
 </body>
@@ -60,8 +60,8 @@
 		<div class="modal-body">
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Nueva Dirección</label>
-				<textarea class="form-control" v-model="nuevaDireccion.direccion"  id="ndireccion" rows="3"></textarea>
-				<p>{{nuevaDireccion}}</p>
+				<textarea class="form-control" v-model="Ndireccion.Direccion"  id="ndireccion" rows="3"></textarea>
+				<p>{{Ndireccion.idusuario}}</p>
 			  </div>
 		</div>
 		<div class="modal-footer">
