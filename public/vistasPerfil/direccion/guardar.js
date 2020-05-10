@@ -11,18 +11,7 @@ var nuevadireccion = new Vue({
 	
 	},
 	
-	methods:{
-		idlogueo:function(){	
-			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.Ndireccion.idusuarios=resp[0].idusuario;
-				
-				
-			})
-			
-			
-		},
-		
-		
+	methods:{	
 		almacenar:function(){
 			
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {						
@@ -45,7 +34,14 @@ var nuevadireccion = new Vue({
 					  })
 				}	
 				
-			}),this.idlogueo(); 
+			}); 
+			
+		},
+		idlogueo:function(){	
+			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
+				this.Ndireccion.idusuarios=resp[0].idusuario;			
+			})
+			
 			
 		}
 		

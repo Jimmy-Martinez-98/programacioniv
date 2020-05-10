@@ -47,7 +47,9 @@
 			<div class="col-12  text-white">
 			  <div class="form-group">
 				<h5 for="principiosh5">Principios</h5>
-				<p class="text-justify" >{{sobre.Principios}} </p>
+				
+					<p class="text-justify" >{{sobre.Principios}} </p>
+				
 			  </div>
 		</div>
 		<div class="card-foote-fluid pb-2">

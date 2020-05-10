@@ -27,7 +27,7 @@
 		</div>
 		<div class="row mb-3 mr-3 ml-3 mt-3">
 		<div class="col-6 mb-3">
-			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"   value="Nueva Direccion" id="newdireccion">
+			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Direccion" id="newdireccion">
 		</div>
 		<div class="col-6 mb-3">
 			<input type="button" class="btn btn-secondary btn-lg btn-block" value="Modificar Direccion"  v-on:click="editardire(direction)"  data-toggle="modal" data-target="#moddirec" id="modificardireccion">
