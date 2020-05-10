@@ -20,11 +20,24 @@
 			Direcciones de: <?php echo $_SESSION['usuario']?>
 			</h1>
 		</div>
-		<div class="col-12 mt-3">
-		<ul>
-		<li v-for='direccion in direction' >{{direccion.Direccion}}</li>
-		</ul>
-		</div>
+		<table class="table ">
+  <thead class="thead-light">
+    <tr>
+     
+      <th scope="col" class="d-flex justify-content-center"><h3>Direcciones</h3></th>
+      <th scope="col"></th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for='direccion in direction'>
+    
+      <td>{{direccion.Direccion}}</td> 
+	  <td> <input type="button"class='btn btn-danger' value="Eliminar" >   </td>   
+    </tr>
+  </tbody>
+</table>
+		
 		<div class="row mb-3 mr-3 ml-3 mt-3">
 		<div class="col-6 mb-3">
 			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Direccion" id="newdireccion">
@@ -40,9 +53,9 @@
 <script src="public/js/jquery-3.5.js"></script>
  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
- <script src="public/vistasPerfil/direccion/direcciones.js"></script>
+
 <script src="public/vistasPerfil/direccion/guardar.js"></script>
- <script src="public/vistasPerfil/direccion/mod.js"></script>
+ 
 
 </body>
 </html>
@@ -94,8 +107,8 @@
 		<div class="modal-body">
 			<div class="form-group" v-for="texto in modificarD" >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
-				<textarea class="form-control" v-model="texto.Direccion" id="ndireccion" rows="3"></textarea>
-				
+				<textarea class="form-control" require v-model="texto.Direccion" id="ndireccion" rows="3"></textarea>
+			
 			  </div>
 		</div>
 		<div class="modal-footer">

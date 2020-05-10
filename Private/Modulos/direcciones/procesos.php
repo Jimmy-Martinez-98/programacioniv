@@ -39,9 +39,18 @@ class direccion{
                         "'. $this->datos['idusuarios'].'",
                         "'. $this->datos['Direccion'] .'") ');
 				$this->respuesta['msg'] = 'Registro insertado correctamente';
-			}
-		}
+			}else if($this->datos['accion']==='modificar'){
+                $this->db->cosultas('
+                UPDATE direcciones SET
+                fkUsuario     = "'. $this->datos['idusuarios'] .'",
+                Direccion      = "'. $this->datos['Direccion'] .'",
+                 WHERE idDireccion = "'. $this->datos['iddireccion'] .'"
+                ');
+                $this->respuesta['msg'] = 'Dirección actualizada exitosamente';
+            }
+         }
     }
+    
 
  
     public function idlogueo($valor='')   {
