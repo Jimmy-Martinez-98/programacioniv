@@ -15,24 +15,19 @@
 <div class="container bg">
 
 <form action="#" method="post" id="frm-direcciones">
-		<div class="d-flex justify-content-center">
-			<h1>
-			Direcciones de: <?php echo $_SESSION['usuario']?>
-			</h1>
-		</div>
-		<table class="table ">
+		<table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col" class="d-flex justify-content-center">  <h3>Direcciones</h3>	</th>
+      <th scope="col" class="d-flex justify-content-center">  <h3>Direcciones <?php echo $_SESSION['usuario']?></h3>	</th>
       <th scope="col"></th>
 	  <th scope="col"></th>
 	  <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for='direccion in direction':key="direccion.idDireccion">
+    <tr v-for='direccion in direction':key="direccion.idDireccion"  >
       <td>{{direccion.Direccion}}</td> 
-	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección"  v-on:click="editardire(direction)"  data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
+	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección" v-on:click="editardire(direccion)"   data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
 	  <td> <input type="button"class='btn btn-danger' value="Eliminar" ></td>   
     </tr>
   </tbody>
@@ -92,7 +87,7 @@
 
 
 
-  <!-- Modal 2-->
+  <!-- Modal Modificar-->
 <div class="modal fade" id="moddirec" tabindex="-1" role="dialog" aria-labelledby="moddirec" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
@@ -105,7 +100,7 @@
 		<div class="modal-body">
 			<div class="form-group"  >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
-				<textarea class="form-control"  v-model="modificarD" id="ndireccion" rows="3"></textarea>
+				<textarea class="form-control"  v-model="modDi.Direccion" id="ndireccion" rows="3"></textarea>
 				
 			  </div>
 		</div>

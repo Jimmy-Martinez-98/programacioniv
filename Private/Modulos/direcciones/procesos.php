@@ -65,7 +65,7 @@ class direccion{
         $this->mostrarinfo();
     }
     private function mostrarinfo(){
-      $sql=  $this->db->consultas('SELECT usuario.idusuario,usuario.nombreu,direcciones.* from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.nombreu="'.$_SESSION['usuario'].'" ');
+       $this->db->consultas('SELECT usuario.idusuario,direcciones.idDireccion,direcciones.fkUsuario,direcciones.Direccion from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.nombreu="'.$_SESSION['usuario'].'" ');
          return $this->respuesta = $this->db->obtener_datos();
     }
 		

@@ -1,13 +1,12 @@
 var mostrardirecciones=new Vue({
 	el:'#frm-direcciones',
 	data: {
-		direction:[] ,
-   
-		},
+		direction:[]
+	},
 	created:function(){
 		
 		this.info();
-		
+		this.idlogueo();
 		
 	},
 	methods:{
@@ -16,13 +15,22 @@ var mostrardirecciones=new Vue({
 			   this.direction = resp;		   
 		   });	   	     
 		},
-		editardire:function(modificarD){
-			editardirecciones.modificarD=modificarD;
-			editardirecciones.modificarD.accion='modificar';
-			console.log('datos pasados',modificarD);	
-		}
-	
-	
+		idlogueo:function(){	
+			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
+				this.direction.idusuarios=resp[0].idusuario;	
+				console.log('id',this.direction);
+				
+						
+			})
+			
+			
+		},
+		editardire:function(modD){
+			
+        	editardirecciones.modDi = modD;
+            editardirecciones.modDi.accion = 'modificar';
+            console.log("datos",modD );       
+        }
 	}
 
 });
@@ -30,29 +38,31 @@ var mostrardirecciones=new Vue({
 var editardirecciones= new Vue({
 	el:'#moddirec',
 	data:{
-		modificarD:{
+		modDi:{
 			iddireccion	:0,
-			idusuarios:0,
-			Direccion	:'',
 			accion		:'nuevo',
+			idusuarios:0,
+			Direccion	:'',	
 			msg			:''
 		}
 			
 	},
+	
+	
 	methods:{
-		
+	
+	
 		actualizar:function(){
-			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modificarD)}`).then( resp=>resp.json() ).then(resp=>{
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg!="Dirección actualizada exitosamente"){
-					
+				
 					Swal.fire({
 						position: 'top-end',
 						icon: 'error',
 						title:resp.msg,
 						showConfirmButton: false,
 						timer: 1500
-					})
-					
+					})	
 				}else {
 					Swal.fire({
 						position: 'top-end',
@@ -61,10 +71,12 @@ var editardirecciones= new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					  })
-				}			
+				}	
+				
+				console.log('hola',this.modDi);
+									
 			});
-		}
-		
+		}	
 	}
 });
 

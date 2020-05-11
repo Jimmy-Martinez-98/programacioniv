@@ -88,9 +88,9 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
-		<div class="div_file">
+		<div class="div_file" enctype="multipart/form-data">
 			<p class="text"><img id="icono" src="public/img/arrows.png"></img> Subir Foto</p>
-			<input type="file" name="fperfil"  id="fperfil"  class="inputfile inputfile-1">
+			<input type="file" accept="image/*" name="fperfil"  id="fperfil"  class="inputfile inputfile-1">
 		</div>
 		<button type="button" class="btn btn-primary btn-lg"  @click="guardarfoto" >Carcar foto</button>
 		</div>
