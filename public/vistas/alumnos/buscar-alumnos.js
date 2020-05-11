@@ -13,6 +13,8 @@ var appBuscarAlumnos = new Vue({
         modificarAlumno:function(alumno){
             appalumno.alumno = alumno;
             appalumno.alumno.accion = 'modificar';
+            console.log("datos",alumno);
+            
         },
         eliminarAlumno:function(idAlumno){
             if(confirm("Estas seguro de eliminar este registro?")){
