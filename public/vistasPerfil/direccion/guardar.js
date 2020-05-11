@@ -23,7 +23,8 @@ var mostrardirecciones=new Vue({
 		editardire:function(modificarD){
 			editardirecciones.modificarD=modificarD;
 			editardirecciones.modificarD.accion='modificar';
-			console.log('modificacion',modificarD);	
+
+			
 		}
 	
 	

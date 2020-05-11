@@ -26,25 +26,26 @@
      
       <th scope="col" class="d-flex justify-content-center"><h3>Direcciones</h3></th>
       <th scope="col"></th>
+	  <th scope="col"></th>
+	  <th scope="col"></th>
     
     </tr>
   </thead>
   <tbody>
-    <tr v-for='direccion in direction'>
-    
+    <tr v-for='direccion in direction':key="direccion.iddireccion">
+	  <td>{{direccion.idDireccion}}</td>
       <td>{{direccion.Direccion}}</td> 
-	  <td> <input type="button"class='btn btn-danger' value="Eliminar" >   </td>   
+	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección"  v-on:click="editardire(direction)"  data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
+	  <td> <input type="button"class='btn btn-danger' value="Eliminar" ></td>   
     </tr>
   </tbody>
 </table>
 		
 		<div class="row mb-3 mr-3 ml-3 mt-3">
-		<div class="col-6 mb-3">
-			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Direccion" id="newdireccion">
+		<div class="col-12 mb-3">
+			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Dirección" id="newdireccion">
 		</div>
-		<div class="col-6 mb-3">
-			<input type="button" class="btn btn-secondary btn-lg btn-block" value="Modificar Direccion"  v-on:click="editardire(direction)"  data-toggle="modal" data-target="#moddirec" id="modificardireccion">
-		</div>
+		
 	</div>
 
 </form>
@@ -76,7 +77,7 @@
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Nueva Dirección</label>
 				<textarea class="form-control" v-model="Ndireccion.Direccion"  id="ndireccion" rows="3"></textarea>
-			
+
 			  </div>
 		</div>
 		<div class="modal-footer">
@@ -105,10 +106,10 @@
 		  </button>
 		</div>
 		<div class="modal-body">
-			<div class="form-group" v-for="texto in modificarD" >
+			<div class="form-group"  >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
-				<textarea class="form-control" require v-model="texto.Direccion" id="ndireccion" rows="3"></textarea>
-			
+				<textarea class="form-control"  v-model="modificarD" id="ndireccion" rows="3"></textarea>
+				
 			  </div>
 		</div>
 		<div class="modal-footer">
