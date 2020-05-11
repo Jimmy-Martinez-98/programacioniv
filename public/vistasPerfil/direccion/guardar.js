@@ -11,20 +11,15 @@ var mostrardirecciones=new Vue({
 		
 	},
 	methods:{
-   
-		info:function(){
-		   
+		info:function(){  
 		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
-			   this.direction = resp;	
-			   
-		   });	   	   
-		   
+			   this.direction = resp;		   
+		   });	   	     
 		},
 		editardire:function(modificarD){
 			editardirecciones.modificarD=modificarD;
 			editardirecciones.modificarD.accion='modificar';
-
-			
+			console.log('datos pasados',modificarD);	
 		}
 	
 	
@@ -48,8 +43,6 @@ var editardirecciones= new Vue({
 		
 		actualizar:function(){
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modificarD)}`).then( resp=>resp.json() ).then(resp=>{
-				
-				console.log('array',this.modificarD);
 				if(resp.msg!="Dirección actualizada exitosamente"){
 					
 					Swal.fire({

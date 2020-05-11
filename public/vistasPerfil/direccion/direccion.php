@@ -23,17 +23,14 @@
 		<table class="table ">
   <thead class="thead-light">
     <tr>
-     
-      <th scope="col" class="d-flex justify-content-center"><h3>Direcciones</h3></th>
+      <th scope="col" class="d-flex justify-content-center">  <h3>Direcciones</h3>	</th>
       <th scope="col"></th>
 	  <th scope="col"></th>
 	  <th scope="col"></th>
-    
     </tr>
   </thead>
   <tbody>
-    <tr v-for='direccion in direction':key="direccion.iddireccion">
-	  <td>{{direccion.idDireccion}}</td>
+    <tr v-for='direccion in direction':key="direccion.idDireccion">
       <td>{{direccion.Direccion}}</td> 
 	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección"  v-on:click="editardire(direction)"  data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
 	  <td> <input type="button"class='btn btn-danger' value="Eliminar" ></td>   
