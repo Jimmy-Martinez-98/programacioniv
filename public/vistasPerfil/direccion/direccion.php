@@ -15,10 +15,11 @@
 <div class="container bg">
 
 <form action="#" method="post" id="frm-direcciones">
+ <head> <h3 class="d-flex justify-content-center">Direcciones <?php echo $_SESSION['usuario']?></h3><hr></head>
 		<table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col" class="d-flex justify-content-center">  <h3>Direcciones <?php echo $_SESSION['usuario']?></h3>	</th>
+      <label scope="col"> </label>
       <th scope="col"></th>
 	  <th scope="col"></th>
 	  <th scope="col"></th>
@@ -101,8 +102,9 @@
 			<div class="form-group"  >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
 				<textarea class="form-control"  v-model="modDi.Direccion" id="ndireccion" rows="3"></textarea>
-				
+				<textarea class="form-control"  v-model="modDi.idusuarios" id="ndireccion" rows="3"></textarea>	
 			  </div>
+
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

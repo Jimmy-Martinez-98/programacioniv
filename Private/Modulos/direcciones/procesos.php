@@ -23,7 +23,7 @@ class direccion{
        $this->validar();
     }
     public function validar(){
-        if(empty($this->datos['Direccion'])){
+        if(empty(trim($this->datos['Direccion']))){
             $this->respuesta['msg']='por favor ingrese la Dirección';      
         }else if (empty($this->datos['idusuarios'])) {
             $this->respuesta['msg'] = 'Identificador Faltante';

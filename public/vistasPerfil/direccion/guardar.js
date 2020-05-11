@@ -3,11 +3,8 @@ var mostrardirecciones=new Vue({
 	data: {
 		direction:[]
 	},
-	created:function(){
-		
+	created:function(){	
 		this.info();
-		this.idlogueo();
-		
 	},
 	methods:{
 		info:function(){  
@@ -15,21 +12,12 @@ var mostrardirecciones=new Vue({
 			   this.direction = resp;		   
 		   });	   	     
 		},
-		idlogueo:function(){	
-			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.direction.idusuarios=resp[0].idusuario;	
-				console.log('id',this.direction);
-				
-						
-			})
-			
-			
-		},
+	
 		editardire:function(modD){
 			
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
-            console.log("datos",modD );       
+            console.log("datos",modD.idusuario );       
         }
 	}
 
@@ -41,16 +29,28 @@ var editardirecciones= new Vue({
 		modDi:{
 			iddireccion	:0,
 			accion		:'nuevo',
-			idusuarios:0,
+			idusuarios	:0 ,
 			Direccion	:'',	
 			msg			:''
 		}
 			
 	},
+	created:function(){
+		this.idlogueo();
+	},
 	
 	
 	methods:{
-	
+		idlogueo:function(){	
+			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
+				this.modDi.idusuarios=resp[0].idusuario;	
+				console.log('manda datos',this.modDi.idusuarios);
+				
+						
+			})
+			
+			
+		},
 	
 		actualizar:function(){
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
