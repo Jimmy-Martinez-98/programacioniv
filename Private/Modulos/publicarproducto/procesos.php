@@ -44,6 +44,7 @@ class producto_nuevo {
                     "'. $this->datos['precio'] .'",
 					"'. $this->datos['precioventa'] .'",
 					"'. $this->datos['descprod'] .'",
+					"'. $this->datos['imagen'] .'",
 					"'. $this->datos['categoria'] .'",
                     "'. $this->datos['fecha'] .'"
                     )

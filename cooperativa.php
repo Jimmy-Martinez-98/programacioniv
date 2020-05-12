@@ -77,9 +77,10 @@ error_reporting(0);
     <script src="public/js/jquery-3.5.js"></script>
   <script src="public/js/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
- 
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="public/vistas/perfiles/cooperativa.js"></script>
-   <script src="https://unpkg.com/vue-select@3.0.0"></script> 
+
 
 </body>
 </html>

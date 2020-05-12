@@ -8,30 +8,30 @@
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
 </head>
 <body>
-	<div class="container bg card">
-		<form action="#" method="post"  id="frm-productoN"> 
+	<div class="container bg card" id="frm-productoN">
+		<form action="#" method="post"  > 
 				<h1 class=" h1s">Nuevo Producto</h1>
 				<hr class="hrs">
 				<div class="card mb-2" style="width: 18rem;">
-					<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
-					<input   type="file"> 
+					<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap" >
+					<input @change="file"  type="file"> 
 				
 				  </div>	  
 				<div class="form-group  ">
 					<label for="nameproduct">Nombre  Producto</label>
-					<input type="text" class="form-control" v-model="nuevoProducto.nombre" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+					<input   v-model="publicar.nombreprod" type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
 				  
 				</div>
 				  <div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<input type="text" class="form-control" v-model="nuevoProducto.descripcion" id="descproducto" placeholder="Ingresa Descripcion">
+					<input  v-model="publicar.descprod" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
 
 				</div>
 				  <div class="row">
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="categoria">Categoria Producto</label>
-							<input type="text" class="form-control" v-model="nuevoProducto.categoria" id="categoria" placeholder="Ingresa Categoria">
+							<input v-model="publicar.categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">
 						 
 						
 						</div>
@@ -39,7 +39,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Cantidad  Existencias</label>
-							<input type="text" class="form-control" v-model="nuevoProducto.existencias" id="cantidad" placeholder="Ingresa Cantidad">
+							<input v-model="publicar.existencias" type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
 						  
 							
 						</div>
@@ -47,7 +47,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input type="text" class="form-control" v-model="nuevoProducto.precio" id="antidad" placeholder="Ingresa Precio">
+							<input v-model="publicar.precio" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
 						  
 						
 						</div>
@@ -55,13 +55,13 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input type="text" class="form-control" v-model="nuevoProducto.precioventa" id="antidad" placeholder="Ingresa Precio de Venta">
+							<input  v-model="publicar.precio_venta"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
 			
 						</div>
 					  </div>
 				  </div>
 				  <div class="tiempo mb-2">
-					<input  type="date" v-model="nuevoProducto.fecha">
+					<input v-model="publicar.fecha_subida"  type="date" >
 
 				</div>
 				 
