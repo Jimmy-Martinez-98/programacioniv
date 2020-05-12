@@ -28,7 +28,7 @@ var mostrardirecciones=new Vue({
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!'
+				confirmButtonText: 'Si, Eliminalo!'
 			  }).then((result) => {
 				if (result.value) {
 					fetch(`Private/Modulos/direcciones/procesos.php?proceso=deleteDireccion&direction=${idDireccion}`).then(resp=>resp.json()).then(resp=>{
@@ -68,7 +68,7 @@ var editardirecciones= new Vue({
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
 				this.modDi.idusuario=resp[0].idusuario;	
-				console.log('manda datos',this.modDi.idusuario);
+			
 								
 			})
 			
@@ -76,8 +76,6 @@ var editardirecciones= new Vue({
 		},
 	
 		actualizar:function(){
-			console.log(this.modDi.idusuario);
-			console.log("usuarios",this.modDi.idusuario);
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg!="Dirección actualizada exitosamente"){	
 					Swal.fire({
@@ -129,12 +127,8 @@ var nuevadireccion = new Vue({
 	methods:{	
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.Ndireccion.idusuario=resp[0].idusuario;	
-				
-						
-			})
-			
-			
+				this.Ndireccion.idusuario=resp[0].idusuario;				
+			})		
 		},
 		almacenar:function(){
 			
@@ -154,7 +148,7 @@ var nuevadireccion = new Vue({
 						icon: 'success',
 						title: resp.msg,
 						showConfirmButton: false,
-						timer: 1500
+						timer: 1000
 					  })
 				}	
 				
