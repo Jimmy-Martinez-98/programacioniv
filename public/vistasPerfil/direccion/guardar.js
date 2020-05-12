@@ -27,7 +27,7 @@ var editardirecciones= new Vue({
 	el:'#moddirec',
 	data:{
 		modDi:{
-			iddireccion	:0,
+			idDireccion	:0,
 			idusuario	:0,
 			accion		:'nuevo',
 			Direccion	:'',	

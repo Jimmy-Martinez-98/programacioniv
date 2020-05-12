@@ -44,7 +44,7 @@ class direccion{
                     UPDATE direcciones SET
                  fkUsuario     = "'. $this->datos['idusuario'] .'",
                  Direccion     = "'. $this->datos['Direccion'] .'"
-                  WHERE idDireccion = "'. $this->datos['iddireccion'] .'"
+                  WHERE idDireccion = "'. $this->datos['idDireccion'] .'"
                 ');
                 $this->respuesta['msg'] = 'Dirección actualizada exitosamente';
             }
