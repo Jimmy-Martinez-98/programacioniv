@@ -1,33 +1,72 @@
 var appinfo = new Vue({
-	el: '#frm-nosotros',
+	el: '#nosotrosdiv',
 	data: {
-	 about:[],
+	 nosotros:[]
 
 	 },
 	 created:function(){
 		 
 		 this.todo();
-		 this.editar(abouts);
+		 this.editardatos(sobreN);
 		 
 	 },
 	 methods:{
 	
 		 todo:function(){
 			
-			fetch(`private/Modulos/about/procesos.php?proceso=recibirinfo&about=${JSON.stringify(this.about)}`).then( resp=>resp.json() ).then(resp=>{ 
-				this.about = resp;	
+			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.nosotros)}`).then( resp=>resp.json() ).then(resp=>{ 
+				this.nosotros = resp;	
 					
 			});			
 		 },
-		
-		 editar:function(abouts){
-			appedit.abouts= abouts;
-			appedit.abouts[0].accion = 'modificar';
-				console.log('array',abouts[0].Vision,abouts[0].Mision);	
-			 }
+		 editardatos:function(sobreNs){		
+			appedit.sobreN = sobreNs;
+			appedit.sobreN.accion = 'modificar';   
+			console.log('array',sobreNs.Mision);	
+		}
 		
 		
 	 }
 	
   });
 
+
+
+  var appedit = new Vue({
+	el: '#modaleditar',
+	data: {
+	 sobreN:{	
+            infoperfil   : 0,
+			accion       : 'nuevo',
+			fkusuario	 :'',
+            mision   	 : '',
+            vision   	 : '',
+            valores		 : '',
+            principios	 : '',
+			msg      	 : ''
+	 }
+	 },
+	 methods:{
+		guardar:function(){		
+		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${this.sobreN}`).then( resp=>resp.json() ).then(resp=>{ 
+			if(resp.msg!='Datos Actualizados Exitosamente'){
+				Swal.fire({
+					position: 'top-end',
+					icon: 'warning',
+					title: resp.msg,
+					showConfirmButton: false,
+					timer: 1500
+				  })	
+			}else{
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: resp.msg,
+					showConfirmButton: false,
+					timer: 1500
+				  })	
+			}
+		  });
+		}
+	 }
+  });

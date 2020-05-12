@@ -15,9 +15,9 @@
 
 </head>
 <body>
-	<div class="container bg">
-	<form action="#" method="post" id="frm-nosotros"v-for='sobre in about':key="sobre.idusuario" >
-	
+	<div class="container bg" id="nosotrosdiv">
+	<form action="#" method="post">
+		<div  v-for='sobre in nosotros':key="sobre.infoUsuario" >
 			<div class="col-12 d-flex justify-content-center" >		
 			<img src="public/img/imgpeque.jpg" class="img-fluid max-width mt-2" alt="Responsive image">
 			</div>
@@ -25,28 +25,28 @@
 				<h1><?php echo $_SESSION['usuario']?> </h1>
 			</div>
 			
-				<div class="col-12 text-white  mt-2">
+				<div class="col-12 text-white  mt-2 bg-light card mb-2">
 					<div class= "form-group">
-						<h5 for="misionh5">Mision</h5>
+						<h5 for="misionh5" class="d-flex justify-content-center">Mision</h5>
 						<p class="text-justify" >{{sobre.Mision}}  </p>
 						
 				</div>
 			</div>
-			<div class="col-12 text-white">
+			<div class="col-12 text-white bg-light card mb-2">
 				<div class="form-group">
-				<h5 for="visionh5" >Vision</h5>
+				<h5 for="visionh5" class="d-flex justify-content-center" >Vision</h5>
 				<p class="text-justify" >{{sobre.Vision}}</p>
 			</div>
 			</div>
-			<div class="col-12 text-white">
+			<div class="col-12 text-white bg-light card mb-2">
 				<div class="form-group">
-					<h5 for="valoresh5">Valores</h5>
+					<h5 for="valoresh5" class="d-flex justify-content-center">Valores</h5>
 					<p class="text-justify" >{{sobre.Valores}} </p>
 			</div>
 			</div>
-			<div class="col-12  text-white">
+			<div class="col-12  text-white bg-light  card mb-2">
 			  <div class="form-group">
-				<h5 for="principiosh5">Principios</h5>
+				<h5 for="principiosh5" class="d-flex justify-content-center">Principios</h5>
 				
 					<p class="text-justify" >{{sobre.Principios}} </p>
 				
@@ -57,26 +57,28 @@
 				<div class="row">
 				  
 				  <div class="col-12">
-					<a href="#modaleditar" type="button"v-on:click="editar(about)" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal">
-						Modificar Sobre Nosotros
-					  </a>
+					<input href="#modaleditar" v-on:click="editardatos(sobre)"    type="button" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value="Modificar">
 				  </div>
 				</div>			
 		  </div>	
 		</div>
+		</div>
+
 	</form>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="public/vistasPerfil/contenido/nosotrosmodal.js"></script>
 <script src="public/vistasPerfil/contenido/nosotros.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 </html>
+
+
+
+
 <!-- Modal -->
-<div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="modaleditar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -91,36 +93,35 @@
 				</div>
 				
 			<div class="col-12 text-dark mt-1">
-			<div class= "form-group">
-			<label for="misionlabel">Mision</label>
-			<input type="text" class="form-control" v-model="abouts[0].Mision" id="misions" aria-describedby="emailHelp" placeholder="Ingrese Mision">
-		
-			</div>
+			<div class="form-group">
+   			 <label for="misionlbl">Mision</label>
+   			 <textarea class="form-control" id="mision" rows="3" v-model="sobreN.Mision"></textarea>
+ 			 </div>
 			</div>
 			<div class="col-12 text-dark">
 			<div class="form-group">
-			<label for="visionlabel">Vision</label>
-			<input type="text" class="form-control" v-model="abouts[0].Vision" id="visions" placeholder="Ingrese Vision">
-			</div>
+   			 <label for="visionlbl">Vision</label>
+   			 <textarea class="form-control" id="vision" rows="3" v-model="sobreN.Vision"></textarea>
+ 			 </div>
 			</div>
 			<div class="col-12 text-dark">
 			<div class="form-group">
-				<label for="valoreslabel">Valores</label>
-				<input type="text" class="form-control"  v-model="abouts[0].Valores" id="valoress" placeholder="Ingrese Valores">
-			</div>
+   			 <label for="valoreslbl">Valores</label>
+   			 <textarea class="form-control" id="valores" rows="3" v-model="sobreN.Valores"></textarea>
+ 			 </div>
 			</div>
 			<div class="col-12  text-dark">
 			<div class="form-group">
-				<label for="principioslabel">Principios</label>
-				<input type="text" class="form-control" v-model="abouts[0].Principios" id="principios" placeholder="Ingrese Principios">
-			</div>
+   			 <label for="principioslbl">Principios</label>
+   			 <textarea class="form-control" id="principios" rows="3" v-model="sobreN.Principios"></textarea>
+ 			 </div>
 			</div>
 			
-			
+		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button v-on:click="guardar" type="button" class="btn btn-primary">Guardar Cambios</button>
       </div>
     </div>
   </div>

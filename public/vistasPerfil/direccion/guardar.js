@@ -137,7 +137,8 @@ var nuevadireccion = new Vue({
 			});	   	     
 		 },
 		almacenar:function(){	
-			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {						
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
+				 this.info()						
 				if(resp.msg!="Registro insertado correctamente"){		
 					Swal.fire({
 						position: 'top-end',
@@ -145,6 +146,7 @@ var nuevadireccion = new Vue({
 						title:resp.msg,
 						showConfirmButton: false,
 						timer: 1500
+						
 					})
 					
 				}else {
@@ -158,7 +160,7 @@ var nuevadireccion = new Vue({
 				}	
 				
 			});
-			return this.info()
+			
 			
 		}
 	
@@ -167,7 +169,7 @@ var nuevadireccion = new Vue({
 	}
 
 
-})
+});
 
 
 
