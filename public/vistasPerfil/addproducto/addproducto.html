@@ -8,54 +8,68 @@
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
 </head>
 <body>
-	<div class="container bg">
-		<form action="#" method="post">
+	<div class="container bg card">
+		<form action="#" method="post"  id="frm-productoN"> 
 				<h1 class=" h1s">Nuevo Producto</h1>
 				<hr class="hrs">
+				<div class="card mb-2" style="width: 18rem;">
+					<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
+					<input   type="file"> 
 				
-					<div class="card mb-2" style="width: 18rem;">
-						<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
-					  </div>
-					
-				
-				  
+				  </div>	  
 				<div class="form-group  ">
 					<label for="nameproduct">Nombre  Producto</label>
-					<input type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
-				  </div>
+					<input type="text" class="form-control" v-model="nuevoProducto.nombre" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+				  
+				</div>
 				  <div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<input type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
-				  </div>
+					<input type="text" class="form-control" v-model="nuevoProducto.descripcion" id="descproducto" placeholder="Ingresa Descripcion">
+
+				</div>
 				  <div class="row">
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="categoria">Categoria Producto</label>
-							<input type="text" class="form-control" id="categoria" placeholder="Ingresa Categoria">
-						  </div>
+							<input type="text" class="form-control" v-model="nuevoProducto.categoria" id="categoria" placeholder="Ingresa Categoria">
+						 
+						
+						</div>
 					  </div>
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Cantidad  Existencias</label>
-							<input type="text" class="form-control" id="antidad" placeholder="Ingresa Cantidad">
-						  </div>
+							<input type="text" class="form-control" v-model="nuevoProducto.existencias" id="cantidad" placeholder="Ingresa Cantidad">
+						  
+							
+						</div>
 					  </div>
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input type="text" class="form-control" id="antidad" placeholder="Ingresa Precio">
-						  </div>
+							<input type="text" class="form-control" v-model="nuevoProducto.precio" id="antidad" placeholder="Ingresa Precio">
+						  
+						
+						</div>
+					  </div>
+					  <div class="col-6">
+						<div class="form-group">
+							<label for="cantidad">Precio De Venta</label>
+							<input type="text" class="form-control" v-model="nuevoProducto.precioventa" id="antidad" placeholder="Ingresa Precio de Venta">
+			
+						</div>
 					  </div>
 				  </div>
 				  <div class="tiempo mb-2">
-					<input  type="date" >
-				  </div>
+					<input  type="date" v-model="nuevoProducto.fecha">
+
+				</div>
 				 
 					  <div class="card-footer-fluid pb-2">
 					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
 					
 						<button type="button" class="btn btn-secondary btn-lg btn-small " data-toggle="modal" data-target=".bd-example-modal-lg">Modificar Producto</button>
-						<button type="button" class="btn btn-success btn-lg btn-small ">Publicar</button>
+						<button type="button" class="btn btn-success btn-lg btn-small" @click="publicar" >Publicar</button>
 					  </div>
 					
 					</div>
@@ -66,6 +80,7 @@
 	</div>
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script src="public/vistasPerfil/addproducto/productosadd.js"></script>
 </body>
 </html>
 

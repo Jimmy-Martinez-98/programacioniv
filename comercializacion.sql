@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2020 a las 21:21:04
+-- Tiempo de generación: 12-05-2020 a las 18:23:03
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.29
 
@@ -38,8 +38,8 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`idDireccion`, `fkUsuario`, `Direccion`) VALUES
-(1, 24, 'Avenida Guandique #15, Usulután'),
-(5, 24, 'Diagonal Hector Silva, San Salvador');
+(167, 24, 'San Rafael Oriente '),
+(173, 25, 'Usulután, Centro');
 
 -- --------------------------------------------------------
 
@@ -109,19 +109,21 @@ CREATE TABLE `producto` (
   `fk_idusuario` int(8) NOT NULL,
   `nombreprod` varchar(100) NOT NULL,
   `precio` float NOT NULL,
+  `precio_venta` float NOT NULL,
   `descprod` varchar(500) NOT NULL,
   `imagen` blob NOT NULL,
-  `tipohortaliza` varchar(45) NOT NULL
+  `categoria` varchar(45) NOT NULL,
+  `fecha_subida` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idproducto`, `fk_idusuario`, `nombreprod`, `precio`, `descprod`, `imagen`, `tipohortaliza`) VALUES
-(21, 24, 'Tomates', 0.25, 'Los híbridos de tomate Seminis destacan por sus rendimientos sobresalientes y frutos de la más elevada calidad. Nuestras dos grandes categorías, indeterminados y determinados, cumplen las exigencias del mercado; la primera, especializada para cultivos protegidos en invernadero y mallasombra; la segunda, apta para campo abierto por sus resistencias a las enfermedades de mayor incidencias en las zonas de producción.', 0x6e756c6c, 'verdura'),
-(22, 24, 'Zanahoria', 0.5, 'Especializadas en formas de tubérculos, las zanahorias ofrecen resistencia a las principales enfermedades causadas por el suelo, que al mismo tiempo brindan a los productores tubérculos precoces con la calidad requerida para procesadores y mercados de consumo fresco', 0x6e756c6c, 'verdura'),
-(23, 24, 'Sandia', 5, 'Las sandías Seminis tienen un sabor dulce único y se distinguen por sus frutos con pulpa firme y crujiente, con o sin semilla, su tolerancia a corazón hueco y sus tamaños ideales para empaquetar en caja. Además, preocupados por las afectaciones por enfermedades como Antracnosis y Fusarium, innovamos mejorando nuestro portafolio de productos con variedades resistentes a estas enfermedades.', 0x6e756c6c, 'Fruta');
+INSERT INTO `producto` (`idproducto`, `fk_idusuario`, `nombreprod`, `precio`, `precio_venta`, `descprod`, `imagen`, `categoria`, `fecha_subida`) VALUES
+(21, 24, 'Tomates', 0.25, 0, 'Los híbridos de tomate Seminis destacan por sus rendimientos sobresalientes y frutos de la más elevada calidad. Nuestras dos grandes categorías, indeterminados y determinados, cumplen las exigencias del mercado; la primera, especializada para cultivos protegidos en invernadero y mallasombra; la segunda, apta para campo abierto por sus resistencias a las enfermedades de mayor incidencias en las zonas de producción.', 0x6e756c6c, 'verdura', '0000-00-00'),
+(22, 24, 'Zanahoria', 0.5, 0, 'Especializadas en formas de tubérculos, las zanahorias ofrecen resistencia a las principales enfermedades causadas por el suelo, que al mismo tiempo brindan a los productores tubérculos precoces con la calidad requerida para procesadores y mercados de consumo fresco', 0x6e756c6c, 'verdura', '0000-00-00'),
+(23, 24, 'Sandia', 5, 0, 'Las sandías Seminis tienen un sabor dulce único y se distinguen por sus frutos con pulpa firme y crujiente, con o sin semilla, su tolerancia a corazón hueco y sus tamaños ideales para empaquetar en caja. Además, preocupados por las afectaciones por enfermedades como Antracnosis y Fusarium, innovamos mejorando nuestro portafolio de productos con variedades resistentes a estas enfermedades.', 0x6e756c6c, 'Fruta', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -151,8 +153,7 @@ INSERT INTO `usuario` (`idusuario`, `nombreu`, `imagen`, `nombrecooperativa`, `t
 (26, 'Jimmy', '', 'cooperativa milos', '72737273', 'cooperativa', 'cooperativamilos@gmail.com', '123456', '2020-04-28'),
 (27, 'Cecilia Maria', '', '', '76824693', 'Productor Pequeño', 'ceciliamaria@gmail.com', '12345678', '2020-04-28'),
 (28, 'Arely', '', 'Coopiref', '77745991', 'Cooperativa', 'coopiref@gmail.com', '12345678', '2020-03-29'),
-(35, 'Maria Contreras', '', 'Contreras US', '7274-5936', 'Cooperativa', 'contrerascopi@gmail.com', '12345678', '2020-05-06'),
-(36, 'asdas', '', 'asdasd', '77777777', 'Cooperativa', 'asdasd@as.dasd', 'sdasdasdasdasd', '2020-05-08');
+(35, 'Maria Contreras', '', 'Contreras US', '7274-5936', 'Cooperativa', 'contrerascopi@gmail.com', '12345678', '2020-05-06');
 
 --
 -- Índices para tablas volcadas
@@ -208,7 +209,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `idDireccion` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idDireccion` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT de la tabla `imgperfill`
@@ -238,7 +239,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idusuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Restricciones para tablas volcadas
