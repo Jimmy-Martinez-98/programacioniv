@@ -28,8 +28,8 @@ var editardirecciones= new Vue({
 	data:{
 		modDi:{
 			iddireccion	:0,
+			idusuarios	:0,
 			accion		:'nuevo',
-			idusuarios	:0 ,
 			Direccion	:'',	
 			msg			:''
 		}
@@ -45,17 +45,17 @@ var editardirecciones= new Vue({
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
 				this.modDi.idusuarios=resp[0].idusuario;	
 				console.log('manda datos',this.modDi.idusuarios);
-				
-						
+								
 			})
 			
 			
 		},
 	
 		actualizar:function(){
+			console.log(this.modDi.idusuario);
+			console.log("usuarios",this.modDi.idusuarios);
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
-				if(resp.msg!="Dirección actualizada exitosamente"){
-				
+				if(resp.msg!="Dirección actualizada exitosamente"){	
 					Swal.fire({
 						position: 'top-end',
 						icon: 'error',
@@ -73,7 +73,7 @@ var editardirecciones= new Vue({
 					  })
 				}	
 				
-				console.log('hola',this.modDi);
+			
 									
 			});
 		}	

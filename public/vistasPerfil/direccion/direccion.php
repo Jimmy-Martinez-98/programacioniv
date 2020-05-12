@@ -102,7 +102,7 @@
 			<div class="form-group"  >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
 				<textarea class="form-control"  v-model="modDi.Direccion" id="ndireccion" rows="3"></textarea>
-				<textarea class="form-control"  v-model="modDi.idusuarios" id="ndireccion" rows="3"></textarea>	
+				<p>{{modDi}}</p>
 			  </div>
 
 		</div>
