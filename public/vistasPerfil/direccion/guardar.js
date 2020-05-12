@@ -17,7 +17,7 @@ var mostrardirecciones=new Vue({
 			
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
-            console.log("datos",modD.idusuario );       
+            console.log("datos",modD.idusuario);       
         }
 	}
 
@@ -28,7 +28,7 @@ var editardirecciones= new Vue({
 	data:{
 		modDi:{
 			iddireccion	:0,
-			idusuarios	:0,
+			idusuario	:0,
 			accion		:'nuevo',
 			Direccion	:'',	
 			msg			:''
@@ -43,8 +43,8 @@ var editardirecciones= new Vue({
 	methods:{
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.modDi.idusuarios=resp[0].idusuario;	
-				console.log('manda datos',this.modDi.idusuarios);
+				this.modDi.idusuario=resp[0].idusuario;	
+				console.log('manda datos',this.modDi.idusuario);
 								
 			})
 			
@@ -53,7 +53,7 @@ var editardirecciones= new Vue({
 	
 		actualizar:function(){
 			console.log(this.modDi.idusuario);
-			console.log("usuarios",this.modDi.idusuarios);
+			console.log("usuarios",this.modDi.idusuario);
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg!="Dirección actualizada exitosamente"){	
 					Swal.fire({
@@ -90,7 +90,7 @@ var nuevadireccion = new Vue({
 	data:{
 		Ndireccion:{
 			iddireccion	:0,
-			idusuarios:0,
+			idusuario:0,
 			Direccion	:'',
 			accion		:'nuevo',
 			msg			:''
@@ -104,7 +104,7 @@ var nuevadireccion = new Vue({
 	methods:{	
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.Ndireccion.idusuarios=resp[0].idusuario;	
+				this.Ndireccion.idusuario=resp[0].idusuario;	
 				
 						
 			})

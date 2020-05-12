@@ -25,7 +25,7 @@ class direccion{
     public function validar(){
         if(empty(trim($this->datos['Direccion']))){
             $this->respuesta['msg']='por favor ingrese la Dirección';      
-        }else if (empty($this->datos['idusuarios'])) {
+        }else if (empty($this->datos['idusuario'])) {
             $this->respuesta['msg'] = 'Identificador Faltante';
         }
         $this->almacenar_direccion();
@@ -36,15 +36,15 @@ class direccion{
                 $this->db->consultas('
                     INSERT INTO direcciones (idDireccion,fkUsuario,Direccion) VALUES(
                          "'. $this->datos['iddireccion'].'",
-                        "'. $this->datos['idusuarios'].'",
+                        "'. $this->datos['idusuario'].'",
                         "'. $this->datos['Direccion'] .'") ');
 				$this->respuesta['msg'] = 'Registro insertado correctamente';
 			}else if($this->datos['accion']==='modificar'){
-                $this->db->cosultas('
-                UPDATE direcciones SET
-                fkUsuario     = "'. $this->datos['idusuarios'] .'",
-                Direccion      = "'. $this->datos['Direccion'] .'",
-                 WHERE idDireccion = "'. $this->datos['iddireccion'] .'"
+                $this->db->consultas('
+                    UPDATE direcciones SET
+                 fkUsuario     = "'. $this->datos['idusuario'] .'",
+                 Direccion     = "'. $this->datos['Direccion'] .'"
+                  WHERE idDireccion = "'. $this->datos['iddireccion'] .'"
                 ');
                 $this->respuesta['msg'] = 'Dirección actualizada exitosamente';
             }
