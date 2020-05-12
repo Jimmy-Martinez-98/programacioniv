@@ -122,6 +122,7 @@ var nuevadireccion = new Vue({
 	},
 	created:function(){
 		this.idlogueo();
+		
 	},
 	
 	methods:{	
@@ -130,11 +131,14 @@ var nuevadireccion = new Vue({
 				this.Ndireccion.idusuario=resp[0].idusuario;				
 			})		
 		},
-		almacenar:function(){
-			
+		info:function(){  		
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
+				this.direction = resp;		   
+			});	   	     
+		 },
+		almacenar:function(){	
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {						
-				if(resp.msg!="Registro insertado correctamente"){
-					
+				if(resp.msg!="Registro insertado correctamente"){		
 					Swal.fire({
 						position: 'top-end',
 						icon: 'error',
@@ -142,6 +146,7 @@ var nuevadireccion = new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					})
+					
 				}else {
 					Swal.fire({
 						position: 'top-end',
@@ -153,6 +158,7 @@ var nuevadireccion = new Vue({
 				}	
 				
 			});
+			return this.info()
 			
 		}
 	
