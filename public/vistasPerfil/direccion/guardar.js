@@ -8,21 +8,45 @@ var mostrardirecciones=new Vue({
 	},
 	methods:{
 		info:function(){  
+			
 		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
 			   this.direction = resp;		   
 		   });	   	     
 		},
 	
-		editardire:function(modD){
-			
+		editardire:function(modD){		
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
             console.log("datos",modD.idusuario);       
-        }
+		},
+		deleteDireccion:function(idDireccion){
+			console.log('hola');
+			Swal.fire({
+				title: '¿Estás seguro?',
+				text: "¡No podrás revertir esto!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			  }).then((result) => {
+				if (result.value) {
+					fetch(`Private/Modulos/direcciones/procesos.php?proceso=deleteDireccion&direction=${idDireccion}`).then(resp=>resp.json()).then(resp=>{
+						Swal.fire(
+							'Eliminado!',
+							resp.msg,
+							'success'
+						  )
+						  this.info();
+					})
+				}
+			  })					
+		}
 	}
-
 });
-
+			
+			
+		
 var editardirecciones= new Vue({
 	el:'#moddirec',
 	data:{
@@ -76,7 +100,8 @@ var editardirecciones= new Vue({
 			
 									
 			});
-		}	
+		}
+		
 	}
 });
 

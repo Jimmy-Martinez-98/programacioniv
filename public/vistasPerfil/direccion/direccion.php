@@ -29,7 +29,7 @@
     <tr v-for='direccion in direction':key="direccion.idDireccion"  >
       <td>{{direccion.Direccion}}</td> 
 	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección" v-on:click="editardire(direccion)"   data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
-	  <td> <input type="button"class='btn btn-danger' value="Eliminar" ></td>   
+	  <td> <input v-on:click="deleteDireccion(direccion.idDireccion)" type="button" class="btn btn-danger text-white" value="Eliminar"></td>   
     </tr>
   </tbody>
 </table>
@@ -102,7 +102,7 @@
 			<div class="form-group"  >
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
 				<textarea class="form-control"  v-model="modDi.Direccion" id="ndireccion" rows="3"></textarea>
-				<p>{{modDi}}</p>
+				
 			  </div>
 
 		</div>

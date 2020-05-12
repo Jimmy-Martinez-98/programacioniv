@@ -57,6 +57,13 @@ class direccion{
         $this->db->consultas('SELECT usuario.idusuario from usuario where nombreu="'.$_SESSION['usuario'].'"');
       return  $this->respuesta = $this->db->obtener_datos();
     }
+
+    public function deleteDireccion($idDireccion=0){
+        $this->db->consultas('
+        DELETE FROM direcciones WHERE direcciones.idDireccion ="'.$idDireccion.'" 
+        ');
+        return $this->respuesta['msg']='La dirección a sido eliminada';
+    }
     
 
 
