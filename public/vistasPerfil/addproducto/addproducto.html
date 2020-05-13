@@ -9,29 +9,32 @@
 </head>
 <body>
 	<div class="container bg card" id="frm-productoN">
-		<form action="#" method="post"  > 
+		<form action="#" method="post" enctype="multipart/form-data" > 
 				<h1 class=" h1s">Nuevo Producto</h1>
 				<hr class="hrs">
-				<div class="card mb-2" style="width: 18rem;">
-					<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap" >
-					<input @change="file"  type="file"> 
+				<div class="d-flex justify-content-center">
+					<div class="card mb-2" style="width: 18rem;">
+						<img width="200" height="200" class="card-img-top":src="imagen"  alt="la imagen va aquí" >
+						<input @change="file" accept="image/jpeg,image/jpg,image/png"  type="file" class="form-control"> 
+					</div>	 
+				</div> 
+				 
 				
-				  </div>	  
 				<div class="form-group  ">
 					<label for="nameproduct">Nombre  Producto</label>
-					<input   v-model="publicar.nombreprod" type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+					<input   v-model="publicP.nombre" type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
 				  
 				</div>
 				  <div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<input  v-model="publicar.descprod" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
+					<input  v-model="publicP.descripcion" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
 
 				</div>
 				  <div class="row">
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="categoria">Categoria Producto</label>
-							<input v-model="publicar.categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">
+							<input v-model="publicP.Categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">
 						 
 						
 						</div>
@@ -39,7 +42,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Cantidad  Existencias</label>
-							<input v-model="publicar.existencias" type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
+							<input v-model="publicP.Existencias"pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
 						  
 							
 						</div>
@@ -47,7 +50,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input v-model="publicar.precio" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
+							<input v-model="publicP.Precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
 						  
 						
 						</div>
@@ -55,13 +58,13 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input  v-model="publicar.precio_venta"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
+							<input  v-model="publicP.precioventa" pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
 			
 						</div>
 					  </div>
 				  </div>
 				  <div class="tiempo mb-2">
-					<input v-model="publicar.fecha_subida"  type="date" >
+					<input v-model="publicP.fechasubida"  type="date" >
 
 				</div>
 				 
@@ -69,7 +72,7 @@
 					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
 					
 						<button type="button" class="btn btn-secondary btn-lg btn-small " data-toggle="modal" data-target=".bd-example-modal-lg">Modificar Producto</button>
-						<button type="button" class="btn btn-success btn-lg btn-small" @click="publicar" >Publicar</button>
+						<button  v-on:click="guardar" type="button" class="btn btn-success btn-lg btn-small" >Publicar</button>
 					  </div>
 					
 					</div>

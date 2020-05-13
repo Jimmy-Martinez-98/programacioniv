@@ -1,38 +1,41 @@
- var publicproductos= new Vue({
+var publicarp=new Vue({
 	el:'#frm-productoN',
-	data:{
-
-		publicar:{
-			idproductoo:0,
+	data: {
+		publicP:{
+			idprod:0,
 			idusuario:0,
 			nombre:'',
-			imagen:'',
 			descripcion:'',
-			categoria:'',
-			existencias:'',
-			precio:'',
+			Categoria:'',
+			imagen:'',
+			Existencias:'',
+			Precio:'',
 			precioventa:'',
-			fecha:'',
-			msg:'',
-			accion:'nuevo'
+			fechasubida:'',
+			accion:'nuevo',
+			msg:''
 		},
+		littleimage:''
+		
 
-
-		return:{
-			file:null
-		}
-		
-		
-		
-	}, 
-	
+	},
+	created:function(){this.traerid()},
 	
 	methods:{
+		traerid:function(){
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
+				this.publicP.idusuario=resp[0].idusuario;
+				console.log('resp=',resp[0].idusuario,'usuario=',this.publicP.idusuario);
+				
 
-	
-		publicar:function(){
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(publicar)}`).then(resp=>resp.json()).then(resp=>{
+			})
+		},
+		guardar:function(){
 
+			console.log('imagen subida',this.publicP);
+			
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
+			
 				if(resp.msg!="Su Producto Fue Publicado Exitosamente"){
 					Swal.fire({
 						position: 'top-end',
@@ -41,7 +44,7 @@
 						showConfirmButton: false,
 						timer: 1500
 					  })
-				}else{
+				} else{
 					Swal.fire({
 						position: 'top-end',
 						icon: 'success',
@@ -50,16 +53,29 @@
 						timer: 1500
 					  })
 				}
-			})
-		},
-		file(value) {
+				
+			});	  
 		
-			this.publicar.imagen=this.file=value.target.files[0];
-			
-			console.log('imagen',this.publicar.imagen);
-			
+		},
+		file(value) {	 
+			let file=value.target.files[0];
+			this.publicP.imagen=file;
+			console.log('img',this.publicP);
+			this.cargarimagen(file);
+		},
+		cargarimagen:function(file){
+			let reader= new FileReader();
+			reader.onload=(e)=>{
+				this.littleimage=e.target.result;
+			}
+			reader.readAsDataURL(file);
+		}
+		
+		
+	},
+	computed:{
+		imagen(){
+			return this.littleimage;
 		}
 	}
-
-
- })
+});

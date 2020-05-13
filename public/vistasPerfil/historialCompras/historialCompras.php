@@ -15,10 +15,10 @@
 				</div>
 				
 				<div class="col-8 mt-3">
-					<h4 >{{miproducto.nombreprod}} </h4>
+					<h4 >{{miproducto.nombreproducto}} </h4>
 					 <input type="botton" class="btn bnt-danger float-right"  value="eliminar de la lista">
 					<div class="col-8">
-					<P >{{miproducto.descprod}}	</P>
+					<P class="text-justify" >{{miproducto.descripcion}}	</P>
 					</div>
 					<div class="card-footer">
 					<div class="row">

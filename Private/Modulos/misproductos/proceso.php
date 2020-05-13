@@ -25,7 +25,7 @@ class miproducto{
   
     private function misprod(){
 		$sql=  $this->db->consultas('
-        SELECT usuario.idusuario,usuario.nombreu,misproductos.* from usuario JOIN misproductos where usuario.idusuario= misproductos.fkUsuarios and usuario.nombreu="'.$_SESSION['usuario'].'"
+        SELECT usuario.idusuario,usuario.nombreu,misproducto.* from usuario JOIN misproducto where usuario.idusuario= misproducto.fk_idusuario and usuario.nombreu="'.$_SESSION['usuario'].'"
 		   ');
 		   return $this->respuesta = $this->db->obtener_datos();
 	  }

@@ -8,15 +8,15 @@ session_start();
 			<li class="list-group-item"><div class="row">
 				<div class="col-4">
 					<div class="container">
-					<img src="https://publicdomainpictures.net/pictures/10000/velka/chile-verde-25761282883202B2qs.jpg" class="img-fluid max-width mt-2 mb-2" alt="Responsive image">
+					<img src="" alt="Responsive image">
 				</div>
 				</div>
 				
 				<div class="col-8 mt-3">
-					<h4>{{miprodc.nombreproducto}}</h4>
+					<h4>{{miprodc.nombre_producto}}</h4>
 					 <input type="botton" class="btn bnt-danger float-right"  value="eliminar Producto">
-				<div class="col-6">
-				<P>{{miprodc.descripcion}}	</P>
+				<div class="col-8">
+				<P class="text-justify">{{miprodc.descprod}}	</P>
 				</div>
 					<div class="row">
 						<div class="col-6">
