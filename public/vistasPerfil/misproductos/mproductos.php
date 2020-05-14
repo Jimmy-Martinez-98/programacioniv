@@ -8,7 +8,7 @@ session_start();
 			<li class="list-group-item"><div class="row">
 				<div class="col-4">
 					<div class="container">
-					<img id="img-preview"class="rounded-circle" alt="Responsive image">
+					<img width="200" height="200" id="img-preview" v-bind:src="miprodc.imagen"  alt="Responsive image">
 				</div>
 				</div>
 				
