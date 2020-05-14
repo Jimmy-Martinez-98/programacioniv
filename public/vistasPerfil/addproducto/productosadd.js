@@ -1,22 +1,22 @@
 var publicarp=new Vue({
 	el:'#frm-productoN',
 	data: {
-		
+	
 		publicP:{
-			idprod:0,
+			miproducto:0,
 			idusuario:0,
-			nombre:'',
-			descripcion:'',
-			Categoria:'',
+			nombre_producto:'',
+			descprod:'',
+			categoria:'',
 			imagen:'',
-			Existencias:'',
-			Precio:'',
-			precioventa:'',
-			fechasubida:'',
+			existencias:'',
+			precio:'',
+			precio_venta:'',
+			fecha_subida:'',
 			accion:'nuevo',
 			msg:''
 		},
-	
+		
 		imagenlittle:''
 
 	},
@@ -27,17 +27,12 @@ var publicarp=new Vue({
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.publicP.idusuario=resp[0].idusuario;
 				console.log('resp=',resp[0].idusuario,'usuario=',this.publicP.idusuario);
-				
-
 			})
 		},
-		guardar:function(){
-
-			console.log('imagen subida',this.publicP);
-			
+		guardar:function(){	
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
 			
-				if(resp.msg!="Su Producto Fue Publicado Exitosamente"){
+				if(resp.msg!="Su Producto Ha Sido Actualizado"){
 					Swal.fire({
 						position: 'top-end',
 						icon: 'warning',
@@ -53,6 +48,7 @@ var publicarp=new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					  })
+					 
 				}
 				
 			});	  
@@ -76,9 +72,7 @@ var publicarp=new Vue({
 				}
 				
 			});
-			
-			console.log('asdasd',this.publicP.imagen= 'Private/Modulos/'+respuesta);
-			
+			this.publicP.imagen= 'Private/Modulos/'+respuesta	
 			this.cargar(file);
 	
 		},
@@ -90,7 +84,6 @@ var publicarp=new Vue({
 			}
 			reader.readAsDataURL(file);
 		}
-	
 	},
 	computed:{
 		imagen(){
@@ -99,4 +92,35 @@ var publicarp=new Vue({
 	}
 	
 });
+
+
+var appproductos=new Vue({
+	el:'#productos',
+	data:{
+		valor:'',
+		todoP:[],
+		
+	},
+	created:function(){
+		this.traerdatos();
+	},
+	methods:{
+		
+		traerdatos:function(){
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerproductos&nuevoP=${this.valor}`).then(resp=>resp.json()).then(resp=>{
+                this.todoP = resp;
+            });
+		},
+		modificar:function(mod) {
+			publicarp.publicP=mod;
+			publicarp.publicP.accion='modificar';
+			console.log(publicarp.publicP.miproducto);
+			
+			
+		}
+	
+	}
+
+
+})
 

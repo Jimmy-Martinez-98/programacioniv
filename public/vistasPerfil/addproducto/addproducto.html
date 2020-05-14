@@ -14,7 +14,7 @@
 				<hr class="hrs">
 				<div class="d-flex justify-content-center">
 					<div class="card mb-2" style="width: 18rem;">
-						<img width="200" height="200" id="img-preview" :src='imagen' class="card-img-top"  alt="la imagen va aquí" >
+						<img width="200" height="200" id="img-preview" :src='imagen' v-bind:src="publicP.imagen" class="card-img-top"  alt="la imagen va aquí" >
 						<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
 						
 					</div>	 
@@ -24,27 +24,26 @@
 				
 				<div class="form-group  ">
 					<label for="nameproduct">Nombre  Producto</label>
-					<input   v-model="publicP.nombre" type="text"  class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
-				  
+					<input   v-model="publicP.nombre_producto" type="text"  class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+					
 				</div>
 				  <div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<input  v-model="publicP.descripcion" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
+					<input  v-model="publicP.descprod" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
 
 				</div>
 				  <div class="row">
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="categoria">Categoria Producto</label>
-							<input v-model="publicP.Categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">
-						 
+							<input v-model="publicP.categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">						
 						
 						</div>
 					  </div>
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Cantidad  Existencias</label>
-							<input v-model="publicP.Existencias"pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
+							<input v-model="publicP.existencias"pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
 						  
 							
 						</div>
@@ -52,7 +51,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input v-model="publicP.Precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
+							<input v-model="publicP.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
 						  
 						
 						</div>
@@ -60,19 +59,19 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input  v-model="publicP.precioventa" pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
+							<input  v-model="publicP.precio_venta" pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
 			
 						</div>
 					  </div>
 				  </div>
 				  <div class="tiempo mb-2">
-					<input v-model="publicP.fechasubida"  type="date" >
+					<input v-model="publicP.fecha_subida"  type="date" >
 
 				</div>
 				 
 					  <div class="card-footer-fluid pb-2">
 					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-					
+				
 						<button type="button" class="btn btn-secondary btn-lg btn-small " data-toggle="modal" data-target=".bd-example-modal-lg">Modificar Producto</button>
 						<button  v-on:click="guardar" type="button" class="btn btn-success btn-lg btn-small" >Publicar</button>
 					  </div>
@@ -85,7 +84,6 @@
 	</div>
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="public/vistasPerfil/addproducto/productosadd.js"></script>
 </body>
 </html>
@@ -94,62 +92,62 @@
 
 <!-- modal -->
 
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div id="productos" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	  </button>
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-xl">
 		
 	  <div class="modal-content">
-
-		<table class="table table-bordered">
-			<thead>
-				<form class="form-inline mt-1 ml-1 mr-1 mb-1">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					
-				  </form>
-			  <tr>
-				
-				<th scope="col">Nombre</th>
-				<th scope="col">Descripcion</th>
-				
-				<th scope="col">Categoria</th>
-				<th scope="col">Existencias</th>
-				<th scope="col">Fecha</th>
-				<th scope="col">Precio</th>
-			  </tr>
-			</thead>
-			<tbody>
-			  <tr>
-				<th scope="row">Tomate</th>
-				<td>Tomate Rojo Fresco</td>
-				<td>Verdura</td>
-				<td>1000</td>
-				<td>20/03/12</td>
-				<td>0.25</td>
+		<div class="modal-header">
 			
-			  </tr>
-			  <tr>
-				<th scope="row">Chile</th>
-				<td>Chile verde</td>
-				<td>Verdura</td>
-				<td>1000</td>
-				<td>20/03/12</td>
-				<td>0.25</td>
-				
-			  </tr>
-			  <tr>
-				<th scope="row">Mango</th>
-				<td>Mango de Azucaron</td>
-				<td>Fruto</td>
-				<td>1000</td>
-				<td>20/03/12</td>
-				<td>0.25</td>
-			  </tr>
-			</tbody>
-		  </table>
+			<input type="text" v-model="valor" v-on:keyup="traerdatos" placeholder="Nombre Producto, Categoria o Fecha en la que se publico" class="form-control">
+		  </div>
+		  <div class="modal-body">
+		<form action="#" method="post">
+			<div class="container">
+			<table class="table">
+				<thead class="thead-light">
+				  <tr>
+					<th scope="col">Imagen</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Existencias</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Precio Venta</th>
+					<th scope="col">Fecha Publicado</th>
+					<th scope="col">Edicion</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr v-for="datos in todoP":key="datos.miproducto" >
+					<th><img width="50"	height="50" v-bind:src="datos.imagen" > </th>
+					<td> {{datos.nombre_producto}}</td>
+					<td>{{datos.descprod }}</td>
+					<td>{{datos.existencias}}</td>
+					<td>{{datos.categoria}}</td>
+					<td>{{datos.precio}}</td>
+					<td>{{datos.precio_venta}}</td>
+					<td>{{datos.fecha_subida}}</td>
+					<td>
+						<button  v-on:click="modificar(datos)" type="button" class="btn btn-secondary" data-dismiss="modal">Modificar</button>
+					</td>
+				  </tr>
+				 
+				</tbody>
+			  </table>
+			</div>
+		</form>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			
+		  </div>
+		 
 	  </div>
 	</div>
+	
   </div>
   
   
