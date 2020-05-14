@@ -8,7 +8,7 @@ session_start();
 			<li class="list-group-item"><div class="row">
 				<div class="col-4">
 					<div class="container">
-					<img src="" alt="Responsive image">
+					<img id="img-preview"class="rounded-circle" alt="Responsive image">
 				</div>
 				</div>
 				

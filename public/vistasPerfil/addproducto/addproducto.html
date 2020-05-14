@@ -14,15 +14,16 @@
 				<hr class="hrs">
 				<div class="d-flex justify-content-center">
 					<div class="card mb-2" style="width: 18rem;">
-						<img width="200" height="200" class="card-img-top":src="imagen"  alt="la imagen va aquí" >
-						<input @change="file" accept="image/jpeg,image/jpg,image/png"  type="file" class="form-control"> 
+						<img width="200" height="200" id="img-preview" class="card-img-top"  alt="la imagen va aquí" >
+						<input id="img-uploader"  required   type="file" class="form-control"> 
+						<progress id="img-upload-bar" value="0" max="100" style="width: 100%"></progress>
 					</div>	 
 				</div> 
 				 
 				
 				<div class="form-group  ">
 					<label for="nameproduct">Nombre  Producto</label>
-					<input   v-model="publicP.nombre" type="text" class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+					<input   v-model="publicP.nombre" type="text"  class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
 				  
 				</div>
 				  <div class="form-group">
@@ -83,6 +84,7 @@
 	</div>
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="public/vistasPerfil/addproducto/productosadd.js"></script>
 </body>
 </html>
