@@ -59,7 +59,7 @@ var publicarp=new Vue({
 		
 		},
 		obtenerimagen(e){
-			var respuesta='';
+			var respuesta=null;
 			let file=e.target.files[0];
 			var formdata=new FormData($('#frm-productoN')[0]);
 			var ruta='Private/Modulos/guardarruta.php';
@@ -70,17 +70,15 @@ var publicarp=new Vue({
 				data: formdata,
 				contentType:false,
 				processData:false,
-				
+				async:false,
 				success: function (response) {
-					
 				respuesta=response;
-						console.log(respuesta);
-					
 				}
 				
 			});
 			
-			console.log('asdasd',respuesta);
+			console.log('asdasd',this.publicP.imagen= 'Private/Modulos/'+respuesta);
+			
 			this.cargar(file);
 	
 		},
