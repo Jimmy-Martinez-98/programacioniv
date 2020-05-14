@@ -1,6 +1,7 @@
 var publicarp=new Vue({
 	el:'#frm-productoN',
 	data: {
+		
 		publicP:{
 			idprod:0,
 			idusuario:0,
@@ -16,7 +17,7 @@ var publicarp=new Vue({
 			msg:''
 		},
 	
-		
+		imagenlittle:''
 
 	},
 	created:function(){this.traerid()},
@@ -57,44 +58,47 @@ var publicarp=new Vue({
 			});	  
 		
 		},
+		obtenerimagen(e){
+			var respuesta='';
+			let file=e.target.files[0];
+			var formdata=new FormData($('#frm-productoN')[0]);
+			var ruta='Private/Modulos/guardarruta.php';
+			
+			$.ajax({
+				type: "POST",
+				url: ruta,
+				data: formdata,
+				contentType:false,
+				processData:false,
+				
+				success: function (response) {
+					
+				respuesta=response;
+						console.log(respuesta);
+					
+				}
+				
+			});
+			
+			console.log('asdasd',respuesta);
+			this.cargar(file);
+	
+		},
+
+		cargar(file){
+			let reader=new FileReader();
+			reader.onload=(e)=>{
+				this.imagenlittle=e.target.result;
+			}
+			reader.readAsDataURL(file);
+		}
+	
+	},
+	computed:{
+		imagen(){
+			return this.imagenlittle;
+		}
 	}
+	
 });
 
-
-
-
-
-
-var verimagen = document.getElementById('img-preview');
-var Uploader = document.getElementById('img-uploader');
-var Uploadbar = document.getElementById('img-upload-bar');
-
-var CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/michaelslayer/image/upload`
-var CLOUDINARY_UPLOAD_PRESET = 'hliq2aqu';
-
-Uploader.addEventListener('change', async (e) => {
-    // console.log(e);
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-    // Send to cloudianry
-    const res = await axios.post(
-        CLOUDINARY_URL,
-        formData,
-        {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            onUploadProgress (e) {
-                let progress = Math.round((e.loaded * 100.0) / e.total);
-                console.log(progress);
-              Uploadbar.setAttribute('value',progress)
-            }
-        }
-    );
-    console.log(res);
-	verimagen.src = res.data.secure_url;
-	publicarp.publicP.imagen=res.data.secure_url;
-});

@@ -8,17 +8,18 @@
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
 </head>
 <body>
-	<div class="container bg card" id="frm-productoN">
-		<form action="#" method="post" enctype="multipart/form-data" > 
+	<div class="container bg card" >
+		<form action="#" method="post" enctype="multipart/form-data" id="frm-productoN"> 
 				<h1 class=" h1s">Nuevo Producto</h1>
 				<hr class="hrs">
 				<div class="d-flex justify-content-center">
 					<div class="card mb-2" style="width: 18rem;">
-						<img width="200" height="200" id="img-preview" class="card-img-top"  alt="la imagen va aquí" >
-						<input id="img-uploader"  required   type="file" class="form-control"> 
-						<progress id="img-upload-bar" value="0" max="100" style="width: 100%"></progress>
+						<img width="200" height="200" id="img-preview" :src='imagen' class="card-img-top"  alt="la imagen va aquí" >
+						<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
+						
 					</div>	 
 				</div> 
+				<p id='respuesta' ></p>
 				 
 				
 				<div class="form-group  ">
