@@ -31,16 +31,7 @@ var publicarp=new Vue({
 		},
 		guardar:function(){	
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
-			
-				if(resp.msg!="Su Producto Ha Sido Actualizado"){
-					Swal.fire({
-						position: 'top-end',
-						icon: 'warning',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1500
-					  })
-				} else{
+				if(resp.msg=="Su Producto Fue Publicado Exitosamente"){
 					Swal.fire({
 						position: 'top-end',
 						icon: 'success',
@@ -48,8 +39,24 @@ var publicarp=new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					  })
-					 
+				}else if(resp.msg=="Su Producto Ha Sido Actualizado"){
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: resp.msg,
+						showConfirmButton: false,
+						timer: 1500
+					  })
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						icon: 'warning',
+						title: resp.msg,
+						showConfirmButton: false,
+						timer: 1500
+					  })
 				}
+				
 				
 			});	  
 		
@@ -114,9 +121,7 @@ var appproductos=new Vue({
 		modificar:function(mod) {
 			publicarp.publicP=mod;
 			publicarp.publicP.accion='modificar';
-			console.log(publicarp.publicP.miproducto);
-			
-			
+			console.log(publicarp.publicP.miproducto);		
 		}
 	
 	}
