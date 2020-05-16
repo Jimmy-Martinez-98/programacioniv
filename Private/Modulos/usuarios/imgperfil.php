@@ -1,12 +1,11 @@
 <?php
-
 if(isset($_FILES["archivo"])){
 	$file=$_FILES["archivo"];
 	$nombre=$file["name"];
 	
 
 	
-	$carpeta="misproductos/imagenes/";
+	$carpeta="usuarios/imagenesp/";
 
 	
 		$src=$carpeta.rand().$nombre;
@@ -21,6 +20,4 @@ if(isset($_FILES["archivo"])){
 	
 	
 }
-
-
 ?>

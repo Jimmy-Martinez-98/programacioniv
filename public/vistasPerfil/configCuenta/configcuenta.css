@@ -3,9 +3,11 @@
 	padding: 0px;
 
 }
+ 
 div.colores{
 	background: #5fb677;
 }
+
 button.btn{
 	color: black;
 }
@@ -27,6 +29,7 @@ div.div_file{
 	
 
 }
+
 div.div_file:hover{
 	background: rgb(155, 155, 155);
 	transition: 0.5s;
@@ -46,3 +49,10 @@ input#fperfil{
 	width: 20px;
 	height: 20px;
 }
+
+div.imgss{
+	background-color: #000000;
+	border-radius: 124px 0px 120px 0px;
+-moz-border-radius: 124px 0px 120px 0px;
+-webkit-border-radius: 124px 0px 120px 0px;
+}  

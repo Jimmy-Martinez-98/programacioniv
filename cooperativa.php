@@ -29,45 +29,48 @@ error_reporting(0);
 
   
 
-  <nav class="navbar navbar-expand-lg navbars">
-    <a class="navbar-brand"i style="color: black;" href="index.html " > <img class="image" src="public/img/agromark.png" alt=""></a>
-    <ul class="navbar-nav ml-auto uls">
-      <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="#">  <h6> <?php  echo $varsesion;?></h6></a>
-      </li>
-      <li class=" lis">
-        <a class="nav-link  text" id="perfil"  href="cerrarsesion.php">  <h6>Cerrar Sesión</h6></a>
-      </li>
+  <nav id="navbarrr" class="navbar navbar-expand-lg navbars">
+    <a class="navbar-brand"i  style="color: black;" href="index.html " > <img width="80px" height="80px" class="image" src="public/img/agromark.png" alt=""></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown"> 
+    <div class="dropdown ml-auto ">
+     <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img v-bind:src="perfil[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+     {{perfil[0].nombreu}}
+    </a>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
+    <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión</a>   
+   </div>
+    </div>
+    </li>
     </ul>
- 
   </nav>
 <nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist" >
   <div class="container-fluid">
-    <button class="navbar-toggler "id="togglesss" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
+    <div  id="navbarNavAltMarkup ">
         <ul class="navbar-nav mr-auto uls activa" id="nav">
-          <li class="nav-item lis activa">
-        <a class="nav-item nav-link  text  activa" id="info" href="#" ><h6>Informacion de Perfil</h6> <span class="sr-only"></span></a>
+          <li class=" lis activa">
+        <a class=" nav-link  text  activa" id="info" href="#" ><h5>Informacion de Perfil</h5> <span class="sr-only"></span></a>
       </li>
-      <li class="nav-item lis activa">
-        <a class="nav-link  text activa" id="addProductos" href="#"><h6> Añadir producto en venta </h6></a>
+      <li class=" lis activa">
+        <a class="nav-link  text activa" id="addProductos" href="#"><h5> Añadir producto en venta </h5></a>
       </li>
-      <li class="nav-item lis activa">
-        <a class="nav-link text activa" id="listdeseos"  href="#"><h6> Lista de deseos </h6></a>
-      </li>
-      <li class="divicio  lis activa">
-        <a class="nav-link text activa " id="POferta" href="#"><h6> Producto en oferta </h6></a>
+      <li class=" lis activa">
+        <a class="nav-link text activa" id="listdeseos"  href="#"><h5> Lista de deseos </h5></a>
       </li>
       <li class="divicio  lis activa">
-        <a class="nav-link  text activa" id="Configc" href="#"><h6>Configuración de Cuenta </h6></a>
+        <a class="nav-link text activa " id="POferta" href="#"><h5> Producto en oferta </h5></a>
+      </li>
+      <li class="divicio  lis activa">
+        <a class="nav-link  text activa" id="Configc" href="#"><h5>Configuración de Cuenta </h5></a>
       </li>
     </ul>
   
      
     </div>
   </div>
+  </div>  
   </nav>
 
   <section class="mt-1" id="contenedorP">
@@ -76,6 +79,7 @@ error_reporting(0);
 
     <script src="public/js/jquery-3.5.js"></script>
   <script src="public/js/jquery-ui.js"></script>
+  <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

@@ -1,10 +1,31 @@
 
 
+
+.dropdown :hover>.dropdown-menu{
+  display: block;
+  margin: 0px;
+  transition:all 0.3s;
+
+}
+
+
+
+
 .navbars{
 	background: #5fb677;
 }
 
-ul.uls li.lis a.text{
+
+
+
+
+
+
+
+
+
+
+.uls .lis .text{
     color: black;
    
 }
@@ -12,18 +33,22 @@ ul.uls li.lis a.text{
 
 
 
-
-
-img.image{
-  width: 70px;
-  height: 70px;
+a.btn-lg{
+  background: #006780;
+  color: white;
+}
+a.btn-lg:hover{
+  background: #006780;
+  color: white;
 }
 
-ul.uls.activa li.activa a.text.activa:hover{
+
+
+.uls.activa lis.activa .text.activa:hover{
    border-top:3px solid teal;
    transition: border 0.4s;
 }
-li.lis a.text{
+.lis .text{
     margin: 1px;
 }
 
@@ -37,7 +62,7 @@ li.lis a.text{
 
 
 @media (max-width: 700px) {
-  ul.uls.activa li.activa a.text.activa:hover{
+  .uls.activa .activa .text.activa:hover{
     border-top:none;
     border-left: 3px solid teal;
  }

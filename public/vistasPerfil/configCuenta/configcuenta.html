@@ -7,58 +7,66 @@
 </head>
 <body>
 	<div class="container colores">
-		<form method="POST">
+		<form method="POST" id="cuenta">
 			<div class="row d-flex justify-content-center pt-2">
 				<div class="col-6">
-					<div class="card float-left" style="width: 18rem;">
-						<img class="card-img-top" src="public/img/imgpeque.jpg" alt="Card image cap">
+					<div  class=" float-left" style="width: 250px;">
+						<img  height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
 					</div>
 					<div class="float-right">
-						<button type="button" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
+						<button type="button" v-on:click="modificarF(datoscuenta[0].idusuario)" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
 					</div>
 				</div>
 				<div class="col-8 mt-3">
 					
 					<div class="form-group float-left">
 						<label for="nombre">Nombre de Usuario</label>
-						<input type="text" class="form-control" id="nombre">					
+						<input type="text" v-model="datoscuenta[0].nombreu" class="form-control" id="nombre">					
+					
 					</div>
 
 					<div class="form-group float-right">
-						<label for="nombre">Nombre Cooperativa</label>
-						<input type="text" class="form-control" id="nombre">					
+						<label for="nombreC">Nombre Cooperativa</label>
+						<input type="text" v-model="datoscuenta[0].nombrecooperativa" class="form-control" id="nombrec">					
 					</div>
 				</div>
 					
 					<div class="col-8 mt-3">
 						<div class="form-group ">
-							<label for="exampleInputEmail1">Correo ELectronico</label>
-							<input type="email" class="form-control" id="correoU">
+							<label for="correo">Correo ELectronico</label>
+							<input type="email" v-model="datoscuenta[0].correo" class="form-control" id="correoU">
 							
 						</div>
 					</div>
 					<div class="col-8">
-						<label for="exampleInputEmail1">Telefono</label>
+						<label for="tel">Telefono</label>
 						<div class="input-group ">
-							<input type="text" class="form-control" >
+							<input type="number" disabled v-model="datoscuenta[0].telefono"  class="form-control" >
 							<div class="input-group-append ">
 							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
 							</div>
 						</div>
 					</div>  
-					<div class="col-8 mb-3">
+					<div class="col-8 mt-1">
 						<label for="contra">Contraseña</label>
 						<div class="input-group ">
-							<input type="password" class="form-control" >
+							<input type="password" disabled v-model="datoscuenta[0].passwords"  class="form-control" >
 							<div class="input-group-append ">
-							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
+							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
 							</div>
 						</div>
 					</div>  
-					</div>
+					<div class="col-8 mt-1 mb-2">
+						<label for="fecha">Fecha de Registro</label>
+						<div class="input-group ">
+							<input type="date" v-model="datoscuenta[0].fechaR"  class="form-control" >
+							
+						</div>
+					</div>  
 					
+					</div>
 				</form>
-				</div>
+	</div>
 		
 	 
 	  <script src="public/js/jquery-3.5.js"></script>
@@ -81,18 +89,16 @@
 		</div>
 		<div class="modal-body ">
 			<div class="container d-flex justify-content-center">
-				<div class="card float-left" style="width: 18rem;">
-					<img class="card-img-top" src="public/img/perfil.png" alt="Card image cap">
+				<div class="card ">
+					<img class="card-img-top" :src='perfiles'    width="300px" height="200px" alt="imagen de perfil">
+					<input type="file" @cahnge="cambiarFoto" class="form-control">
+				
 				  </div>	 
 			</div>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
-		<div class="div_file" enctype="multipart/form-data">
-			<p class="text"><img id="icono" src="public/img/arrows.png"></img> Subir Foto</p>
-			<input type="file" accept="image/*" name="fperfil"  id="fperfil"  class="inputfile inputfile-1">
-		</div>
-		<button type="button" class="btn btn-primary btn-lg"  @click="guardarfoto" >Carcar foto</button>
+		<button type="button" class="btn btn-primary btn-lg">Carcar foto</button>
 		</div>
 	  </div>
 	</div>
@@ -122,8 +128,8 @@
 			  <div class="form-group mt-3">
 				<label for="codigo">Codigo de verificación</label>
 				<input type="email" class="form-control" id="codigov" aria-describedby="codigov" placeholder="Ingresa codigo">
-				
 			  </div>
+			  
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -145,6 +151,7 @@
 		  </button>
 		</div>
 		<div class="modal-body">
+			<form action="#" method="post">
 			<div class="container">
 				<p><b> <h6> Requisitos</h6></b>
 					Contiene entre 8 y 36 caracteres
@@ -164,6 +171,7 @@
 				<label for="confir"> Confirmar Contraseña</label>
 				<input type="password" class="form-control" id="confirm">					
 			  </div>
+			</form>
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
