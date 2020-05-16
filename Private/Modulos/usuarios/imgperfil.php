@@ -5,7 +5,7 @@ if(isset($_FILES["archivo"])){
 	
 
 	
-	$carpeta="usuarios/imagenesp/";
+	$carpeta="imagenesp/";
 
 	
 		$src=$carpeta.rand().$nombre;

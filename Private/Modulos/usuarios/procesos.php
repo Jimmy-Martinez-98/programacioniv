@@ -91,6 +91,32 @@ class login{
                 $this->respuesta['msg']="usuario registrado correctamente";
                
             }
+        }
+
+    }
+    public function recibirFoto($login)
+    {
+        $this->datos = json_decode($login, true);
+        $this->validarfoto();
+       
+    }
+    private function validarfoto(){
+        if(empty($this->datos['imagen'])||empty($this->datos['idusuario'])){
+            $this->respuesta['msg']='faltan datos';
+        }else{
+            $this->actualizarfoto();
+        }
+    }
+    
+    public function actualizarfoto(){
+        if($this->respuesta['msg']==='correcto'){
+            $this->db->consultas('
+            UPDATE  usuario SET 
+            imagen				= "'. $this->datos['imagen'] .'"
+             WHERE idusuario	= "'. $this->datos['idusuario'] .'"
+        ');
+               
+                return $this->respuesta['msg']="Foto de Perfil Actualizada"; 
             
         }
 
@@ -101,6 +127,8 @@ class login{
         $this->db->consultas('SELECT usuario.* from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
        return $this->respuesta=$this->db->obtener_datos();
     }
+
+    
 
    
     

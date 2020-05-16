@@ -14,7 +14,7 @@
 						<img  height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
 					</div>
 					<div class="float-right">
-						<button type="button" v-on:click="modificarF(datoscuenta[0].idusuario)" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
+						<button type="button"  class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" v-on:click="modfoto(datoscuenta[0])" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
 					</div>
 				</div>
 				<div class="col-8 mt-3">
@@ -88,17 +88,19 @@
 		  </button>
 		</div>
 		<div class="modal-body ">
+			<form id="editfotoo" method="POST">
 			<div class="container d-flex justify-content-center">
-				<div class="card ">
-					<img class="card-img-top" :src='perfiles'    width="300px" height="200px" alt="imagen de perfil">
-					<input type="file" @cahnge="cambiarFoto" class="form-control">
-				
-				  </div>	 
+				<div class="card mb-2" style="width: 18rem;">
+					<img width="200" height="200"  id="img-preview" :src='imgss'  v-bind:src="updatefoto.imagen"  class="card-img-top"  alt="la imagen va aquí" >
+					<input @change="obtenerimagen"  name="archivo" required name="archivo"   type="file" class="form-control"> 
+					
+				</div>	 	 
 			</div>
+		</form>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
-		<button type="button" class="btn btn-primary btn-lg">Carcar foto</button>
+		<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg">Carcar foto</button>
 		</div>
 	  </div>
 	</div>
