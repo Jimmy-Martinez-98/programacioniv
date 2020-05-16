@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2020 a las 18:23:03
+-- Tiempo de generación: 16-05-2020 a las 05:38:31
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.29
 
@@ -38,20 +38,8 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`idDireccion`, `fkUsuario`, `Direccion`) VALUES
-(167, 24, 'San Rafael Oriente '),
-(173, 25, 'Usulután, Centro');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `imgperfill`
---
-
-CREATE TABLE `imgperfill` (
-  `idimagen` int(8) NOT NULL,
-  `fk_usuairo` int(8) NOT NULL,
-  `imgperfil` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(167, 24, 'San MigueL'),
+(173, 25, 'Usulutan');
 
 -- --------------------------------------------------------
 
@@ -79,12 +67,61 @@ INSERT INTO `informacionnosotros` (`infoUsuario`, `fk_idusuario`, `Mision`, `Vis
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `misproductos`
+-- Estructura de tabla para la tabla `lista_deseos`
 --
 
-CREATE TABLE `misproductos` (
-  `miproductoid` int(8) NOT NULL,
-  `fkUsuarios` int(8) NOT NULL,
+CREATE TABLE `lista_deseos` (
+  `idlistadeseos` int(11) NOT NULL,
+  `id_usuario_propiettario` int(11) NOT NULL,
+  `id_usuario_vendedor` int(11) NOT NULL,
+  `id_datos_producto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `lista_deseos`
+--
+
+INSERT INTO `lista_deseos` (`idlistadeseos`, `id_usuario_propiettario`, `id_usuario_vendedor`, `id_datos_producto`) VALUES
+(2, 24, 25, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `misproducto`
+--
+
+CREATE TABLE `misproducto` (
+  `miproducto` int(8) NOT NULL,
+  `fk_idusuario` int(8) NOT NULL,
+  `nombre_producto` varchar(100) NOT NULL,
+  `precio` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `existencias` varchar(100) NOT NULL,
+  `descprod` varchar(500) NOT NULL,
+  `imagen` varchar(100) NOT NULL,
+  `categoria` varchar(45) NOT NULL,
+  `fecha_subida` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `misproducto`
+--
+
+INSERT INTO `misproducto` (`miproducto`, `fk_idusuario`, `nombre_producto`, `precio`, `precio_venta`, `existencias`, `descprod`, `imagen`, `categoria`, `fecha_subida`) VALUES
+(36, 24, 'PAPAS', 1.1, 1.25, '100', 'SOLOMA', 'Private/Modulos/misproductos/imagenes/1904442263unnamed.jpg', 'verdura', '2020-05-14'),
+(40, 24, 'Tomates', 0.26, 0.75, '1000', 'Rojo Tomate', 'Private/Modulos/misproductos/imagenes/751420557tomate-1024x680.jpg', 'Verdura', '2020-05-14'),
+(41, 24, 'Chile Jalapeño', 0.35, 0.075, '1000', 'Chile jalapeño', 'Private/Modulos/misproductos/imagenes/1946703030chile-jalapeno.jpg', 'Verdura', '2020-05-14'),
+(43, 25, 'Tomates', 0.25, 0.75, '100', 'Rojos grandes', 'Private/Modulos/misproductos/imagenes/314810718751420557tomate-1024x680.jpg', 'Verdura', '2020-05-14');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `idproducto` int(8) NOT NULL,
+  `usuariofk` int(8) NOT NULL,
   `nombreproducto` varchar(200) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
   `precio` float NOT NULL,
@@ -92,38 +129,12 @@ CREATE TABLE `misproductos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `misproductos`
+-- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `misproductos` (`miproductoid`, `fkUsuarios`, `nombreproducto`, `descripcion`, `precio`, `tipoHortaliza`) VALUES
-(1, 24, 'Lechuga', 'Lechuga tipo iceberg costera produce cabezas atractivas y uniformes adecuadas para mercado fresco. Sure Shot proporciona a los productores una larga ventana de cosecha de primavera', 1.5, 'Verdura');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `producto`
---
-
-CREATE TABLE `producto` (
-  `idproducto` int(8) NOT NULL,
-  `fk_idusuario` int(8) NOT NULL,
-  `nombreprod` varchar(100) NOT NULL,
-  `precio` float NOT NULL,
-  `precio_venta` float NOT NULL,
-  `descprod` varchar(500) NOT NULL,
-  `imagen` blob NOT NULL,
-  `categoria` varchar(45) NOT NULL,
-  `fecha_subida` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idproducto`, `fk_idusuario`, `nombreprod`, `precio`, `precio_venta`, `descprod`, `imagen`, `categoria`, `fecha_subida`) VALUES
-(21, 24, 'Tomates', 0.25, 0, 'Los híbridos de tomate Seminis destacan por sus rendimientos sobresalientes y frutos de la más elevada calidad. Nuestras dos grandes categorías, indeterminados y determinados, cumplen las exigencias del mercado; la primera, especializada para cultivos protegidos en invernadero y mallasombra; la segunda, apta para campo abierto por sus resistencias a las enfermedades de mayor incidencias en las zonas de producción.', 0x6e756c6c, 'verdura', '0000-00-00'),
-(22, 24, 'Zanahoria', 0.5, 0, 'Especializadas en formas de tubérculos, las zanahorias ofrecen resistencia a las principales enfermedades causadas por el suelo, que al mismo tiempo brindan a los productores tubérculos precoces con la calidad requerida para procesadores y mercados de consumo fresco', 0x6e756c6c, 'verdura', '0000-00-00'),
-(23, 24, 'Sandia', 5, 0, 'Las sandías Seminis tienen un sabor dulce único y se distinguen por sus frutos con pulpa firme y crujiente, con o sin semilla, su tolerancia a corazón hueco y sus tamaños ideales para empaquetar en caja. Además, preocupados por las afectaciones por enfermedades como Antracnosis y Fusarium, innovamos mejorando nuestro portafolio de productos con variedades resistentes a estas enfermedades.', 0x6e756c6c, 'Fruta', '0000-00-00');
+INSERT INTO `productos` (`idproducto`, `usuariofk`, `nombreproducto`, `descripcion`, `precio`, `tipoHortaliza`) VALUES
+(1, 24, 'Lechuga', 'Lechuga tipo iceberg costera produce cabezas atractivas y uniformes adecuadas para mercado fresco. Sure Shot proporciona a los productores una larga ventana de cosecha de primavera', 1.5, 'Verdura'),
+(2, 25, 'NARANJAS ZUMO + AGUACATES - Navelina', 'Nuestras naranjas y aguacates se cultivan de forma respetuosa con el medio ambiente.\r\n\r\nSi desea una caja de naranjas no lo dudes, es el momento, pídela y en en este instante iremos a recolectarlas para usted, y se lo mandaremos el mismo día.\r\n\r\nNuestro aguacate HASS destaca por su gran calidad y auténtico sabor,esto es debido a que los recolectamos en el punto exacto de maduración,los más frescos del mercado,cultivados en Valencia.', 10, 'Frutas');
 
 -- --------------------------------------------------------
 
@@ -134,7 +145,7 @@ INSERT INTO `producto` (`idproducto`, `fk_idusuario`, `nombreprod`, `precio`, `p
 CREATE TABLE `usuario` (
   `idusuario` int(8) NOT NULL,
   `nombreu` varchar(100) NOT NULL,
-  `imagen` blob NOT NULL,
+  `imagen` varchar(255) NOT NULL,
   `nombrecooperativa` varchar(100) NOT NULL,
   `telefono` varchar(9) NOT NULL,
   `tipoUsuario` text NOT NULL,
@@ -148,7 +159,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombreu`, `imagen`, `nombrecooperativa`, `telefono`, `tipoUsuario`, `correo`, `passwords`, `fechaR`) VALUES
-(24, 'Michael', '', 'Cooperativa Lider', '72745936', 'cooperativa', 'cooperativalider@gmail.com', '12345678', '2020-04-26'),
+(24, 'Michael', 'Private/Modulos/misproductos/imagenes/1904442263unnamed.jpg', 'Cooperativa Lider', '72745936', 'cooperativa', 'cooperativalider@gmail.com', '12345678', '2020-04-26'),
 (25, 'Melissa Estefania', '', 'Cooperativa mango', '72737475', 'cooperativa', 'cooperativamango@gmail.com', '12345678', '2020-03-27'),
 (26, 'Jimmy', '', 'cooperativa milos', '72737273', 'cooperativa', 'cooperativamilos@gmail.com', '123456', '2020-04-28'),
 (27, 'Cecilia Maria', '', '', '76824693', 'Productor Pequeño', 'ceciliamaria@gmail.com', '12345678', '2020-04-28'),
@@ -167,13 +178,6 @@ ALTER TABLE `direcciones`
   ADD KEY `fkUsuario` (`fkUsuario`);
 
 --
--- Indices de la tabla `imgperfill`
---
-ALTER TABLE `imgperfill`
-  ADD PRIMARY KEY (`idimagen`),
-  ADD KEY `fk_usuairo` (`fk_usuairo`);
-
---
 -- Indices de la tabla `informacionnosotros`
 --
 ALTER TABLE `informacionnosotros`
@@ -181,19 +185,28 @@ ALTER TABLE `informacionnosotros`
   ADD KEY `fk_idusuario` (`fk_idusuario`);
 
 --
--- Indices de la tabla `misproductos`
+-- Indices de la tabla `lista_deseos`
 --
-ALTER TABLE `misproductos`
-  ADD PRIMARY KEY (`miproductoid`),
-  ADD KEY `fkUsuarios` (`fkUsuarios`);
+ALTER TABLE `lista_deseos`
+  ADD PRIMARY KEY (`idlistadeseos`),
+  ADD KEY `id_usuario_propiettario` (`id_usuario_propiettario`),
+  ADD KEY `id_usuario_vendedor` (`id_usuario_vendedor`),
+  ADD KEY `id_datos_producto` (`id_datos_producto`);
 
 --
--- Indices de la tabla `producto`
+-- Indices de la tabla `misproducto`
 --
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`idproducto`),
+ALTER TABLE `misproducto`
+  ADD PRIMARY KEY (`miproducto`),
   ADD KEY `fk_idusuario` (`fk_idusuario`),
   ADD KEY `fk_idusuario_2` (`fk_idusuario`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`idproducto`),
+  ADD KEY `fkUsuarios` (`usuariofk`);
 
 --
 -- Indices de la tabla `usuario`
@@ -209,13 +222,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `idDireccion` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
-
---
--- AUTO_INCREMENT de la tabla `imgperfill`
---
-ALTER TABLE `imgperfill`
-  MODIFY `idimagen` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDireccion` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT de la tabla `informacionnosotros`
@@ -224,16 +231,22 @@ ALTER TABLE `informacionnosotros`
   MODIFY `infoUsuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `misproductos`
+-- AUTO_INCREMENT de la tabla `lista_deseos`
 --
-ALTER TABLE `misproductos`
-  MODIFY `miproductoid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `lista_deseos`
+  MODIFY `idlistadeseos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT de la tabla `misproducto`
 --
-ALTER TABLE `producto`
-  MODIFY `idproducto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+ALTER TABLE `misproducto`
+  MODIFY `miproducto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `idproducto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -252,28 +265,30 @@ ALTER TABLE `direcciones`
   ADD CONSTRAINT `direcciones_ibfk_1` FOREIGN KEY (`fkUsuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `imgperfill`
---
-ALTER TABLE `imgperfill`
-  ADD CONSTRAINT `imgperfill_ibfk_1` FOREIGN KEY (`fk_usuairo`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `informacionnosotros`
 --
 ALTER TABLE `informacionnosotros`
   ADD CONSTRAINT `informacionnosotros_ibfk_1` FOREIGN KEY (`fk_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `misproductos`
+-- Filtros para la tabla `lista_deseos`
 --
-ALTER TABLE `misproductos`
-  ADD CONSTRAINT `misproductos_ibfk_1` FOREIGN KEY (`fkUsuarios`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `lista_deseos`
+  ADD CONSTRAINT `lista_deseos_ibfk_1` FOREIGN KEY (`id_usuario_propiettario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lista_deseos_ibfk_2` FOREIGN KEY (`id_usuario_vendedor`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lista_deseos_ibfk_3` FOREIGN KEY (`id_datos_producto`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `producto`
+-- Filtros para la tabla `misproducto`
 --
-ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`fk_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `misproducto`
+  ADD CONSTRAINT `misproducto_ibfk_1` FOREIGN KEY (`fk_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`usuariofk`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
