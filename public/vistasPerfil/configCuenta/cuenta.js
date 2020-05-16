@@ -9,7 +9,9 @@ var datosCuenta =new Vue({
 			});	   	     
 		 },
 		 modfoto:function (update) {
-			editfoto.updatefoto=update;			
+			editfoto.updatefoto=update;	
+			editfoto.updatefoto.accion="modificar";		
+			console.log(	editfoto.updatefoto.accion);
 			
 		   }
 		
@@ -40,9 +42,8 @@ var editfoto =new Vue({
 			})
 		},
 		Guardarimg:function(){
-			console.log('fotoot',this.updatefoto);
 			
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=actualizarfoto&login=${JSON.stringify(this.updatefoto)}`).then(resp=>resp.json()).then(resp=>{
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirFoto&login=${JSON.stringify(this.updatefoto)}`).then(resp=>resp.json()).then(resp=>{
 				if(resp.msg!="Foto de Perfil Actualizada"){
 					Swal.fire({
 						position: 'top-end',
@@ -63,11 +64,13 @@ var editfoto =new Vue({
 			})
 		},
 
-		obtenerimagen:function(e){
+		obtenerimagen(e){
 			
 			
 			let file=e.target.files[0];
-			this.cargarimagen(file);
+			console.log('foot',e);
+			
+		
 			var respuesta=null
 			var formdata=new FormData($('#editfotoo')[0]);
 			console.log(formdata);
@@ -86,12 +89,13 @@ var editfoto =new Vue({
 				}
 				
 			});
-			this.updatefoto.imagen="Private/Modulos/"+respuesta;
+			this.updatefoto.imagen="Private/Modulos/usuarios/"+respuesta;
 			
-			
+			this.cargarimagen(file);
+			this.datosCuenta();
 
 		},
-		cargarimagen: function(file){
+		cargarimagen(file){
 			let reader=new FileReader();
 			reader.onload=(e)=>{
 				this.imagenvista=e.target.result
@@ -100,7 +104,7 @@ var editfoto =new Vue({
 		}
 	},
 	computed:{
-		imgss(){
+		imagenes(){
 			return this.imagenvista;
 		}
 	}

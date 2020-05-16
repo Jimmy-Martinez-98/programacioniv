@@ -100,27 +100,30 @@ class login{
         $this->validarfoto();
        
     }
-    private function validarfoto(){
-        if(empty($this->datos['imagen'])||empty($this->datos['idusuario'])){
-            $this->respuesta['msg']='faltan datos';
-        }else{
-            $this->actualizarfoto();
-        }
-    }
-    
-    public function actualizarfoto(){
-        if($this->respuesta['msg']==='correcto'){
-            $this->db->consultas('
-            UPDATE  usuario SET 
-            imagen				= "'. $this->datos['imagen'] .'"
-             WHERE idusuario	= "'. $this->datos['idusuario'] .'"
-        ');
-               
-                return $this->respuesta['msg']="Foto de Perfil Actualizada"; 
-            
+   
+   
+         public function validarfoto()
+        {
+           if(empty($this->datos['imagen'])||empty($this->datos['idusuario'])){
+               $this->respuesta['msg']='Falta Imagen de Perfil';
+           }
+            $this->updatefoto();
         }
 
-    }
+        public function updatefoto()
+        {
+          if($this->respuesta['msg']==='correcto'){
+              if($this->datos['accion']==='modificar'){
+              
+                 $this->db->consultas('
+                  UPDATE  usuario SET 
+                  imagen			= "'. $this->datos['imagen'] .'"
+                   WHERE idusuario	= "'. $this->datos['idusuario'] .'"
+                ');                  
+                  return $this->respuesta['msg']="Foto de Perfil Actualizada"; 
+              }
+          }
+        }
 
      public function traercuenta()
     {
