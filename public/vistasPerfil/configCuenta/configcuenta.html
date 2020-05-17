@@ -21,29 +21,29 @@
 					
 					<div class="form-group float-left">
 						<label for="nombre">Nombre de Usuario</label>
-						<input type="text" v-model="datoscuenta[0].nombreu" class="form-control" id="nombre">					
+						<input type="text" v-model="datoscuenta[0].nombreu" disabled  class="form-control" id="nombre">					
 					
 					</div>
 
 					<div class="form-group float-right">
 						<label for="nombreC">Nombre Cooperativa</label>
-						<input type="text" v-model="datoscuenta[0].nombrecooperativa" class="form-control" id="nombrec">					
+						<input type="text" v-model="datoscuenta[0].nombrecooperativa" disabled class="form-control" id="nombrec">					
 					</div>
 				</div>
 					
 					<div class="col-8 mt-3">
 						<div class="form-group ">
 							<label for="correo">Correo ELectronico</label>
-							<input type="email" v-model="datoscuenta[0].correo" class="form-control" id="correoU">
+							<input type="email" v-model="datoscuenta[0].correo" disabled class="form-control" id="correoU">
 							
 						</div>
 					</div>
 					<div class="col-8">
 						<label for="tel">Telefono</label>
 						<div class="input-group ">
-							<input type="number" disabled v-model="datoscuenta[0].telefono"  class="form-control" >
+							<input type="tel" disabled v-model="datoscuenta[0].telefono" disabled class="form-control" >
 							<div class="input-group-append ">
-							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
+							<button class="btn btn-secondary " type="button"   data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
 							</div>
 						</div>
 					</div>  
@@ -52,14 +52,14 @@
 						<div class="input-group ">
 							<input type="password" disabled v-model="datoscuenta[0].passwords"  class="form-control" >
 							<div class="input-group-append ">
-							<button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
+							<button class="btn btn-secondary " v-on:click="modificacionpass(datoscuenta[0].passwords)" type="button"  data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
 							</div>
 						</div>
 					</div>  
 					<div class="col-8 mt-1 mb-2">
 						<label for="fecha">Fecha de Registro</label>
 						<div class="input-group ">
-							<input type="date" v-model="datoscuenta[0].fechaR"  class="form-control" >
+							<input type="date" disabled v-model="datoscuenta[0].fechaR"  class="form-control" >
 							
 						</div>
 					</div>  
@@ -108,7 +108,7 @@
 
 
 
-  <!-- Modal2 -->
+  <!-- Modal telefono -->
 <div class="modal fade" id="editelefono" tabindex="-1" role="dialog" aria-labelledby="editelefono" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
@@ -155,7 +155,7 @@
 		<div class="modal-body">
 			<form action="#" method="post">
 			<div class="container">
-				<p><b> <h6> Requisitos</h6></b>
+				<p class="text-justify"><b> <h6> Requisitos</h6></b>
 					Contiene entre 8 y 36 caracteres
 					Contener al menos 1 letra en mayúsculas y minúsculas
 					Contiene al menos 1 número
@@ -163,21 +163,25 @@
 			</div>
 			<div class="form-group ">
 				<label for="contraA">Contraseña Antigua</label>
-				<input type="password" class="form-control" id="contraA">					
-			  </div>
+				<input type="password" disabled v-model="cambiopass"  class="form-control" id="contraA">					
+				
+			</div>
 			  <div class="form-group ">
 				<label for="contraN">Nueva Contraseña</label>
-				<input type="password" class="form-control" id="contraN">					
+				<input type="password" v-on:keyup="alerta" minlength="8" v-model="updatepasword.passwords" required class="form-control" id="contraN">					
 			  </div>
 			  <div class="form-group ">
 				<label for="confir"> Confirmar Contraseña</label>
-				<input type="password" class="form-control" id="confirm">					
-			  </div>
+				<input type="password" minlength="8"   required  class="form-control" id="confirm">					
+					<p>{{updatepasword.passwords}}</p>
+			</div>
+			  <span id="msgs"></span>
 			</form>
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-		  <button type="button" class="btn btn-primary">Guardar Cambios</button>
+		  <button type="button" v-on:click="updatepass" class="btn btn-primary">Guardar Cambios</button>
+		  
 		</div>
 	  </div>
 	</div>

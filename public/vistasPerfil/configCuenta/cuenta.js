@@ -11,9 +11,16 @@ var datosCuenta =new Vue({
 		 modfoto:function (update) {
 			editfoto.updatefoto=update;	
 			editfoto.updatefoto.accion="modificar";		
-			console.log(	editfoto.updatefoto.accion);
 			
-		   }
+			
+		   },
+		   modificacionpass:function (passs) {
+			editpass.cambiopass=passs;	
+		
+			
+			
+			
+		   },
 		
 	},
 	created:function () {
@@ -112,3 +119,109 @@ var editfoto =new Vue({
 	
 });
 
+// var edittelefono = new Vue({
+// 	el:'#editelefono'
+
+// })
+
+var editpass =new Vue({
+	el:'#edicontra',
+	data:{
+		updatepasword:{
+			idusuario:0,
+			passwords:'',
+			accion:'modificar'		
+		},
+		cambiopass:{
+			contra:''
+		}
+		
+	},
+	created:function(){
+		this.traeridusuario()
+	}
+	,methods:{
+		alerta:function(){
+
+			var mayus		=new RegExp("^(?=.*[A-Z])");
+			var especial	= new RegExp("^(?=.*[*_.-])");
+			var numeros		= new RegExp("^(?=.*[0-9])");
+			var lower 		= new RegExp("^(?=.*[a-z])");
+			var len	 		= new RegExp("^(?=.{8,})");
+			var regexp		=[mayus,especial,numeros,lower,len];
+			var checkval=0;
+			
+			var wordpass=$('#contraN').val();
+			for(var i=0; i<5; i++){
+				if(regexp[i].test(wordpass)){
+					checkval++;
+					
+				}
+			}
+
+			if(checkval >=0 && checkval<=2){
+				$('#msgs').text("Muy Insegura!").css("color","red");
+			}else if(checkval >=3 && checkval<=4){
+				$('#msgs').text("Poco Segura!").css("color","orange");
+			}else if(checkval===5){
+				$('#msgs').text("Segura!").css("color","green");
+			}
+		
+
+		},
+
+		traeridusuario:function(){
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
+				this.updatepasword.idusuario=resp[0].idusuario;
+			})
+		},
+
+		updatepass:function(){
+			
+			
+			
+			if ($('#contraN').val()==$('#confirm').val()) {
+				fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${this.updatepasword}`).then(resp=>resp.json()).then(resp=>{
+					if(resp.msg!="Contraseña Actualizada"){
+						Swal.fire({
+							position: 'top-end',
+							icon: 'warning',
+							title: resp.msg,
+							showConfirmButton: false,
+							timer: 1500
+						  });
+					}else {
+						Swal.fire({
+							position: 'top-end',
+							icon: 'success',
+							title: resp.msg,
+							showConfirmButton: false,
+							timer: 1500
+						  });
+					}
+				});
+				
+
+			}else{
+				Swal.fire({
+					position: 'top-end',
+					icon: 'warning',
+					title: 'Los Datos Son Direntes',
+					showConfirmButton: false,
+					timer: 1500
+				  });
+				  $('#contraN').val('');
+				  $('#confirm').val('');
+				  
+				 
+			}
+
+			
+		}
+
+		
+	},
+	created:function () {
+		this.traerdatosusuario();
+	  }
+});

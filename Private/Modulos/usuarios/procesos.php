@@ -102,7 +102,7 @@ class login{
     }
    
    
-         public function validarfoto()
+         private function validarfoto()
         {
            if(empty($this->datos['imagen'])||empty($this->datos['idusuario'])){
                $this->respuesta['msg']='Falta Imagen de Perfil';
@@ -110,7 +110,7 @@ class login{
             $this->updatefoto();
         }
 
-        public function updatefoto()
+        private function updatefoto()
         {
           if($this->respuesta['msg']==='correcto'){
               if($this->datos['accion']==='modificar'){
@@ -124,6 +124,38 @@ class login{
               }
           }
         }
+
+        public function recibirpass($login)
+        {
+            $this->datos = json_decode($login, true);
+            $this->validarpass();    
+        }
+        private function validarpass()
+        {
+           if(empty(trim($this->datos['passwords']))){
+               $this->respuesta['msg']='Favor Complete los Campós';
+           }else if(empty($this->datos['idusuario'])){
+            $this->respuesta['msg']='falta id';
+           }
+           $this->guardarpass();
+        }
+        private function guardarpass()
+        {
+            if($this->respuesta['msg']==='correcto'){
+                if($this->datos['accion']==='modificar'){
+                
+                   $this->db->consultas('
+                    UPDATE  usuario SET 
+                    passwords			= "'. $this->datos['passwords'] .'"
+                     WHERE idusuario	= "'. $this->datos['idusuario'] .'"
+                  ');                  
+                    return $this->respuesta['msg']="Contraseña Actualizada"; 
+                }
+            }
+        }
+
+
+
 
      public function traercuenta()
     {
