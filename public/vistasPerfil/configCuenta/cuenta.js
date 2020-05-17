@@ -129,12 +129,11 @@ var editpass =new Vue({
 			idusuario:0,
 			contranueva:'',
 			confirmarcontra:'',
-			accion:'modificar'		
+			accion:'modificar'
 		},
 		cambiopass:{
 			contra:''
 		}
-		
 	},
 	created:function(){
 		this.traeridusuario();
@@ -153,7 +152,7 @@ var editpass =new Vue({
 			var regexp		=[mayus,especial,numeros,lower,len];
 			var checkval=0;
 			
-			var wordpass=$('#contraN').val();
+			var wordpass=$('#nuevap').val();
 			for(var i=0; i<5; i++){
 				if(regexp[i].test(wordpass)){
 					checkval++;
@@ -184,7 +183,7 @@ var editpass =new Vue({
 
 		updatepass:function(){
 			console.log( this.actualizarcontra.contranueva,'confir',this.actualizarcontra.confirmarcontra,'id',this.actualizarcontra.idusuario);
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${this.actualizarcontra}`).then(resp=>resp.json()).then(resp=>{
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${JSON.stringify(this.actualizarcontra)}`).then(resp=>resp.json()).then(resp=>{
 					if(resp.msg=="Favor Complete los Campós"){
 						Swal.fire({
 							position: 'top-end',

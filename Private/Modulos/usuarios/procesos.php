@@ -141,12 +141,7 @@ class login{
                 $this->respuesta['msg']='Las Contraseñas Deben Coinsidir';
                }
                
-            }
-           
-         
-           
-          
-        
+            }    
         private function guardarpass()
         {
             if($this->respuesta['msg']==='correcto'){
