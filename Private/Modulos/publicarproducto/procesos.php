@@ -96,7 +96,10 @@ class producto_nuevo {
 		return  $this->respuesta = $this->db->obtener_datos();
 	}
 
-
+	private function oferta()
+	{
+		
+	}
 
 }
 
