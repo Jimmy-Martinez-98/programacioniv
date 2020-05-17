@@ -130,15 +130,23 @@ class login{
             $this->datos = json_decode($login, true);
             $this->validarpass();    
         }
-        private function validarpass()
-        {
-           if(empty(trim($this->datos['passwords']))){
-               $this->respuesta['msg']='Favor Complete los Campós';
-           }else if(empty($this->datos['idusuario'])){
-            $this->respuesta['msg']='falta id';
-           }
-           $this->guardarpass();
-        }
+      
+            private function validarpass()
+            {
+               if(empty($this->datos['contranueva'])||empty($this->datos['confirmarcontra'])||empty($this->datos['idusuario'])){
+                $this->respuesta['msg']='Favor Complete los Campós';
+               } else if($this->datos['contranueva']===$this->datos['confirmarcontra']){
+                $this->guardarpass();
+               }else{
+                $this->respuesta['msg']='Las Contraseñas Deben Coinsidir';
+               }
+               
+            }
+           
+         
+           
+          
+        
         private function guardarpass()
         {
             if($this->respuesta['msg']==='correcto'){
@@ -146,7 +154,7 @@ class login{
                 
                    $this->db->consultas('
                     UPDATE  usuario SET 
-                    passwords			= "'. $this->datos['passwords'] .'"
+                    passwords			= "'. $this->datos['confirmarcontra'] .'"
                      WHERE idusuario	= "'. $this->datos['idusuario'] .'"
                   ');                  
                     return $this->respuesta['msg']="Contraseña Actualizada"; 

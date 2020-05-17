@@ -167,13 +167,13 @@
 				
 			</div>
 			  <div class="form-group ">
-				<label for="contraN">Nueva Contraseña</label>
-				<input type="password" v-on:keyup="alerta" minlength="8" v-model="updatepasword.passwords" required class="form-control" id="contraN">					
+				<label for="nueva">Nueva Contraseña</label>
+				<input type="text" v-on:keyup="alerta" minlength="8" v-model="actualizarcontra.contranueva" required class="form-control" id="contraN">					
 			  </div>
 			  <div class="form-group ">
 				<label for="confir"> Confirmar Contraseña</label>
-				<input type="password" minlength="8"   required  class="form-control" id="confirm">					
-					<p>{{updatepasword}}</p>
+				<input type="text" minlength="8" v-model="actualizarcontra.confirmarcontra"  required  class="form-control" id="confirm">					
+					
 			</div>
 			  <span id="msgs"></span>
 			</form>

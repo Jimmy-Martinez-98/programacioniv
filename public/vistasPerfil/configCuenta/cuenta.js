@@ -16,7 +16,8 @@ var datosCuenta =new Vue({
 		   },
 		   modificacionpass:function (passs) {
 			editpass.cambiopass=passs;	
-		
+			
+			
 			
 			
 			
@@ -119,17 +120,15 @@ var editfoto =new Vue({
 	
 });
 
-// var edittelefono = new Vue({
-// 	el:'#editelefono'
 
-// })
 
 var editpass =new Vue({
 	el:'#edicontra',
 	data:{
-		updatepasword:{
+		actualizarcontra:{
 			idusuario:0,
-			passwords:'',
+			contranueva:'',
+			confirmarcontra:'',
 			accion:'modificar'		
 		},
 		cambiopass:{
@@ -138,9 +137,12 @@ var editpass =new Vue({
 		
 	},
 	created:function(){
-		this.traeridusuario()
+		this.traeridusuario();
+		
 	}
 	,methods:{
+
+	
 		alerta:function(){
 
 			var mayus		=new RegExp("^(?=.*[A-Z])");
@@ -172,17 +174,18 @@ var editpass =new Vue({
 
 		traeridusuario:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				this.updatepasword.idusuario=resp[0].idusuario;
+				this.actualizarcontra.idusuario=resp[0].idusuario;
+			
+				
 			})
+		
+			
 		},
 
 		updatepass:function(){
-			
-			
-			
-			if ($('#contraN').val()==$('#confirm').val()) {
-				fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${this.updatepasword}`).then(resp=>resp.json()).then(resp=>{
-					if(resp.msg!="Contraseña Actualizada"){
+			console.log( this.actualizarcontra.contranueva,'confir',this.actualizarcontra.confirmarcontra,'id',this.actualizarcontra.idusuario);
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${this.actualizarcontra}`).then(resp=>resp.json()).then(resp=>{
+					if(resp.msg=="Favor Complete los Campós"){
 						Swal.fire({
 							position: 'top-end',
 							icon: 'warning',
@@ -190,7 +193,19 @@ var editpass =new Vue({
 							showConfirmButton: false,
 							timer: 1500
 						  });
-					}else {
+						
+						  
+						 
+					}else if(resp.msg=="Las Contraseñas Deben Coinsidir"){
+						Swal.fire({
+							position: 'top-end',
+						   icon: 'error',
+							title: 'Las Contraseñas Deben Coinsidir',
+							showConfirmButton: false,
+						   timer: 1500
+						  });
+						 
+					}else{
 						Swal.fire({
 							position: 'top-end',
 							icon: 'success',
@@ -198,30 +213,19 @@ var editpass =new Vue({
 							showConfirmButton: false,
 							timer: 1500
 						  });
+						
 					}
 				});
 				
 
-			}else{
-				Swal.fire({
-					position: 'top-end',
-					icon: 'warning',
-					title: 'Los Datos Son Direntes',
-					showConfirmButton: false,
-					timer: 1500
-				  });
-				  $('#contraN').val('');
-				  $('#confirm').val('');
-				  
+		
+				
 				 
-			}
+			
 
 			
 		}
 
 		
-	},
-	created:function () {
-		this.traerdatosusuario();
-	  }
+	}
 });
