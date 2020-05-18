@@ -24,8 +24,7 @@
       
         <a class="navbar-brand text-dark" href="index.html"><img class="imagen" src="public/img/agromark.png" alt=""></a>
         <button class="navbar-toggler mb-2" id="toggles" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <i class="fas fa-bars"></i>
-   
+         <img width="50px" height="50px" src="public/img/menu.png">
         </button>
         <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
             <ul class="navbar-nav mr-auto uls" >
@@ -54,11 +53,11 @@
       </nav>
     
     
-   <div class="container-sm mt-4 bg-white card" id="slider">
-    <div class="container  mt-3">
+   <div class="container-sm mt-4 bg-white " id="slider">
+    <div class="container ">
       <div class="row">
         <div class="col-sm-4" v-for="datos in productos">
-          <div class="card mb-3">
+          <div class="card mb-3 mt-2" id="fondo">
             <img v-bind:src="datos.imagen" height="200" class="card-img-top" alt="..." 
             data-toggle="popover" data-trigger="hover"
             title="Descripcion" v-bind:data-content="datos.descprod"
@@ -67,6 +66,9 @@
             <div class="card-body">
               <h5 class="card-title">{{datos.nombre_producto}}</h5>
 
+           
+            </div>
+            <div class="card-footer">
               <p class="card-text float-left"><small class="text-muted">{{datos.nombreu}}</small></p>
               <p class="card-text float-right"><small class="text-muted">{{datos.precio_venta}}</small></p>
             </div>
@@ -77,6 +79,11 @@
 
    </div>
   
+
+
+   <div class="card-footer  bg-dark">
+    <img width="60px" height="60px" src="public/img/agromark.png" alt="">
+   </div>
   <!--js librerias-->
   <script src="public/js/jquery-3.5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
@@ -87,7 +94,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-   ></script>
+   </script>
   <script src="public/js/app.js"></script>
 
 

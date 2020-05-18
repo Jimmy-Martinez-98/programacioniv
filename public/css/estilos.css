@@ -2,15 +2,15 @@ body{
     background:  #91c470;
     
 }
-h5{
-    color: #000000;
-}
+
+
 #nav{
   display: block;
 
     background: #5fb677;
 }
 
+ 
  .container{
    
     margin: 0;
@@ -41,4 +41,34 @@ img.imagen{
     padding-right: 6px;
 }
 
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #6F966B;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+   
+   
+}
+.card-title {
+    color: white;
+    margin-bottom: 0.75rem;
+}
+.text-muted {
+    color: white !important;
+}
 
+
+.card:hover{
+    box-shadow: 7px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+.container-sm {
+    border-radius: 5px;
+}
