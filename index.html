@@ -57,20 +57,19 @@
     <div class="container ">
       <div class="row">
         <div class="col-sm-4" v-for="datos in productos">
-          <div class="card mb-3 mt-2" id="fondo">
+          <div class="card mb-3 mt-2" id="fondo" v-on:click="detalle(datos)">
             <img v-bind:src="datos.imagen" height="200" class="card-img-top" alt="..." 
             data-toggle="popover" data-trigger="hover"
             title="Descripcion" v-bind:data-content="datos.descprod"
             >
-
             <div class="card-body">
               <h5 class="card-title">{{datos.nombre_producto}}</h5>
 
            
             </div>
             <div class="card-footer">
-              <p class="card-text float-left"><small class="text-muted">{{datos.nombreu}}</small></p>
-              <p class="card-text float-right"><small class="text-muted">{{datos.precio_venta}}</small></p>
+              <p class="card-text float-left"><small class="text-muted">Vendedor: {{datos.nombreu}}</small></p>
+              <p class="card-text float-right"><small class="text-muted">Precio: ${{datos.precio_venta}}</small></p>
             </div>
           </div>
         </div>
@@ -83,6 +82,10 @@
 
    <div class="card-footer  bg-dark">
     <img width="60px" height="60px" src="public/img/agromark.png" alt="">
+    <div class="col-12">
+      <span class=" text-justify text-white">	© 2020 AgroProducers,Todos los derechos reservados.
+			</span>
+    </div>
    </div>
   <!--js librerias-->
   <script src="public/js/jquery-3.5.js"></script>
@@ -94,7 +97,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-   </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script src="public/js/app.js"></script>
 
 

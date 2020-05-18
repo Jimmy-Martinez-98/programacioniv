@@ -68,6 +68,13 @@ methods:{
       fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
          this.productos = resp;		   
       });	   	     
+   },
+   detalle(id){
+      
+      console.log(id);
+      detalles=id;
+      console.log('ver', detalles);
+    location.href="public/vistas/verproductos/productos.html"
    }
 
 }
