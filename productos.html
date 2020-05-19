@@ -3,25 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<title>producto</title>
 </head>
 <body>
 	<div class="container " id="productovista">
 		<div class="row ">
 		  <div class="col-sm  mt-2" >		
-			<img src="../../img/menu.png" class="img-fluid" alt="Responsive image">
+			<img src="public/img/menu.png" height="300px" class="card-img" alt="Responsive image">
 		  </div>
 		  <div class="col-sm mt-5">
 			<div class="container">
-				<h3>{{detalles}}</h3>
+				<h3>{{detallesprod.nombre_producto}}</h3>
 				<span>stars</span>
 				<div class="container">
 					<p class="text-justify">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis accusamus vitae dolore? Omnis nobis doloremque ex quas ut quo eligendi, distinctio id magni maiores iure atque ipsum, porro laudantium dolore!
+						{{detallesprod.descprod}}
 					</p>
 					<hr>
-					<h4>Precio $</h4>
+					<h4>Precio ${{detallesprod.precio_venta}}</h4>
 					<span>addlista</span>
 
 				</div>
@@ -42,14 +42,14 @@
 			<div class="card-body">
 				<ul class="list-unstyled">
 					<li class="media">
-					  <img src="../../img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
+					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
 					  <div class="media-body">
 						<h5 class="mt-0 mb-1">List-based media object</h5>
 						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
 					  </div>
 					</li>
 					<li class="media my-4">
-					  <img src="../../img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
+					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
 					  <div class="media-body">
 						<div class="container">
 							<h5 class="mt-0 mb-1">List-based media object</h5>
@@ -60,7 +60,7 @@
 					  </div>
 					</li>
 					<li class="media">
-					  <img src="../../img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
+					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
 					  <div class="media-body">
 						<div class="container">
 							<h5 class="mt-0 mb-1">List-based media object</h5>
@@ -77,17 +77,17 @@
 
 
 	  <div class="card-footer  bg-dark">
-		<img width="60px" height="60px" src="../../img/menu.png" alt="">
+		<img width="60px" height="60px" src="Public/img/menu.png" alt="">
 		<div class="col-12">
 		  <span class=" text-justify text-white">	© 2020 AgroProducers,Todos los derechos reservados.
 				</span>
 		</div>
 
-		<script src="../../js/jquery-3.5.js"></script>
-	<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="public/js/jquery-3.5.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="publicproductos.js"></script>
+  <script src="public/vistas/verproductos/publicproductos.js"></script>
 	
 </body>
 </html>

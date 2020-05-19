@@ -182,7 +182,7 @@ var editpass =new Vue({
 		},
 
 		updatepass:function(){
-			console.log( this.actualizarcontra.contranueva,'confir',this.actualizarcontra.confirmarcontra,'id',this.actualizarcontra.idusuario);
+		
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${JSON.stringify(this.actualizarcontra)}`).then(resp=>resp.json()).then(resp=>{
 					if(resp.msg=="Favor Complete los Campós"){
 						Swal.fire({

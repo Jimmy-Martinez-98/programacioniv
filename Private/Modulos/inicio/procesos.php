@@ -29,6 +29,9 @@ class miproducto{
 		   ');
 		   return $this->respuesta = $this->db->obtener_datos();
       }
+
+ 
+      
       
 
 

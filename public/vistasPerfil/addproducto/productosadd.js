@@ -26,7 +26,7 @@ var publicarp=new Vue({
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.publicP.idusuario=resp[0].idusuario;
-				console.log('resp=',resp[0].idusuario,'usuario=',this.publicP.idusuario);
+				
 			})
 		},
 		guardar:function(){	
@@ -121,7 +121,7 @@ var appproductos=new Vue({
 		modificar:function(mod) {
 			publicarp.publicP=mod;
 			publicarp.publicP.accion='modificar';
-			console.log(publicarp.publicP.miproducto);		
+				
 		}
 	
 	}

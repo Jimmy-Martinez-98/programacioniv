@@ -92,14 +92,11 @@ class producto_nuevo {
 	}
 
 	public function traerid(){
-		$this->db->consultas('SELECT usuario.idusuario from usuario where nombreu="'.$_SESSION['usuario'].'"');
+		$this->db->consultas('SELECT usuario.idusuario from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
 		return  $this->respuesta = $this->db->obtener_datos();
 	}
 
-	private function oferta()
-	{
-		
-	}
+
 
 }
 

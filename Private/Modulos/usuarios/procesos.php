@@ -156,7 +156,57 @@ class login{
                 }
             }
         }
+        public function recibirRecuperacion($login)
+        {
+            $this->datos = json_decode($login, true);
+            $this->validardatosc();    
+        }
 
+        private function validardatosc(){
+            if(empty(trim($this->datos['correo']))||empty(trim($this->datos['pass']))||empty(trim($this->datos['confir']))){
+                $this->respuesta['msg']="Rellene todos los campos";
+              }
+             
+              $this->traercorreo();
+             
+       
+        }
+        
+        public function traercorreo(){
+            $this->db->consultas('select usuario.correo from usuario where correo="' . $this->datos['correo']    .  '" limit 1');
+            $this->respuesta = $this->db->obtener_datos();
+            if (empty(trim($this->datos['correo']))) {
+                $this->respuesta['msg'] = 'por favor ingrese el correo';
+            } else if (strpos(trim($this->datos['correo']), '@') === false || strpos(trim($this->datos['correo']), '.') === false) {
+                $this->respuesta['msg'] = 'Correo no Valido';
+            } else if (empty($this->respuesta)) {
+                $this->respuesta['msg'] = 'Este Correo no existe';
+            } else if (empty(trim($this->datos['confir']))||empty(trim($this->datos['pass']))) {
+                $this->respuesta['msg'] = 'Rellene los campos';
+            }else if($this->datos['pass']===$this->datos['confir']){
+                $this->restablecer();
+            }
+             else {
+              $this->respuesta['msg']='las contraseñas no coinciden';
+            }
+        }
+
+
+
+        public function restablecer()
+        {
+                if($this->datos['pass']=== $this->datos['confir']){
+                    $this->db->consultas('
+                     UPDATE  usuario SET 
+                     passwords			= "'. $this->datos['confir'] .'"
+                     WHERE correo	= "'. $this->datos['correo'] .'"
+                  ');                  
+                 $this->respuesta['msg']="contraseña actualizada"; 
+                }else{
+                    $this->respuesta['msg']="las contraseñas no coinciden";
+                }
+          
+        }
 
 
 

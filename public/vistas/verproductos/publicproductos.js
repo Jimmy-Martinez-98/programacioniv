@@ -1,10 +1,9 @@
-var verproductos =new Vue({
+var mostrardetalle = new Vue({
 	el:"#productovista",
 	data:{
-		detalles:[]
+		detallesprod:[]
 	},
 	methods:{
-
+		
 	}
-})
-
+});
