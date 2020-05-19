@@ -15,8 +15,12 @@ var app=new Vue({
 
       },
       verProd(info){
-         mostrardetalle.detallesprod=info
+      var data={
+         info
+      }
        
+         sessionStorage.setItem("data",JSON.stringify(data));
+         location.href="productos.html"
       }   
    
    }

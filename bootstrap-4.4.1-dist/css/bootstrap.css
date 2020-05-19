@@ -4851,7 +4851,7 @@ input[type="button"].btn-block {
   margin-bottom: 15px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 1000px) {
   .card-deck {
     display: -ms-flexbox;
     display: flex;

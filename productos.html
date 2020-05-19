@@ -4,26 +4,60 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
 	<title>producto</title>
 </head>
 <body>
-	<div class="container " id="productovista">
+	<div class="container-fluid " id="productovista">
 		<div class="row ">
-		  <div class="col-sm  mt-2" >		
-			<img src="public/img/menu.png" height="300px" class="card-img" alt="Responsive image">
+		  <div class="col-sm  mt-2 tamaño" >		
+			<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
 		  </div>
 		  <div class="col-sm mt-5">
-			<div class="container">
-				<h3>{{detallesprod.nombre_producto}}</h3>
-				<span>stars</span>
-				<div class="container">
+			<div class="container columna">
+				<h3>{{detallesprod.info.nombre_producto}}</h3>
+				<p class="clasificacion">
+					<input id="radio1" type="radio" name="estrellas" value="5">
+					<label for="radio1">  &#9733;</label>
+					<input id="radio2" type="radio" name="estrellas" value="4">
+					<label for="radio2">  &#9733;</label>
+				<input id="radio3" type="radio" name="estrellas" value="3">
+					<label for="radio3">  &#9733;</label>
+					<input id="radio4" type="radio" name="estrellas" value="2">
+					<label for="radio4">  &#9733;</label>
+					<input id="radio5" type="radio" name="estrellas" value="1">
+					<label for="radio5"> &#9733; </label>
+				  </p>
+				<div class="container-sm">
 					<p class="text-justify">
-						{{detallesprod.descprod}}
+						{{detallesprod.info.descprod}}
 					</p>
+				<div class="container mb-5 columna">
+					<div class="row float-left" >
+						<div class="col" >
+							<button class="btn btn-secondary"><i class="fas fa-minus"></i></button>
+						</div>
+						<div class="col columna text-center">
+							<h3>1</h3>
+						</div>
+						<div class="col columna">
+							<button class="btn btn-success">  <i class="fas fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+					<br>
 					<hr>
-					<h4>Precio ${{detallesprod.precio_venta}}</h4>
-					<span>addlista</span>
-
+				
+					<div class="row"><div class="col">
+						<h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
+					</div>
+					<div class="col">
+						<h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
+					</div>
+				</div>
+					
+					
 				</div>
 			</div>
 		  </div>
@@ -34,40 +68,38 @@
 			<div class="card-header">
 			  <ul class="nav nav-tabs card-header-tabs">
 				<li class="nav-item">
-				  <a class="nav-link active" href="#">Active</a>
+				  <a class="nav-link active" href="#">Productos Relacionados</a>
 				</li>
 				
 			  </ul>
 			</div>
 			<div class="card-body">
 				<ul class="list-unstyled">
-					<li class="media">
-					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
+					<li class="media" v-for="relacion in productosrelacionados">
+					  <img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
 					  <div class="media-body">
-						<h5 class="mt-0 mb-1">List-based media object</h5>
-						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-					  </div>
-					</li>
-					<li class="media my-4">
-					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
-					  <div class="media-body">
-						<div class="container">
-							<h5 class="mt-0 mb-1">List-based media object</h5>
-						<p class="text-justify">
-							Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-						</p>
+						<div class="col ">
+							<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+							
 						</div>
-					  </div>
-					</li>
-					<li class="media">
-					  <img src="public/img/menu.png" width="64px" height="64px" class="mr-3" alt="...">
-					  <div class="media-body">
-						<div class="container">
-							<h5 class="mt-0 mb-1">List-based media object</h5>
-						<p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem tenetur maxime, sint voluptatibus iusto, exercitationem, ducimus dolor quaerat saepe rerum dolorem quod? Deserunt illo pariatur modi? Nobis tempore vitae officiis?</p>
-					  </div>
+						<div class="col float-right">
+							<div class="container">
+								<p class="text-justify">
+									{{relacion.descprod}}
+								</p>
+								<div class="row mx-md-n5 mt-3">
+									<div class="col-6 px-md-5">
+										<div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
+										<div class="p-2   float-left">${{relacion.precio_venta}}</div>
+									</div>
+									
+								  </div>
+							</div>
+						  </div>
 						</div>
+						
 					</li>
+				
 				  </ul>
 			</div>
 		  </div>
