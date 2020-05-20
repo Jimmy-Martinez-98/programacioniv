@@ -49,21 +49,21 @@ error_reporting(0);
 <nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist" >
   <div class="container-fluid">
     <div  id="navbarNavAltMarkup ">
-        <ul class="navbar-nav mr-auto uls activa" id="nav">
+        <ul class="navbar-nav mr-auto uls " id="nav">
           <li class=" lis activa">
-        <a class=" nav-link  text  activa" id="info" href="#" ><h5>Informacion de Perfil</h5> <span class="sr-only"></span></a>
+        <a class=" nav-link  " id="info" href="#" ><h5>Informacion de Perfil</h5> <span class="sr-only"></span></a>
       </li>
       <li class=" lis activa">
-        <a class="nav-link  text activa" id="addProductos" href="#"><h5> Añadir producto en venta </h5></a>
+        <a class="nav-link  " id="addProductos" href="#"><h5> Añadir producto en venta </h5></a>
       </li>
       <li class=" lis activa">
-        <a class="nav-link text activa" id="listdeseos"  href="#"><h5> Lista de deseos </h5></a>
+        <a class="nav-link " id="listdeseos"  href="#"><h5> Lista de deseos </h5></a>
       </li>
       <li class="divicio  lis activa">
-        <a class="nav-link text activa " id="POferta" href="#"><h5> Producto en oferta </h5></a>
+        <a class="nav-link  " id="POferta" href="#"><h5> Producto en oferta </h5></a>
       </li>
       <li class="divicio  lis activa">
-        <a class="nav-link  text activa" id="Configc" href="#"><h5>Configuración de Cuenta </h5></a>
+        <a class="nav-link  " id="Configc" href="#"><h5>Configuración de Cuenta </h5></a>
       </li>
     </ul>
   

@@ -42,9 +42,26 @@
           </li>
         </ul>
         <ul class="navbar-nav uls">
-          <li class="lis">
-            <a class="nav-link  as" id="login"  href="#"><h6> Iniciar Sesion</h6></a>
+        
+          <li class="lis" v-if="session===0">
+            <a class="nav-link  as" id="login"  href="login.php"><h6> Iniciar Sesion</h6></a>
           </li>
+
+
+         <li class="nav-item dropdown" v-else>
+          <div class="dropdown ml-auto ">
+            <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+           <img v-bind:src="datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+            {{datoscuenta[0].nombreu}}
+          
+           </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item " href="cooperativa.php">Perfil</a>  
+           <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión</a>   
+          </div>
+           </div>
+        </li>
+
         </ul>
          
         </div>

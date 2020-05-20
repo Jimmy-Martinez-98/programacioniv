@@ -18,23 +18,37 @@ body{
     width: 100%;
     border-radius: 6px;
 }
+
 ul.uls li.lis a.as{
     color: black;
+    display: block;
+ 
+   
 }
 
-ul.uls li.lis a.as:hover{
-   border-top:3px solid teal;
-   transition: border 0.4s;
+ul.uls li.lis a.as::before{
+    content: "";
+    display: block;
+    width: 0%;
+    height: 3px;
+    background: white;
+    bottom:0;
+    transition: all .3s;
+
+}
+
+ul.uls li.lis a.as:hover::before{
+   
+    width: 100%;
+   
+  
 }
 li.lis a.as{
     margin: 1px;
 }
 
 
-.active{
-    border-top:3px solid teal;
-}
- 
+
 img.imagen{
     width: 70px;
     height: 70px;
@@ -91,3 +105,7 @@ img.imagen{
     border-radius: 1rem;
 }
 
+.dropdown-menu{
+    width: 100%;
+    text-align: center;
+}

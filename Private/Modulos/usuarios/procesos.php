@@ -217,6 +217,17 @@ class login{
     }
 
     
+    public function verVariable($valor = '')
+    {
+        if (empty($_SESSION['usuario'])) {
+           
+            $this->respuesta['msg'] = 'regrese';
+          
+        } else {
+            $this->respuesta['msg'] = 'Bienvenido';
+        }
+    }
+   
 
    
     
