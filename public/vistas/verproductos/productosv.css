@@ -3,7 +3,39 @@
 	margin: 0 auto;
 	height: 50px;
   }
+  #nav{
+    display: block;
+      background: #5fb677;
+  }
+
+  ul.uls li.lis a.as{
+    color: black;
+    display: block;
+ 
+   
+}
+
+  ul.uls li.lis a.as::before{
+    content: "";
+    display: block;
+    width: 0%;
+    height: 3px;
+    background: white;
+    bottom:0;
+    transition: all .3s;
+
+}
+
+ul.uls li.lis a.as:hover::before{
+   
+    width: 100%;
+   
   
+}
+li.lis a.as{
+    margin: 1px;
+}
+
   #form p {
 	text-align: center;
   }
@@ -35,6 +67,10 @@
   color: orange;
   cursor: pointer;
   }
+
+.btn{
+  border-radius: 20px;
+}
 
 @media(min-width:767px){
   .container{

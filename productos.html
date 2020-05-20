@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
+	<link rel="stylesheet" href="public/vistas/verproductos/chat.css">
 	<title>producto</title>
 </head>
 <body>
@@ -45,6 +46,7 @@
 							<button class="btn btn-success">  <i class="fas fa-plus"></i></button>
 						</div>
 					</div>
+					<button class=" btn btn-outline-danger float-right">Agregar a Deseos </button>
 				</div>
 					<br>
 					<hr>
@@ -56,7 +58,7 @@
 						<h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
 					</div>
 				</div>
-					
+						
 					
 				</div>
 			</div>
@@ -106,7 +108,52 @@
 	  </div>
 	  
 
-
+ 
+	  <button class="open-button" onclick="openForm()">Chat</button>
+	  
+	  
+	  <div class="chat-popup"  id="myForm">
+		<form action="#" class="form-container">
+			<div class="card-header">
+		  <div class="row">
+			  <div class="col-6">
+				<h5>Chat</h5>
+			
+			  </div>
+			  <div class="col-6">
+				<button type="button" class="close" onclick="closeForm()" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+			  </div>
+		  </div>
+		</div>
+		  <div class="contenedor">
+			  <ul >
+					 <li>1</li>
+					 <li>1</li>
+					 <li>1</li>
+					 <li>1</li>
+					 <li>1</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+					 <li>2</li>
+			  </ul>
+		  </div>
+		  <input class="mb-2" placeholder="Escribe un mensaje..." name="msg" required>
+		  <input type="submit"  value="Enviar">
+		 
+		</form>
+	  </div>
+		  
+		 
+	
+	  </div>
 
 	  <div class="card-footer  bg-dark">
 		<img width="60px" height="60px" src="Public/img/menu.png" alt="">
@@ -120,6 +167,7 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="public/vistas/verproductos/publicproductos.js"></script>
+  <script src="public/vistas/verproductos/chat.js"></script>
 	
 </body>
 </html>

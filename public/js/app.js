@@ -57,6 +57,13 @@ var app=new Vue({
                this.datoscuenta=resp;
                
             })
+         },
+         colapsar:function(){
+            console.log("click");
+		
+            $(".collapse").animate({
+             height: 'toggle'
+            });
          }
       }
    })
@@ -68,11 +75,11 @@ var app=new Vue({
 
 
 
-$(document).ready(function () {
-   toggle();
+
+
   
    
-
+$(document).ready(function () {
    $('#verduras').click(()=>{
       
 	   $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
@@ -99,27 +106,9 @@ $(document).ready(function () {
     })
    
    
-   });
-  
-  
+});
   
 
-   $('ul li a:first').addClass('active');
 
-   $('ul li a').click(function (e) { 
-      $('ul li a').removeClass('active');
-      $(this).addClass('active');
-      
-   });
-	  
-function toggle(){
-	$("#toggles").click(function(){
-		console.log("click");
-		
-        $(".collapse").animate({
-			height: 'toggle'
-		  });
-	  });
-}
 
 
