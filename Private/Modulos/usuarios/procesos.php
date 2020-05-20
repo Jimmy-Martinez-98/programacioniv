@@ -213,7 +213,7 @@ class login{
      public function traercuenta()
     {
         $this->db->consultas('SELECT usuario.* from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
-       return $this->respuesta=$this->db->obtener_datos();
+        $this->respuesta=$this->db->obtener_datos();
     }
 
     

@@ -1,6 +1,8 @@
 body{
-    background:  #91c470;
-    
+    background-image:url("../img/s.jpg");
+ background-size: 100% 100%;
+ background-attachment: fixed;
+
 }
 
 
