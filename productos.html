@@ -7,18 +7,70 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
 	<link rel="stylesheet" href="public/vistas/verproductos/chat.css">
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
 	<title>producto</title>
 </head>
 <body>
-
-
-
+	<nav class="container-fluid navbar navbar-expand-lg   " style="height: 100px;" id="nav">
+		
+		<div class="container-fluid">
+		  <a class="navbar-brand text-dark"  href="index.html"><img width="150" height="70" class="imagen" src="public/img/agroproducers.png" alt=""></a>
+		  <button class="navbar-toggler mb-2"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		   <img width="50px" height="50px" src="public/img/menu.png">
+		  </button>
+		  <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
+			  <ul class="navbar-nav mr-auto uls" >
+				<li class="nav-item  lis" >
+			  <a class="nav-item nav-link  as" id="home" href="index.html" ><h6>Inicio</h6> <span class="sr-only"></span></a>
+			</li>
+			<li class="nav-item lis">
+			  <a class="nav-link as " id="verduras" href="#"><h6>Verduras</h6></a>
+			</li>
+			<li class="nav-item lis">
+			  <a class="nav-link as" id="frutos"  href="#"><h6>Frutos</h6></a>
+			</li>
+			<li class="divicio lis">
+			  <a class="nav-link  as" id="legumbres" href="#"><h6>Legumbres</h6></a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav uls">
+		  
+			<li class="lis" v-if="session===0">
+			  <a class="nav-link  as" id="login"  href="login.php"><h6> Iniciar Sesion</h6></a>
+			</li>
+  
+  
+		   <li class="nav-item dropdown" v-else>
+			<div class="dropdown ml-auto ">
+			  <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+			 <img v-bind:src="datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+			  {{datoscuenta[0].nombreu}}
+			
+			 </a>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+			  <a class="dropdown-item " href="cooperativa.php">Perfil</a>  
+			 <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión</a>   
+			</div>
+			 </div>
+		  </li>
+  
+		  </ul>
+		   
+		  </div>
+		</div>
+  
+		</nav>
 
 
 	<div class="container-fluid " id="productovista">
 		<div class="row ">
-		  <div class="col-sm  mt-2 tamaño" >		
-			<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
+		  <div class="col-sm  mt-2 tamaño  " >		
+			<div class="container ">
+				<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
+			</div>
 		  </div>
 		  <div class="col-sm mt-5">
 			<div class="container columna">
@@ -40,18 +92,28 @@
 						{{detallesprod.info.descprod}}
 					</p>
 				<div class="container mb-5 columna">
-					<div class="row float-left" >
-						<div class="col" >
-							<button class="btn btn-secondary"><i class="fas fa-minus"></i></button>
-						</div>
-						<div class="col columna text-center">
-							<h3>1</h3>
-						</div>
-						<div class="col columna">
-							<button class="btn btn-success">  <i class="fas fa-plus"></i></button>
+					<h6>Cantidad:</h6>
+					<div class="container">	
+						<div class="row float-left" >
+					
+							<div class="col" >
+								<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
+							</div>
+							<div class="col columna text-center">
+								<h3>{{contador}}</h3>
+							</div>
+							<div class="col columna">
+								<button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
+							</div>
 						</div>
 					</div>
-					<button class=" btn btn-outline-danger float-right">Agregar a Deseos </button>
+					<div class="container">
+					<button class=" btn btn-outline-danger float-right">Agregar a Deseos <i class="fas fa-heart"></i> </button>
+					</div>
+				</div>
+				<br>
+				<div class="container">
+					<button class="btn btn-dark form-control">Comprar Ahora</button>
 				</div>
 					<br>
 					<hr>
@@ -114,25 +176,24 @@
 	  
 
  
-	  <img class="open-button" src="public/img/charla.svg"  onclick="openForm()">
+	  <img class="open-button animate__animated  animate__jello" src="public/img/charla.svg"  onclick="openForm()">
 	  
 	  
-	  <div class="chat-popup"  id="myForm">
-
-		<form action="#" class="form-container">
-		
+	  <div class="chat-popup animate__animated animate__fadeInUp "  id="myForm">
+			<div class="card-header">
 		  <div class="row">
 			  <div class="col-6">
 				<h5>Chat</h5>
 			
 			  </div>
-			  <div class="col-6">
+			  <div class="col-6 ">
 				<button type="button" class="close" onclick="closeForm()" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true" >&times;</span>
 				  </button>
 			  </div>
 			</div>
-			<hr>
+		</div>
+		<form action="#" class="form-container">
 		  <div class="contenedor mb-1">
 			  <ul class="list-group  ml-1 mr-1 "v-for="msg in msgs" id="messages" >
 				<div class="list-group-item mb-2 burbuja text-break">{{msg}}</div>	

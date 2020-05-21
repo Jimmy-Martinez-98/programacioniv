@@ -7,12 +7,13 @@ appchat = new Vue({
     },
     methods:{
         enviarMensaje(){
-           
-        
-            socket.emit('enviarMensaje', this.msg);
-            this.msg = '';
-           
-           
+            if(this.msg==''){
+                alert("input vacio")
+            }else{
+                socket.emit('enviarMensaje', this.msg);
+                this.msg = '';  
+                
+            }  
         },
         limpiarChat(){
             this.msg = '';
@@ -46,6 +47,7 @@ function openForm() {
   }
   
   function closeForm() {
-	document.getElementById("myForm").style.display = "none";
+    document.getElementById("myForm").style.display = "none";
+    
   }
 

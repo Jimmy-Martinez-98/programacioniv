@@ -3,6 +3,7 @@ var mostrardetalle = new Vue({
 	data:{
 		detallesprod:[],
 		productosrelacionados:[],
+		contador:1
 		
 	},
 	created:function(){
@@ -20,6 +21,16 @@ var mostrardetalle = new Vue({
 			fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productosrelacionados)}`).then(resp=>resp.json()).then(resp=>{
 				this.productosrelacionados=resp;
 			})
+		},
+		suma:function(){
+			this.contador++
+		},
+		resta:function(){
+			if(this.contador===1){
+				this.contador=1
+			}else{
+				this.contador--
+			}
 		}
 	
 	}
@@ -49,7 +60,7 @@ var validarsession=new Vue({
 			 
 		  })
 	   },
-	   traercuenta: function (param) {  
+	   traercuenta: function () {  
 		  fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp=>resp.json()).then(resp=>{
 			 this.datoscuenta=resp;
 			 
