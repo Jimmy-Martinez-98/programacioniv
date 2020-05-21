@@ -10,7 +10,7 @@
 			<li class="list-group-item"><div class="row">
 				<div class="col-4" >
 					<div class="container">
-					<img src="https://s1.eestatic.com/2019/09/26/como/Salud-Tomate-Verduras-Frutas-Supermercados-Como_hacer_432216867_134517478_1024x576.jpg" style="height:15rem ;" class="img-fluid mt-2 mb-2" alt="Responsive image">
+					<img v-bind:src="miproducto.imagen" style="height:15rem ;" class="img-fluid mt-2 mb-2" alt="Responsive image">
 				</div>
 				</div>
 				

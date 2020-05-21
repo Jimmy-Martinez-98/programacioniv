@@ -69,8 +69,6 @@ class login{
             $this->respuesta['msg']='el campo nombre esta vacio ';
         }elseif(empty($this->datos['telefono'])){
             $this->respuesta['msg']='el campo telefono esta vacio';
-        }elseif (empty($this->datos['direccion'])) {
-            $this->respuesta['msg']='el campo direccion esta vacio';
         }
            $this->almacenar_registro();
     }
@@ -88,12 +86,18 @@ class login{
                     "'. $this->datos['fecha'] .'"
                     )
                 ');
-                $this->respuesta['msg']="usuario registrado correctamente";
+                $this->respuesta['msg']="usuario registrado correctamente"; 
                
             }
+          
         }
-
+        
     }
+
+
+
+
+
     public function recibirFoto($login)
     {
         $this->datos = json_decode($login, true);

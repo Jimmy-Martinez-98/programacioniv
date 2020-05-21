@@ -11,7 +11,6 @@ var appusuario = new Vue({
             selected         :'',
         nombrecooperativa    : '',
             telefono         :'',
-            direccion 		 : '',
 			correo  		 : '',
             pass		     :'',
             fecha            :'',
@@ -19,9 +18,37 @@ var appusuario = new Vue({
         }
     },
     methods:{
-        guardarusuario:function( event){
+        alerta:function(){
+
+			
+            var mayus		=new RegExp("^(?=.*[A-Z])");
+			var especial	= new RegExp("^(?=.*[*_.-])");
+			var numeros		= new RegExp("^(?=.*[0-9])");
+			var lower 		= new RegExp("^(?=.*[a-z])");
+			var len	 		= new RegExp("^(?=.{8,})");
+			var regexp		=[mayus,especial,numeros,lower,len];
+			var checkval=0;
+			
+			var wordpass=$('#contra').val();
+			for(var i=0; i<5; i++){
+				if(regexp[i].test(wordpass)){
+					checkval++;
+					
+				}
+			}
+
+			if(checkval >=0 && checkval<=2){
+				$('#msgs').text("Muy Insegura!").css("color","red");
+			}else if(checkval >=3 && checkval<=4){
+				$('#msgs').text("Poco Segura!").css("color","orange");
+			}else if(checkval===5){
+				$('#msgs').text("Segura!").css("color","green");
+			}
           
-          
+
+		},
+        guardarusuario:function(){
+           if($('#msgs').val()=="Segura!"){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if(resp.msg=='usuario registrado correctamente'){
                     location.href="cooperativa.php"
@@ -32,7 +59,6 @@ var appusuario = new Vue({
                   this.usuario.selected='';
                 this.usuario.nombrecooperativa = '';
                 this.usuario.telefono='';
-                this.usuario.direccion = '';
 				this.usuario.correo = '';
                 this.usuario.pass='';
                 this.usuario.fecha='';
@@ -40,7 +66,14 @@ var appusuario = new Vue({
             }
               
             });
-         
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text:"la contraseña debe contener los requisitos ",
+                
+              })
+        }
            
         },
         IniciarSesion:function(){

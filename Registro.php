@@ -58,16 +58,11 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
 					</div>
-					<input type="tel"pattern="[0-9]{8}" maxlength="8" minlength="8" required class="form-control"  v-model="usuario.telefono" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
+					<input type="tel"  pattern="[0-9]{8}" maxlength="8" minlength="8" required class="form-control"  v-model="usuario.telefono" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
 				  </div>
 			</div>
 			<div class="col-6">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-address-book"> </i></span>
-					</div>
-					<input type="text" required class="form-control"  v-model="usuario.direccion" placeholder="Direccion" aria-label="direccion" aria-describedby="basic-addon1">
-				  </div>
+			<input type="date" required v-model="usuario.fecha"  id="fecha">
 			</div>
 			<div class="col-6">
 				<div class="input-group mb-3">
@@ -77,20 +72,25 @@
 					<input type="email" required class="form-control"  v-model="usuario.correo" placeholder="Correo Electronico" aria-label="Correoelectronico" aria-describedby="basic-addon1">
 				  </div>
 			</div>
-			<div class="col-6">
+			<div class="col-12">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
 					</div>
-					<input type="password" minlength="8" required class="form-control"  v-model="usuario.pass" placeholder="Contraseña" aria-label="Correoelectronico" aria-describedby="basic-addon1">
-					<label for="ss">caracteres minimos 8 combinacion de letras M,m  y caracteres especiales: ._-</label>
-				  </div>
+					<input v-on:keyup="alerta" id="contra" type="password"  minlength="8" required class="form-control"  v-model="usuario.pass" placeholder="Contraseña" aria-label="passw" aria-describedby="basic-addon1">
+					
+					<span for="ss" >caracteres minimos 8, almenos una  mayúscula, almenos una minúscula  y caracteres especiales: ._-</span>
+					
+				</div>
+				
 			</div>
-			<div class="col-6">
-				<input type="date" required v-model="usuario.fecha"  id="fecha">
+			<div class="col-12">
+			<div class="alert bg-light" >
+				<span for="ss" id="msgs"></span>
+				</div>
+
 			</div>
 		</div>
-		
 
 
 		  
@@ -114,7 +114,7 @@
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-   
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	 <script src="public/vistas/usuario/usuario.js"></script>
 	
 </body>

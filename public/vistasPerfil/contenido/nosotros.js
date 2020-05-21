@@ -7,7 +7,7 @@ var appinfo = new Vue({
 	 created:function(){
 		 
 		 this.todo();
-		 this.editardatos(sobreN);
+		 this.editardatos();
 		 
 	 },
 	 methods:{
@@ -20,9 +20,9 @@ var appinfo = new Vue({
 			});			
 		 },
 		 editardatos:function(sobreNs){		
-			appedit.sobreN = sobreNs;
-			appedit.sobreN.accion = 'modificar';   
-			console.log('array',sobreNs.Mision);	
+			appedit.sobreNosotros = sobreNs;
+			appedit.sobreNosotros.accion = 'modificar';   
+			
 		}
 		
 		
@@ -35,7 +35,7 @@ var appinfo = new Vue({
   var appedit = new Vue({
 	el: '#modaleditar',
 	data: {
-	 sobreN:{	
+	 sobreNosotros:{	
             infoperfil   : 0,
 			accion       : 'nuevo',
 			fkusuario	 :'',
@@ -48,7 +48,7 @@ var appinfo = new Vue({
 	 },
 	 methods:{
 		guardar:function(){		
-		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${this.sobreN}`).then( resp=>resp.json() ).then(resp=>{ 
+		fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${this.sobreNosotros}`).then( resp=>resp.json() ).then(resp=>{ 
 			if(resp.msg!='Datos Actualizados Exitosamente'){
 				Swal.fire({
 					position: 'top-end',
