@@ -30,7 +30,7 @@ error_reporting(0);
   
 
   <nav id="navbarrr" class="navbar navbar-expand-lg navbars">
-    <a class="navbar-brand"i  style="color: black;" href="index.html " > <img width="80px" height="80px" class="image" src="public/img/agromark.png" alt=""></a>
+    <a class="navbar-brand"i  style="color: black;" href="index.html " > <img width="150px" height="60px" class="image" src="public/img/agroproducers.png" alt=""></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown"> 

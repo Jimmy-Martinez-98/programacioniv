@@ -10,6 +10,11 @@
 	<title>producto</title>
 </head>
 <body>
+
+
+
+
+
 	<div class="container-fluid " id="productovista">
 		<div class="row ">
 		  <div class="col-sm  mt-2 tamaño" >		
@@ -68,7 +73,7 @@
 		<hr>
 		<div class="card text-center mb-2">
 			<div class="card-header">
-			  <ul class="nav nav-tabs card-header-tabs">
+			  <ul class="nav nav-tabs card-header-tabs" >
 				<li class="nav-item">
 				  <a class="nav-link active" href="#">Productos Relacionados</a>
 				</li>
@@ -109,7 +114,7 @@
 	  
 
  
-	  <button class="open-button" onclick="openForm()">Chat</button>
+	  <img class="open-button" src="public/img/charla.svg"  onclick="openForm()">
 	  
 	  
 	  <div class="chat-popup"  id="myForm">
@@ -129,13 +134,17 @@
 			</div>
 			<hr>
 		  <div class="contenedor mb-1">
-			  <ul class="list-group  ml-1 mr-1 " >
-				<li class="list-group-item mb-2">A simple primary list group item</li>
-				
+			  <ul class="list-group  ml-1 mr-1 "v-for="msg in msgs" id="messages" >
+				<div class="list-group-item mb-2 burbuja text-break">{{msg}}</div>	
 			  </ul>
 		  </div>
-		  <input class="mb-2" placeholder="Escribe un mensaje..." name="msg" required>
-		  <input type="submit"  value="Enviar">
+		<div class="row">
+			<div class="col-12">
+				<input required class="mb-2 form-control float-left"v-model="msg" placeholder="Escribe un mensaje..." id="cajamensaje" required >
+				<a href="#"  v-on:click="enviarMensaje" class=" fill float-right"><i class="far fa-paper-plane"></i></a>
+			</div>
+			
+		</div>
 		 
 		</form>
 	  </div>
@@ -144,19 +153,18 @@
 	
 	  </div>
 
-	  <div class="card-footer  bg-dark">
-		<img width="60px" height="60px" src="Public/img/menu.png" alt="">
-		<div class="col-12">
-		  <span class=" text-justify text-white">	© 2020 AgroProducers,Todos los derechos reservados.
-				</span>
-		</div>
+	  <footer>
+		© 2020 AgroProducers,Todos los derechos reservados.
+	  </footer>
 
 		<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="public/vistas/verproductos/publicproductos.js"></script>
-  <script src="public/vistas/verproductos/chat.js"></script>
-	
+
+  <script src="public/vistas/verproductos/chat.js"></script>	
 </body>
 </html>
