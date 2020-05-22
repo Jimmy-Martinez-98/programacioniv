@@ -96,7 +96,7 @@
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	  </button>
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -122,7 +122,9 @@
 				</thead>
 				<tbody>
 				  <tr v-for="datos in todoP":key="datos.miproducto" >
-					<th><img width="50"	height="50" v-bind:src="datos.imagen" > </th>
+					<th><div class="container align-content-center mt-3">
+						<img width="80"	height="100" v-bind:src="datos.imagen" >
+					</div> </th>
 					<td> {{datos.nombre_producto}}</td>
 					<td>{{datos.descprod }}</td>
 					<td>{{datos.existencias}}</td>

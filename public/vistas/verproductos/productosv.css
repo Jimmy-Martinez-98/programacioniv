@@ -5,13 +5,37 @@ body{
   min-height: 100vh;
   flex-wrap: wrap;
 }
+p{
+  color: white;
+}
 footer{
   align-self: flex-end;
-  background: black;
+  background: rgb(75, 75, 75);
   line-height:3;
   text-align: center;
   width: 100%;
+  
 }
+
+.lista{
+  list-style-type: circle;
+  color: white;
+  margin-top: unset;
+  text-justify: inter-word;
+}
+footer>img{
+  display: flex;
+  justify-content: start;
+}
+
+.col-sm .text-break{
+  font-size: 14px;
+  font-style: inherit;
+  text-decoration: unset;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
 #form {
 	width: 250px;
 	margin: 0 auto;
@@ -85,6 +109,12 @@ li.lis a.as{
 .btn{
   border-radius: 20px;
 }
+
+
+.subtitulo{
+  color: white;
+}
+
 
 @media(min-width:767px){
   .container{

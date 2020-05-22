@@ -8,7 +8,13 @@ appchat = new Vue({
     methods:{
         enviarMensaje(){
             if(this.msg==''){
-                alert("input vacio")
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Favor Escriba un Mensaje',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }else{
                 socket.emit('enviarMensaje', this.msg);
                 this.msg = '';  
