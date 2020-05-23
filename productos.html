@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
-	<link rel="stylesheet" href="public/vistas/verproductos/chat.css">
+
+
 	<link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
@@ -87,10 +88,13 @@
 					<input id="radio5" type="radio" name="estrellas" value="1">
 					<label for="radio5"> &#9733; </label>
 				  </p>
+				
 				<div class="container-sm">
 					<p class="text-justify text-black-50">
 						{{detallesprod.info.descprod}}
+						
 					</p>
+					<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i>Contactar </a>
 				<div class="container mb-5 columna">
 					<h6>Cantidad:</h6>
 					<div class="container">	
@@ -114,6 +118,7 @@
 				<br>
 				<div class="container">
 					<button class="btn btn-dark form-control">Comprar Ahora</button>
+				
 				</div>
 					<br>
 					<hr>
@@ -153,7 +158,7 @@
 						</div>
 						<div class="col float-right">
 							<div class="container">
-								<p class="text-justify">
+								<p class="text-justify  text-black-50">
 									{{relacion.descprod}}
 								</p>
 								<div class="row mx-md-n5 mt-3">
@@ -172,48 +177,6 @@
 				  </ul>
 			</div>
 		  </div>
-	  </div>
-	  
-
- 
-	  <img class="open-button animate__animated  animate__jello" src="public/img/charla.svg"  onclick="openForm()">
-	  
-	  
-	  <div class="chat-popup animate__animated animate__fadeInUp "  id="myForm">
-			<div class="card-header">
-		  <div class="row">
-			
-			  <div class="col-6">
-				<img class="d-flex justify-content-center" src="public/img/agroproducers.png" width="100%" height="80px" alt="">
-				
-			
-			  </div>
-			  <div class="col-6 ">
-				<button type="button" class="close" onclick="closeForm()" aria-label="Close">
-					<span aria-hidden="true" >&times;</span>
-				  </button>
-			  </div>
-			</div>
-		</div>
-		<form action="#" class="form-container">
-		  <div class="contenedor mb-1">
-			  <ul class="list-group  ml-1 mr-1 "v-for="msg in msgs" id="messages" >
-				<div class="list-group-item mb-2 burbuja text-break">{{msg}}</div>	
-			  </ul>
-		  </div>
-		<div class="row">
-			<div class="col-12">
-				<input required class="mb-2 form-control float-left"v-model="msg" placeholder="Escribe un mensaje..." id="cajamensaje" required >
-				<a href="#"  v-on:click="enviarMensaje" class=" fill float-right"><i class="far fa-paper-plane"></i></a>
-			</div>
-			
-		</div>
-		 
-		</form>
-	  </div>
-		  
-		 
-	
 	  </div>
 
 	  <footer>
@@ -253,10 +216,7 @@
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script src="public/vistas/verproductos/publicproductos.js"></script>
-	
+    <script src="public/vistas/verproductos/publicproductos.js"></script>	
   <script src="public/vistas/verproductos/chat.js"></script>	
 </body>
 </html>

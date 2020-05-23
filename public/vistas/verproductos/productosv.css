@@ -115,6 +115,14 @@ li.lis a.as{
   color: white;
 }
 
+.contactar{
+  color: black;
+}
+.contactar:hover{
+ 
+  text-decoration: none;
+  color: blue;
+}
 
 @media(min-width:767px){
   .container{

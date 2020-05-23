@@ -31,6 +31,9 @@ var mostrardetalle = new Vue({
 			}else{
 				this.contador--
 			}
+		},
+		contactar:function(){
+			location.href="public/vistas/chat/chat.html"
 		}
 	
 	}

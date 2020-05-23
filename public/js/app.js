@@ -58,15 +58,16 @@ var app=new Vue({
                
             })
          },
-         colapsar:function(){
-            console.log("click");
+          colapsar:function(){
+           
 		
             $(".collapse").animate({
              height: 'toggle'
             });
          }
+        
       }
-   })
+   });
 
 
 
