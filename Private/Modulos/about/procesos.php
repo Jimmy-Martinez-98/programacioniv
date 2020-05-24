@@ -64,7 +64,7 @@ class nosotros{
     }
     private function mostrarinfo(){
       $this->db->consultas('
-      SELECT informacionnosotros.infoUsuario,informacionnosotros.fk_idusuario,usuario.nombreu,informacionnosotros.Mision,informacionnosotros.Vision,informacionnosotros.Valores,informacionnosotros.Principios from informacionnosotros JOIN usuario WHERE informacionnosotros.fk_idusuario=usuario.idusuario AND usuario.nombreu="'.$_SESSION['usuario'].'"
+      SELECT informacionnosotros.infoUsuario,informacionnosotros.fk_idusuario,usuario.nombreu,informacionnosotros.Mision,informacionnosotros.Vision,informacionnosotros.Valores,informacionnosotros.Principios from informacionnosotros JOIN usuario WHERE informacionnosotros.fk_idusuario=usuario.idusuario AND usuario.idusuario="'.$_SESSION['usuario'].'"
          ');
          return $this->respuesta = $this->db->obtener_datos();
     }

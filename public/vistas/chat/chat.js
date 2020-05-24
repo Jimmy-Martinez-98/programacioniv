@@ -15,15 +15,15 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
-                console.log("para: ",this.msg.para);
-                
+              
+              
 
 
             },
             de:function(){ 
                     fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
                        this.msg.de=resp[0].idusuario;
-                       console.log( "de:",this.msg.de);
+                       socket.emit('chatHistory');
                        
                        
                     });
@@ -41,7 +41,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                }else{
                   socket.emit('enviarMensaje', this.msg);
                   this.msg = '';  
-                  
+                 
                }  
             },
             limpiarChat(){

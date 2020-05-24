@@ -79,6 +79,7 @@ li.lis a.as{
 	flex-direction: row;
 	justify-content: center;
 	padding: 5px;
+	background-color: rgb(230, 230, 230);
 	box-shadow: 7px 6px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -86,12 +87,14 @@ li.lis a.as{
 width: 500px;
 border-radius: 2px;
 
+
 }
 
 
 .contener-msgs{
 	height: 200px;
 	overflow-y: scroll;
+	
 }
 
 .contener-msgs::-webkit-scrollbar{

@@ -24,7 +24,7 @@ class mostrar{
 
 	private function mostrarprod(){
 		$sql=  $this->db->consultas('
-		SELECT usuario.nombreu,productos.nombreproducto,productos.imagen,productos.descripcion,productos.precio,productos.tipoHortaliza FROM usuario JOIN productos WHERE usuario.idusuario= productos.usuariofk and usuario.nombreu="'. $_SESSION['usuario'].'"
+		SELECT usuario.nombreu,productos.nombreproducto,productos.imagen,productos.descripcion,productos.precio,productos.tipoHortaliza FROM usuario JOIN productos WHERE usuario.idusuario= productos.usuariofk and usuario.idusuario="'. $_SESSION['usuario'].'"
 		   ');
 		   return $this->respuesta = $this->db->obtener_datos();
 	  }

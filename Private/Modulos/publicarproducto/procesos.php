@@ -87,12 +87,12 @@ class producto_nuevo {
 
 
 	public function traerproductos( $valor=''){
-		$this->db->consultas('SELECT usuario.idusuario, misproducto.* FROM misproducto JOIN usuario on(usuario.idusuario=misproducto.fk_idusuario) where misproducto.categoria like "%'.$valor.'%" or misproducto.nombre_producto like "%'.$valor.'%" or misproducto.fecha_subida like "%'.$valor.'%" and usuario.nombreu="'.$_SESSION['usuario'].'"');
+		$this->db->consultas('SELECT usuario.idusuario, misproducto.* FROM misproducto JOIN usuario on(usuario.idusuario=misproducto.fk_idusuario) where usuario.idusuario="'.$_SESSION['usuario'].'" and  misproducto.categoria like "%'.$valor.'%" or misproducto.nombre_producto like "%'.$valor.'%" or misproducto.fecha_subida like "%'.$valor.'%"');
 		return $this->respuesta=$this->db->obtener_datos();
 	}
 
 	public function traerid(){
-		$this->db->consultas('SELECT usuario.idusuario from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
+		$this->db->consultas('SELECT usuario.idusuario from usuario where usuario.idusuario="'.$_SESSION['usuario'].'"');
 		return  $this->respuesta = $this->db->obtener_datos();
 	}
 

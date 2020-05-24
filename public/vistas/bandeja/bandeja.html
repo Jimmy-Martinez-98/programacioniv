@@ -58,12 +58,12 @@
 
 	<div  class="contenedor" id="bandejas">
 		<div class="sidebar">
-			<div class="header-sidebar">
+			<div class="header-sidebar ">
 				<img width="30px" height="30px" src="../../../public/img/chat.png" alt="">
 			<h4>Mensajes</h4>
 			</div>
 			<div class="list-msg" >
-				<ul class="list-group" v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)">
+				<ul class="list-group lista-items" v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)">
 					<li class="list-group-item">{{items.nombreu}}</li>
 					
 				</ul>

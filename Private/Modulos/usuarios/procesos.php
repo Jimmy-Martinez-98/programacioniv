@@ -47,7 +47,7 @@ class login{
                foreach ($usuario as $user) {
                 $fila=$user;
             }  
-               $_SESSION['usuario'] =$fila['nombreu'];
+               $_SESSION['usuario'] =$fila['idusuario'];
             }    
           
         }
@@ -219,7 +219,7 @@ class login{
         }
      public function traercuenta()
     {
-        $this->db->consultas('SELECT usuario.* from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');
+        $this->db->consultas('SELECT usuario.* from usuario where usuario.idusuario="'.$_SESSION['usuario'].'"');
         $this->respuesta=$this->db->obtener_datos();
     }
 

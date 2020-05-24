@@ -54,7 +54,7 @@ class direccion{
 
  
     public function idlogueo($valor='')   {
-        $this->db->consultas('SELECT usuario.idusuario from usuario where nombreu="'.$_SESSION['usuario'].'"');
+        $this->db->consultas('SELECT usuario.idusuario from usuario where idusuario="'.$_SESSION['usuario'].'"');
       return  $this->respuesta = $this->db->obtener_datos();
     }
 
@@ -72,7 +72,7 @@ class direccion{
         $this->mostrarinfo();
     }
     private function mostrarinfo(){
-       $this->db->consultas('SELECT usuario.idusuario,direcciones.idDireccion,direcciones.fkUsuario,direcciones.Direccion from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.nombreu="'.$_SESSION['usuario'].'" ');
+       $this->db->consultas('SELECT usuario.idusuario,direcciones.idDireccion,direcciones.fkUsuario,direcciones.Direccion from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.idusuario="'.$_SESSION['usuario'].'" ');
          return $this->respuesta = $this->db->obtener_datos();
     }
 		
