@@ -213,7 +213,10 @@ class login{
         }
 
 
-
+        public function traerusuarios(){
+            $this->db->consultas('SELECT usuario.* from usuario');
+        $this->respuesta=$this->db->obtener_datos();
+        }
      public function traercuenta()
     {
         $this->db->consultas('SELECT usuario.* from usuario where usuario.nombreu="'.$_SESSION['usuario'].'"');

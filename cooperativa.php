@@ -41,7 +41,7 @@ error_reporting(0);
     </a>
    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
    
-            <a class="dropdown-item " href="public/vistas/chat/chat.html">Inbox <i class="fas fa-inbox"></i></a> 
+            <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i class="fas fa-inbox"></i></a> 
            <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
    </div>
     </div>
