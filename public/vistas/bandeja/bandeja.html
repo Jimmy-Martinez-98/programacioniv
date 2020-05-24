@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="chats.css">
 	
-	<title>chat</title>
+	<title>bandeja</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg   " id="nav">
@@ -62,9 +62,9 @@
 				<img width="30px" height="30px" src="public/img/chat.png" alt="">
 			<h4>Mensajes</h4>
 			</div>
-			<div class="list-msg">
+			<div class="list-msg"  v-for="item in usuarios" :key="item.idusuario">
 				<ul class="list-group">
-					<li class="list-group-item">hola</li>
+					<li class="list-group-item">{{item.nombreu}}</li>
 					
 				</ul>
 			</div>

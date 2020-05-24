@@ -40,14 +40,16 @@ error_reporting(0);
      {{perfil[0].nombreu}}
     </a>
    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
-    <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión</a>   
+   
+            <a class="dropdown-item " href="public/vistas/chat/chat.html">Inbox <i class="fas fa-inbox"></i></a> 
+           <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
    </div>
     </div>
     </li>
     </ul>
   </nav>
 <nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist" >
-  <div class="container-fluid">
+  
     <div  id="navbarNavAltMarkup ">
         <ul class="navbar-nav mr-auto uls " id="nav">
           <li class=" lis activa">
@@ -65,11 +67,12 @@ error_reporting(0);
       <li class="divicio  lis activa">
         <a class="nav-link  " id="Configc" href="#"><h5>Configuración de Cuenta </h5></a>
       </li>
+  
     </ul>
   
      
     </div>
-  </div>
+  
   </div>  
   </nav>
 

@@ -37,7 +37,7 @@ $(document).ready(function () {
 	
 	});
 	$('#listdeseos').click(()=>{
-		console.log('sdf');
+	
 		
 		$("#contenedorP").load("public/vistasPerfil/listadeseos/listadeseos.html",function(data){
 		  $(this).html(data);
@@ -45,7 +45,7 @@ $(document).ready(function () {
 	
 	});
 	$('#POferta').click(()=>{
-		console.log('sdf');
+	
 		
 		$("#contenedorP").load("public/vistasPerfil/productosOferta/addoferta.html",function(data){
 		  $(this).html(data);
@@ -53,14 +53,13 @@ $(document).ready(function () {
 	
 	});
 	$('#Configc').click(()=>{
-		console.log('sdf');
+	
 		
 		$("#contenedorP").load("public/vistasPerfil/configCuenta/configcuenta.html",function(data){
 		  $(this).html(data);
 	   });
 	
 	});
-
 
 	cambiar_clase();
 

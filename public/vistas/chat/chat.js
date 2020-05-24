@@ -1,11 +1,34 @@
-var socket = io.connect("http://localhost:3001",{'forceNew':true}),
+var socket = io.connect("http://localhost:3001",{'forceNew':true})
+,
     appchat = new Vue({
         el:'#frm-chats',
         data:{
-            msg : '',
+            msg :{
+                de:0,
+                para:0,
+                msg:''
+            },
             msgs : []
         },
         methods:{
+
+            para:function(){
+                var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
+                this.msg.para=datafromstorage.info.idusuario;
+                console.log("para: ",this.msg.para);
+                
+
+
+            },
+            de:function(){ 
+                    fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
+                       this.msg.de=resp[0].idusuario;
+                       console.log( "de:",this.msg.de);
+                       
+                       
+                    });
+
+            },
             enviarMensaje(){
                if(this.msg==''){
                   Swal.fire({
@@ -26,17 +49,26 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true}),
             }
         },
         created(){
+            this.para();
+            this.de();
             socket.emit('chatHistory');
         }
     });
     socket.on('recibirMensaje',msg=>{
-        console.log(msg);
-        appchat.msgs.push(msg);
+        if (msg.de === appchat.msg.de && msg.para === appchat.msg.para ||
+            msg.para === appchat.msg.de && msg.de === appchat.msg.para) {
+            appchat.msgs.push(msg);
+        }
+        // console.log(msg.msg);
+        // appchat.msgs.push(msg.msg);
     });
     socket.on('chatHistory',msgs=>{
         appchat.msgs = [];
         msgs.forEach(item => {
-            appchat.msgs.push(item.msg);
+            if (item.de === appchat.msg.de && item.para === appchat.msg.para ||
+                item.para === appchat.msg.de && item.de === appchat.msg.para) {
+                appchat.msgs.push(item.msg);
+            }
         });
     });
 
