@@ -24,19 +24,10 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 
 				var msj=this.msg.msg;
 				this.msg.msg=msj.trim();
-               if(this.msg.msg=='' && this.msg.para=='' && this.msg.de==''){
-                  Swal.fire({
-                      position: 'top-end',
-                      icon: 'warning',
-                      title: 'Favor Escriba un Mensaje',
-                      showConfirmButton: false,
-                      timer: 1500
-                    })
-               }else{
+               if(this.msg.msg!='' && this.msg.para!='' && this.msg.de!=''){
                   socket.emit('enviarMensaje', this.msg);
-                  this.msg.msg = '';  
-                  
-               }  
+                  this.msg.msg = ''; 
+               } 
 			},
 			vermensajes:function(){
 				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	
