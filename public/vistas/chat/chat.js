@@ -15,28 +15,29 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
-               
+                
             },
             de:function(){ 
                     fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
                        this.msg.de=resp[0].idusuario;   
-                          
+                      
                     });
 
             },
             enviarMensaje(){
                if(this.msg!=''){
                   socket.emit('enviarMensaje', this.msg);  
-                  this.msg = '';     
+                  this.msg = '';   
                }  
-                    
+              
             }
            
         },
         created(){
+          
             this.para();
-            this.de();
-            socket.emit('chatHistory');     
+            this.de();  
+            socket.emit('chatHistory')
         }
     });
     socket.on('recibirMensaje',msg=>{
@@ -52,7 +53,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
         msgs.forEach(item => {
             if (item.de === appchat.msg.de && item.para === appchat.msg.para ||
                 item.para === appchat.msg.de && item.de === appchat.msg.para) {
-                appchat.msgs.push(item.msg);
+                appchat.msgs.push(item.msg); 
             }
         });
     });
