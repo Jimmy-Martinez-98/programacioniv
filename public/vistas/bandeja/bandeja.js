@@ -11,7 +11,8 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 			
 			msgs : [],
 			users:[],
-			allmsg:[]
+         allmsg:[],
+         nombrechat:[]
         },
         methods:{
 			traerusuario:function(){
@@ -40,9 +41,19 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 				this.msg.para=id
 				this.msgs=[];
 				this.allmsg.forEach(item=>{
-					this.util(item);
-				})
-
+               this.util(item);
+              
+            })
+            this.users.forEach(user=>{
+             if(user.idusuario==id){
+               this.nombrechat=user;
+               console.log(user.imagen);
+                           
+             }
+               
+            })
+            
+               
 			  },
 			  util:function(item){
 				if (item.de === this.msg.de && item.para === this.msg.para ||

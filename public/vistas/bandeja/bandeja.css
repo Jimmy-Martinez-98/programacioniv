@@ -105,12 +105,18 @@ background-color: rgb(218, 218, 218);
 
 }
 .header-msg{
-	margin-left: 5px;
-	
+
+	margin-left: 9px;
 	height: 47px;
 	padding-top: 10px;
 }
 
+
+.header-msg>.titulomsg{
+	display: flex;
+	justify-content: start;
+	
+}
 .contener-msgs{
 	height: 200px;
 	overflow-y: scroll;
@@ -127,6 +133,31 @@ background-color: rgb(218, 218, 218);
 	border-radius: 3px;
 	
 	}
+
+	.listamsgs{
+		list-style-type: none;
+		text-decoration: none;
+		
+	}
+	.listamsgs-item{
+	padding: 10px;
+	width: 200px;
+	border-radius: 10px;
+	background-color: rgb(190, 190, 190);
+	font-size: 14px;
+	font-style: oblique;
+	}
+
+.listamsgs-iteml{
+	padding: 10px;
+	width: 200px;
+	border-radius: 10px;
+	background-color: rgba(58, 233, 15, 0.925);
+	font-size: 14px;
+	font-style: oblique;
+}
+	
+
 .footer{
 	background-color: rgb(197, 192, 192);
 	border-radius: 1px;
