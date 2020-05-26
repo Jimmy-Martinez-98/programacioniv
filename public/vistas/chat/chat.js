@@ -15,52 +15,37 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
-              
-              
-
-
+               
             },
             de:function(){ 
                     fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
-                       this.msg.de=resp[0].idusuario;
-                       socket.emit('chatHistory');
-                       
-                       
+                       this.msg.de=resp[0].idusuario;   
+                          
                     });
 
             },
             enviarMensaje(){
-               if(this.msg==''){
-                  Swal.fire({
-                      position: 'top-end',
-                      icon: 'warning',
-                      title: 'Favor Escriba un Mensaje',
-                      showConfirmButton: false,
-                      timer: 1500
-                    })
-               }else{
-                  socket.emit('enviarMensaje', this.msg);
-                  this.msg = '';  
-                 
+               if(this.msg!=''){
+                  socket.emit('enviarMensaje', this.msg);  
+                  this.msg = '';     
                }  
-            },
-            limpiarChat(){
-                this.msg = '';
+                    
             }
+           
         },
         created(){
             this.para();
             this.de();
-            socket.emit('chatHistory');
+            socket.emit('chatHistory');     
         }
     });
     socket.on('recibirMensaje',msg=>{
         if (msg.de === appchat.msg.de && msg.para === appchat.msg.para ||
             msg.para === appchat.msg.de && msg.de === appchat.msg.para) {
             appchat.msgs.push(msg);
+           
         }
-        // console.log(msg.msg);
-        // appchat.msgs.push(msg.msg);
+      
     });
     socket.on('chatHistory',msgs=>{
         appchat.msgs = [];

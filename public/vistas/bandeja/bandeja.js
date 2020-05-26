@@ -32,7 +32,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 			vermensajes:function(){
 				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	
 					this.users=resp;
-					console.log(this.users);
+					
 					
 				});
 			},
