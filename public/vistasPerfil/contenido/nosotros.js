@@ -65,7 +65,7 @@ var appinfo = new Vue({
 			fetch(`Private/Modulos/about/procesos.php?proceso=traeridinfo&nosotros=""`).then(resp=>resp.json()).then(resp=>{
 				this.edidar.infousuario=resp[0].infoUsuario;
 				
-				console.log(this.edidar.infousuario=resp[0].infoUsuario);
+				
 				
 				
 			})
