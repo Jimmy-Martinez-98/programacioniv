@@ -122,7 +122,7 @@ var nuevadireccion = new Vue({
 	},
 	created:function(){
 		this.idlogueo();
-		
+		this.info();
 	},
 	
 	methods:{	
@@ -138,7 +138,7 @@ var nuevadireccion = new Vue({
 		 },
 		almacenar:function(){	
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
-				 this.info()						
+									
 				if(resp.msg!="Registro insertado correctamente"){		
 					Swal.fire({
 						position: 'top-end',

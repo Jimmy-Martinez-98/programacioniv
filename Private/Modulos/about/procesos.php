@@ -32,7 +32,16 @@ class nosotros{
 
     private function actualizar(){
         if( $this->respuesta['msg']==='correcto' ){
-            if( $this->datos['accion']==='modificar' ){
+            if($this->datos['accion']==='nuevo'){
+                $this->db->consultas('
+                    INSERT INTO informacionnosotros(fk_idusuario,imagen,descripcion) VALUES(
+                        "'. $this->datos['idusuario'].'",
+                        "'. $this->datos['imagen'].'",
+                        "'. $this->datos['describ'].'"
+                    )
+                ');
+                $this->respuesta['msg'] = 'Tus datos se almacenaron exitosamente';
+            } if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
                 UPDATE informacionnosotros SET
                 fk_idusuario      = "'. $this->datos['usu'].'",
@@ -44,6 +53,40 @@ class nosotros{
              } 
         }
     }
+
+    public function recibirdesc($nosotros){
+        $this->datos = json_decode($nosotros, true);
+        $this->validar2();
+    }
+
+    private function validar2(){
+        if(empty(trim($this->datos['idusuario']))||empty(trim($this->datos['describ']))||empty(trim($this->datos['imagen']))){
+            $this->respuesta['msg']='Por Favor Rellene los Campos';
+        }
+        return   $this->guardar(); 
+    }
+    private function guardar(){
+        if( $this->respuesta['msg']==='correcto' ){
+            if($this->datos['accion']==='nuevo'){
+                $this->db->consultas('
+                    INSERT INTO informacionnosotros(fk_idusuario,imagen,descripcion) VALUES(
+                        "'. $this->datos['idusuario'].'",
+                        "'. $this->datos['imagen'].'",
+                        "'. $this->datos['describ'].'"
+                    )
+                ');
+                $this->respuesta['msg'] = 'Tus datos se almacenaron exitosamente';
+            }
+        }
+    }
+
+
+
+
+
+
+
+
     public function recibirinfo($nosotros){
         $this->datos = json_decode($nosotros, true);
         $this->mostrarinfo();
