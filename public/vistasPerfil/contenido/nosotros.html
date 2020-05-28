@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="public/vistasPerfil/contenido/nosotros.css">
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script src="public/js/jquery-3.5.js"></script>
+
+</head>
+
+<body>
+	<div class="container card bg " id="nosotrosdiv">
+		<div class="container py-2">
+
+			<div class="row card ">
+				<div class="col-12 card-text">
+				
+					
+					<div class="card mt-2">
+						<img v-bind:src="nosotros.imagen" width="100%" height="250px"  alt="">
+					</div>
+				
+				<h2 class="d-flex justify-content-center">Decripcion</h2>
+				<hr>
+				<div class="card-text mt-2">
+				<p class=" text-justify">{{nosotros.descripcion}}</p>
+				</div>
+				</div>
+			</div>
+		
+			</div>
+				<div class="card-foote-fluid pb-2">
+					<div class="container ">
+						<div class="row">
+
+							<div class="col-12">
+								<input href="#modaleditar" v-on:click="editardatos(nosotros)" type="button" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value="Modificar">
+							</div>
+						</div>
+					</div>
+				</div>
+			
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="public/vistasPerfil/contenido/nosotros.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+
+</html>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modaleditar"  tabindex="-1" role="dialog" aria-labelledby="modaleditar" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+				<form action="#" method="POST" id="imagens">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" >
+						<div class="col-12 d-flex justify-content-center card	">
+							<img   v-bind:src="edidar.imagenes"  width="100%"  height="150px" :src="bindearimagen" >
+							<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
+						</div>
+						<hr>
+						<div class="col-12 text-dark">
+							<div class="form-group">
+								<label for="desc">Descripcion</label>
+								<textarea class="form-control" id="mision" rows="3" v-model="edidar.descripcion"></textarea>
+								
+							
+							</div>
+					
+		
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button v-on:click="guardar" type="button" class="btn btn-primary">Guardar Cambios</button>
+			</div>
+		</div>
+	</div>
+</div>

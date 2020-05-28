@@ -46,7 +46,7 @@ var editfoto =new Vue({
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.updatefoto.idusuario=resp[0].idusuario;
-				console.log('resp=',resp[0].idusuario,'usuario=',this.updatefoto.idusuario);
+				
 			})
 		},
 		Guardarimg:function(){

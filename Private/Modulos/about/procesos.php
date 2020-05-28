@@ -23,7 +23,7 @@ class nosotros{
     }
 
     private function validar(){
-        if(empty(trim($this->datos['fkusuario']))|| empty(trim($this->datos['mision'])) || empty(trim($this->datos['vision']))||empty(trim($this->datos['valores']))||empty(trim($this->datos['principios']))){
+        if(empty(trim($this->datos['usu']))||empty(trim($this->datos['descripcion']))||empty(trim($this->datos['imagenes']))){
             $this->respuesta['msg']='Por Favor Rellene los Campos';
         }
         return   $this->actualizar(); 
@@ -35,38 +35,33 @@ class nosotros{
             if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
                 UPDATE informacionnosotros SET
-                fk_idusuario      = "'. $this->datos['usuario']['id'] .'",
-                Mision         = "'. $this->datos['mision'] .'",
-                 Mision         = "'. $this->datos['mision'] .'",
-            WHERE infoUsuario = "'. $this->datos['infousuario'] .'"
+                fk_idusuario      = "'. $this->datos['usu'].'",
+                 imagen         = "'. $this->datos['imagenes'] .'",
+                 descripcion         = "'. $this->datos['descripcion'] .'"
+               WHERE infoUsuario  = "'. $this->datos['infousuario'] .'"
                 ');
                 $this->respuesta['msg'] = 'Datos Actualizados Exitosamente';
              } 
         }
     }
-    public function traerusuario(){
-        $this->db->consultas('
-            select usuario.idusuario AS id, usuario.nombre AS label
-            from usuario
-        ');
-        $usuarion = $this->db->obtener_data();
-       
-       
-        return $this->respuesta = ['usuario'=>$usuarion ];//array de php en v7+
-    }
-
-
-
-    
     public function recibirinfo($nosotros){
         $this->datos = json_decode($nosotros, true);
         $this->mostrarinfo();
     }
     private function mostrarinfo(){
       $this->db->consultas('
-      SELECT informacionnosotros.infoUsuario,informacionnosotros.fk_idusuario,usuario.nombreu,informacionnosotros.Mision,informacionnosotros.Vision,informacionnosotros.Valores,informacionnosotros.Principios from informacionnosotros JOIN usuario WHERE informacionnosotros.fk_idusuario=usuario.idusuario AND usuario.idusuario="'.$_SESSION['usuario'].'"
+      SELECT informacionnosotros.descripcion,informacionnosotros.imagen FROM informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
          ');
          return $this->respuesta = $this->db->obtener_datos();
+    }
+
+    
+
+    public function traeridinfo(){
+        $this->db->consultas('
+        select informacionnosotros.infoUsuario from informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
+        ');
+        $this->respuesta=$this->db->obtener_datos();
     }
 }
 ?>

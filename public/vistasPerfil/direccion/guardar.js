@@ -17,7 +17,7 @@ var mostrardirecciones=new Vue({
 		editardire:function(modD){		
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
-            console.log("datos",modD.idusuario);       
+                 
 		},
 		deleteDireccion:function(idDireccion){
 			console.log('hola');
