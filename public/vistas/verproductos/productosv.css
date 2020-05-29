@@ -1,10 +1,10 @@
-body{
+ body{
   margin: 0;
   padding: 0;
   display: flex;
   min-height: 100vh;
   flex-wrap: wrap;
-}
+} 
 p{
   color: white;
 }
@@ -25,7 +25,7 @@ footer{
 }
 footer>img{
   display: flex;
-  justify-content: start;
+  justify-content: center;
 }
 
 .col-sm .text-break{
@@ -36,23 +36,14 @@ footer>img{
 }
 
 
-#form {
-	width: 250px;
-	margin: 0 auto;
-	height: 50px;
-  }
-  #nav{
-    display: block;
-      background: #5fb677;
-  }
 
-  ul.uls li.lis a.as{
+
+  .as{
     color: black;
-    display: block;
- 
-   
 }
-
+.as:hover{
+  color: black;
+}
   ul.uls li.lis a.as::before{
     content: "";
     display: block;
@@ -62,6 +53,9 @@ footer>img{
     bottom:0;
     transition: all .3s;
 
+}
+.fondonav{
+  background-color: #5fb677;
 }
 
 ul.uls li.lis a.as:hover::before{
@@ -121,14 +115,14 @@ li.lis a.as{
 .contactar:hover{
  
   text-decoration: none;
-  color: blue;
+  color: rgb(0, 255, 64);
 }
 
 @media(min-width:767px){
-  .container{
+  .imgsss{
     width: 100%;
   }
-  .container>.tamaño{
+  .tamaño>.imgsss{
     width: 100%;
   }
 

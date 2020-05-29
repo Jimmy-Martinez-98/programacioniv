@@ -38,7 +38,7 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input  v-model="publicP.codigo" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Descripcion">	
+							<input  v-model="publicP.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Descripcion">	
 						</div>
 					
 					  </div>
@@ -127,6 +127,7 @@
 					<th scope="col">Imagen</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Descripcion</th>
+					<th scope="col">Codigo</th>
 					<th scope="col">Existencias</th>
 					<th scope="col">Categoria</th>
 					<th scope="col">Precio</th>
@@ -142,6 +143,7 @@
 					</div> </th>
 					<td> {{datos.nombre_producto}}</td>
 					<td>{{datos.descprod }}</td>
+					<td>{{datos.codigo_producto }}</td>
 					<td>{{datos.existencias}}</td>
 					<td>{{datos.categoria}}</td>
 					<td>{{datos.precio}}</td>

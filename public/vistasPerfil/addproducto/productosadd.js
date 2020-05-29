@@ -7,7 +7,7 @@ var publicarp=new Vue({
 			idusuario:0,
 			nombre_producto:'',
 			descprod:'',
-			codigo:'',
+			codigo_producto:'',
 			categoria:'',
 			imagen:'',
 			existencias:'',
@@ -21,12 +21,15 @@ var publicarp=new Vue({
 		imagenlittle:''
 
 	},
-	created:function(){this.traerid()},
+	created:function(){this.traerid()
+	
+	},
 	
 	methods:{
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.publicP.idusuario=resp[0].idusuario;
+				
 				
 			})
 		},
@@ -41,6 +44,7 @@ var publicarp=new Vue({
 							showConfirmButton: false,
 							timer: 1500
 						  })
+						  this.publicP='';
 					}else if(resp.msg=="Su Producto Ha Sido Actualizado"){
 						Swal.fire({
 							position: 'top-end',
@@ -49,6 +53,7 @@ var publicarp=new Vue({
 							showConfirmButton: false,
 							timer: 1500
 						  })
+						  this.publicP='';
 					}else{
 						Swal.fire({
 							position: 'top-end',
@@ -124,8 +129,12 @@ var appproductos=new Vue({
             });
 		},
 		modificar:function(mod) {
+			
+			
 			publicarp.publicP=mod;
 			publicarp.publicP.accion='modificar';
+			
+			
 				
 		}
 	

@@ -58,8 +58,7 @@ var app=new Vue({
                
             })
          },
-          colapsar:function(){
-           
+          colapsar:function(){  
 		
             $(".collapse").animate({
              height: 'toggle'

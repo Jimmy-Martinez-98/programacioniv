@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
 
-
 	<link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
@@ -15,32 +14,32 @@
 	<title>Agro Producers</title>
 </head>
 <body>
-	<nav class="container-fluid navbar navbar-expand-lg   " style="height: 100px;" id="nav">
-		
-		<div class="container-fluid">
-		  <a class="navbar-brand text-dark"  href="index.html"><img width="150" height="70" class="imagen" src="public/img/agroproducers.png" alt=""></a>
+	<nav class="container-fluid navbar navbar-expand-lg fondonav " style="height: 100px;" id="nav">
+
+		  <a class="navbar-brand text-dark"  href="index.html"><img width="150" height="100" class="imagen" src="public/img/logo2,0.png" alt=""></a>
 		  <button class="navbar-toggler mb-2"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		   <img width="50px" height="50px" src="public/img/menu.png">
 		  </button>
-		  <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
-			  <ul class="navbar-nav mr-auto uls" >
+	
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto uls  mt-0" >
 				<li class="nav-item  lis" >
-			  <a class="nav-item nav-link  as" id="home" href="index.html" ><h6>Inicio</h6> <span class="sr-only"></span></a>
+			  <a class="nav-item nav-link  as" id="home" href="index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as " id="verduras" href="#"><h6>Verduras</h6></a>
+			  <a class="nav-link as " id="verduras" href="#"><h3>Verduras</h3></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as" id="frutos"  href="#"><h6>Frutos</h6></a>
+			  <a class="nav-link as" id="frutos"  href="#"><h3>Frutos</h3></a>
 			</li>
 			<li class="divicio lis">
-			  <a class="nav-link  as" id="legumbres" href="#"><h6>Legumbres</h6></a>
+			  <a class="nav-link  as" id="legumbres" href="#"><h3>Legumbres</h3></a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav uls">
 		  
 			<li class="lis" v-if="session===0">
-			  <a class="nav-link  as" id="login"  href="login.php"><h6> Iniciar Sesion</h6></a>
+			  <a class="nav-link  as" id="login"  href="login.php"><h3> Iniciar Sesion</h3></a>
 			</li>
   
   
@@ -58,158 +57,137 @@
 			</div>
 			 </div>
 		  </li>
-  
 		  </ul>
-		   
+		  </ul> 
+
 		  </div>
-		</div>
-  
 		</nav>
 
 
-	<div class="container-fluid " id="productovista">
-		<div class="row ">
-		  <div class="col-sm  mt-2 tamaño  " >		
-			<div class="container ">
-				<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
-			</div>
-		  </div>
-		  <div class="col-sm mt-5">
-			<div class="container columna">
-				<h3>{{detallesprod.info.nombre_producto}}</h3>
-				<p class="clasificacion">
-					<input id="radio1" type="radio" name="estrellas" value="5">
-					<label for="radio1">  &#9733;</label>
-					<input id="radio2" type="radio" name="estrellas" value="4">
-					<label for="radio2">  &#9733;</label>
-				<input id="radio3" type="radio" name="estrellas" value="3">
-					<label for="radio3">  &#9733;</label>
-					<input id="radio4" type="radio" name="estrellas" value="2">
-					<label for="radio4">  &#9733;</label>
-					<input id="radio5" type="radio" name="estrellas" value="1">
-					<label for="radio5"> &#9733; </label>
-				  </p>
-				
-				<div class="container-sm">
-					<p class="text-justify text-black-50">
-						{{detallesprod.info.descprod}}
-						
-					</p>
-					<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
-				<div class="container mb-5 columna">
-					<h6>Cantidad:</h6>
-					<div class="container">	
-						<div class="row float-left" >
+
+		<div class="container-fluid " id="productovista">
+			<div class="row ">
+			  <div class="col-sm  mt-2 tamaño  " >		
+				<div class="container imgsss">
+					<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
+				</div>
+			  </div>
+			  <div class="col-sm mt-5">
+				<div class="container columna">
+					<h3>{{detallesprod.info.nombre_producto}}</h3>
+					<p class="clasificacion">
+						<input id="radio1" type="radio" name="estrellas" value="5">
+						<label for="radio1">  &#9733;</label>
+						<input id="radio2" type="radio" name="estrellas" value="4">
+						<label for="radio2">  &#9733;</label>
+					<input id="radio3" type="radio" name="estrellas" value="3">
+						<label for="radio3">  &#9733;</label>
+						<input id="radio4" type="radio" name="estrellas" value="2">
+						<label for="radio4">  &#9733;</label>
+						<input id="radio5" type="radio" name="estrellas" value="1">
+						<label for="radio5"> &#9733; </label>
+					  </p>
 					
-							<div class="col" >
-								<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
-							</div>
-							<div class="col columna text-center">
-								<h3>{{contador}}</h3>
-							</div>
-							<div class="col columna">
-								<button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
-							</div>
-						</div>
-					</div>
-					<div class="container">
-					<button class=" btn btn-outline-danger float-right">Agregar a Deseos <i class="fas fa-heart"></i> </button>
-					</div>
-				</div>
-				<br>
-				<div class="container">
-					<button class="btn btn-dark form-control">Comprar Ahora</button>
-				
-				</div>
-					<br>
-					<hr>
-				
-					<div class="row"><div class="col">
-						<h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
-					</div>
-					<div class="col">
-						<h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
-					</div>
-				</div>
-						
-					
-				</div>
-			</div>
-		  </div>
-		 
-		</div>
-		<hr>
-		<div class="card text-center mb-2">
-			<div class="card-header">
-			  <ul class="nav nav-tabs card-header-tabs" >
-				<li class="nav-item">
-				  <a class="nav-link active" href="#">Productos Relacionados</a>
-				</li>
-				
-			  </ul>
-			</div>
-			<div class="card-body">
-				<ul class="list-unstyled">
-					<li class="media" v-for="relacion in productosrelacionados">
-					  <img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
-					  <div class="media-body">
-						<div class="col ">
-							<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+					<div class="container-sm">
+						<p class="text-justify text-black-50">
+							{{detallesprod.info.descprod}}
 							
-						</div>
-						<div class="col float-right">
-							<div class="container">
-								<p class="text-justify  text-black-50">
-									{{relacion.descprod}}
-								</p>
-								<div class="row mx-md-n5 mt-3">
-									<div class="col-6 px-md-5">
-										<div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
-										<div class="p-2   float-left">${{relacion.precio_venta}}</div>
-									</div>
-									
-								  </div>
-							</div>
-						  </div>
-						</div>
+						</p>
+						<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
+					<div class="container mb-5 columna">
+						<h3>Cantidad:</h3>
+						<div class="container">	
+							<div class="row float-left" >
 						
-					</li>
-				
-				  </ul>
+								<div class="col" >
+									<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
+								</div>
+								<div class="col columna text-center">
+									<h3>{{contador}}</h3>
+								</div>
+								<div class="col columna">
+									<button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+						<button class=" btn btn-outline-danger float-right">Agregar a Deseos <i class="fas fa-heart"></i> </button>
+						</div>
+					</div>
+					<br>
+					<div class="container">
+						<button class="btn btn-dark form-control">Comprar Ahora</button>
+					
+					</div>
+						<br>
+						<hr>
+					
+						<div class="row"><div class="col">
+							<h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
+						</div>
+						<div class="col">
+							<h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
+						</div>
+					</div>
+							
+						
+					</div>
+				</div>
+			  </div>
+			 
 			</div>
+			<hr>
+			<div class="card text-center mb-2">
+				<div class="card-header">
+				  <ul class="nav nav-tabs card-header-tabs" >
+					<li class="nav-item">
+					  <a class="nav-link active" href="#">Productos Relacionados</a>
+					</li>
+					
+				  </ul>
+				</div>
+				<div class="card-body">
+					<ul class="list-unstyled">
+						<li class="media" v-for="relacion in productosrelacionados">
+						  <img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
+						  <div class="media-body">
+							<div class="col ">
+								<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+								
+							</div>
+							<div class="col float-right">
+								<div class="container">
+									<p class="text-justify  text-black-50">
+										{{relacion.descprod}}
+									</p>
+									<div class="row mx-md-n5 mt-3">
+										<div class="col-6 px-md-5">
+											<div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
+											<div class="p-2   float-left">${{relacion.precio_venta}}</div>
+										</div>
+										
+									  </div>
+								</div>
+							  </div>
+							</div>
+							
+						</li>
+					
+					  </ul>
+				</div>
+			  </div>
 		  </div>
-	  </div>
+
+
+
+
+
+
+
+	
 
 	  <footer>
-		<img width="200px" height="100px" src="public/img/agroproducers.png" alt="">
-		<div class="container">
-			<div class="row">
-			  <div class="col-sm">
-				<h4 class="subtitulo"	>Mision</h4>
-				<p class="text-break">
-					 Somos un equipo de trabajo, donde realizamos cada actividad en compañerismo, dedicación y esfuerzo.
-				</p>
-			  </div>
-			  <div class="col-sm">
-				<h4 class="subtitulo" >Vision</h4>
-				<p class="text-break">
-					Ser un equipo de trabajo unido, en donde todos tengan un alto espíritu de responsabilidad y respeto, para así lograr y la creación de sitio web que ayudara a la solución de una problemática de la
-				</p>
-			  </div>
-			  <div class="col-sm">
-				<h3 class="subtitulo">Valores</h3>
-				<ul class="group">
-					<li class="lista">Honestidad</li>
-					<li class="lista">Integridad</li>
-					<li class="lista">Responsabilidad individual</li>
-					<li class="lista">Responsabilidad con el equipo</li>
-					<li class="lista">principio de Cooperación</li>
-				</ul>
-				
-			  </div>
-			</div>
-		  </div>
-
+		<img class="imagen" height="100px" src="public/img/logo2,0.png" alt="">
 		<p>© 2020 AgroProducers,Todos los derechos reservados.</p>
 	  </footer>
 

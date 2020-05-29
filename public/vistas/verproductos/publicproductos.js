@@ -73,11 +73,9 @@ var validarsession=new Vue({
 		  })
 	   },
 	   colapsar:function(){
-		  console.log("click");
-	  
-		  $(".collapse").animate({
-		   height: 'toggle'
-		  });
+		$(".collapse").animate({
+			height: 'toggle'
+		   });
 	   }
 	}
  })

@@ -28,9 +28,9 @@ class producto_nuevo {
 	private function validardatos(){
 		if(empty(trim($this->datos['idusuario']))){
 			$this->respuesta['msg']='Identificador Faltante';
-		}else if(empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo'])) ){
+		}else if(empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
 			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
-		}else if(!is_numeric($this->datos['codigo'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
+		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
 			$this->respuesta['msg']='algunos campos solo admiten caracteres numericos o con punto decimal :)';
 		}
 	$this->guardar();
@@ -48,7 +48,7 @@ class producto_nuevo {
 					"'. $this->datos['precio_venta'] .'",
 					"'. $this->datos['existencias'] .'",
 					"'. $this->datos['descprod'] .'",
-					"'. $this->datos['codigo'] .'",
+					"'. $this->datos['codigo_producto'] .'",
 					"'. $this->datos['imagen'] .'",
 					"'. $this->datos['categoria'] .'",
                     "'. $this->datos['fecha_subida'] .'"
@@ -65,7 +65,7 @@ class producto_nuevo {
 						precio_venta		= "'. $this->datos['precio_venta'] .'",
 						existencias			= "'. $this->datos['existencias'] .'",
 						descprod			= "'. $this->datos['descprod'] .'",
-						codigo_producto			= "'. $this->datos['codigo'] .'",
+						codigo_producto			= "'. $this->datos['codigo_producto'] .'",
 						imagen				= "'. $this->datos['imagen'] .'",
 						categoria			= "'. $this->datos['categoria'] .'",
 						fecha_subida		= "'. $this->datos['fecha_subida'] .'"

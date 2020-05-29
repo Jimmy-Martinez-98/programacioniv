@@ -37,9 +37,7 @@ div.bg{
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
 }
-.form-control:focus:valid{
-	background-color: green;
-}
-.form-control:focus:invalid{
-	background-color: red;
+
+.form-control:focus{
+	outline: green;
 }
