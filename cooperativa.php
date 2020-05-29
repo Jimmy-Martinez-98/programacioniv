@@ -30,8 +30,10 @@ error_reporting(0);
   
 
   <nav id="navbarrr" class="navbar navbar-expand-lg navbars">
-    <a class="navbar-brand"i  style="color: black;" href="index.html " > <img width="150px" height="60px" class="image" src="public/img/coppilogo.png" alt=""></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <a href="#" class="navbar navbar-brand">
+     <img height="50" src="public/img/logo2,0.png" alt="">
+    </a>
+   
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown"> 
     <div class="dropdown ml-auto ">

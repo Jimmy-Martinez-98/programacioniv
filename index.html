@@ -19,33 +19,34 @@
 </head>
 <body >
  
-    <nav class="navbar navbar-expand-lg   " id="nav">
-    <a href="#" class="navbar navbar-brand">
-     <img src="public/img/logo/logo.gif" alt="">
-    </a>
+    <nav class="navbar navbar-expand-lg" id="nav">
     
-        <button class="navbar-toggler mb-2"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    
+        <button class="navbar-toggler mb-2  mr-auto"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <img width="50px" height="50px" src="public/img/menu.png">
         </button>
         <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
             <ul class="navbar-nav mr-auto uls" >
+              <a href="#" class="navbar navbar-brand">
+                <img height="50" src="public/img/logo2,0.png" alt="">
+               </a>
               <li class="nav-item  lis" >
-            <a class="nav-item nav-link  as" id="home" href="index.html" ><h6>Inicio</h6> <span class="sr-only"></span></a>
+            <a class="nav-item nav-link  as" id="home" href="index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
           </li>
           <li class="nav-item lis">
-            <a class="nav-link as " id="verduras" href="#"><h6>Verduras</h6></a>
+            <a class="nav-link as " id="verduras" href="#"><h3>Verduras</h3></a>
           </li>
           <li class="nav-item lis">
-            <a class="nav-link as" id="frutos"  href="#"><h6>Frutos</h6></a>
+            <a class="nav-link as" id="frutos"  href="#"><h3>Frutos</h3></a>
           </li>
           <li class="divicio lis">
-            <a class="nav-link  as" id="legumbres" href="#"><h6>Legumbres</h6></a>
+            <a class="nav-link  as" id="legumbres" href="#"><h3>Legumbres</h3></a>
           </li>
         </ul>
         <ul class="navbar-nav uls">
         
           <li class="lis" v-if="session===0">
-            <a class="nav-link  as" id="login"  href="login.php"><h6> Iniciar Sesion</h6></a>
+            <a class="nav-link  as" id="login"  href="login.php"><h3> Iniciar Sesion</h3></a>
           </li>
 
 
