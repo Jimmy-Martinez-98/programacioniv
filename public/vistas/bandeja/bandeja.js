@@ -31,24 +31,27 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                } 
 			},
 			vermensajes:function(){
-				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	
-					this.users=resp;
+				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	            
+               this.users=resp;    
 					
-					
-				});
+            });
+            
+          
 			},
 			openchat:function(id) {
+            
+            
 				this.msg.para=id
 				this.msgs=[];
 				this.allmsg.forEach(item=>{
                this.util(item);
               
             })
+           
+         
             this.users.forEach(user=>{
              if(user.idusuario==id){
-               this.nombrechat=user;
-               console.log(user.imagen);
-                           
+               this.nombrechat=user;            
              }
                
             })

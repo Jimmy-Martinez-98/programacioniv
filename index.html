@@ -27,8 +27,8 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
             <ul class="navbar-nav mr-auto uls" >
-              <a href="#" class="navbar navbar-brand">
-                <img height="50" src="public/img/logo2,0.png" alt="">
+              <a href="index.html" class="navbar navbar-brand">
+                <img height="50" src="public/img/logo2,0.png">
                </a>
               <li class="nav-item  lis" >
             <a class="nav-item nav-link  as" id="home" href="index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
@@ -78,7 +78,7 @@
       <div class="row">
         <div class="col-sm-4" v-for="datos in productos">
        
-          <div class="card mt-2"   v-on:click="verProd(datos)">
+          <div class="card mt-2 mb-2"   v-on:click="verProd(datos)">
             <img v-bind:src="datos.imagen" height="200" class="card-img-top" alt="img"
             data-toggle="popover" data-trigger="hover"
             title="Descripcion" v-bind:data-content="datos.descprod"

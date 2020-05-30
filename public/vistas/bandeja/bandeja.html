@@ -20,16 +20,16 @@
 		  <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
 			  <ul class="navbar-nav mr-auto uls" >
 				<li class="nav-item  lis" >
-			  <a class="nav-item nav-link  as" id="home" href="../.../../../../index.html" ><h6>Inicio</h6> <span class="sr-only"></span></a>
+			  <a class="nav-item nav-link  as" id="home" href="../.../../../../index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as " id="verduras" href="#"><h6>Verduras</h6></a>
+			  <a class="nav-link as " id="verduras" href="#"><h3>Verduras</h3></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as" id="frutos"  href="#"><h6>Frutos</h6></a>
+			  <a class="nav-link as" id="frutos"  href="#"><h3>Frutos</h3></a>
 			</li>
 			<li class="divicio lis">
-			  <a class="nav-link  as" id="legumbres" href="#"><h6>Legumbres</h6></a>
+			  <a class="nav-link  as" id="legumbres" href="#"><h3>Legumbres</h3></a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav uls">
@@ -63,24 +63,25 @@
 			<h4>Mensajes</h4>
 			</div>
 			<div class="list-msg" >
-				<ul class="list-group lista-items" v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)">
-					<li class="list-group-item">  {{items.nombreu}}</li>
+				<ul class="list-group lista-items" v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)" >
+				<li class="list-group-item"><img v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{items.nombreu}}</li>
 				</ul>
 			</div>
-			
+		
 		</div>
 		 
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-msg ">
 			<h5 class="titulomsg ml-2" >
-					 {{nombrechat.nombreu}}
+				<img v-bind:src="'../../../'+nombrechat.imagen" class="rounded-circle mr-2" width="30px" height="30px"> {{   nombrechat.nombreu}}
 			</h5>
+			
 			</div>	
 		
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" v-if="item.de !=msg.de" >						
-								<li class="listamsgs-item text-break mr-auto ">{{ item.msg }}</li>
+							   	<li class="listamsgs-item text-break mr-auto mt-1"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
 						</ul>
 						<ul class="listamsgs" v-else="item.de==msg.de" >						
 							<li class="listamsgs-iteml text-break ml-auto mr-3">{{ item.msg }}</li>

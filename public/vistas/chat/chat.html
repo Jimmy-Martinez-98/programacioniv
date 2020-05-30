@@ -13,7 +13,7 @@
 	<nav class="navbar navbar-expand-lg   " id="nav">
 		<div class="container-fluid">
 		
-		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/agroproducers.png" alt=""></a>
+		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/logo2,0.png" alt=""></a>
 		  <button class="navbar-toggler mb-2"  id="toggles" type="button"  v-on:click="collapse" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		   <img width="50px" height="50px" src="../../../public/img/menu.png">
 		  </button>
@@ -66,10 +66,11 @@
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" >						
-								<li class="listamsgs-item text-break  ">{{ item }}</li>
+								<li class="listamsgs-item text-break mr-auto " v-if="item.de !=msg.de">  {{ item}}</li>
+								<li class="listamsgs-iteml text-break ml-auto mr-3" v-else="item.de==msg.de"> {{ item }}</li>
 						</ul>
 						
-						
+					
 					</div>
 				</div>
 			

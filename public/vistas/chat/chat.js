@@ -8,26 +8,32 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                 para:0,
                 msg:''
             },
-            msgs : []
+            msgs : [],
+            imgs:[]
         },
         methods:{
 
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
-                
+                fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
+                  this.imgs=resp[0].imagen;     
+                 
+                  
+               });
+              
             },
             de:function(){ 
                     fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
                        this.msg.de=resp[0].idusuario;   
                       
                     });
-
+                   
             },
             enviarMensaje(){
                if(this.msg!=''){
                   socket.emit('enviarMensaje', this.msg);  
-                  this.msg = '';   
+                  this.msg.msg = '';   
                }  
               
             }
@@ -50,12 +56,13 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
     });
     socket.on('chatHistory',msgs=>{
         appchat.msgs = [];
-        msgs.forEach(item => {
-            if (item.de === appchat.msg.de && item.para === appchat.msg.para ||
-                item.para === appchat.msg.de && item.de === appchat.msg.para) {
-                appchat.msgs.push(item.msg); 
-            }
-        });
+       msgs.forEach(item => {
+        if (item.de === appchat.msg.de && item.para === appchat.msg.para ||
+            item.para === appchat.msg.de && item.de === appchat.msg.para) {
+             appchat.msgs.push(item.msg);  
+          
+        }
+    });
     });
 
 
@@ -86,7 +93,7 @@ var validarsession=new Vue({
             
          })
       },
-      traercuenta: function (param) {  
+      traercuenta: function () {  
          fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp=>resp.json()).then(resp=>{
             this.datoscuenta=resp;
             
