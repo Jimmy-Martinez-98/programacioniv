@@ -64,7 +64,7 @@
 			</div>
 			<div class="list-msg" >
 				<ul class="list-group lista-items" v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)" >
-				<li class="list-group-item"><img v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{items.nombreu}}</li>
+				<li class="list-group-item" ><img v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{items.nombreu}}</li>
 				</ul>
 			</div>
 		
@@ -73,7 +73,8 @@
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-msg ">
 			<h5 class="titulomsg ml-2" >
-				<img v-bind:src="'../../../'+nombrechat.imagen" class="rounded-circle mr-2" width="30px" height="30px"> {{   nombrechat.nombreu}}
+				<img src="../../img/avatars.gif" v-if="nombrechat.imagen==''" class="rounded-circle mr-2" width="30px" height="30px">
+				<img v-bind:src="'../../../'+nombrechat.imagen" v-else class="rounded-circle mr-2" width="30px" height="30px"> {{   nombrechat.nombreu}}
 			</h5>
 			
 			</div>	
@@ -81,7 +82,7 @@
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" v-if="item.de !=msg.de" >						
-							   	<li class="listamsgs-item text-break mr-auto mt-1"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
+							   	<li class="listamsgs-item text-break mr-auto mt-1" v-if="nombrechat!=''"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
 						</ul>
 						<ul class="listamsgs" v-else="item.de==msg.de" >						
 							<li class="listamsgs-iteml text-break ml-auto mr-3">{{ item.msg }}</li>
