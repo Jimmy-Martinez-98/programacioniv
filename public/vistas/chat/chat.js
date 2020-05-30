@@ -37,8 +37,8 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                   this.msg.msg = '';   
                }  
               
-            }
-           
+            },
+          
         },
         created(){
           
