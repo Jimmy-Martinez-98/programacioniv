@@ -59,15 +59,16 @@
 	<div  class="contenedor">	 
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-sidebar">
-			<img width="30px" height="30px" src="../../../public/img/chat.png" alt="">
-			<h4>Mensajes</h4>
+			<img   width="30px" height="30px" src="../../../public/img/chat.png" alt="">
+			<h4 class="ml-3" >  {{receptor.nombreu}} </h4>
+			
 			</div>	
 		
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" >						
-								<li class="listamsgs-item text-break mr-auto " v-if="item.de!=msg.de">  {{item.msg}}</li>
-								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else="item.de==msg.de"> {{item.msg}}</li>
+								<li class="listamsgs-item text-break mr-auto " v-if="item.de!=msg.de">{{item.msg}}</li>
+								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else="item.de==msg.de">{{item.msg}}</li>
 						</ul>
 						
 					

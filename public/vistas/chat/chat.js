@@ -9,19 +9,23 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                 msg:''
             },
             msgs : [],
-          
+            receptor:[]
         },
         methods:{
 
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
+                this.receptor=datafromstorage.info
                 
                
             },
             de:function(){ 
                     fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
                        this.msg.de=resp[0].idusuario;   
+                       
+                      
+                       
                        socket.emit('chatHistory');
                     });
                     
