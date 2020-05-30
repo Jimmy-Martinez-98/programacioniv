@@ -60,14 +60,10 @@ var editfoto =new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					  })
+					  alertify.warning(resp.msg);
 				}else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'success',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1500
-					  })
+					
+					  alertify.success(resp.msg);
 				}
 			})
 		},

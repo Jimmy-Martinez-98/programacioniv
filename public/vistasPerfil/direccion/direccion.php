@@ -15,8 +15,8 @@
 <div class="container bg">
 
 <form action="#" method="post" id="frm-direcciones">
- <head> <h3 class="d-flex justify-content-center">Direcciones <?php echo $_SESSION['usuario']?></h3><hr></head>
-		<table class="table">
+ <head> <h3 class="d-flex justify-content-center">Direcciones</h3><hr></head>
+<table class="table">
   <thead class="thead-light">
     <tr>
       <label scope="col"> </label>

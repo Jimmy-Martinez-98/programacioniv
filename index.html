@@ -54,7 +54,7 @@
           <div class="dropdown ml-auto ">
             <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
            <img v-if="datoscuenta[0].imagen!=''" v-bind:src="datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
-           <img src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
+           <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
             {{datoscuenta[0].nombreu}}
           
            </a>

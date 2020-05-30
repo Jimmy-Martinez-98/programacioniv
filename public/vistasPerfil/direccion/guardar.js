@@ -7,8 +7,7 @@ var mostrardirecciones=new Vue({
 		this.info();
 	},
 	methods:{
-		info:function(){  
-			
+		info:function(){  	
 		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccion&direction=${JSON.stringify(this.direction )}`).then( resp=>resp.json() ).then(resp=>{ 
 			   this.direction = resp;		   
 		   });	   	     
@@ -86,13 +85,8 @@ var editardirecciones= new Vue({
 						timer: 1500
 					})	
 				}else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'success',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1500
-					  })
+					alertify.success(resp.msg);
+					this.info();
 				}	
 				
 			
@@ -150,13 +144,7 @@ var nuevadireccion = new Vue({
 					})
 					
 				}else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'success',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1000
-					  })
+					alertify.success(resp.msg);
 				}	
 				
 			});

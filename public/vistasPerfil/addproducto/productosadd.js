@@ -37,22 +37,10 @@ var publicarp=new Vue({
 
 				fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
 					if(resp.msg=="Su Producto Fue Publicado Exitosamente"){
-						Swal.fire({
-							position: 'top-end',
-							icon: 'success',
-							title: resp.msg,
-							showConfirmButton: false,
-							timer: 1500
-						  })
+						  alertify.success(resp.msg);
 						  this.publicP='';
 					}else if(resp.msg=="Su Producto Ha Sido Actualizado"){
-						Swal.fire({
-							position: 'top-end',
-							icon: 'success',
-							title: resp.msg,
-							showConfirmButton: false,
-							timer: 1500
-						  })
+						alertify.success(resp.msg);
 						  this.publicP='';
 					}else{
 						Swal.fire({

@@ -22,7 +22,8 @@ error_reporting(0);
     
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<link rel="stylesheet" href="public/vistas/perfiles/cooperativa.css">
+  <link rel="stylesheet" href="public/vistas/perfiles/cooperativa.css">
+   <link rel="stylesheet" href="alertifyjs/css/alertify.css">
     <title>Perfil</title>
 </head>
 <body  >
@@ -39,7 +40,7 @@ error_reporting(0);
     <div class="dropdown ml-auto ">
      <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
     <img v-if="perfil[0].imagen!=''" v-bind:src="perfil[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
-    <img src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
+    <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
      {{perfil[0].nombreu}}
     </a>
    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
@@ -91,6 +92,7 @@ error_reporting(0);
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+ <script src="alertifyjs/alertify.js"></script>
   <script src="public/vistas/perfiles/cooperativa.js"></script>
 
 

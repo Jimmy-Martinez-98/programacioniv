@@ -26,10 +26,14 @@
 					
 					</div>
 
-					<div class="form-group float-right">
+					<div class="form-group float-right" v-if="datoscuenta[0].nombrecooperativa!=''">
 						<label for="nombreC">Nombre Cooperativa</label>
 						<input type="text" v-model="datoscuenta[0].nombrecooperativa" disabled class="form-control" id="nombrec">					
 					</div>
+					<div class="form-group float-right" v-else="datoscuenta[0].nombrecooperativa==''">
+						
+					</div>
+					
 				</div>
 					
 					<div class="col-8 mt-3">
