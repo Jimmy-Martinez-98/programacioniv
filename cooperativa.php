@@ -83,6 +83,8 @@ error_reporting(0);
 
     </section>
 
+
+    
     <script src="public/js/jquery-3.5.js"></script>
   <script src="public/js/jquery-ui.js"></script>
   <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
