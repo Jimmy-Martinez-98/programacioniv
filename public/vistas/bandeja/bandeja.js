@@ -32,14 +32,14 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 			},
 			vermensajes:function(){
 				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	            
-               this.users=resp;    
-              
+                       
+                   
+                   this.users=resp
+                   
+                    
             });
             
-            if(this.msg!=''){
-               this.users
-            }
-          
+        
 			},
 			openchat:function(id) {
             
@@ -55,8 +55,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             this.users.forEach(user=>{
              if(user.idusuario==id){
                this.nombrechat=user;            
-             }
-               
+             }         
             })
             
                

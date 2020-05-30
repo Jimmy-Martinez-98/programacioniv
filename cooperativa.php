@@ -38,7 +38,8 @@ error_reporting(0);
     <li class="nav-item dropdown"> 
     <div class="dropdown ml-auto ">
      <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-    <img v-bind:src="perfil[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+    <img v-if="perfil[0].imagen!=''" v-bind:src="perfil[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+    <img src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
      {{perfil[0].nombreu}}
     </a>
    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  

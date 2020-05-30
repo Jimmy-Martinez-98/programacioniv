@@ -11,7 +11,8 @@
 			<div class="row d-flex justify-content-center pt-2">
 				<div class="col-6">
 					<div  class=" float-left" style="width: 250px;">
-						<img  height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
+						<img  v-if="datoscuenta[0].imagen!=''" height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
+						<img v-else  height="200px" src="public/img/avatars.gif" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
 					</div>
 					<div class="float-right">
 						<button type="button"  class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" v-on:click="modfoto(datoscuenta[0])" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
@@ -99,8 +100,8 @@
 		</form>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-primary btn-lg">Eliminar</button>
-		<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg">Carcar foto</button>
+			<button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+		<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg">Cargar foto</button>
 		</div>
 	  </div>
 	</div>
