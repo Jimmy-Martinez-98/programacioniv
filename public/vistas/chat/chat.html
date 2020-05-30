@@ -66,8 +66,8 @@
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" >						
-								<li class="listamsgs-item text-break mr-auto " v-if="item.de !=msg.de">  {{ item}}</li>
-								<li class="listamsgs-iteml text-break ml-auto mr-3" v-else="item.de==msg.de"> {{ item }}</li>
+								<li class="listamsgs-item text-break mr-auto " v-if="item.de!=msg.de">  {{item.msg}}</li>
+								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else="item.de==msg.de"> {{item.msg}}</li>
 						</ul>
 						
 					
