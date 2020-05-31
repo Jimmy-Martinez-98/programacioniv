@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
+	<link rel="stylesheet" href="public/vistasPerfil/editarpublicacion/editar.css">
+	<title>edicion</title>
+</head>
+<body>
+	
+<div class="row">
+	<div class="col-sm">
+		<div class="container bg card" >
+			<form action="#" method="post" enctype="multipart/form-data" id="frm-edit"> 
+					<h1 class=" h1s">Edicion de Producto</h1>
+					<hr class="hrs">
+					<div class="d-flex justify-content-center">
+						<div class="card mb-2" style="width: 18rem;">
+							<img width="200" height="200" v-if="imagen!=''||mod.imagen!=''" id="img-preview"	:src="imagen"  class="card-img-top" v-bind:src="mod.imagen"   alt="la imagen va aquí" >
+							<img width="200" height="200" v-else src="public/img/ico.png" class="card-img-top" >
+							<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
+							
+						</div>	 
+					</div> 
+					
+					<div class="form-group  ">
+						<label for="nameproduct">Nombre  Producto</label>
+						<input v-model="mod.nombre_producto"    type="text"  class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
+						
+					</div>
+					  <div class="row">
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="desc">Descripcion Producto</label>
+								<textarea v-model="mod.descprod"  type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion"></textarea>
+			
+							</div>
+						  </div>
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="desc">Codigo Producto</label>
+								<input  v-model="mod.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa codigo del Producto">	
+							</div>
+						
+						  </div>
+					  </div>
+					
+					  <div class="row">
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="categoria">Categoria Producto</label>
+								<input v-model="mod.categoria" type="text" class="form-control"  id="categoria" placeholder="Ingresa Categoria">						
+							
+							</div>
+						  </div>
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="cantidad">Cantidad  Existencias</label>
+								<input v-model="mod.existencias" pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
+							  
+								
+							</div>
+						  </div>
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="cantidad">Precio</label>
+								<input  v-model="mod.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
+							  
+							
+							</div>
+						  </div>
+						  <div class="col-6">
+							<div class="form-group">
+								<label for="cantidad">Precio De Venta</label>
+								<input v-model="mod.precio_venta"  pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
+				
+							</div>
+						  </div>
+					  </div>
+					  <div class="tiempo mb-2">
+						<input v-model="mod.fecha_subida"  type="date" >
+	
+					</div>
+					 
+						  <div class="card-footer-fluid pb-2">
+						<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
+							<button v-on:click="editar"  type="button" class="btn btn-primary btn-lg btn-small text-white" >Guardar Cambios</button>
+						  </div>
+						
+						</div>
+			
+			
+			
+			</form>
+		</div>
+	</div>
+	<div class="col-sm">
+		<form id="frmMis" >
+		<div class="container ">
+			<table class="table table-sm  table-fixed" >
+			
+				<thead>
+					<form class="form-control">
+						<input type="text" class="form-control" v-model="valor" id="busquedap" v-on:keyup="buscar" placeholder="Buscar Producto por: codigo, Nombre o Categoria">
+					</form>
+				  <tr style="width: 100%;">
+					<th scope="col"  style="width: 100px;margin-left:10px; margin-right: 20px;">
+						Codigo
+					</th>
+					<th style="width:150px;" scope="col">
+						Foto
+					</th>
+					<th  style="width: 150px;"  scope="col">
+						Nombre
+					</th>
+					<th  style="width: 150px;" scope="col">
+						Categoria
+					</th>
+				  </tr>
+				</thead>
+				<tbody class="scrolle">
+				  <tr  style="width: 100%; " v-for="productos in todo_prod":key="productos.idusuario" v-on:click="modi(productos)">
+					<td scope="row"   style="width: 100px;margin-left:10px;">
+						{{productos.codigo_producto }}
+					</td>
+					<td style="width:150px;" >
+						<div class="container align-content-center mt-3">
+						<img width="100"	height="80px"  v-bind:src="productos.imagen">
+					</div>
+				 </td>
+					<td style="width:150px;" class="d-flex justify-content-center" >
+						{{productos.nombre_producto }}
+					</td>
+					
+					<td  style="width:150px;" class="d-flex justify-content-center">
+						{{ productos.categoria}}
+					</td>
+				
+				  </tr>
+				 
+				</tbody>
+		
+			  </table>
+		</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<script src="public/vistasPerfil/editarpublicacion/editar.js"></script>
+</body>
+</html>

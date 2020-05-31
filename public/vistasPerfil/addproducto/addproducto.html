@@ -13,8 +13,9 @@
 				<h1 class=" h1s">Nuevo Producto</h1>
 				<hr class="hrs">
 				<div class="d-flex justify-content-center">
-					<div class="card mb-2" style="width: 18rem;">
-						<img width="200" height="200" id="img-preview" :src='imagen' v-bind:src="publicP.imagen" class="card-img-top"  alt="la imagen va aquí" >
+					<div class="card mb-2 px-3" style="width: 18rem;">
+						<img width="200" height="200" v-if="imagen!=''" id="img-preview" :src='imagen' v-bind:src="publicP.imagen" class="card-img-top"  alt="la imagen va aquí" >
+						<img width="200" height="200" v-else src="public/img/ico.png" class="card-img-top" >
 						<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
 						
 					</div>	 
@@ -31,14 +32,14 @@
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="desc">Descripcion Producto</label>
-							<input  v-model="publicP.descprod" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion">
+							<textarea  v-model="publicP.descprod" type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion"></textarea>
 		
 						</div>
 					  </div>
 					  <div class="col-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input  v-model="publicP.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Descripcion">	
+							<input  v-model="publicP.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Codigo">	
 						</div>
 					
 					  </div>
@@ -83,8 +84,6 @@
 				 
 					  <div class="card-footer-fluid pb-2">
 					<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-				
-						<button type="button" class="btn btn-secondary btn-lg btn-small " data-toggle="modal" data-target=".bd-example-modal-lg">Modificar Producto</button>
 						<button  v-on:click="guardar" type="button" class="btn btn-success btn-lg btn-small" >Publicar</button>
 					  </div>
 					
@@ -102,71 +101,8 @@
 
 
 
-<!-- modal -->
 
-  <div id="productos" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	  </button>
-	<div class="modal-dialog modal-xl modal-dialog-scrollable">
-		
-	  <div class="modal-content">
-		<div class="modal-header">	
-				<div class="form-group col-12">
-					<h5 for="busqueda">Busca Tus Productos</h5>
-					<input type="text" v-model="valor" v-on:keyup="traerdatos" placeholder="Nombre Producto, Categoria o Fecha en la que se publico" class="form-control">
-				</div>
-			
-		  </div>
-		  <div class="modal-body">
-		<form action="#" method="post">
-			<div class="container">
-			<table class="table">
-				<thead class="thead-light">
-				  <tr>
-					<th scope="col">Imagen</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Descripcion</th>
-					<th scope="col">Codigo</th>
-					<th scope="col">Existencias</th>
-					<th scope="col">Categoria</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Precio Venta</th>
-					<th scope="col">Fecha Publicado</th>
-					<th scope="col">Edicion</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr v-for="datos in todoP":key="datos.miproducto" >
-					<th><div class="container align-content-center mt-3">
-						<img width="80"	height="100" v-bind:src="datos.imagen" >
-					</div> </th>
-					<td> {{datos.nombre_producto}}</td>
-					<td>{{datos.descprod }}</td>
-					<td>{{datos.codigo_producto }}</td>
-					<td>{{datos.existencias}}</td>
-					<td>{{datos.categoria}}</td>
-					<td>{{datos.precio}}</td>
-					<td>{{datos.precio_venta}}</td>
-					<td>{{datos.fecha_subida}}</td>
-					<td>
-						<button  v-on:click="modificar(datos)" type="button" class="btn btn-secondary" data-dismiss="modal">Modificar</button>
-					</td>
-				  </tr>
-				 
-				</tbody>
-			  </table>
-			</div>
-		</form>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			
-		  </div>
-		 
-	  </div>
-	</div>
-	
-  </div>
+
+ 
   
   

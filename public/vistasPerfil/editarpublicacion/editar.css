@@ -1,0 +1,47 @@
+body{
+	overflow-x: hidden;
+}
+.table-fixed tbody{
+	height: 250px;
+	overflow-y: scroll;
+		width: 100%;
+		overflow-x: hidden;
+		cursor: pointer;
+		background-color: #5fb677;
+}
+
+.table-fixed thead{
+	background-color:#5fb677 ;
+	display: block;
+	height: 50px;
+}
+
+.table-fixed tbody::-webkit-scrollbar{
+	width:7px ;
+	background: rgb(206, 206, 206);
+	border-radius: 3px;
+}
+.table-fixed tbody::-webkit-scrollbar-thumb{
+	background: rgb(148, 148, 147);
+	border-radius: 3px;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed td,
+.table-fixed,th
+{
+
+	display:block;
+	
+}
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th{
+float: left;
+padding: 0;
+	border-bottom-width: 0px;
+
+
+}
+

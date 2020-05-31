@@ -26,9 +26,7 @@ class producto_nuevo {
        
 	}
 	private function validardatos(){
-		if(empty(trim($this->datos['idusuario']))){
-			$this->respuesta['msg']='Identificador Faltante';
-		}else if(empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
+		 if(  empty(trim($this->datos['idusuario']))||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
 			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
 		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
 			$this->respuesta['msg']='algunos campos solo admiten caracteres numericos o con punto decimal :)';
@@ -56,27 +54,49 @@ class producto_nuevo {
                 ');
                 $this->respuesta['msg']="Su Producto Fue Publicado Exitosamente";
                
-			}else if($this->datos['accion']==='modificar'){
-					$this->db->consultas('
-						UPDATE  misproducto SET
-						fk_idusuario     	= "'. $this->datos['idusuario'] .'",
-						nombre_producto     =  "'. $this->datos['nombre_producto'] .'",
-						precio				= "'. $this->datos['precio'] .'",
-						precio_venta		= "'. $this->datos['precio_venta'] .'",
-						existencias			= "'. $this->datos['existencias'] .'",
-						descprod			= "'. $this->datos['descprod'] .'",
-						codigo_producto			= "'. $this->datos['codigo_producto'] .'",
-						imagen				= "'. $this->datos['imagen'] .'",
-						categoria			= "'. $this->datos['categoria'] .'",
-						fecha_subida		= "'. $this->datos['fecha_subida'] .'"
-						 WHERE miproducto	= "'. $this->datos['miproducto'] .'"
-						
-					
-					');
-				return	$this->respuesta['msg']='Su Producto Ha Sido Actualizado';
-			}
+			} 
 		}
 		
+	}
+
+	public function recibirDatosmod($producto)
+    {
+        $this->datos = json_decode($producto, true);
+        $this->validarmod();
+       
+	}
+
+	private function validarmod(){
+	 if( empty(trim($this->datos['fk_idusuario'])) ||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
+			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
+		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
+			$this->respuesta['msg']='algunos campos solo admiten caracteres numericos o con punto decimal :)';
+		}
+	$this->modificarp();
+	}
+
+	private function modificarp(){
+		if($this->respuesta['msg']==='correcto'){	
+		if($this->datos['accion']==='modificar'){
+			$this->db->consultas('
+				UPDATE  misproducto SET
+				fk_idusuario     	= "'. $this->datos['fk_idusuario'] .'",
+				nombre_producto     =  "'. $this->datos['nombre_producto'] .'",
+				precio				= "'. $this->datos['precio'] .'",
+				precio_venta		= "'. $this->datos['precio_venta'] .'",
+				existencias			= "'. $this->datos['existencias'] .'",
+				descprod			= "'. $this->datos['descprod'] .'",
+				codigo_producto			= "'. $this->datos['codigo_producto'] .'",
+				imagen				= "'. $this->datos['imagen'] .'",
+				categoria			= "'. $this->datos['categoria'] .'",
+				fecha_subida		= "'. $this->datos['fecha_subida'] .'"
+				 WHERE miproducto	= "'. $this->datos['miproducto'] .'"
+				
+			
+			');
+		return	$this->respuesta['msg']='Su Producto Ha Sido Actualizado';
+		}
+	}
 	}
 
 		public function deleteproducto($identificador=0){
@@ -91,7 +111,7 @@ class producto_nuevo {
 
 
 	public function traerproductos( $valor=''){
-		$this->db->consultas("SELECT usuario.idusuario, misproducto.* FROM misproducto JOIN usuario on usuario.idusuario=misproducto.fk_idusuario where  usuario.idusuario=".$_SESSION['usuario']." and (misproducto.categoria like '%$valor%' or misproducto.nombre_producto like '%$valor%' or misproducto.fecha_subida like '%$valor%') "  );
+		$this->db->consultas("SELECT  misproducto.* FROM misproducto where  misproducto.fk_idusuario=".$_SESSION['usuario']." and (misproducto.codigo_producto like '%$valor%' or misproducto.nombre_producto like '%$valor%' or misproducto.categoria like '%$valor%') "  );
 		return $this->respuesta=$this->db->obtener_datos();
 	}
 

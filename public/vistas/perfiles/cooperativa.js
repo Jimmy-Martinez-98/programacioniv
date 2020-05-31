@@ -60,6 +60,14 @@ $(document).ready(function () {
 	   });
 	
 	});
+	$('#modP').click(()=>{
+	
+		
+		$("#contenedorP").load("public/vistasPerfil/editarpublicacion/editar.html",function(data){
+		  $(this).html(data);
+	   });
+	
+	});
 
 	cambiar_clase();
 

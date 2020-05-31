@@ -52,24 +52,27 @@ error_reporting(0);
     </li>
     </ul>
   </nav>
-<nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist" >
+<nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist " >
   
     <div  id="navbarNavAltMarkup ">
         <ul class="navbar-nav mr-auto uls " id="nav">
           <li class=" lis activa">
-        <a class=" nav-link  " id="info" href="#" ><h5>Informacion de Perfil</h5> <span class="sr-only"></span></a>
+        <a class=" nav-link  " id="info" href="#" > <h6>Informacion de Perfil</h6>  <span class="sr-only"></span></a>
       </li>
       <li class=" lis activa">
-        <a class="nav-link  " id="addProductos" href="#"><h5> Añadir producto en venta </h5></a>
+        <a class="nav-link  " id="addProductos" href="#">  <h6>Añadir producto en venta</h6>  </a>
       </li>
       <li class=" lis activa">
-        <a class="nav-link " id="listdeseos"  href="#"><h5> Lista de deseos </h5></a>
+        <a class="nav-link " id="modP"  href="#"> <h6>Editar Publicaciones</h6>  </a>
+      </li>
+      <li class=" lis activa">
+        <a class="nav-link " id="listdeseos"  href="#">  <h6>Lista de deseos</h6> </a>
       </li>
       <li class="divicio  lis activa">
-        <a class="nav-link  " id="POferta" href="#"><h5> Producto en oferta </h5></a>
+        <a class="nav-link  " id="POferta" href="#"> <h6>Producto en oferta</h6>  </a>
       </li>
       <li class="divicio  lis activa">
-        <a class="nav-link  " id="Configc" href="#"><h5>Configuración de Cuenta </h5></a>
+        <a class="nav-link  " id="Configc" href="#"> <h6>Configuración de Cuenta</h6>  </a>
       </li>
   
     </ul>
