@@ -16,7 +16,8 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             para:function(){
                 var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
                 this.msg.para=datafromstorage.info.idusuario;
-                this.receptor=datafromstorage.info
+                this.receptor=datafromstorage.info;
+                
                 
                
             },
