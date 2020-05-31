@@ -13,7 +13,7 @@
 	<nav class="navbar navbar-expand-lg   " id="nav">
 		<div class="container-fluid">
 		
-		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/agroproducers.png" alt=""></a>
+		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/logo2,0.png" alt=""></a>
 		  <button class="navbar-toggler mb-2"  id="toggles" type="button"  v-on:click="collapse" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		   <img width="50px" height="50px" src="../../../public/img/menu.png">
 		  </button>
@@ -63,7 +63,7 @@
 			<h4>Mensajes</h4>
 			</div>
 			<div class="list-msg" >
-				<ul class="list-group lista-items"  v-for="items in users" :key="items.idusuario" v-on:click="openchat(items.idusuario)" >
+				<ul class="list-group lista-items"  v-for="items in users" :key="items.idusuario"  v-on:click="openchat(items.idusuario)" >
 				<li class="list-group-item" ><img v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{items.nombreu}}</li>
 				</ul>
 				

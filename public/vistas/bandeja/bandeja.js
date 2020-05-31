@@ -31,15 +31,12 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                } 
 			},
 			vermensajes:function(){
-				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	            
-                       
-                   
-                   this.users=resp
-                   
-                    
+				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	                         
+                   this.users=resp              
             });
             
-        
+           
+            
 			},
 			openchat:function(id) {
             
@@ -65,8 +62,8 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                     item.de === this.msg.para && item.para === this.msg.de) {
                     this.msgs.push(item);
                 }
-			  }
-
+           },
+        
             
         },
         created(){
@@ -85,7 +82,8 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
         
     });
 	socket.on('chatHistory', msgs => {
-		appbandeja.allmsg = msgs;
+      appbandeja.allmsg = msgs;
+      
 	});
 
 
