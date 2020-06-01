@@ -46,11 +46,14 @@
 				  </div>	 
 			</div>
 			<div class="col-6">
-				<div class="input-group mb-3">
+				<div class="input-group mb-3" v-if="usuario.selected=='Cooperativa'">
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-users"></i></span>
 					</div>
-					<input type="text"  id="cooperativa" class="form-control" disabled v-model="usuario.nombrecooperativa" placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
+					<input type="text"  id="cooperativa" class="form-control"  v-model="usuario.nombrecooperativa" placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
+				  </div>
+				  <div class="input-group mb-3" v-else>
+					
 				  </div>
 			</div>
 			<div class="col-6">
@@ -94,7 +97,7 @@
 
 
 		  
-		  <button type="submit" id="iniciarsesions" class="btn btn-lg btn-block">Iniciar Sesión</button>
+		  <button type="submit" id="iniciarsesions" class="btn btn-lg btn-block">Registrarse</button>
 		  <div class="row mt-3">
 			  <div class="col ">
 			<a class="text float-right " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	

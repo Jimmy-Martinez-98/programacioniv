@@ -48,32 +48,25 @@ var appusuario = new Vue({
 
 		},
         guardarusuario:function(){
-           if($('#msgs').val()=="Segura!"){
+           if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if(resp.msg=='usuario registrado correctamente'){
                     location.href="cooperativa.php"
                 }else{
                 this.usuario.msg = resp.msg;
-                this.usuario.idUsuario = 0;
-                  this.usuario.nombreu  = '';
-                  this.usuario.selected='';
-                this.usuario.nombrecooperativa = '';
-                this.usuario.telefono='';
-				this.usuario.correo = '';
-                this.usuario.pass='';
-                this.usuario.fecha='';
-                this.usuario.accion = 'nuevo';
-            }
+                    this.usuario=''
+                 }
               
-            });
-        }else{
+                 });
+           
+             }else{
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text:"la contraseña debe contener los requisitos ",
                 
-              })
-        }
+              });
+             }
            
         },
         IniciarSesion:function(){
@@ -87,18 +80,18 @@ var appusuario = new Vue({
 });
 
  
-$( function() {
-    $(".custom-select").change( function() {
-         if ($(this).val() === "Cooperativa") {
-             $("#cooperativa").prop("disabled", false);
+// $( function() {
+//     $(".custom-select").change( function() {
+//          if ($(this).val() === "Cooperativa") {
+//              $("#cooperativa").prop("disabled", false);
              
-         } else if($(this).val() === "Productor Pequeño") {
+//          } else if($(this).val() === "Productor Pequeño") {
             
-              $("#cooperativa").prop("disabled", true,'');
+//               $("#cooperativa").prop("disabled", true,'');
             
             
              
-        }
-      });
-  });
+//         }
+//       });
+//   });
      

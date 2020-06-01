@@ -195,7 +195,7 @@ var editpass =new Vue({
 						Swal.fire({
 							position: 'top-end',
 						   icon: 'error',
-							title: 'Las Contraseñas Deben Coinsidir',
+							title: resp.msg,
 							showConfirmButton: false,
 						   timer: 1500
 						  });

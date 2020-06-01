@@ -63,14 +63,15 @@ class login{
 
     private function validarRegistro()
     {
-        if (empty($this->datos['correo']) || empty($this->datos['pass'])) {
-            $this->respuesta['msg'] = 'Correo o contraseña estan vacios';
-        } elseif(empty($this->datos['nombreu'])){
-            $this->respuesta['msg']='el campo nombre esta vacio ';
-        }elseif(empty($this->datos['telefono'])){
-            $this->respuesta['msg']='el campo telefono esta vacio';
+        if (empty(trim($this->datos['correo'])) || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
+            $this->respuesta['msg'] = 'complete los campos vacios';
+        }
+
+        if($this->datos['selected']!='Cooperativa'){
+            $this->datos['nombrecooperativa']=='';
         }
            $this->almacenar_registro();
+        
     }
     private function almacenar_registro(){
         if($this->respuesta['msg']==='correcto'){
