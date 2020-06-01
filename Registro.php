@@ -100,8 +100,10 @@
 		  <button type="submit" id="iniciarsesions" class="btn btn-lg btn-block">Registrarse</button>
 		  <div class="row mt-3">
 			  <div class="col ">
-			<a class="text float-right " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	
+			<a class="text float-left " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	
 			  </div>	
+			  <div class="col">
+			  <a class="text float-right " v-on:click="IniciarSesion" href="#">Registrarse Como Cliente</a>	</div>
 		  </div>
 		 
 		</div>
