@@ -43,7 +43,7 @@ var mostrardetalle = new Vue({
 });
 
 var validarsession=new Vue({
-	el:"#nav",
+	el:"#nave",
 	data:{
 	   valor:'',
 	   session:'',
@@ -72,11 +72,12 @@ var validarsession=new Vue({
 			 
 		  })
 	   },
-	   colapsar:function(){
-		$(".collapse").animate({
-			height: 'toggle'
-		   });
-	   }
+	   colapsar:function(){  
+		
+		$("#toggles").animate({
+		 height: 'toggle'
+		});
+	 }
 	}
  })
 

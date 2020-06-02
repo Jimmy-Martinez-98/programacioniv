@@ -1,22 +1,16 @@
- body{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  min-height: 100vh;
-  flex-wrap: wrap;
-} 
+
 p{
   color: white;
 }
-footer{
+.card-footer{
   align-self: flex-end;
-  background: rgb(75, 75, 75);
-  line-height:3;
-  text-align: center;
   width: 100%;
-  
+  background-color: rgba(51, 51, 51, 0.815);
 }
 
+#nave{
+   background-color: #5fb677;;
+}
 .lista{
   list-style-type: circle;
   color: white;
@@ -35,7 +29,9 @@ footer>img{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-
+#hola{
+  background: #5fb677;
+}
 
 
   .as{
@@ -113,18 +109,9 @@ li.lis a.as{
   color: black;
 }
 .contactar:hover{
- 
   text-decoration: none;
   color: rgb(0, 255, 64);
 }
 
-@media(min-width:767px){
-  .imgsss{
-    width: 100%;
-  }
-  .tamaño>.imgsss{
-    width: 100%;
-  }
 
- 
-}
+

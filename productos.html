@@ -10,20 +10,17 @@
 	<link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-  />
+ 	 />
 	<title>Agro Producers</title>
 </head>
 <body>
-	<nav class="container-fluid navbar navbar-expand-lg fondonav " style="height: 100px;" id="nav">
-
-		<a href="index.html" class="navbar navbar-brand">
-			<img height="50" src="public/img/logo2,0.png" >
-		   </a>
-		  <button class="navbar-toggler mb-2"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		   <img width="50px" height="50px" src="public/img/menu.png">
-		  </button>
-	
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<nav class="navbar navbar-expand-lg navbar-light 	" id="nave">
+		<a class="navbar-brand" href="index.html"> <img height="50" src="public/img/logo2,0.png"></a>
+		<button class="navbar-toggler"  v-on:click="colapsar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="toggles">
 			<ul class="navbar-nav mr-auto uls  mt-0" >
 				<li class="nav-item  lis" >
 			  <a class="nav-item nav-link  as" id="home" href="index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
@@ -62,137 +59,126 @@
 		  </li>
 		  </ul>
 		  </ul> 
-
-		  </div>
-		</nav>
-
-
-
-		<div class="container-fluid " id="productovista">
-			<div class="row ">
-			  <div class="col-sm  mt-2 tamaño  " >		
-				<div class="container imgsss">
-					<img v-bind:src="detallesprod.info.imagen" height="300px"  alt=" image">
-				</div>
-			  </div>
-			  <div class="col-sm mt-5">
-				<div class="container columna">
-					<h3>{{detallesprod.info.nombre_producto}}</h3>
-					<p class="clasificacion">
-						<input id="radio1" type="radio" name="estrellas" value="5">
-						<label for="radio1">  &#9733;</label>
-						<input id="radio2" type="radio" name="estrellas" value="4">
-						<label for="radio2">  &#9733;</label>
-					<input id="radio3" type="radio" name="estrellas" value="3">
-						<label for="radio3">  &#9733;</label>
-						<input id="radio4" type="radio" name="estrellas" value="2">
-						<label for="radio4">  &#9733;</label>
-						<input id="radio5" type="radio" name="estrellas" value="1">
-						<label for="radio5"> &#9733; </label>
-					  </p>
-					
-					<div class="container-sm">
-						<p class="text-justify text-black-50">
-							{{detallesprod.info.descprod}}
-							
-						</p>
-						<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
-					<div class="container mb-5 columna">
-						<h3>Cantidad:</h3>
-						<div class="container">	
-							<div class="row float-left" >
-						
-								<div class="col" >
-									<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
-								</div>
-								<div class="col columna text-center">
-									<h3>{{contador}}</h3>
-								</div>
-								<div class="col columna">
-									<button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
-								</div>
-							</div>
-						</div>
-						<div class="container">
-						<button class=" btn btn-outline-danger float-right">Agregar a Deseos <i class="fas fa-heart"></i> </button>
-						</div>
-					</div>
-					<br>
-					<div class="container">
-						<button class="btn btn-dark form-control">Comprar Ahora</button>
-					
-					</div>
-						<br>
-						<hr>
-					
-						<div class="row"><div class="col">
-							<h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
-						</div>
-						<div class="col">
-							<h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
-						</div>
-					</div>
-							
-						
-					</div>
-				</div>
-			  </div>
-			 
-			</div>
-			<hr>
-			<div class="card text-center mb-2">
-				<div class="card-header">
-				  <ul class="nav nav-tabs card-header-tabs" >
-					<li class="nav-item">
-					  <a class="nav-link active" href="#">Productos Relacionados</a>
-					</li>
-					
-				  </ul>
-				</div>
-				<div class="card-body">
-					<ul class="list-unstyled">
-						<li class="media" v-for="relacion in productosrelacionados">
-						  <img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
-						  <div class="media-body">
-							<div class="col ">
-								<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
-								
-							</div>
-							<div class="col float-right">
-								<div class="container">
-									<p class="text-justify  text-black-50">
-										{{relacion.descprod}}
-									</p>
-									<div class="row mx-md-n5 mt-3">
-										<div class="col-6 px-md-5">
-											<div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
-											<div class="p-2   float-left">${{relacion.precio_venta}}</div>
-										</div>
-										
-									  </div>
-								</div>
-							  </div>
-							</div>
-							
-						</li>
-					
-					  </ul>
-				</div>
-			  </div>
-		  </div>
-
-
-
-
-
-
+		</div>
+	  </nav>
 
 	
 
-	  <footer>
-		
+	  <div class="container-fluid  mb-2" id="productovista">
+		<div class="row ">
+			<div class="col-sm  mt-2   " >		
+			  
+				  <img v-bind:src="detallesprod.info.imagen" height="300px"alt=" image">
+			 
+			</div>
+			<div class="col-sm mt-5">
+			  <div class="container columna">
+				  <h3>{{detallesprod.info.nombre_producto}}</h3>
+				  <p class="clasificacion">
+					  <input id="radio1" type="radio" name="estrellas" value="5">
+					  <label for="radio1">  &#9733;</label>
+					  <input id="radio2" type="radio" name="estrellas" value="4">
+					  <label for="radio2">  &#9733;</label>
+				  <input id="radio3" type="radio" name="estrellas" value="3">
+					  <label for="radio3">  &#9733;</label>
+					  <input id="radio4" type="radio" name="estrellas" value="2">
+					  <label for="radio4">  &#9733;</label>
+					  <input id="radio5" type="radio" name="estrellas" value="1">
+					  <label for="radio5"> &#9733; </label>
+					</p>
+				  
+				  <div class="container-sm">
+					  <p class="text-justify text-black-50">
+						  {{detallesprod.info.descprod}}
+						  
+					  </p>
+					  <a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
+				  <div class="container mb-5 columna">
+					  <h3>Cantidad:</h3>
+					  <div class="container">	
+						  <div class="row float-left" >
+					  
+							  <div class="col" >
+								  <button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
+							  </div>
+							  <div class="col columna text-center">
+								  <h3>{{contador}}</h3>
+							  </div>
+							  <div class="col columna">
+								  <button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
+							  </div>
+						  </div>
+					  </div>
+					  <div class="container">
+					  <button class=" btn btn-outline-danger float-right">Agregar a Deseos <i class="fas fa-heart"></i> </button>
+					  </div>
+				  </div>
+				  <br>
+				  <div class="container">
+					  <button class="btn btn-dark form-control">Comprar Ahora</button>
+				  
+				  </div>
+					  <br>
+					  <hr>
+				  
+					  <div class="row"><div class="col">
+						  <h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
+					  </div>
+					  <div class="col">
+						  <h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
+					  </div>
+				  </div>
+						  
+					  
+				  </div>
+			  </div>
+			</div>
+		   
+		  </div>
+		  <hr>
+		  <div class="card text-center mb-2">
+			  <div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs" >
+				  <li class="nav-item">
+					<a class="nav-link active" href="#">Productos Relacionados</a>
+				  </li>
+				  
+				</ul>
+			  </div>
+			  <div class="card-body">
+				  <ul class="list-unstyled">
+					  <li class="media" v-for="relacion in productosrelacionados">
+						<img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
+						<div class="media-body">
+						  <div class="col ">
+							  <h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+							  
+						  </div>
+						  <div class="col float-right">
+							  <div class="container">
+								  <p class="text-justify  text-black-50">
+									  {{relacion.descprod}}
+								  </p>
+								  <div class="row mx-md-n5 mt-3">
+									  <div class="col-6 px-md-5">
+										  <div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
+										  <div class="p-2   float-left">${{relacion.precio_venta}}</div>
+									  </div>
+									  
+									</div>
+							  </div>
+							</div>
+						  </div>
+						  
+					  </li>
+				  
+					</ul>
+			  </div>
+			</div>
+	  </div>
+	 <div class="card-footer bg-dark">
 		<p>© 2020 AgroProducer,Todos los derechos reservados.</p>
-	  </footer>
+	 </div>
 
 		<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>

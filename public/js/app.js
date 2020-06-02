@@ -2,15 +2,34 @@
 var app=new Vue({
    el:"#slider",
    data:{
-      productos:[]
+      productos:[],
+      items:[],
+    
    },
    created:function(){
    this.datoss();
+  this.contar();
    },
    methods:{
+      contar:function(){
+       
+        
+         
+      },
+   
       datoss:function(){         
          fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
-            this.productos = resp;		   
+            this.productos = resp;		
+              
+            var ojo=[]
+            resp.forEach(element => {
+                 ojo.push(element);
+                this.items=ojo;
+              
+                 
+                
+            }); 
+            console.log(this.items);
          });
 
       },
@@ -29,7 +48,7 @@ var app=new Vue({
 
 
    var validarsession=new Vue({
-      el:"#nav",
+      el:"#hola",
       data:{
          valor:'',
          session:'',
@@ -52,7 +71,7 @@ var app=new Vue({
                
             })
          },
-         traercuenta: function (param) {  
+         traercuenta: function () {  
             fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp=>resp.json()).then(resp=>{
                this.datoscuenta=resp;
                
@@ -60,7 +79,7 @@ var app=new Vue({
          },
           colapsar:function(){  
 		
-            $(".collapse").animate({
+            $("#toggles").animate({
              height: 'toggle'
             });
          }
@@ -108,7 +127,6 @@ $(document).ready(function () {
    
 });
   
-
 
 
 

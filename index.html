@@ -18,96 +18,125 @@
     <title>Agro Producers </title>
 </head>
 <body >
- 
-    <nav class="navbar navbar-expand-lg" id="nav">
-    
-    
-        <button class="navbar-toggler mb-2  mr-auto"  id="toggles" type="button" v-on:click="colapsar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <img width="50px" height="50px" src="public/img/menu.png">
-        </button>
-        <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
-            <ul class="navbar-nav mr-auto uls" >
-              <a href="index.html" class="navbar navbar-brand">
-                <img height="50" src="public/img/logo2,0.png">
-               </a>
-              <li class="nav-item  lis" >
-            <a class="nav-item nav-link  as" id="home" href="index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item lis">
-            <a class="nav-link as " id="verduras" href="#"><h3>Verduras</h3></a>
-          </li>
-          <li class="nav-item lis">
-            <a class="nav-link as" id="frutos"  href="#"><h3>Frutos</h3></a>
-          </li>
-          <li class="divicio lis">
-            <a class="nav-link  as" id="legumbres" href="#"><h3>Legumbres</h3></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav uls">
-        
-          <li class="lis" v-if="session===0">
-            <a class="nav-link  as" id="login"  href="login.php"><h3> Iniciar Sesion</h3></a>
-          </li>
-
-
-         <li class="nav-item dropdown" v-else>
-          <div class="dropdown ml-auto ">
-            <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-           <img v-if="datoscuenta[0].imagen!=''" v-bind:src="datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
-           <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
-            {{datoscuenta[0].nombreu}}
-          
-           </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item " href="cooperativa.php">Perfil  <i class="far fa-user-circle"></i></a>  
-            <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i class="fas fa-inbox"></i></a> 
-           <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
-          </div>
-           </div>
+  <nav class="navbar navbar-expand-lg  navbar-light" id="hola" >
+    <a class="navbar-brand" href="index.html"> <img height="50" src="public/img/logo2,0.png"></a>
+    <button class="navbar-toggler boton"  v-on:click="colapsar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="toggles">
+      <ul class="navbar-nav mr-auto uls">
+        <li class="nav-item  lis" >
+          <a class="nav-item nav-link  as" id="home" href="index.html" ><h4>Inicio</h4> <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item lis">
+          <a class="nav-link as " id="verduras" href="#"><h4>Verduras</h4></a>
+        </li>
+        <li class="nav-item lis">
+          <a class="nav-link as" id="frutos"  href="#"><h4>Frutos</h4></a>
+        </li>
+        <li class="divicio lis">
+          <a class="nav-link  as" id="legumbres" href="#"><h4>Legumbres</h4></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav uls">
+      
+        <li class="lis" v-if="session===0">
+          <a class="nav-link  as" id="login"  href="login.php"><h4> Iniciar Sesion</h4></a>
         </li>
 
-        </ul>
-         
+
+       <li class="nav-item dropdown" v-else>
+        <div class="dropdown ml-auto ">
+          <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+         <img v-if="datoscuenta[0].imagen!=''" v-bind:src="datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+         <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
+          {{datoscuenta[0].nombreu}}
+        
+         </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item " href="cooperativa.php">Perfil  <i class="far fa-user-circle"></i></a>  
+          <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i class="fas fa-inbox"></i></a> 
+         <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
         </div>
-
-
-      </nav>
-    
-    
-   <div class="container-sm mt-4 bg-white mb-2 " id="slider" >
-    <div class="container ">
-      <div class="row">
-        <div class="col-sm-4" v-for="datos in productos">
+         </div>
+      </li>
        
-          <div class="card mt-2 mb-2"   v-on:click="verProd(datos)">
-            <img v-bind:src="datos.imagen" height="200" class="card-img-top" alt="img"
+      </ul>
+      
+    </div>
+  </nav>
+    
+    
+   <!-- <div class="container-sm mt-4  mb-2  "  >
+    <div class="container" >
+      <div class="row">
+        <div class="col-sm-4" v-for="datos in productos" :key="datos.idusuario">
+          <div class="targeta "v-on:click="verProd(datos)" >
+            <img v-bind:src="datos.imagen"
             data-toggle="popover" data-trigger="hover"
             title="Descripcion" v-bind:data-content="datos.descprod"
+            
             >
-            <div class="card-body">
-              <h5 class="card-title">{{datos.nombre_producto}}</h5>       
-            </div>
-            <div class="card-footer">
-              <p class="card-text float-left"><small class="text-muted">Vendedor: {{datos.nombreu}}</small></p>
-              <p class="card-text float-right"><small class="text-muted">Precio: ${{datos.precio_venta}}</small></p>
+            <div class="cuerpotargeta">
+             <a href="#"><h4> {{datos.nombre_producto}}</h4></a>
+             <div class="row ">
+               <div class="col-12 ">
+                 <p class="card-text float-left">
+                   precio:   ${{datos.precio_venta}}
+                 </p>
+                 <i class="far fa-heart fav float-right"></i>
+              
+               </div>
+             </div>
             </div>
           </div>
         </div>
+      
+    </div>
+
+   </div>
+   </div>
+   -->
+  
+   <div id="slider" class="carousel slide bg-light container" data-ride="carousel">
+    <ol class="carousel-indicators bg-dark"  >
+      <li data-target="#slider"v-for="aja in items" v-if="aja==0"  v-bind:data-slide-to="aja" class="active"></li>
+      <li data-target="#slider" v-else="aja!=0"  v-bind:data-slide-to="aja" ></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" v-for="datos in productos" :key="datos.idusuario">
+        <div class="targeta bg-dark"v-on:click="verProd(datos)" >
+          <img v-bind:src="datos.imagen"
+          data-toggle="popover" data-trigger="hover"
+          title="Descripcion" v-bind:data-content="datos.descprod"
+          
+          >
+          <div class="cuerpotargeta">
+           <a href="#"><h4> {{datos.nombre_producto}}</h4></a>
+           <div class="row ">
+             <div class="col-12 ">
+               <p class="card-text float-left">
+                 precio:   ${{datos.precio_venta}}
+               </p>
+               <i class="far fa-heart fav float-right"></i>
+            
+             </div>
+           </div>
+          </div>
         </div>
       </div>
- 
-
-   </div>
-  
-
-
-   <div class="card-footer  bg-dark">
-    <img width="100px" height="100px" src="public/img/agroproducers.png" alt="">
-    <div class="col-12">
-      <span class=" text-justify text-white">	© 2020 AgroProducer,Todos los derechos reservados.
-			</span>
+      
     </div>
-   </div>
+    <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
   <!--js librerias-->
   <script src="public/js/jquery-3.5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
