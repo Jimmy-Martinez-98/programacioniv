@@ -95,9 +95,11 @@ text-align: center;
 .targeta .cuerpotargeta a{
     
     margin-bottom: 15px;
-    text-decoration: none;
     color: black;
     margin-top: 10px;
+}
+.targeta .cuerpotargeta a:hover{
+    color: #5fb677;
 }
 
 
@@ -113,3 +115,4 @@ text-align: center;
       top: 50%;
       right: 10px;
 }
+

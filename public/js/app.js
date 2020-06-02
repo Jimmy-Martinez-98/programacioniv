@@ -4,35 +4,57 @@ var app=new Vue({
    data:{
       productos:[],
       items:[],
+      clase:''
     
    },
    created:function(){
    this.datoss();
-  this.contar();
+   
    },
    methods:{
-      contar:function(){
-       
-        
-         
-      },
+    
    
       datoss:function(){         
          fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
             this.productos = resp;		
+           
               
             var ojo=[]
+            var datos=[]
             resp.forEach(element => {
                  ojo.push(element);
-                this.items=ojo;
+               datos =ojo;    
               
-                 
-                
             }); 
-            console.log(this.items);
+            
+            console.log("hey",datos.length);
+            
+           for (let index = 0; index < datos.length; index++) {
+
+                  console.log(index);
+                  this.items=index
+                 
+              
+           }
+          
+          datos.find(function (value,index) {
+             if(index===0){
+             console.log('active');
+               $('.carousel-item ').addClass('active');
+             }
+            
+            })
+          
+           
          });
 
+        
+         
+
       },
+   
+
+
       verProd(info){
       var data={
          info
