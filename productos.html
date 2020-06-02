@@ -125,7 +125,8 @@
 						  <h4 class="float-left">Precio: {{detallesprod.info.precio_venta}}</h4>
 					  </div>
 					  <div class="col">
-						  <h4 class="float-right">Vendedor: {{detallesprod.info.nombreu}}</h4>
+						  <h4 class="float-right" v-if="detallesprod.info.nombrecooperativa==''">Vendedor/a: {{detallesprod.info.nombreu}}</h4>
+						  <h4 class="float-right" v-else>Vendedor/a: {{detallesprod.info.nombrecooperativa}}</h4>
 					  </div>
 				  </div>
 						  
@@ -161,7 +162,8 @@
 								  </p>
 								  <div class="row mx-md-n5 mt-3">
 									  <div class="col-6 px-md-5">
-										  <div class="p-2   float-right">Vendedor: {{relacion.nombreu}}</div>
+										  <div class="p-2   float-right" v-if="relacion.nombrecooperativa==''">Vendedor/a: {{relacion.nombreu}}</div>
+										  <div class="p-2   float-right" v-else>Vendedor/a: {{relacion.nombrecooperativa}}</div>
 										  <div class="p-2   float-left">${{relacion.precio_venta}}</div>
 									  </div>
 									  

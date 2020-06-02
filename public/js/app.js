@@ -1,72 +1,4 @@
 
-var app=new Vue({
-   el:"#slider",
-   data:{
-      productos:[],
-      items:[],
-      clase:''
-    
-   },
-   created:function(){
-   this.datoss();
-   
-   },
-   methods:{
-    
-   
-      datoss:function(){         
-         fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
-            this.productos = resp;		
-           
-              
-            var ojo=[]
-            var datos=[]
-            resp.forEach(element => {
-                 ojo.push(element);
-               datos =ojo;    
-              
-            }); 
-            
-            console.log("hey",datos.length);
-            
-           for (let index = 0; index < datos.length; index++) {
-
-                  console.log(index);
-                  this.items=index
-                 
-              
-           }
-          
-          datos.find(function (value,index) {
-             if(index===0){
-             console.log('active');
-               $('.carousel-item ').addClass('active');
-             }
-            
-            })
-          
-           
-         });
-
-        
-         
-
-      },
-   
-
-
-      verProd(info){
-      var data={
-         info
-      }
-      
-         sessionStorage.setItem("data",JSON.stringify(data));
-         location.href="productos.html"
-      }   
-   
-   }
-   
-   });
 
 
    var validarsession=new Vue({
@@ -121,7 +53,23 @@ var app=new Vue({
   
    
 $(document).ready(function () {
+   $("#contenedor").load("public/vistas/home/home.html",function(data){
+      $(this).html(data);
+   
+     
+   });
+   $('#home').click(()=>{
+     
+	   $("#contenedor").load("public/vistas/home/home.html",function(data){
+         $(this).html(data);
+      
+        
+      });
+   
+   });
+
    $('#verduras').click(()=>{
+      console.log('hola');
       
 	   $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
          $(this).html(data);
