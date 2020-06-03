@@ -52,7 +52,11 @@
                $(this).html(data);
             });
          },
-         legumbre(){},
+         legumbre(){
+            $("#contenedor").load("public/vistas/legumbres/legumbres.html",function(data){
+               $(this).html(data);
+            });
+         },
          fruto(){
             $("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
                $(this).html(data);

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="public/css/estilos.css">
+<div class="container mt-3 mb-3">
+	<div class="input-group ">
+	  <input type="text" class="form-control " >
+	  <div class="input-group-append">
+		<span class="input-group-text "><i class="fas fa-search"></i></span>
+	  </div>
+	</div>
+  </div>
+  <div class="container" id="legum">
+	<div class="row py-2" >
+		<div class="col-sm-4" v-for="le in legumbressss"  >
+			<div class="targeta " style="height: 400;">
+				<img v-bind:src="le.imagen"	>
+				<div class="cuerpotargeta" >
+				 <a class="hole" href="#" @click="verProd(le)" ><h4> {{le.nombre_producto}}</h4></a>
+				  <a href="#" class="info"v-if=" le.nombrecooperativa==''" ><span>{{le.nombreu}}</span></a>
+				  <a href="#" class="info" v-else > {{le.nombrecooperativa}}</a>
+				 <div class="row ">
+				   <div class="col-12 "> 
+					 <p class="card-text float-left  ">
+					    ${{le.precio_venta}}
+		
+					 
+					 </p>
+					 <i class="far fa-heart fav float-right"></i>
+				  
+				   </div>
+				 </div>
+				</div>
+			  </div>
+		</div>
+	</div>
+</div>
+
+<script src="public/vistas/legumbres/legumbress.js"></script>

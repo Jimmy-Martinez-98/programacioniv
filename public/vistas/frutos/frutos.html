@@ -1,21 +1,44 @@
-<form action="" method="POST">
-	<h1>
-		<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quos sit delectus inventore consectetur eligendi itaque necessitatibus laboriosam repellat nihil? Incidunt cumque voluptas necessitatibus sed eius deserunt dolorem enim aperiam?</div>
-		<div>Aspernatur ipsum quod consequuntur autem tenetur at est. Sint laudantium magnam labore, inventore, sequi nemo dolore minima vel delectus sapiente molestiae sed quis officiis, modi quaerat similique a! Iste, magni!</div>
-		<div>Cum sit repudiandae eligendi, placeat quasi asperiores reiciendis enim nihil perferendis optio modi, culpa ad ducimus laboriosam ratione cupiditate officiis accusantium sint repellendus eos est explicabo a. Reiciendis, ullam aliquid.</div>
-	</h1>
-	<h1>
-		<div>Dolore eum cumque libero enim illum omnis, eveniet tempore odio magnam quae sint quo officiis mollitia. Sapiente sequi possimus blanditiis error quis, nisi magnam tenetur inventore labore, velit odio! Porro.</div>
-		<div>Nostrum fuga sequi facilis, ut praesentium perspiciatis, labore optio temporibus quo illo quaerat natus commodi vero eius consectetur nesciunt. Iusto officia quas nulla corporis vitae inventore voluptates? Voluptatum, assumenda praesentium?</div>
-		<div>Odio in ab delectus voluptate voluptates iusto voluptas repellat praesentium sint. Deserunt, quae itaque sapiente aliquam laudantium voluptatem fuga esse similique eveniet ut nulla iusto assumenda, blanditiis perferendis nisi sequi.</div>
-	</h1>
-	<h1>
-		<div>Sequi, facere laboriosam soluta dolor a quidem. Impedit expedita odit vero atque consectetur veniam neque corporis! At commodi dicta, placeat explicabo recusandae doloribus ipsa, facere voluptatibus quidem ex odit et!</div>
-		<div>Magni, perspiciatis blanditiis? Aperiam maxime asperiores, est praesentium et, adipisci eum voluptas labore facilis ad cumque quod magni illo iusto officiis odit. Eos, nemo sed? Repudiandae odit non quia at.</div>
-		<div>Aliquid illum delectus magnam molestias quos, ipsam laudantium pariatur nesciunt dolore rem eum tenetur minus architecto vitae unde repellendus quidem debitis obcaecati laborum, minima dicta autem temporibus explicabo voluptas. Minima.</div>
-	</h1>
 
-<script src="public/vistas/frutos/js.js"></script>
-
-
-</form>
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="public/css/estilos.css">
+	<link rel="stylesheet" href="public/vistas/frutos/frutos.css">
+	<div class="container mt-3 mb-3">
+		<div class="input-group ">
+		  <input type="text" class="form-control " >
+		  <div class="input-group-append">
+			<span class="input-group-text "><i class="fas fa-search"></i></span>
+		  </div>
+		</div>
+	  </div>
+	<div class="container" id="frutas">
+		<div class="row py-2" >
+			<div class="col-sm-4" v-for="fruto in fruta"  >
+				<div class="targeta " style="height: 400;">
+					<img v-bind:src="fruto.imagen"	>
+					<div class="cuerpotargeta" >
+					 <a class="hole" href="#" @click="verProd(fruto)" ><h4> {{fruto.nombre_producto}}</h4></a>
+					  <a href="#" class="info"v-if=" fruto.nombrecooperativa==''" ><span> {{fruto.nombreu}}</span></a>
+					  <a href="#" class="info" v-else > {{fruto.nombrecooperativa}}</a>
+					 <div class="card-footer">
+						<div class="row ">
+							<div class="col-12 mt-3"> 
+							  <p class="card-text float-left  ">
+								  ${{fruto.precio_venta}} 
+							  </p>
+							  <i class="far fa-heart fav float-right"></i>
+						   
+							</div>
+						  </div>
+					 </div>
+					</div>
+				  </div>
+			</div>
+		</div>
+	</div>
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="public/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+	<script src="public/vistas/frutos/frutos.js"></script>

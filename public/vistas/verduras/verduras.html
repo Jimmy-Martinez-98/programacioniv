@@ -16,14 +16,12 @@
 					<img v-bind:src="clay.imagen"	>
 					<div class="cuerpotargeta" >
 					 <a class="hole" href="#" @click="verProd(clay)" ><h4> {{clay.nombre_producto}}</h4></a>
-					  <a href="#" class="info"v-if=" clay.nombrecooperativa==''" ><span>Vendedor/a: {{clay.nombreu}}</span></a>
-					  <a href="#" class="info" v-else >Vendedor/a: {{clay.nombrecooperativa}}</a>
+					  <a href="#" class="info"v-if=" clay.nombrecooperativa==''" ><span> {{clay.nombreu}}</span></a>
+					  <a href="#" class="info" v-else > {{clay.nombrecooperativa}}</a>
 					 <div class="row ">
-					   <div class="col-12 "> 
+					   <div class="col-12 mt-3"> 
 						 <p class="card-text float-left  ">
-						   precio:   ${{clay.precio_venta}}
-			
-						 
+						 ${{clay.precio_venta}} 
 						 </p>
 						 <i class="far fa-heart fav float-right"></i>
 					  

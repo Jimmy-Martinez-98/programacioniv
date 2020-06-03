@@ -110,6 +110,7 @@ li.lis a.as{
     text-decoration: none;
     color: black;
     cursor: default;
+    font-size: 15px;
 }
 .info:hover{
     text-decoration: none;
