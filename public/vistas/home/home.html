@@ -5,23 +5,24 @@
     <link rel="stylesheet" href="public/vistas/home/carousel.css">
 
 	
-			<div id="slider"  class="carousel slide bg-light" data-ride="carousel">
-				<div class="carousel-inner row w-100 mx-auto" role="listbox">
+			<div id="slider"  class="carousel slide bg-light" data-interval="false">
+				<p >	<b> Lo Mas Destacado</b></p>
+				<div class="carousel-inner row w-100 mx-auto" role="listbox">					
 					<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  ":class="{'active':index===0}" v-for="(datos,index) in productos" :key="datos.idusuario" >
-					  <div class="targeta " style="height: 400;">
+						<div class="targeta " style="height: 400;">
 						<img v-bind:src="datos.imagen"	>
 						<div class="cuerpotargeta" style="height: 130px;">
 						 <a class="hole" href="#" v-on:click="verProd(datos)"><h4> {{datos.nombre_producto}}</h4></a>
 						  <a href="#" class="info"  v-if="datos.nombrecooperativa==''">Vendedor/a: {{datos.nombreu}}</a>
 						  <a href="#" class="info" v-else>Vendedor/a: {{datos.nombrecooperativa}}</a>
-						 <div class="row ">
+						 <div class="row">
 						   <div class="col-12 ">
-							 <p class="card-text float-left">
+							 <p class="card-text float-left ">
 							   precio:   ${{datos.precio_venta}}
 	
 							 
 							 </p>
-							 <i class="far fa-heart fav float-right"></i>
+							 <i class="far fa-heart fav float-right "></i>
 						  
 						   </div>
 						 </div>

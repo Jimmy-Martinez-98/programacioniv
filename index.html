@@ -27,22 +27,22 @@
     <div class="collapse navbar-collapse" id="toggles">
       <ul class="navbar-nav mr-auto uls">
         <li class="nav-item  lis" >
-          <a class="nav-item nav-link  as" id="home" href="#" ><h4>Inicio</h4> <span class="sr-only"></span></a>
+          <a class="nav-item nav-link  as" id="home" href="#"  @click="inicio" ><h4>Inicio</h4> <span class="sr-only"></span></a>
         </li>
         <li class="nav-item lis">
-          <a class="nav-link as " id="verduras" href="#"><h4>Verduras</h4></a>
+          <a class="nav-link as " id="verduras" href="#" @click="verdura" ><h4>Verduras</h4></a>
         </li>
         <li class="nav-item lis">
-          <a class="nav-link as" id="frutos"  href="#"><h4>Frutos</h4></a>
+          <a class="nav-link as" id="frutos"  href="#" @click="fruto" ><h4>Frutos</h4></a>
         </li>
         <li class="divicio lis">
-          <a class="nav-link  as" id="legumbres" href="#"><h4>Legumbres</h4></a>
+          <a class="nav-link  as" id="legumbres" href="#" @click="legumbre" ><h4>Legumbres</h4></a>
         </li>
       </ul>
       <ul class="navbar-nav uls">
       
         <li class="lis" v-if="session===0">
-          <a class="nav-link  as" id="login"  href="login.php"><h4> Iniciar Sesion</h4></a>
+          <a class="nav-link  as" id="login"  href="#"  @click="login"><h4> Iniciar Sesion</h4></a>
         </li>
 
 
@@ -66,6 +66,14 @@
       
     </div>
   </nav>
+<div class="container mt-3 mb-3">
+  <div class="input-group ">
+    <input type="text" class="form-control " >
+    <div class="input-group-append">
+      <span class="input-group-text "><i class="fas fa-search"></i></span>
+    </div>
+  </div>
+</div>
 
   <div id="contenedor" class="container bg-light">
   

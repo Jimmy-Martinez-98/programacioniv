@@ -85,6 +85,7 @@ li.lis a.as{
 .targeta .cuerpotargeta {
 padding: 15px;
 text-align: center;
+  
 }
 
 .targeta .cuerpotargeta .card-text{
@@ -97,6 +98,7 @@ text-align: center;
     margin-bottom: 15px;
     color: black;
     margin-top: 10px;
+   
 }
 .targeta .cuerpotargeta .hole:hover{
     color: #5fb677;
@@ -130,4 +132,20 @@ text-align: center;
 .far:hover{
     cursor: pointer;
 
+}
+.input-group-text {
+    background-color:  #5fb677;
+}
+.form-control{
+    border-color:  #5fb677;
+   
+    outline: 0px solid   #5fb677;
+;
+   
+}
+.form-control:focus{
+    border-color:  #5fb677;
+    box-shadow: 0 1px 1px rgba(255, 0, 0, 0)inset, 0 0 8px rgba(255, 0, 0, 0);
+    outline: 1px none;
+   
 }

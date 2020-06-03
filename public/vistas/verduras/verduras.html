@@ -1,37 +1,41 @@
-<form method="POST" id="frm-verduras" class="ml-2" >
-	<div class="card-deck py-5 ">
-		<div class="card">
-		  <img class="card-img-top" src="https://s1.eestatic.com/2019/09/26/como/Salud-Tomate-Verduras-Frutas-Supermercados-Como_hacer_432216867_134517478_1024x576.jpg" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		  </div>
-		  <div class="card-footer">
-			<small class="text-muted">Last updated 3 mins ago</small>
-		  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+</head>
+<body>
+	<div class="container" id="vegetales">
+		<div class="row py-2" >
+			<div class="col-sm-4" v-for="clay in verdes"  >
+				<div class="targeta " style="height: 400;">
+					<img v-bind:src="clay.imagen"	>
+					<div class="cuerpotargeta" >
+					 <a class="hole" href="#" @click="verProd(clay)" ><h4> {{clay.nombre_producto}}</h4></a>
+					  <a href="#" class="info"v-if=" clay.nombrecooperativa==''" ><span>Vendedor/a: {{clay.nombreu}}</span></a>
+					  <a href="#" class="info" v-else >Vendedor/a: {{clay.nombrecooperativa}}</a>
+					 <div class="row ">
+					   <div class="col-12 "> 
+						 <p class="card-text float-left  ">
+						   precio:   ${{clay.precio_venta}}
+			
+						 
+						 </p>
+						 <i class="far fa-heart fav float-right"></i>
+					  
+					   </div>
+					 </div>
+					</div>
+				  </div>
+			</div>
 		</div>
-		<div class="card">
-		  <img class="card-img-top" src="https://www.radioamerica.hn/imag/2019/03/Chile-dulce-Honduras-1.jpg" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-		  </div>
-		  <div class="card-footer">
-			<small class="text-muted">Last updated 3 mins ago</small>
-		  </div>
-		</div>
-		<div class="card">
-		  <img class="card-img-top" src="https://www.tuberculos.org/wp-content/uploads/2018/10/cebolla-1200x685.jpg" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-		  </div>
-		  <div class="card-footer">
-			<small class="text-muted">Last updated 3 mins ago</small>
-		  </div>
-		</div>
-	  </div>
+	</div>
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="public/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
-
-
-</form>
+  <script src="public/vistas/verduras/verdura.js"></script>
+</body>
+</html>

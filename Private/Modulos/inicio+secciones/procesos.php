@@ -30,13 +30,18 @@ class miproducto{
 		   ');
 		   return $this->respuesta = $this->db->obtener_datos();
       }
-    
-    //   private function verduras(){
-    //     $this->db->consultas('
-    //     SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"verdura" or misproducto.categoria LIKE "verduras"
-    //          ');
-    //          return $this->respuesta = $this->db->obtener_datos();
-    //     }
+      public function recibirverduras($miproducto){
+        $this->datos = json_decode($miproducto, true);
+       
+        $this->verduras();
+        
+    }
+       private function verduras(){
+         $this->db->consultas('
+        SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"verdura" or misproducto.categoria LIKE "verduras"
+             ');
+         return $this->respuesta = $this->db->obtener_datos();
+         }
       
       
 

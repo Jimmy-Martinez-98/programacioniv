@@ -11,6 +11,11 @@
       created:function(){
          this.traersession();
          this.traercuenta();
+         $("#contenedor").load("public/vistas/home/home.html",function(data){
+            $(this).html(data);
+         
+           
+         });
       },
 
       methods:{
@@ -32,10 +37,29 @@
             })
          },
           colapsar:function(){  
-		
             $("#toggles").animate({
              height: 'toggle'
             });
+         },
+         inicio(){
+               $("#contenedor").load("public/vistas/home/home.html",function(data){
+                  $(this).html(data);       
+               });
+
+         },
+         verdura(){
+            $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
+               $(this).html(data);
+            });
+         },
+         legumbre(){},
+         fruto(){
+            $("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
+               $(this).html(data);
+            });
+         },
+         login(){
+            location.href="login.php"
          }
         
       }
@@ -44,58 +68,9 @@
 
 
 
+   
+   
 
-
-
-
-
-
-  
-   
-$(document).ready(function () {
-   $("#contenedor").load("public/vistas/home/home.html",function(data){
-      $(this).html(data);
-   
-     
-   });
-   $('#home').click(()=>{
-     
-	   $("#contenedor").load("public/vistas/home/home.html",function(data){
-         $(this).html(data);
-      
-        
-      });
-   
-   });
-
-   $('#verduras').click(()=>{
-      console.log('hola');
-      
-	   $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
-         $(this).html(data);
-      });
-   
-   });
-  
-   $('#frutos').click(()=>{
-   
-	   $("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
-         $(this).html(data);
-      });
-   
-   });
-   $('#login').click(()=>{
-     
-      location.href='login.php';
-   });
-   
-   
-   $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
-   
-   
-});
   
 
 
