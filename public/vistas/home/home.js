@@ -1,9 +1,8 @@
 var app=new Vue({
 	el:"#slider",
 	data:{
-	   productos:[]
-	  
-	  
+	   productos:[],
+	  stars:[]
 	 
 	},
 	created:function(){
@@ -17,11 +16,7 @@ var app=new Vue({
 		  fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
 			 this.productos = resp;		
 			
-		  });
- 
-		 
-		  
- 
+		  });		  
 	   },
 	
  
@@ -39,3 +34,4 @@ var app=new Vue({
 	
 	});
  
+

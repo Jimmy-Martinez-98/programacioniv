@@ -2,8 +2,26 @@
     code by Iatek LLC 2018 - CC 2.0 License - Attribution required
     code customized by Azmind.com
 */
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+    
+}
+label{ color:grey;}
 
+input[type = "radio"]{ display:none; cursor: pointer;} 
+label:hover{color:orange; cursor: pointer;}
+label:hover ~ label{color:orange;cursor: pointer;}
+input[type="radio"]:checked ~ label {
+    color: orange;
+  }
 
+  .card-footer{
+      background-color: #ffffff;
+      border: none;
+  }
+
+  
 .carousel-control-prev{
 
 background-color: black;

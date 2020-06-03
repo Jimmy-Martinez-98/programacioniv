@@ -31,6 +31,8 @@ var mostrardetalle = new Vue({
 		resta:function(){
 			if(this.contador===1){
 				this.contador=1
+			}else if(this.contador<=0){
+				this.contador=1;
 			}else{
 				this.contador--
 			}

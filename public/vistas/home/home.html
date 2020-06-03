@@ -4,21 +4,42 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="public/vistas/home/carousel.css">
 
-	
+	<div class="container mt-3 mb-3">
+		<div class="input-group ">
+		  <input type="text" class="form-control " >
+		  <div class="input-group-append">
+			<span class="input-group-text "><i class="fas fa-search"></i></span>
+		  </div>
+		</div>
+	  </div>
 			<div id="slider"  class="carousel slide bg-light" data-interval="false">
 				<p >	<b> Lo Mas Destacado</b></p>
 				<div class="carousel-inner row w-100 mx-auto" role="listbox">					
 					<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  ":class="{'active':index===0}" v-for="(datos,index) in productos" :key="datos.idusuario" >
-						<div class="targeta " style="height: 400;">
+						<div class="targeta " >
 						<img v-bind:src="datos.imagen"	>
-						<div class="cuerpotargeta" style="height: 130px;">
-						 <a class="hole" href="#" v-on:click="verProd(datos)"><h4> {{datos.nombre_producto}}</h4></a>
-						  <a href="#" class="info"  v-if="datos.nombrecooperativa==''">Vendedor/a: {{datos.nombreu}}</a>
-						  <a href="#" class="info" v-else>Vendedor/a: {{datos.nombrecooperativa}}</a>
-						 <div class="row">
-						   <div class="col-12 ">
+							
+						<div class="cuerpotargeta" style="height: 155px;">	
+						 <a class="hole " href="#" v-on:click="verProd(datos)"><h4> {{datos.nombre_producto}}</h4></a>
+						 <a href="#" class="info"  v-if="datos.nombrecooperativa==''"> {{datos.nombreu}}</a>
+						 <a href="#" class="info" v-else> {{datos.nombrecooperativa}}</a>
+						 <p class="clasificacion">
+							<input id="star1" v-model="stars" type="radio" name="estrellas" value="cinco" >
+							<label for="star1">&#9733;</label>
+							<input id="star2" v-model="stars" type="radio" name="estrellas" value="cuatro" >
+							<label for="star2">&#9733;</label>
+							<input id="star3"  v-model="stars"type="radio" name="estrellas" value="tres">
+							<label for="star3" >&#9733;</label>
+							<input id="star4" v-model="stars" type="radio" name="estrellas" value="dos" >
+							<label for="star4">&#9733;</label>
+							<input id="star5" v-model="stars" type="radio" name="estrellas" value="uno">
+							<label for="star5">&#9733;</label>
+						</p>		
+						
+						 <div class="row card-footer">
+						   <div class="col-12">
 							 <p class="card-text float-left ">
-							   precio:   ${{datos.precio_venta}}
+								 ${{datos.precio_venta}}
 	
 							 
 							 </p>
