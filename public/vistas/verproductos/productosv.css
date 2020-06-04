@@ -77,23 +77,27 @@ li.lis a.as{
   }
   
   label {
-	color: grey;
+  color: grey;
+  font-size: 20px;
   }
   
   .clasificacion {
 	direction: rtl;
-	unicode-bidi: bidi-override;
+  unicode-bidi: bidi-override;
+  
   }
   
   label:hover,
   label:hover ~ label {
   color: orange;
   cursor: pointer;
+ 
   }
   
   input[type="radio"]:checked ~ label {
   color: orange;
   cursor: pointer;
+ 
   }
 
 .btn{
@@ -115,3 +119,17 @@ li.lis a.as{
 
 
 
+@media(max-width:700px){
+  .btn{
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .row{
+    display: flex;
+    flex-direction: row;
+  }
+  .imges{
+
+    width: 100%;
+  }
+}

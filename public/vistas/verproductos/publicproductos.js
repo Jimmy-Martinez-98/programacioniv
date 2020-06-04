@@ -21,7 +21,7 @@ var mostrardetalle = new Vue({
 			
 		},
 		traerproductos:function(){
-			fetch(`Private/Modulos/inicio/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productosrelacionados)}`).then(resp=>resp.json()).then(resp=>{
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productosrelacionados)}`).then(resp=>resp.json()).then(resp=>{
 				this.productosrelacionados=resp;
 			})
 		},
@@ -79,35 +79,26 @@ var validarsession=new Vue({
 		$("#toggles").animate({
 		 height: 'toggle'
 		});
-	 }
+	 },
+	 home:function(){
+		 console.log('hola');
+		 $('#')
+		
+	 },
+	 verduras:function () { 
+		 	$("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
+		$(this).html(data);
+		 });
+	},
+	 frutos:function () { 
+		 	$("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
+			$(this).html(data);
+		 });
+	 },
+	 legumbres:function () { 
+		$("#contenedor").load("public/vistas/legumbres/legumbres.html",function(data){
+			$(this).html(data);
+		 });
+	  }
 	}
  })
-
-$(document).ready(function () {
-	$('#verduras').click(()=>{
-	   
-		$("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
-		  $(this).html(data);
-	   });
-	
-	});
-   
-	$('#frutos').click(()=>{
-	
-		$("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
-		  $(this).html(data);
-	   });
-	
-	});
-	$('#login').click(()=>{
-	  
-	   location.href='login.php';
-	});
-	
-	
-	$(function () {
-	   $('[data-toggle="popover"]').popover()
-	 })
-	
-	
- });

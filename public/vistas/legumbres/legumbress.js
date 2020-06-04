@@ -9,6 +9,14 @@ var seccionlegumbre = new Vue({
 			this.legumbressss=resp;		
 			   
 			 });	
+		},
+		verProd(info){
+			var data={
+				info
+			 }
+			 
+				sessionStorage.setItem("data",JSON.stringify(data));
+				location.href="productos.html"
 		}
 	},
 	created:function(){

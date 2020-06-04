@@ -52,7 +52,7 @@ class miproducto{
         }
            private function frutos(){
              $this->db->consultas('
-             SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"Frutos"
+             SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"Frutos" 
                  ');
              return $this->respuesta = $this->db->obtener_datos();
              }
@@ -69,7 +69,17 @@ class miproducto{
                      ');
                  return $this->respuesta = $this->db->obtener_datos();
                  }
-              
+            
+             
+
+                 public function buscarproductoss($valor='')
+                 {
+                    $this->db->consultas("
+                    SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND (misproducto.categoria like 'Frutos' and misproducto.nombre_producto like '%$valor%')
+                        ");
+                        return $this->respuesta=$this->db->obtener_datos();
+                      
+                 }
   
 }
 ?>

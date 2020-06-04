@@ -2,3 +2,7 @@
 	border: none;
 	background-color: #ffffff;
 }
+.input-group-text{
+	cursor: pointer;
+
+}
