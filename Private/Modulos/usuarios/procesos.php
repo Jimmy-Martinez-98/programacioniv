@@ -1,4 +1,11 @@
 <?php 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require '../../phpMailer/Exception.php';
+require '../../phpMailer/PHPMailer.php';
+require '../../phpMailer/SMTP.php';
+
 session_start();
 include('../../Config/Config.php');
 $login = new login($Conexion);
@@ -9,6 +16,9 @@ if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
 }
 $login->$proceso( $_GET['login'] );
 print_r(json_encode($login->respuesta));
+
+
+
 
 class login{
     private $datos = array(), $db;
@@ -87,48 +97,72 @@ class login{
                     "'. $this->datos['selected'] .'",
                     "'. $this->datos['correo'] .'",
                     "'. $this->datos['pass'] .'",
-                    "'. $this->datos['activo'] .'",
-                    "'. $this->datos['fecha'] .'"
+                    "'. $this->datos['fecha'] .'",
+                    "'. $this->datos['activo'] .'"
                     )
                 ');
                         
                
                    
                 $this->respuesta['msg']="usuario registrado correctamente" ; 
-                    if(!empty($this->datos['nombrecooperativa'])){
-                        $this->enviaremail($this->datos['correo'],$this->datos['nombrecooperativa'],$this->datos['activo']);
-                    }else{
-                        $this->enviaremail($this->datos['correo'],$this->datos['nombreu'],$this->datos['activo']);
-                    }
+            $this->enviaremail($this->datos['nombrecooperativa'],$this->datos['correo'],$this->datos['activo'],$this->datos['nombreu']);
             }
           
         }
         
     }
 
-    private function enviaremail($mail,$namedestino,$veri){
-            $destino="scottlovos503@gmail.com";
+    private function enviaremail($namedestino,$correo,$veri,$altername){
+            $destino=$correo;
             $nombre=$namedestino;
             $activo=$veri;
+            $altername=$altername;
             $hash=md5($activo);
-            $header='from: agroproducer2020@gmail.com \r\n';
-            $header .='X-Mailer: php/'.phpversion().'\r\n';
-            $header .="Mime-version:1.0\r\n";
-            $header .="Content-Type: text/plain";
-            $mensaje="
-                Hola, $nombre
-                Haz clic en el enlace de abajo para verificar tu dirección de correo electrónico de Agro Producer. Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta. 
+            $mail = new PHPMailer(true);
+
+
+            try {
+                //Server settings
+                $mail->SMTPDebug = 1;                      // Enable verbose debug output
+                $mail->isSMTP();                                            // Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = 'agroproducers2020@gmail.com';                     // SMTP username
+                $mail->Password   = 'Slayer.2020';                               // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             
-                http://www.agroproducer.com/verify.php?email='.$destino.'&hash='.$hash.'
-            ";
+                //Recipients
+                $mail->setFrom('agroproducers2020@gmail.com', 'Agro Producers');
+                $mail->addAddress($destino);     // Add a recipient
            
-            if(mail($destino,"hola",$mensaje,$header)){
-                $this->respuesta['msg']='Mensaje Enviado';
-            }else{
-                $this->respuesta['msg']='error';
+            
+            
+                // Content
+                if(!empty(trim($nombre))){
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Verificacion de cuenta';
+                $mail->Body    = 'Hola '.$nombre.' , esta es una prueva de verificacion :)';
+               
+            
+                $mail->send();
+                echo 'mensaje enviado';
+                 }
+                 else{
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Verificacion de cuenta';
+                $mail->Body    = 'Hola '.$altername.' , esta es una prueva de verificacion :)';
+               
+            
+                $mail->send();
+                echo 'mensaje enviado';  
+                 }
+            } catch (Exception $e) {
+                echo "error: {$mail->ErrorInfo}";
             }
            
-            
+
+
     }
 
 

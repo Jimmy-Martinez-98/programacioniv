@@ -22,7 +22,7 @@
 	<div class="container">
 		<form   v-on:submit.prevent="guardarusuario" class="needs-validation" id="frm-cliente" novalidate>
 			<h1>REGISTRO CLIENTE</h1>
-
+			<hr>
  	 <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom01">Nombre</label>

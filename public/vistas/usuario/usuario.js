@@ -14,7 +14,7 @@ var appusuario = new Vue({
 			correo  		 : '',
             pass		     :'',
             fecha            :'',
-            activo            :'0',
+          
             msg      		 : ''
         }
     },
@@ -51,7 +51,7 @@ var appusuario = new Vue({
         guardarusuario:function(){
            if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
-                if(resp.msg=='usuario registrado correctamente'){
+                if(resp.msg==='usuario registrado correctamente'){
                     location.href="cooperativa.php"
                 }else{
                 this.usuario.msg = resp.msg;
