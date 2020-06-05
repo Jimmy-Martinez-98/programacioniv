@@ -34,7 +34,7 @@
 			</div>
 			<input type="password" class="form-control" required v-model="name.pass" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
 		  </div>
-		  <button type="submit" id="iniciarsesions" class="btn btn-lg btn-block">Iniciar Sesión</button>
+		  <button type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Iniciar Sesión</button>
 		  <div class="row mt-3">
 			  <div class="col-4 ">
 				 <a class="text" v-on:click="Recuperar" href="#">Olvido Contraseña?</a>
@@ -56,9 +56,7 @@
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	
+	<script src="public/js/vue.min.js"></script>
 	 <script src="public/vistas/login/login.js"></script>
 	
 </body>

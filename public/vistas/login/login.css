@@ -37,14 +37,5 @@ a.text:hover{
  }
 
 
-.btn{
-    background: #5bbec0;
-    color: #ffffff;
-}
 
-.btn:hover{
-    background: #258646;
-    color: #000000;
-    transition: all .5 ease;
-}
 

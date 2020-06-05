@@ -94,6 +94,46 @@ class login{
         }
         
     }
+    public function recibircliente($login)
+    {
+        $this->datos = json_decode($login, true);
+        $this->validarCliente();
+       
+    }
+
+    private function validarCliente()
+    {
+        $this->db->consultas('select * from usuario where correo="' . $this->datos['correo'] . '" limit 1');
+        $this->respuesta = $this->db->obtener_datos();
+        if (empty(trim($this->datos['correo']))||empty(trim($this->datos['nombrec'])) || empty(trim($this->datos['pass']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
+            $this->respuesta['msg'] = 'no se permiten espacios en blanco';
+        }else if(!empty($this->respuesta)){
+            $this->respuesta['msg']='Este correo ya Existe';
+        }
+           $this->almacenar_cliente();
+        
+    }
+    private function almacenar_cliente(){
+       
+            if($this->datos['accion']==='nuevo'){
+                $this->db->consultas('
+                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,fechaR) VALUES(
+                    "'. $this->datos['nombrec'] .'",
+                             "",
+                    "'. $this->datos['telefono'] .'",
+                            "Cliente",
+                    "'. $this->datos['correo'] .'",
+                    "'. $this->datos['pass'] .'",
+                    "'. $this->datos['fecha'] .'"
+                    )
+                ');
+                $this->respuesta['msg']="usuario registrado correctamente"; 
+               
+            }
+          
+        
+        
+    }
 
 
 

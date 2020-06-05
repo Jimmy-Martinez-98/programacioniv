@@ -72,6 +72,9 @@ var appusuario = new Vue({
         IniciarSesion:function(){
             location.href="login.php";
         },
+        Rcliente:function () {
+            location.href="registroCliente.php"
+          }
        
         
        
@@ -80,18 +83,3 @@ var appusuario = new Vue({
 });
 
  
-// $( function() {
-//     $(".custom-select").change( function() {
-//          if ($(this).val() === "Cooperativa") {
-//              $("#cooperativa").prop("disabled", false);
-             
-//          } else if($(this).val() === "Productor Pequeño") {
-            
-//               $("#cooperativa").prop("disabled", true,'');
-            
-            
-             
-//         }
-//       });
-//   });
-     

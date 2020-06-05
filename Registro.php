@@ -53,7 +53,11 @@
 					<input type="text"  id="cooperativa" class="form-control"  v-model="usuario.nombrecooperativa" placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
 				  </div>
 				  <div class="input-group mb-3" v-else>
-					
+				  <div class="input-group-prepend">
+					  <span class="input-group-text" id="basic-addon1"><i class="fas fa-users"></i></span>
+					</div>
+					<input disabled type="text"  id="cooperativa" class="form-control"   placeholder="Nombre de Cooperativa" aria-label="cooperativa" aria-describedby="basic-addon1">
+
 				  </div>
 			</div>
 			<div class="col-6">
@@ -65,7 +69,11 @@
 				  </div>
 			</div>
 			<div class="col-6">
-			<input type="date" required v-model="usuario.fecha"  id="fecha">
+				
+      <input type="date" class="form-control"  v-model="usuario.fecha" id="fecha" required>
+	  <div class="invalid-feedback">
+        Por favor rellena el campo!
+		</div>
 			</div>
 			<div class="col-6">
 				<div class="input-group mb-3">
@@ -97,13 +105,13 @@
 
 
 		  
-		  <button type="submit" id="iniciarsesions" class="btn btn-lg btn-block">Registrarse</button>
+		  <button type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Registrarse</button>
 		  <div class="row mt-3">
 			  <div class="col ">
 			<a class="text float-left " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	
 			  </div>	
 			  <div class="col">
-			  <a class="text float-right " v-on:click="IniciarSesion" href="#">Registrarse Como Cliente</a>	</div>
+			  <a class="text float-right " v-on:click="Rcliente" href="#">Registrarse Como Cliente</a>	</div>
 		  </div>
 		 
 		</div>
@@ -117,8 +125,7 @@
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/jquery-ui.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="public/js/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	 <script src="public/vistas/usuario/usuario.js"></script>
 	
