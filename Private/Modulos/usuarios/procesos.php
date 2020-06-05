@@ -74,26 +74,65 @@ class login{
         
     }
     private function almacenar_registro(){
+
+      
         if($this->respuesta['msg']==='correcto'){
+    
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
-                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,fechaR) VALUES(
+                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,fechaR,activo) VALUES(
                     "'. $this->datos['nombreu'] .'",
                     "'. $this->datos['nombrecooperativa'] .'",
                     "'. $this->datos['telefono'] .'",
                     "'. $this->datos['selected'] .'",
                     "'. $this->datos['correo'] .'",
                     "'. $this->datos['pass'] .'",
+                    "'. $this->datos['activo'] .'",
                     "'. $this->datos['fecha'] .'"
                     )
                 ');
-                $this->respuesta['msg']="usuario registrado correctamente"; 
+                        
                
+                   
+                $this->respuesta['msg']="usuario registrado correctamente" ; 
+                    if(!empty($this->datos['nombrecooperativa'])){
+                        $this->enviaremail($this->datos['correo'],$this->datos['nombrecooperativa'],$this->datos['activo']);
+                    }else{
+                        $this->enviaremail($this->datos['correo'],$this->datos['nombreu'],$this->datos['activo']);
+                    }
             }
           
         }
         
     }
+
+    private function enviaremail($mail,$namedestino,$veri){
+            $destino="scottlovos503@gmail.com";
+            $nombre=$namedestino;
+            $activo=$veri;
+            $hash=md5($activo);
+            $header='from: agroproducer2020@gmail.com \r\n';
+            $header .='X-Mailer: php/'.phpversion().'\r\n';
+            $header .="Mime-version:1.0\r\n";
+            $header .="Content-Type: text/plain";
+            $mensaje="
+                Hola, $nombre
+                Haz clic en el enlace de abajo para verificar tu dirección de correo electrónico de Agro Producer. Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta. 
+            
+                http://www.agroproducer.com/verify.php?email='.$destino.'&hash='.$hash.'
+            ";
+           
+            if(mail($destino,"hola",$mensaje,$header)){
+                $this->respuesta['msg']='Mensaje Enviado';
+            }else{
+                $this->respuesta['msg']='error';
+            }
+           
+            
+    }
+
+
+
     public function recibircliente($login)
     {
         $this->datos = json_decode($login, true);

@@ -14,13 +14,14 @@ var appusuario = new Vue({
 			correo  		 : '',
             pass		     :'',
             fecha            :'',
+            activo            :'0',
             msg      		 : ''
         }
     },
     methods:{
         alerta:function(){
 
-			
+		
             var mayus		=new RegExp("^(?=.*[A-Z])");
 			var especial	= new RegExp("^(?=.*[*_.-])");
 			var numeros		= new RegExp("^(?=.*[0-9])");
