@@ -14,13 +14,16 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/login/login.css">
 	<link rel="stylesheet" href="public/vistas/usuario/stilos.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 	<title>Login</title>
 </head>
 <body>
 	
 	<div class="container">
 		<form   v-on:submit.prevent="guardarusuario" class="needs-validation" id="frm-cliente" novalidate>
-  <div class="form-row">
+			<h1>REGISTRO CLIENTE</h1>
+
+ 	 <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom01">Nombre</label>
       <input type="text" class="form-control" id="validationCustom01" v-model="usuario.nombrec" required>

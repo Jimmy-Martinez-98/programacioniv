@@ -1,6 +1,7 @@
 body{
 	margin:0;
 	padding-top:1px ;
+	font-family: 'Pacifico', cursive;
 }
 
 .wrapper{
@@ -25,6 +26,8 @@ body{
 	margin: 0;
 	padding: 10px;
 	background: #0c0c0c2a;
+	font-family: 'Pacifico', cursive;
+
 }
 .sidebar .sideul{
 	list-style: none;
@@ -47,6 +50,8 @@ body{
 	display: block;
 	color: #000000;
 	text-decoration: none;
+	font-family: 'Pacifico', cursive;
+
 	padding: 10px;
 }
 
@@ -58,6 +63,7 @@ body{
 .wrapper .contenido .contenidoP{
 	margin: 70px;
 	margin-top: auto;
+	font-family: 'Pacifico', cursive;
 
 }
  

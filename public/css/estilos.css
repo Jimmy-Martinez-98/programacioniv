@@ -1,3 +1,7 @@
+
+*{
+    font-family: 'Pacifico', cursive;
+}
 body{
     background-color: #fff;
  background-size: 100% 100%;
@@ -8,6 +12,7 @@ body{
 
 #hola{
     background: #5fb677;
+    
 }
 
 .navbar-ligth:hover{
@@ -18,7 +23,7 @@ ul.uls li.lis a.as{
     color: black;
     display: block;
  
-   
+    font-family: 'Pacifico', cursive;
 }
 
 ul.uls li.lis a.as::before{
@@ -29,6 +34,7 @@ ul.uls li.lis a.as::before{
     background: white;
     bottom:0;
     transition: all .3s;
+    font-family: 'Pacifico', cursive;
 
 }
 
@@ -39,8 +45,7 @@ ul.uls li.lis a.as:hover::before{
 }
 li.lis a.as{
     margin: 1px;
-    
-  
+   
 }
 
 
@@ -70,11 +75,12 @@ li.lis a.as{
     cursor: default;
     transition: all 400ms ease;
    
-
+    font-family: 'Pacifico', cursive;
 }
 .targeta:hover{
     box-shadow: 5px 5px 20px rgba(0, 0, 0,0.4);
     transform: translateY(-2%);
+
 }
 
 .targeta img{
@@ -87,13 +93,14 @@ li.lis a.as{
     padding: 5px;
     text-align: center;
     
-    
+     font-family: 'Pacifico', cursive;
       
     }
 
 .targeta .cuerpotargeta .card-text{
     line-height: 1.5;
     color: black;
+    font-family: 'Pacifico', cursive;
     
 }
 
@@ -111,10 +118,13 @@ li.lis a.as{
     color: black;
     cursor: default;
     font-size: 15px;
+    font-family: 'Pacifico', cursive;
+    
 }
 .info:hover{
     text-decoration: none;
     color: black;
+    font-family: 'Pacifico', cursive;
 }
 
 .carousel-control-prev {
