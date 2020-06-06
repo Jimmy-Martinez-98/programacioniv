@@ -2,6 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../../phpMailer/Exception.php';
 require '../../phpMailer/PHPMailer.php';
 require '../../phpMailer/SMTP.php';
@@ -23,6 +24,7 @@ print_r(json_encode($login->respuesta));
 class login{
     private $datos = array(), $db;
     public $respuesta = ['msg'=>"correcto"];
+  
     
     public function __construct($db)
     {
@@ -73,7 +75,7 @@ class login{
 
     private function validarRegistro()
     {
-        if (empty(trim($this->datos['correo'])) || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
+        if (empty(trim($this->datos['correo']))  || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
             $this->respuesta['msg'] = 'complete los campos vacios';
         }
 
@@ -90,40 +92,35 @@ class login{
     
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
-                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,fechaR,activo) VALUES(
+                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,activo,fechaR) VALUES(
                     "'. $this->datos['nombreu'] .'",
                     "'. $this->datos['nombrecooperativa'] .'",
                     "'. $this->datos['telefono'] .'",
                     "'. $this->datos['selected'] .'",
                     "'. $this->datos['correo'] .'",
                     "'. $this->datos['pass'] .'",
-                    "'. $this->datos['fecha'] .'",
-                    "'. $this->datos['activo'] .'"
+                                "ceroo",
+                    "'. $this->datos['fecha'] .'"
                     )
-                ');
-                        
-               
-                   
+                '); 
                 $this->respuesta['msg']="usuario registrado correctamente" ; 
-            $this->enviaremail($this->datos['nombrecooperativa'],$this->datos['correo'],$this->datos['activo'],$this->datos['nombreu']);
+            $this->enviaremail($this->datos['nombrecooperativa'],$this->datos['correo'],$this->datos['nombreu']);
             }
           
         }
         
     }
 
-    private function enviaremail($namedestino,$correo,$veri,$altername){
+    private function enviaremail($namedestino,$correo,$altername){
             $destino=$correo;
             $nombre=$namedestino;
-            $activo=$veri;
             $altername=$altername;
-            $hash=md5($activo);
             $mail = new PHPMailer(true);
-
+          
 
             try {
                 //Server settings
-                $mail->SMTPDebug = 1;                      // Enable verbose debug output
+                $mail->SMTPDebug = 0;                      // Enable verbose debug output
                 $mail->isSMTP();                                            // Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -133,7 +130,7 @@ class login{
                 $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             
                 //Recipients
-                $mail->setFrom('agroproducers2020@gmail.com', 'Agro Producers');
+                $mail->setFrom('agroproducers2020@gmail.com');
                 $mail->addAddress($destino);     // Add a recipient
            
             
@@ -146,19 +143,22 @@ class login{
                
             
                 $mail->send();
-                echo 'mensaje enviado';
+                $this->respuesta['msg']= 'mensaje enviado';  
+                  
                  }
                  else{
                     $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Verificacion de cuenta';
-                $mail->Body    = 'Hola '.$altername.' , esta es una prueva de verificacion :)';
+                $mail->Body    = 'Hola '.$altername.' , esta es una prueba de verificacion :)';
                
             
                 $mail->send();
-                echo 'mensaje enviado';  
+                $this->respuesta['msg']= 'mensaje enviado';  
+                   
+            
                  }
             } catch (Exception $e) {
-                echo "error: {$mail->ErrorInfo}";
+                $this->respuesta['msg']= "error: {$mail->ErrorInfo}";
             }
            
 
@@ -176,40 +176,141 @@ class login{
 
     private function validarCliente()
     {
+       if($this->respuesta['msg']==='correcto'){
         $this->db->consultas('select * from usuario where correo="' . $this->datos['correo'] . '" limit 1');
         $this->respuesta = $this->db->obtener_datos();
         if (empty(trim($this->datos['correo']))||empty(trim($this->datos['nombrec'])) || empty(trim($this->datos['pass']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
             $this->respuesta['msg'] = 'no se permiten espacios en blanco';
         }else if(!empty($this->respuesta)){
             $this->respuesta['msg']='Este correo ya Existe';
+        }else{
+            $this->almacenar_cliente();
         }
-           $this->almacenar_cliente();
+       }
+         
         
     }
     private function almacenar_cliente(){
+         $hash=mt_rand(1234,2465);
        
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
-                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,fechaR) VALUES(
+                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,activo,fechaR,hash) VALUES(
                     "'. $this->datos['nombrec'] .'",
                              "",
                     "'. $this->datos['telefono'] .'",
                             "Cliente",
                     "'. $this->datos['correo'] .'",
                     "'. $this->datos['pass'] .'",
-                    "'. $this->datos['fecha'] .'"
+                                "cero",
+                    "'. $this->datos['fecha'] .'",
+                            "'.$hash.'"
                     )
                 ');
                 $this->respuesta['msg']="usuario registrado correctamente"; 
-               
+                    $this->enviaremailcliente($this->datos['nombrec'],$this->datos['correo'],$hash);
+                   
             }
           
         
         
     }
 
+    private function enviaremailcliente($namedestino,$correo,$hash){
+       
+        $destino=$correo;
+        $nombre=$namedestino;
+        $code=$hash;
+       
+       
+        $mail = new PHPMailer(true);
+      
+       
 
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      // Enable verbose debug output
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = 'agroproducers2020@gmail.com';                     // SMTP username
+            $mail->Password   = 'Slayer.2020';                               // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        
+            //Recipients
+            $mail->setFrom('agroproducers2020@gmail.com');
+            $mail->addAddress($destino);     // Add a recipient
+       
+        
+        
+            // Content
+          
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Verificacion de cuenta';
+            $mail->Body    = '
+          <h3>-------------------</h3><br>
+           <h1> Hola '.$nombre.'</h1><br>
+           <h3>-------------------</h3><br>
+        
+           <h4> Este es tu codigo para verificar tu cuenta   <br> <h1>'.$code.'</h1><br>  . Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta. </h4>
+               <br>       
+              
+            ';
+           
+        
+            $mail->send();
+            $this->respuesta['msg']= 'mensaje enviado';  
+          
+             
+        } catch (Exception $e) {
+            $this->respuesta['msg']= "error: {$mail->ErrorInfo}";
+        }
+       
 
+     
+}
+  
+    public function recibircode($login)
+    {
+        $this->datos = json_decode($login, true);
+        $this->validatec();
+    
+    }
+    private function validatec(){
+        if(empty($this->datos['codigo'])){
+           $this->respuesta['msg']='complete el campo';
+          }else{
+           $this->actualizar();
+            
+          }
+    }
+    private function actualizar()
+    {
+        $consultacode='select * from usuario where usuario.hash="'.$this->datos['codigo'].'"';
+      
+        $this->db->consultas($consultacode);
+        $this->respuesta['msg'] = $this->db->obtener_datos();
+        $codigoresult = $this->respuesta['msg'];
+         
+            foreach ($codigoresult as $key) {
+                $fila=$key;
+            }
+
+            if($fila['hash']===$this->datos['codigo']){
+               $this->db->consultas('
+                update usuario set activo=1 where usuario.hash="'.$this->datos['codigo'].'"
+               ');
+               $this->respuesta['msg']='Usuario Verificado';
+            }else{
+                $this->respuesta='error  ';
+            }
+           
+            
+           
+    
+      }
+    
 
 
     public function recibirFoto($login)

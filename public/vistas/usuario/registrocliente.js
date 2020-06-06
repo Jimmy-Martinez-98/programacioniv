@@ -50,8 +50,10 @@ var appusuario = new Vue({
 
            if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibircliente&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
-                if(resp.msg=='usuario registrado correctamente'){
-                    location.href="cooperativa.php"
+                if(resp.msg==='mensaje enviado'){
+                    location.href="verify.html"
+                   
+                    
                 }else{
                
                   Swal.fire({
@@ -60,7 +62,7 @@ var appusuario = new Vue({
                     text:resp.msg,
                     
                   });
-                  this.usuario.correo=''
+                  
                   this.usuario.pass=''
                  }
                  });

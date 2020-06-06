@@ -13,11 +13,11 @@ var appusuario = new Vue({
             telefono         :'',
 			correo  		 : '',
             pass		     :'',
-            fecha            :'',
-          
+            fecha            :'', 
             msg      		 : ''
         }
     },
+   
     methods:{
         alerta:function(){
 
@@ -47,24 +47,28 @@ var appusuario = new Vue({
 			}
           
 
-		},
+        },
+       
         guardarusuario:function(){
            if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
-                if(resp.msg==='usuario registrado correctamente'){
+                if( resp.msg==='mensaje enviado'){
                     location.href="cooperativa.php"
                 }else{
                 this.usuario.msg = resp.msg;
                     this.usuario=''
                  }
               
-                 });
+                 }).catch(e=>{
+                     console.log(e);
+                     
+                 })
            
              }else{
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text:"la contraseña debe contener los requisitos ",
+                text:"la contraseña debe cumplir con los requisitos ",
                 
               });
              }
