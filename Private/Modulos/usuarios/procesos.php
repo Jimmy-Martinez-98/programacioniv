@@ -44,7 +44,7 @@ class login{
         } else {
             $correo = $this->datos['correo'];
             $contraseña = $this->datos['pass'];
-            $consulta='select * from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" limit 1';
+            $consulta='select * from usuario where correo="' . $correo . '" and passwords="' . $contraseña . '" and usuario.activo=1 limit 1';
 
          $this->db->consultas($consulta);
             $this->respuesta['msg'] = $this->db->obtener_datos();
@@ -52,7 +52,7 @@ class login{
                
             
             if (empty($this->respuesta['msg'])) {
-                $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
+                $this->respuesta['msg'] = 'Su Cuenta no a sido verificada o Credenciales incorrectas';
                
             } else {     
                $this->respuesta['msg'] = 'Bienvenido'; 
@@ -302,11 +302,13 @@ class login{
                 update usuario set activo=1 where usuario.hash="'.$this->datos['codigo'].'"
                ');
                $this->respuesta['msg']='Usuario Verificado';
+               $_SESSION['usuario']=$fila['idusuario'];
+              
             }else{
-                $this->respuesta='error  ';
+                $this->respuesta='Error Codigo Invalido ';
             }
            
-            
+          
            
     
       }
