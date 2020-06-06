@@ -217,7 +217,7 @@ class login{
     }
 
     private function enviaremailcliente($namedestino,$correo,$hash){
-       
+        $rutaverificacion='http://localhost/programacioniv/verify.html';
         $destino=$correo;
         $nombre=$namedestino;
         $code=$hash;
@@ -253,9 +253,10 @@ class login{
            <h1> Hola '.$nombre.'</h1><br>
            <h3>-------------------</h3><br>
         
-           <h4> Este es tu codigo para verificar tu cuenta   <br> <h1>'.$code.'</h1><br>  . Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta. </h4>
-               <br>       
-              
+           <h3> Este es tu codigo para verificar tu cuenta   <br> <h1>'.$code.'.</h1></h3> <br>
+            <h3>Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta.</h3> 
+                <p>click aqui para verificar codigo</p>
+                <h4>'.$rutaverificacion.'</h4>    
             ';
            
         
