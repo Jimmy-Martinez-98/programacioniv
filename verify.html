@@ -11,14 +11,20 @@
 	<title>Verificacion</title>
 </head>
 <body> 
-
+	
 	<form class="needs-validation forms"v-on:submit.Prevent="verificar"id="frm-verify"  novalidate>
-		<div class="form-row">
+		<img src="public/img/logo2,0.png" width="100%" alt="">
+		<div class="divicion" ></div>
+		<div class="form-row mt-3">
+			
 			<div class="col-md-12 mb-3">
 			  <label for="validationCustom01">Codigo de Verificacion</label>
 			  <input type="text" class="form-control" v-model="code.codigo" id="validationCustom01" placeholder="Codigo:" required>
 			  <div class="valid-feedback">
 				Looks good!
+			  </div>
+			  <div class="invalid-feedback bg-light">
+				Complete el Campo
 			  </div>
 			</div>
 		 
@@ -27,7 +33,7 @@
 		<button class="btn btn-primary"  type="submit">Confirmar</button>
 	  </form>
 
-	  
+	
 	 <script>
 		 (function() {
 	'use strict';

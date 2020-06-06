@@ -17,7 +17,7 @@
 					alertify.alert('Verificacion de Usuario', resp.msg, function(){
 						location.href="index.html"
 					 });
-				}  else{
+				}  else {
 					alertify.alert('Verificacion de Usuario', resp.msg, function(){
 						
 					 });

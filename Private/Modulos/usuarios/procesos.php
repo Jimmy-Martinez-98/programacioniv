@@ -292,21 +292,22 @@ class login{
         $this->db->consultas($consultacode);
         $this->respuesta['msg'] = $this->db->obtener_datos();
         $codigoresult = $this->respuesta['msg'];
-         
+        if($codigoresult!=null){
             foreach ($codigoresult as $key) {
                 $fila=$key;
-            }
-
+                
             if($fila['hash']===$this->datos['codigo']){
-               $this->db->consultas('
-                update usuario set activo=1 where usuario.hash="'.$this->datos['codigo'].'"
-               ');
-               $this->respuesta['msg']='Usuario Verificado';
-               $_SESSION['usuario']=$fila['idusuario'];
-              
-            }else{
-                $this->respuesta='Error Codigo Invalido ';
-            }
+                $this->db->consultas('
+                 update usuario set activo=1 where usuario.hash="'.$this->datos['codigo'].'"
+                ');
+                $this->respuesta['msg']='Usuario Verificado'; 
+             } 
+            } 
+         }else{
+             $this->respuesta['msg']='Error! Código Invalido';
+         }
+           
+               
            
           
            
