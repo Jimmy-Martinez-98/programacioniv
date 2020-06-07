@@ -29,7 +29,7 @@
       <input type="text" class="form-control" id="validationCustom01" v-model="usuario.nombrec" required>
       <div class="invalid-feedback bg-light">
         Por favor rellena el campo!
-</div>
+		</div>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationCustom02">Teleofono</label>

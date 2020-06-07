@@ -56,7 +56,14 @@ var appusuario = new Vue({
                     location.href="cooperativa.php"
                 }else{
                 this.usuario.msg = resp.msg;
-                    this.usuario=''
+                 this.usuario.nombreu   		 = '';
+                
+             this.usuario.nombrecooperativa    ='';
+                 this.usuario.telefono         ='';
+                 this.usuario.correo  		 = '';
+                 this.usuario.pass		     ='';
+                 this.usuario.fecha            =''; 
+               
                  }
               
                  }).catch(e=>{
@@ -88,3 +95,7 @@ var appusuario = new Vue({
 });
 
  
+$(function () {
+    $('[data-toggle="popover"]').popover()
+    })
+    // Example starter JavaScript for disabling form submissions if there are invalid fields

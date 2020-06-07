@@ -26,7 +26,7 @@ a.text{
 a.text:hover{
     color: #ffffff;
 }
- div.container{
+ .needs-validation{
     background: #5fb677;
     width: 90%;
     max-width: 600px;
@@ -39,5 +39,11 @@ a.text:hover{
  }
 
 
-
-
+.bi-info-circle{
+    color: #ffffff;
+   
+}
+.bi-info-circle:hover{
+    color: #000000;
+    cursor: pointer;
+}

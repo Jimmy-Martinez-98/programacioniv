@@ -75,14 +75,21 @@ class login{
 
     private function validarRegistro()
     {
-        if (empty(trim($this->datos['correo']))  || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
+        if($this->respuesta['msg']==='correcto'){
+            $this->db->consultas('select * from usuario where correo="' . $this->datos['correo'] . '" limit 1');
+            $this->respuesta = $this->db->obtener_datos();
+        if (empty(trim($this->datos['correo']))||empty(trim($this->datos['selected']))  || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
             $this->respuesta['msg'] = 'complete los campos vacios';
-        }
-
-        if($this->datos['selected']!='Cooperativa'){
+        }else if($this->datos['selected']!='Cooperativa'){
             $this->datos['nombrecooperativa']=='';
+        }else if(!empty($this->respuesta)){
+            $this->respuesta['msg']='Este Correo ya Existe';
         }
-           $this->almacenar_registro();
+        else{
+            $this->almacenar_registro();
+        }
+        
+    }
         
     }
     private function almacenar_registro(){
