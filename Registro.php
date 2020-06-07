@@ -22,17 +22,20 @@
 
 
 		<form class="needs-validation"   v-on:submit.prevent="guardarusuario"  id="frm-usuarios" novalidate>
-		<div class="form-header">
+		<div class="form-header border-bottom mb-4">
 			<h1 class="form-title">REGISTRO</h1>
-			<hr>
+			
 		</div>
 
 		<div class="form-row">
 			<div class="col-md-6 mb-3">
 			<label for="validationCustom01">Nombre</label>
 			<input type="text" class="form-control" id="validationCustom01"  v-model="usuario.nombreu"   required>
-			<div class="invalid-feedback bg-light">
+			<div class="invalid-feedback bg-light  rounded  text-break text-center">
 			Rellena este campo
+			</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+			ok!
 			</div>
 			</div>
 	
@@ -43,18 +46,24 @@
 							<option value="Cooperativa">Cooperativa</option>
 							<option value="Productor Pequeño">Productor Pequeño</option>  
 						</select>
-						<div class="invalid-feedback bg-light">
+						<div class="invalid-feedback bg-light  rounded  text-break text-center">
 						Seleccione un elemento de esta lista
 						</div>
+						<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
 				</div>
 			
 			<div class="col-md-6 mb-3" v-if="usuario.selected==='Cooperativa'">
 			<label for="validationCustom01">Nombre Cooperativa</label>
 			<input type="text" class="form-control" id="validationCustom01" v-model="usuario.nombrecooperativa" required>
 
-			<div class="invalid-feedback bg-light">
-						Rellene este Campo
-						</div>
+			<div class="invalid-feedback bg-light  rounded  text-break text-center">
+				Rellene este Campo
+			</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
 			</div>
 
 
@@ -69,36 +78,48 @@
 			<label for="validationCustom01">Telefono</label>
 			
 			<input type="tel"  pattern="[0-9]{8}" maxlength="8" minlength="8" required class="form-control"  v-model="usuario.telefono" >
-			<div class="invalid-feedback bg-light">
+			<div class="invalid-feedback bg-light  rounded  text-break text-centert">
 			Rellena este campo
 			</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
 			</div>
 			<div class="col-md-3 mb-3">
 			<label for="validationCustom01">Fecha Registro</label>
 			<input type="date" class="form-control"  v-model="usuario.fecha" id="fecha" required>
 			
-			<div class="invalid-feedback bg-light">
+			<div class="invalid-feedback bg-light  rounded  text-break text-center">
 			Seleccione fecha de registro
 			</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
 			</div>
 		
 			<div class="col-md-6 mb-3">
 			<label for="validationCustom01">Correo Electronico</label>
 			<input type="email" required class="form-control"  v-model="usuario.correo">
 			
-			<div class="invalid-feedback bg-light">
+			<div class="invalid-feedback bg-light  rounded  text-break text-center">
 			Rellena este campo
 			</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
 			</div>
 
 			<div class="col-md-6 mb-3">
 			<label for="validationCustom01">Contraseña</label>
 			<input v-on:keyup="alerta" id="contra" type="password"  minlength="8" required class="form-control"  v-model="usuario.pass" >
 			
-			<div class="invalid-feedback bg-light">
+			<div class="invalid-feedback bg-light  rounded  text-break text-center">
 			Rellena este campo
 			</div>
-			<div id="msgs" class="bg-light" >
+			<div class="valid-feedback bg-light  rounded  text-break text-center">
+							ok!
+							</div>
+			<div id="msgs" class="bg-light  rounded-bottom text-break text-center" >
 
 			</div>
 			</div>
@@ -109,7 +130,7 @@
 			data-toggle="popover"
 			data-placement="top"
 			 title="Requizitos para Contraseña"
-			  data-content="minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula  y caracteres especiales por ejemplo: ., _, -"
+			  data-content="minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula  y caracteres especiales por ejemplo:  . _ -"
 			
 			
 			width="2em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

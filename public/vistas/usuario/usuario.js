@@ -53,16 +53,10 @@ var appusuario = new Vue({
            if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if( resp.msg==='mensaje enviado'){
-                    location.href="cooperativa.php"
+                    location.href="verify.html"
                 }else{
                 this.usuario.msg = resp.msg;
-                 this.usuario.nombreu   		 = '';
                 
-             this.usuario.nombrecooperativa    ='';
-                 this.usuario.telefono         ='';
-                 this.usuario.correo  		 = '';
-                 this.usuario.pass		     ='';
-                 this.usuario.fecha            =''; 
                
                  }
               
@@ -98,4 +92,4 @@ var appusuario = new Vue({
 $(function () {
     $('[data-toggle="popover"]').popover()
     })
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
+  

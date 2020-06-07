@@ -19,9 +19,9 @@
 <body>
 	<div class="container">
 		<form action=""  v-on:submit.prevent="inicioSesion"  id="frm-login" method="post">
-		<div class="form-header">
+		<div class="form-header border-bottom mb-5">
 			<h1 class="form-title">LOGIN</h1>
-			<hr>
+		
 		</div>
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">

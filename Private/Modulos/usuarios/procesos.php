@@ -93,13 +93,13 @@ class login{
         
     }
     private function almacenar_registro(){
-
+        $hash=mt_rand(1234,2465);
       
         if($this->respuesta['msg']==='correcto'){
     
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
-                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,activo,fechaR) VALUES(
+                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,activo,fechaR,hash) VALUES(
                     "'. $this->datos['nombreu'] .'",
                     "'. $this->datos['nombrecooperativa'] .'",
                     "'. $this->datos['telefono'] .'",
@@ -111,17 +111,20 @@ class login{
                     )
                 '); 
                 $this->respuesta['msg']="usuario registrado correctamente" ; 
-            $this->enviaremail($this->datos['nombrecooperativa'],$this->datos['correo'],$this->datos['nombreu']);
+            $this->enviaremailVendedor($this->datos['nombreu'],$this->datos['nombrecooperativa'],$this->datos['correo'],$hash);
             }
           
         }
         
     }
 
-    private function enviaremail($namedestino,$correo,$altername){
+    private function enviaremailVendedor($namedestino,$nombrecooperativa,$correo,$hash){
             $destino=$correo;
             $nombre=$namedestino;
-            $altername=$altername;
+            $altername=$nombrecooperativa;
+            $code=$hash;
+            $ruta="http://localhost/programacioniv/verify.html";
+
             $mail = new PHPMailer(true);
           
 
@@ -146,7 +149,15 @@ class login{
                 if(!empty(trim($nombre))){
                 $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Verificacion de cuenta';
-                $mail->Body    = 'Hola '.$nombre.' , esta es una prueva de verificacion :)';
+                $mail->Body    = '<h3>-------------------</h3><br>
+                <h1> Hola '.$nombre.'</h1><br>
+                <h3>-------------------</h3><br>
+             
+                <h3> Este es tu codigo para verificar tu cuenta   <br> <h1>'.$code.'.</h1></h3> <br>
+                 <h3>Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta.</h3> 
+                     <p>click aqui para verificar codigo</p>
+                     <h4>'.$ruta.'</h4>    
+                 ';
                
             
                 $mail->send();
@@ -156,7 +167,15 @@ class login{
                  else{
                     $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Verificacion de cuenta';
-                $mail->Body    = 'Hola '.$altername.' , esta es una prueba de verificacion :)';
+                $mail->Body    = '<h3>-------------------</h3><br>
+                <h1> Hola '.$altername.'</h1><br>
+                <h3>-------------------</h3><br>
+             
+                <h3> Este es tu codigo para verificar tu cuenta   <br> <h1>'.$code.'.</h1></h3> <br>
+                 <h3>Verificar tu dirección de correo electrónico mejora la seguridad de tu cuenta.</h3> 
+                     <p>click aqui para verificar codigo</p>
+                     <h4>'.$ruta.'</h4>    
+                 ';
                
             
                 $mail->send();
