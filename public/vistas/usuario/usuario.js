@@ -55,15 +55,12 @@ var appusuario = new Vue({
                 if( resp.msg==='mensaje enviado'){
                     location.href="verify.html"
                 }else{
-                this.usuario.msg = resp.msg;
-                
+              
+                    alertify.alert('Alert Title', resp.msg, function(){  });
                
                  }
               
-                 }).catch(e=>{
-                     console.log(e);
-                     
-                 })
+                 }).catch(e=>{ console.log(e); })
            
              }else{
             Swal.fire({
