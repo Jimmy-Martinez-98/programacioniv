@@ -84,9 +84,7 @@
 			<div class="invalid-feedback bg-light  rounded  text-break text-centert">
 			Rellena este campo
 			</div>
-			<div class="valid-feedback bg-light  rounded  text-break text-center">
-							ok!
-							</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">ok!</div>
 			</div>
 			<div class="col-md-3 mb-3">
 			<label for="validationCustom01">Fecha Registro</label>
@@ -95,11 +93,8 @@
 			<div class="invalid-feedback bg-light  rounded  text-break text-center">
 			Seleccione fecha de registro
 			</div>
-			<div class="valid-feedback bg-light  rounded  text-break text-center">
-							ok!
-							</div>
+			<div class="valid-feedback bg-light  rounded  text-break text-center">ok!</div>
 			</div>
-		
 			<div class="col-md-6 mb-3">
 			<label for="validationCustom01">Correo Electronico</label>
 			<input type="email" required class="form-control"  v-model="usuario.correo">
@@ -133,9 +128,7 @@
 			data-toggle="popover"
 			data-placement="top"
 			 title="Requizitos para Contraseña"
-			  data-content="minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula  y caracteres especiales por ejemplo:  . _ -"
-			
-			
+			  data-content="minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula  y caracteres especiales por ejemplo:  . _ -"	
 			width="2em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 			<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
