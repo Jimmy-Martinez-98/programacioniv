@@ -61,13 +61,16 @@ li.lis a.as{
     
 }
 .fav{
+    color: #000000;
+}
+.fav:hover{
     color: red;
 }
 
 /* ***************** */
 /* targetas */
 .targeta{
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
     overflow: hidden;
     background-color: white;
@@ -92,7 +95,6 @@ li.lis a.as{
 .targeta .cuerpotargeta {
     padding: 5px;
     text-align: center;
-    
      font-family: 'Pacifico', cursive;
       
     }
@@ -112,6 +114,8 @@ li.lis a.as{
     color: #5fb677;
     cursor: pointer;
 }
+
+
 
 .info{
     text-decoration: none;
