@@ -1,3 +1,6 @@
+*{
+    font-family: 'Pacifico', cursive;
+}
 body{
 	margin: 0;
 	padding: 0;
@@ -6,11 +9,10 @@ body{
 	position: relative;
 }
 /* nav */
-#nav{
-	display: block;
-  
-	  background: #5fb677;
-  }
+#hola{
+    background: #5fb677;
+    
+}
   ul.uls li.lis a.as{
     color: black;
     display: block;

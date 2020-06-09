@@ -5,55 +5,60 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist//css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="bandeja.css">
 	
 	<title>bandeja</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg   " id="nav">
-		<div class="container-fluid">
-		
-		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/logo2,0.png" alt=""></a>
-		  <button class="navbar-toggler mb-2"  id="toggles" type="button"  v-on:click="collapse" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		   <img width="50px" height="50px" src="../../../public/img/menu.png">
-		  </button>
-		  <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
-			  <ul class="navbar-nav mr-auto uls" >
-				<li class="nav-item  lis" >
-			  <a class="nav-item nav-link  as" id="home" href="../.../../../../index.html" ><h3>Inicio</h3> <span class="sr-only"></span></a>
+	<nav class="navbar navbar-expand-lg  navbar-light" id="hola" >
+		<a class="navbar-brand" href="../../../index.html"> <img height="50" src="../../img/logo2,0.png"></a>
+		<button class="navbar-toggler boton"  v-on:click="colapsar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="toggles">
+		  <ul class="navbar-nav mr-auto uls">
+			<li class="nav-item  lis" >
+			  <a class="nav-item nav-link  as" id="home" href="#"  @click="inicio" ><h4 >Inicio</h4> <span class="sr-only"></span></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as " id="verduras" href="#"><h3>Verduras</h3></a>
+			  <a class="nav-link as " id="verduras" href="#" @click="verdura" ><h4 >Verduras</h4></a>
 			</li>
 			<li class="nav-item lis">
-			  <a class="nav-link as" id="frutos"  href="#"><h3>Frutos</h3></a>
+			  <a class="nav-link as" id="frutos"  href="#" @click="fruto" ><h4 >Frutos</h4></a>
 			</li>
 			<li class="divicio lis">
-			  <a class="nav-link  as" id="legumbres" href="#"><h3>Legumbres</h3></a>
+			  <a class="nav-link  as" id="legumbres" href="#" @click="legumbre" ><h4 >Legumbres</h4></a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav uls">
-		   <li class="nav-item dropdown" >
-			<div class="dropdown ml-auto ">
-			  <a class="btn btn-lg" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"> 
-			 <span class="text-black-50"> {{datoscuenta[0].nombreu}}</span>
-			 <p class="correo">{{datoscuenta[0].correo}}</p>
-			 
-			 </a>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-			  <a class="dropdown-item " href="../../../cooperativa.php">Perfil <i class="far fa-user-circle"></i></a>  
-			 <a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
-			</div>
+		  
+			<li class="lis" v-if="session===0">
+			  <a class="nav-link  as" id="login"  href="#"  @click="login"><h4 > Iniciar Sesion</h4></a>
+			</li>
+	
+	
+			<li class="nav-item dropdown" v-else> 
+			  <div class="dropdown ml-auto ">
+			   <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+			  <img v-if="datoscuenta[0].imagen!=''" v-bind:src="'../../../'+datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
+			  <img v-else src="../../img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
+				  {{datoscuenta[0].nombreu}}
+			  </a>
+			 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
+					  <a class="dropdown-item " href="../../../cooperativa.php    ">Perfil <i class="fas fa-user-tie"></i></a>   
+					 
+					 <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
 			 </div>
-		  </li>
-  
-		  </ul>
+			  </div>
+			  </li>
 		   
-		  </div>
+		  </ul>
+		
+		  
 		</div>
-  
-		</nav>
+	  </nav>
 
 
 	<div  class="contenedor" id="bandejas">

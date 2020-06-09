@@ -94,7 +94,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
 
 
 var validarsession=new Vue({
-   el:"#nav",
+   el:"#hola",
    data:{
       valor:'',
       session:'',
@@ -120,11 +120,35 @@ var validarsession=new Vue({
             this.datoscuenta=resp;
             
          });
-      },collapse:function(){
-         $(".collapse").animate({
-            height: 'toggle'
-           });
-      }
+      }, colapsar:function(){  
+         $("#toggles").animate({
+          height: 'toggle'
+         });
+      },
+      inicio(){
+         $("#contenedor").load("public/vistas/home/home.html",function(data){
+            $(this).html(data);       
+         });
+
+   },
+   verdura(){
+      $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
+         $(this).html(data);
+      });
+   },
+   legumbre(){
+      $("#contenedor").load("public/vistas/legumbres/legumbres.html",function(data){
+         $(this).html(data);
+      });
+   },
+   fruto(){
+      $("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
+         $(this).html(data);
+      });
+   },
+   login(){
+      location.href="login.php"
+   }
    }
 
 });

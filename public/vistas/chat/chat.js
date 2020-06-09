@@ -33,7 +33,9 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                    
             },
             enviarMensaje(){
-               if(this.msg!=''){
+               var msj=this.msg.msg;
+				   this.msg.msg=msj.trim();
+               if(this.msg!='' && this.msg.msg!='' ){
                   socket.emit('enviarMensaje', this.msg);  
                   this.msg.msg = '';   
                }  
