@@ -9,7 +9,9 @@ var seccionverduras =new Vue({
 	methods:{
 			traer(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirverduras&miproducto=${JSON.stringify(this.verdes)}`).then(resp=>resp.json()).then(resp=>{
-				this.verdes=resp;			
+				this.verdes=resp;	
+				console.log(resp);
+						
 			});
 		},
 		verProd(info){

@@ -11,27 +11,28 @@
 	  </div>
 	<div class="container" id="vegetales">
 		<div class="row py-2" >
-			<div class="col-sm-4" v-for="clay in verdes"  >
-				<div class="targeta " style="height: 400;">
-					<img v-bind:src="clay.imagen"	>
-					<div class="cuerpotargeta" >
-					 <a class="hole" href="#" @click="verProd(clay)" ><h4> {{clay.nombre_producto}}</h4></a>
-					  <a href="#" class="info"v-if=" clay.nombrecooperativa==''" ><span> {{clay.nombreu}}</span></a>
-					  <a href="#" class="info" v-else > {{clay.nombrecooperativa}}</a>
-					 <div class="row ">
-					   <div class="col-12 mt-3"> 
-						 <p class="card-text float-left  ">
-						 ${{clay.precio_venta}} 
-						 </p>
-						 <i class="far fa-heart fav float-right"></i>
+		<div class="col-sm-4" v-for="clay in verdes"  >
+		<div class="targeta " style="height: 400;">
+			<img v-bind:src="clay.imagen">
+				<div class="cuerpotargeta" >
+				<a class="hole" href="#" @click="verProd(clay)" ><h4> {{clay.nombre_producto}}</h4></a>
+				 <a href="#" class="info"v-if=" clay.nombrecooperativa==''" ><span> {{clay.nombreu}}</span></a>
+			     <a href="#" class="info" v-else > {{clay.nombrecooperativa}}</a>
+				 <div class="row ">
+				  <div class="col-12 mt-3"> 
+				 <p class="card-text float-left  ">
+					 ${{clay.precio_venta}} 
+				 </p>
+				 <i class="far fa-heart fav float-right"></i>
 					  
-					   </div>
-					 </div>
-					</div>
-				  </div>
+			   </div>
 			</div>
 		</div>
-	</div>
+	 </div>
+</div>
+</div>
+</div>
+
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="public/js/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
