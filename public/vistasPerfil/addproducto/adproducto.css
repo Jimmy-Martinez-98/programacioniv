@@ -25,7 +25,10 @@ div.botones{
 	justify-content: center;
 	
 }
-div.bg{
+#frm-productoN{
+	background: #5fb677;
+}
+.bg{
 	background: #5fb677;
 }
 .close {
@@ -38,6 +41,13 @@ div.bg{
     opacity: .5;
 }
 
-.form-control:focus{
-	outline: green;
+.list-item{
+	list-style-type: none;
+	text-decoration: none;
+	padding: 10px;
+	width: 60px;
+	border-radius: 10px;
+	background-color: rgba(66, 62, 62, 0.527);
+	font-size: 12px;
+	
 }

@@ -26,6 +26,8 @@ class producto_nuevo {
        
 	}
 	private function validardatos(){
+	
+
 		 if(  empty(trim($this->datos['idusuario']))||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
 			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
 		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
@@ -55,9 +57,11 @@ class producto_nuevo {
                 $this->respuesta['msg']="Su Producto Fue Publicado Exitosamente";
                
 			} 
+			
 		}
 		
 	}
+
 
 	public function recibirDatosmod($producto)
     {

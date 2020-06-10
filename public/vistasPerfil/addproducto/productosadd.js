@@ -18,6 +18,13 @@ var publicarp=new Vue({
 			msg:''
 		},
 		
+		
+		tventa:{
+			libra:'',
+			arroba:'',
+			quintal:''
+		},
+		
 		imagenlittle:''
 
 	},
@@ -26,18 +33,23 @@ var publicarp=new Vue({
 	},
 	
 	methods:{
+	
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.publicP.idusuario=resp[0].idusuario;
 				
 				
 			})
+		
+		
 		},
+		
 		guardar:function(){	
 
 				fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
 					if(resp.msg=="Su Producto Fue Publicado Exitosamente"){
 						  alertify.success(resp.msg);
+
 						  this.publicP='';
 					}else{
 						Swal.fire({
@@ -50,10 +62,12 @@ var publicarp=new Vue({
 					}
 						
 				});	  
-			  
 
-
+					
+	
 			
+			
+		
 			
 		},
 		obtenerimagen(e){
@@ -86,6 +100,9 @@ var publicarp=new Vue({
 			}
 			reader.readAsDataURL(file);
 		}
+		
+		
+
 	},
 	computed:{
 		imagen(){
@@ -94,6 +111,5 @@ var publicarp=new Vue({
 	}
 	
 });
-
 
 
