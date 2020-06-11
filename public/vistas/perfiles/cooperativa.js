@@ -77,16 +77,10 @@ $(document).ready(function () {
 
 
 
-function cambiar_clase() {
-	$('.activa .activa .activa:first').addClass('active');
-	$('.activa .activa .activa').click(function (e) {
-		$('.activa .activa .activa').removeClass('active');
-		$(this).addClass('active');
-	});
-}
+
 
 function toggle(){
-	$("#togglesss").click(function(){
+	$("#colapsar").click(function(){
 		
 		
         $(".collapse").animate({

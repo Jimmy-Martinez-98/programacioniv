@@ -126,26 +126,10 @@ var validarsession=new Vue({
          });
       },
       inicio(){
-         $("#contenedor").load("public/vistas/home/home.html",function(data){
-            $(this).html(data);       
-         });
+         location.href="../../../index.html"
 
    },
-   verdura(){
-      $("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
-         $(this).html(data);
-      });
-   },
-   legumbre(){
-      $("#contenedor").load("public/vistas/legumbres/legumbres.html",function(data){
-         $(this).html(data);
-      });
-   },
-   fruto(){
-      $("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
-         $(this).html(data);
-      });
-   },
+  
    login(){
       location.href="login.php"
    }

@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 	<link rel="stylesheet" href="public/vistas/login/login.css">
 
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	
 	<title>Login</title>
 </head>

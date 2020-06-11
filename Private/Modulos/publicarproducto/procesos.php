@@ -26,21 +26,21 @@ class producto_nuevo {
        
 	}
 	private function validardatos(){
-	
-
-		 if(  empty(trim($this->datos['idusuario']))||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
+		
+		 if(  empty(trim($this->datos['idusuario']))||empty($this->datos['libra']) && empty($this->datos['arroba']) && empty($this->datos['quintal']) &&  empty($this->datos['caja'])||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
 			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
 		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
 			$this->respuesta['msg']='algunos campos solo admiten caracteres numericos o con punto decimal :)';
 		}
-	$this->guardar();
+	 $this->guardar();
 	}
 
 	private function guardar(){
 		if($this->respuesta['msg']==='correcto'){	
+			
             if($this->datos['accion']==='nuevo'){	
                 $this->db->consultas('
-                INSERT INTO misproducto (miproducto,fk_idusuario,nombre_producto,precio,precio_venta,existencias,descprod,codigo_producto,imagen,categoria,fecha_subida) VALUES(
+                INSERT INTO misproducto (miproducto,fk_idusuario,nombre_producto,precio,precio_venta,existencias,descprod,codigo_producto,imagen,categoria,Libra,Arroba,Quintal,Caja,fecha_subida) VALUES(
 					"'. $this->datos['miproducto'] .'",
                     "'. $this->datos['idusuario'] .'",
                     "'. $this->datos['nombre_producto'] .'",
@@ -51,6 +51,10 @@ class producto_nuevo {
 					"'. $this->datos['codigo_producto'] .'",
 					"'. $this->datos['imagen'] .'",
 					"'. $this->datos['categoria'] .'",
+					"'. $this->datos['libra'] .'",
+					"'. $this->datos['arroba'] .'",
+					"'. $this->datos['quintal'] .'",
+					"'. $this->datos['caja'] .'",
                     "'. $this->datos['fecha_subida'] .'"
                     )
                 ');
@@ -71,7 +75,7 @@ class producto_nuevo {
 	}
 
 	private function validarmod(){
-	 if( empty(trim($this->datos['fk_idusuario'])) ||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['precio_venta'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
+	 if( empty(trim($this->datos['fk_idusuario']))||empty($this->datos['libra']) && empty($this->datos['Arroba']) && empty($this->datos['Quintal']) &&  empty($this->datos['Caja']) ||empty(trim($this->datos['nombre_producto'])) ||empty(trim($this->datos['precio'])) ||empty(trim($this->datos['descprod'])) ||empty(trim($this->datos['existencias']))|| empty($this->datos['imagen']) ||empty(trim($this->datos['categoria']))||empty(trim($this->datos['fecha_subida']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['codigo_producto'])) ){
 			$this->respuesta['msg']='Por Favor Complete Los Campos :)';
 		}else if(!is_numeric($this->datos['codigo_producto'])||!is_numeric($this->datos['precio'])||!is_numeric($this->datos['existencias'])||!is_numeric($this->datos['precio_venta'])){
 			$this->respuesta['msg']='algunos campos solo admiten caracteres numericos o con punto decimal :)';
@@ -93,6 +97,10 @@ class producto_nuevo {
 				codigo_producto			= "'. $this->datos['codigo_producto'] .'",
 				imagen				= "'. $this->datos['imagen'] .'",
 				categoria			= "'. $this->datos['categoria'] .'",
+				Libra				= "'. $this->datos['Libra'] .'",
+				Arroba				= "'. $this->datos['Arroba'] .'",
+				Quintal				= "'. $this->datos['Quintal'] .'",
+				Caja				= "'. $this->datos['Caja'] .'",
 				fecha_subida		= "'. $this->datos['fecha_subida'] .'"
 				 WHERE miproducto	= "'. $this->datos['miproducto'] .'"
 				
@@ -109,7 +117,7 @@ class producto_nuevo {
 			FROM misproducto
 			WHERE misproducto.miproducto="'.$identificador.'"
 		');
-		$this->respuesta['msg']='Su  Ha Sido Producto Eliminado';
+		$this->respuesta['msg']='Su  Producto  Ha Sido Eliminado';
 		
 		}
 

@@ -9,6 +9,10 @@ var publicarp=new Vue({
 			descprod:'',
 			codigo_producto:'',
 			categoria:'',
+			libra:'',
+			quintal:'',
+			arroba:'',
+			caja:'',
 			imagen:'',
 			existencias:'',
 			precio:'',
@@ -19,12 +23,9 @@ var publicarp=new Vue({
 		},
 		
 		
-		tventa:{
-			libra:'',
-			arroba:'',
-			quintal:''
-		},
-		
+
+	
+	
 		imagenlittle:''
 
 	},
@@ -44,8 +45,10 @@ var publicarp=new Vue({
 		
 		},
 		
+		
+		
 		guardar:function(){	
-
+		
 				fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
 					if(resp.msg=="Su Producto Fue Publicado Exitosamente"){
 						  alertify.success(resp.msg);
@@ -63,11 +66,13 @@ var publicarp=new Vue({
 						
 				});	  
 
-					
-	
+		
+
+			
 			
 			
 		
+				
 			
 		},
 		obtenerimagen(e){
@@ -111,5 +116,4 @@ var publicarp=new Vue({
 	}
 	
 });
-
 

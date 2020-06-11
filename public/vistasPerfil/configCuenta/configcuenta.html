@@ -3,12 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/vistasPerfil/configCuenta/configcuenta.css">
 </head>
 <body>
-	<div class="container colores">
-		<form method="POST" id="cuenta">
-			<div class="row d-flex justify-content-center pt-2">
+	<div class="container colores  ">
+		<form method="POST" id="cuenta" class="rounded p-2">
+			<div class="row d-flex justify-content-center pt-2 ">
 				<div class="col-6">
 					<div  class=" float-left" style="width: 250px;">
 						<img  v-if="datoscuenta[0].imagen!=''" height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">

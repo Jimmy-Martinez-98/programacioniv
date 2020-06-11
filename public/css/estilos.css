@@ -1,6 +1,6 @@
 
 *{
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
 }
 body{
     background-color: #fff;
@@ -23,7 +23,7 @@ ul.uls li.lis a.as{
     color: black;
     display: block;
  
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 ul.uls li.lis a.as::before{
@@ -34,7 +34,7 @@ ul.uls li.lis a.as::before{
     background: white;
     bottom:0;
     transition: all .3s;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
 
 }
 
@@ -78,7 +78,7 @@ li.lis a.as{
     cursor: default;
     transition: all 400ms ease;
    
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
 }
 .targeta:hover{
     box-shadow: 5px 5px 20px rgba(0, 0, 0,0.4);
@@ -88,21 +88,23 @@ li.lis a.as{
 
 .targeta img{
     width: 100%;
-    height: 90px ;
+    height: 100px;
+    margin-bottom: 10px;
 
 }
 
 .targeta .cuerpotargeta {
-    padding: 5px;
+    padding: 2px 10px;
+   
     text-align: center;
-     font-family: 'Pacifico', cursive;
+     font-family: 'Balsamiq Sans', cursive;
       
     }
 
 .targeta .cuerpotargeta .card-text{
     line-height: 1.5;
     color: black;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
     
 }
 
@@ -121,14 +123,14 @@ li.lis a.as{
     text-decoration: none;
     color: black;
     cursor: default;
-    font-size: 15px;
-    font-family: 'Pacifico', cursive;
+    font-size: 10px;
+    font-family: 'Balsamiq Sans', cursive;
     
 }
 .info:hover{
     text-decoration: none;
     color: black;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 .carousel-control-prev {
@@ -167,4 +169,22 @@ li.lis a.as{
 }
 .input-group-append{
     cursor: pointer;
+}
+.input-group-prepend:hover{
+cursor: pointer;
+}
+.forma{
+    height: 50px;
+}
+
+.btn-outline-dark:hover{
+    background-color:#5fb677 ;
+    color: white;
+    border-color:#5fb677 ;
+  
+}
+.btn-outline-dark{
+    border-color:#5fb677 ;
+  
+  
 }

@@ -1,7 +1,9 @@
 var seccionlegumbre = new Vue({
 	el:'#legum',
 	data:{
-		legumbressss:[]
+		legumbressss:[],
+		valor:''
+		
 	},
 	methods:{
 		traerlegumbres:function(){
@@ -10,6 +12,14 @@ var seccionlegumbre = new Vue({
 			   
 			 });	
 		},
+		buscarL:function () {
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductosL&miproducto=${this.valor}`).then(resp=>resp.json()).then(resp=>{
+					
+					
+			this.legumbressss=resp;	
+		});
+		  }
+		,
 		verProd(info){
 			var data={
 				info
@@ -17,7 +27,19 @@ var seccionlegumbre = new Vue({
 			 
 				sessionStorage.setItem("data",JSON.stringify(data));
 				location.href="productos.html"
-		}
+		},
+		descL:function () { 
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoDESCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp=>resp.json()).then(resp=>{		
+				this.legumbressss=resp;	
+					
+					});
+		 },
+		ascL:function () { 
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoASCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp=>resp.json()).then(resp=>{		
+				this.legumbressss=resp;	
+					
+					});
+		 }
 	},
 	created:function(){
 		this.traerlegumbres();

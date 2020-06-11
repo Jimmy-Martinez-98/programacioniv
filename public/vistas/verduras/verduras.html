@@ -1,17 +1,22 @@
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/css/estilos.css">
+	
 	<div class="container mt-3 mb-3">
-		<div class="input-group ">
-		  <input type="text" class="form-control " >
-		  <div class="input-group-append">
-			<span class="input-group-text "><i class="fas fa-search"></i></span>
-		  </div>
-		</div>
-	  </div>
 	<div class="container" id="vegetales">
-		<div class="row py-2" >
-		<div class="col-sm-4" v-for="clay in verdes"  >
+		<div class="input-group input-group-lg">
+			<input type="text" class="form-control" v-model="valor">
+		 <div class="input-group-prepend"  v-on:click="buscarV">
+			  <span class="input-group-text" id="inputGroup-sizing-lg">
+				   <i class="fas fa-search"></i></span>
+			</div>
+		</div>
+		<div class="row py-2 bg-ligth" >
+			<div class="container bg-light forma">
+				<label for=""> Ordenar Por Precio:	<button @click="descP" class=" btn btn-outline-dark"><img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente"> </button> <button @click="ascP" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente"></button> </label>
+			</div>
+		<div class="col-sm-4 mt-3 " v-for="clay in verdes"  >
+			
 		<div class="targeta " style="height: 400;">
 			<img v-bind:src="clay.imagen">
 				<div class="cuerpotargeta" >

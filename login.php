@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/login/login.css">
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<title>Login</title>
 </head>
 <body>
@@ -38,10 +38,10 @@
 		  <button type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Iniciar Sesión</button>
 		  <div class="row mt-3">
 			  <div class="col-4 ">
-				 <a class="text" v-on:click="Recuperar" href="#">Olvido Contraseña?</a>
+				 <a class="text enlace1" v-on:click="Recuperar" href="#">Olvido Contraseña?</a>
 			  </div>
-			  <div class="col-8 ">
-				<p class="float-roght">Aun no tienes una cuenta? <a class="text" v-on:click="Registrate" href="#">Registrate Aquí</a></p>	
+			  <div class="col-8 d-flex justify-content-end ">
+				<p class="float-roght enlace2">Aun no tienes una cuenta? <a class="text" v-on:click="Registrate" href="#">Registrate Aquí</a></p>	
 			  </div>	
 		  </div>
 		 

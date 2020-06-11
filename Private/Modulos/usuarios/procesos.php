@@ -94,7 +94,7 @@ class login{
         
     }
     private function almacenar_registro(){
-        $hash=mt_rand(1234,2465);
+        $hash=mt_rand(1000,9999);
       
         if($this->respuesta['msg']==='correcto'){
     
@@ -124,7 +124,7 @@ class login{
             $nombre=$namedestino;
             $altername=$nombrecooperativa;
             $code=$hash;
-            $ruta="http://localhost/programacioniv/verify.html";
+            $ruta="http://192.168.1.10/programacioniv/verify.html";
 
             $mail = new PHPMailer(true);
           
@@ -244,7 +244,7 @@ class login{
     }
 
     private function enviaremailcliente($namedestino,$correo,$hash){
-        $rutaverificacion='http://localhost/programacioniv/verify.html';
+        $rutaverificacion='http://192.168.1.10/programacioniv/verify.html';
         $destino=$correo;
         $nombre=$namedestino;
         $code=$hash;

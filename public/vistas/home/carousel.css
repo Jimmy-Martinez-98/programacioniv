@@ -2,26 +2,31 @@
     code by Iatek LLC 2018 - CC 2.0 License - Attribution required
     code customized by Azmind.com
 */
+*{
+    font-family: 'Balsamiq Sans', cursive;
+}
 body{
     font-family: 'Pacifico', cursive;
 }
-.clasificacion{
-    direction: rtl;/* right to left */
-    unicode-bidi: bidi-override;/* bidi de bidireccional */
-    
-}
-label{ color:grey;}
 
-input[type = "radio"]{ display:none; cursor: pointer;} 
-label:hover{color:orange; cursor: pointer;}
-label:hover ~ label{color:orange;cursor: pointer;}
-input[type="radio"]:checked ~ label {
+
+.form-check-input{
+    display: none;
+    color: gray;
+}
+.form-check-label{
+    color: gray;
+    font-size: 20px;
+}
+
+.form-check-input:checked~label{
     color: orange;
-  }
+}
 
   .card-footer{
       background-color: #ffffff;
       border: none;
+      margin-bottom: 100px;
   }
 
   
@@ -39,7 +44,7 @@ background-color: black;
     .carousel-inner .active.col-md-4.carousel-item + .carousel-item + .carousel-item + .carousel-item {
         position: absolute;
         top: 0;
-        right: -33.3333%;  /*change this with javascript in the future*/
+        right: -34.4444%;  /*change this with javascript in the future*/
         z-index: -1;
         display: block;
         visibility: visible;

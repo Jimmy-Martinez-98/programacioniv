@@ -20,30 +20,40 @@
 						<img v-bind:src="datos.imagen"	>
 							
 						<div class="cuerpotargeta" style="height: 155px;">	
-						 <a class="hole " href="#" v-on:click="verProd(datos)"><h4> {{datos.nombre_producto}}</h4></a>
+						 <a class="hole " href="#" v-on:click="verProd(datos)"><h5> {{datos.nombre_producto}}</h5></a>
 						 <a href="#" class="info"  v-if="datos.nombrecooperativa==''"> {{datos.nombreu}}</a>
 						 <a href="#" class="info" v-else> {{datos.nombrecooperativa}}</a>
-						 <p class="clasificacion">
-							<input id="star1" v-model="stars" type="radio" name="estrellas" value="cinco" >
-							<label for="star1">&#9733;</label>
-							<input id="star2" v-model="stars" type="radio" name="estrellas" value="cuatro" >
-							<label for="star2">&#9733;</label>
-							<input id="star3"  v-model="stars"type="radio" name="estrellas" value="tres">
-							<label for="star3" >&#9733;</label>
-							<input id="star4" v-model="stars" type="radio" name="estrellas" value="dos" >
-							<label for="star4">&#9733;</label>
-							<input id="star5" v-model="stars" type="radio" name="estrellas" value="uno">
-							<label for="star5">&#9733;</label>
+						 <p class="clasificacion mb-0" v-model="datos.Libra">
+								<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">
+								<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox2"   value="option2">
+								<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox3"  value="option3" >
+								<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox4"  value="option4" >
+								<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox5"  value="option5" >
+								<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+							
+							
 						</p>		
 						
-						 <div class="row card-footer">
+						 <div class="row card-footer ">
 						   <div class="col-12">
 							 <p class="card-text float-left ">
 								 ${{datos.precio_venta}}
 	
 							 
 							 </p>
-							 <i class="far fa-heart fav float-right"></i>
+							 <i class="far fa-heart fav float-right" data-toggle="button"></i>
 						  
 						   </div>
 						 </div>
@@ -62,6 +72,59 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
+
+
+			<!-- todos los productos -->
+			<div class="container mt-2  d-flex justify-content-center" id="todoproducto">
+				<div class="row ">
+				  <div class="col-sm-4 " v-for="todo in all":key="todo.miproducto">
+					<div class="targeta" >
+						<img v-bind:src="todo.imagen"	>		
+						<div class="cuerpotargeta" style="height: 155px;">	
+						 <a class="hole " href="#" v-on:click="verProd(datos)"><h5> {{todo.nombre_producto}}</h5></a>
+						 <a href="#" class="info"  v-if="todo.nombrecooperativa==''"> {{todo.nombreu}}</a>
+						 <a href="#" class="info" v-else> {{todo.nombrecooperativa}}</a>
+						 <p class="clasificacion mb-0" v-model="todo.Libra">
+								<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">
+								<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox2"   value="option2">
+								<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox3"  value="option3" >
+								<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox4"  value="option4" >
+								<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+							
+							 
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox5"  value="option5" >
+								<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+							
+							
+						</p>		
+						
+						 <div class="row card-footer ">
+						   <div class="col-12">
+							 <p class="card-text float-left ">
+								 ${{todo.precio_venta}}
+				
+							 
+							 </p>
+							 <i class="far fa-heart fav float-right" data-toggle="button"></i>
+						  
+						   </div>
+						 </div>
+						</div>
+					  </div>
+				  </div>
+				 
+				</div>
+			  </div>
+
 	
 	<script src="public/js/jquery-3.5.js"></script>
 	
@@ -71,4 +134,5 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="public/vistas/home/carousel.js"></script>
 	<script src="public/vistas/home/home.js"></script>
+	
 	

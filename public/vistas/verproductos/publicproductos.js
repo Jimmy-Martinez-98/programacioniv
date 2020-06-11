@@ -16,13 +16,17 @@ var mostrardetalle = new Vue({
 		todo:function(){
 			var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
 			this.detallesprod=datafromstorage;	
-
+			console.log(this.detallesprod);
+			
 			
 			
 		},
 		traerproductos:function(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productosrelacionados)}`).then(resp=>resp.json()).then(resp=>{
 				this.productosrelacionados=resp;
+			
+				console.log('reso',resp);
+				
 			})
 		},
 		suma:function(){

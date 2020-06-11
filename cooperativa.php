@@ -53,10 +53,15 @@ error_reporting(0);
     </li>
     </ul>
   </nav>
-<nav class="navbar navbar-expand-lg navbars  ui-btn-active  ui-state-persist " >
+  <nav class="navbar navbar-expand-lg navbar-light navbars">
+ 
+  <button class="navbar-toggler mb-2" id="colapsar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   
-    <div  id="navbarNavAltMarkup ">
-        <ul class="navbar-nav mr-auto uls " id="nav">
+  <ul class="navbar-nav mr-auto uls " id="nav">
           <li class=" lis activa">
         <a class=" nav-link  " id="info" href="#" > <h6>Informacion de Perfil</h6>  <span class="sr-only"></span></a>
       </li>
@@ -77,17 +82,12 @@ error_reporting(0);
       </li>
   
     </ul>
-  
-     
-    </div>
-  
-  </div>  
-  </nav>
+  </div>
+</nav>
 
   <section class="mt-1" id="contenedorP">
 
     </section>
-
 
     
     <script src="public/js/jquery-3.5.js"></script>

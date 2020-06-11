@@ -35,3 +35,21 @@ var app=new Vue({
 	});
  
 
+var todoproducto= new Vue({
+	el:'#todoproducto',
+	data:{
+		all:[]
+	},
+	created:function () {
+		this.traer_todo();
+	  },
+	methods:{
+		traer_todo:function(){
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirall&miproducto=${JSON.stringify(this.all )}`).then( resp=>resp.json() ).then(resp=>{ 
+				this.all = resp;		
+			   
+			   
+			 });
+		}		  
+	}
+})

@@ -9,6 +9,9 @@ var appeditP = new Vue({
 			codigo_producto:'',
 			categoria:'',
 			imagen:'',
+			Libra:'',
+			Arroba:'',
+			Quintal:'',
 			existencias:'',
 			precio:'',
 			precio_venta:'',
@@ -97,7 +100,7 @@ var apptodoP=new Vue({
 		  modi:function(id){
 		
 			 appeditP.mod=id;
-			console.log(	appeditP.mod.accion='modificar');
+			console.log(	appeditP.mod.accion='modificar',appeditP.mod);
 			
 			 
 			  

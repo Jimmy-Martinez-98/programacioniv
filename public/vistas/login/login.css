@@ -4,7 +4,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; 
-    font-family: 'Pacifico', cursive;
+    font-family: 'Balsamiq Sans', cursive;
    
 }
 
@@ -58,4 +58,9 @@ a.text:hover{
     color: #000000;
     cursor: pointer;
 }
-
+.enlace2{
+    font-size: 12px;
+}
+.enlace1{
+    font-size: 12px;
+}
