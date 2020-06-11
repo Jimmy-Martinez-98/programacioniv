@@ -62,6 +62,12 @@
                $(this).html(data);
             });
          },
+         blog:function(){
+            $("#contenedor").load("public/vistas/blog/blog.html",function(data){
+               $(this).html(data);
+            });
+         }
+         ,
          login(){
             location.href="login.php"
          }
