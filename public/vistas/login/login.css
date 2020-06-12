@@ -64,3 +64,12 @@ a.text:hover{
 .enlace1{
     font-size: 12px;
 }
+#ter{
+        color: black;
+        font-size: 12px;
+}
+
+#ter:hover{
+    color: white;
+    font-size: 12px;
+}

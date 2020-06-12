@@ -15,7 +15,8 @@ var appusuario = new Vue({
             pass		     :'',
             fecha            :'', 
             msg      		 : ''
-        }
+        },
+        verificarchek:''
     },
    
     methods:{
@@ -50,7 +51,12 @@ var appusuario = new Vue({
         },
        
         guardarusuario:function(){
-           if($('#msgs').val("Segura!")){
+           
+        
+           if (this.verificarchek!=false||this.verificarchek!='') {
+               
+         
+            if($('#msgs').val("Segura!")){
             fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
                 if( resp.msg==='mensaje enviado'){
                     location.href="verify.html"
@@ -63,14 +69,22 @@ var appusuario = new Vue({
                  }).catch(e=>{ console.log(e); })
            
              }else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text:"la contraseña debe cumplir con los requisitos ",
-                
-              });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text:"la contraseña no comple con los requisitos ",
+                    
+                  });
              }
-           
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                   
+                    text:"Debe Aceptar La Política de Privacidad ",
+                    
+                  });
+            }
+                
         },
         IniciarSesion:function(){
             location.href="login.php";

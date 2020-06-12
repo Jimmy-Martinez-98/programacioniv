@@ -134,8 +134,12 @@
 			<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
 			<circle cx="8" cy="4.5" r="1"/>
 			</svg>
-		
-			
+			<br>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input pol" v-model="verificarchek" type="checkbox" id="inlineCheckbox1" value="option1">
+				<label class="form-check-label pol" for="inlineCheckbox1"> <a id="ter" target="_bank" href="public/vistas/terminos_condiciones/terminos.html">Política de Privacidad</a></label>
+			</div>
+			<p>{{verificarchek}}</p>
 			</div>
 			
 		  </div>
@@ -194,6 +198,7 @@
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="public/js/vue.min.js"></script>
 	<script src="alertifyjs/alertify.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	 <script src="public/vistas/usuario/usuario.js"></script>
 	
 </body>

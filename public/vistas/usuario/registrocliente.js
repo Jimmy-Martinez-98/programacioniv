@@ -82,7 +82,7 @@ var appusuario = new Vue({
               Swal.fire({
                 icon: 'warning',
                
-                text:"debe aceptar Política de Privacidad ",
+                text:"Debe Aceptar La Política de Privacidad ",
                 
               });
             }
