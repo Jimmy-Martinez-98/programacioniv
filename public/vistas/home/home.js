@@ -27,7 +27,7 @@ var app=new Vue({
 	   }
 	   
 		  sessionStorage.setItem("data",JSON.stringify(data));
-		  location.href="productos.html"
+		
 	   }   
 	
 	}
@@ -47,9 +47,10 @@ var todoproducto= new Vue({
 		traer_todo:function(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirall&miproducto=${JSON.stringify(this.all )}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.all = resp;		
-			   
-			   
 			 });
+		},
+		verProd:function(){
+
 		}		  
 	}
 })

@@ -5,3 +5,14 @@ body{
 .invalid-feedback{
 	color: red;
 }
+#ter{
+color: black;
+font-size: 12px;
+}
+
+#ter:hover{
+	color: white;	
+}
+.textoo{
+	font-size: 12px;
+}

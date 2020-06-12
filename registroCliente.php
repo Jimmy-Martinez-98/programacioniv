@@ -66,7 +66,6 @@
 		<div id="msgs" class="bg-light"></div>
     </div>
 	<div class="col-md-6">
-			
 			<svg  class="bi bi-info-circle mb-2" 
 			data-toggle="popover"
 			data-placement="top"
@@ -79,18 +78,22 @@
 			<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
 			<circle cx="8" cy="4.5" r="1"/>
 			</svg>
-		
-			
-			</div>
+		<br>
+		<div class="form-check form-check-inline">
+		<input class="form-check-input" v-model="valorcheck" type="checkbox" id="inlineCheckbox1" value="option1">
+		<label class="form-check-label" for="inlineCheckbox1"> <a id="ter" target="_bank" href="public/vistas/terminos_condiciones/terminos.html">Política de Privacidad</a></label>
+		</div>
+	</div>			
+</div>
   </div>
 
   <button class="btn btn-primary btn-block" type="submit">Registrarme</button>
   <div class="row mt-3">
 			  <div class="col ">
-			<a class="text float-left " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	
+			<a class="text float-left  textoo" v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>	
 			  </div>	
 			  <div class="col">
-			  <a class="text float-right " v-on:click="registro" href="#">Registrarse Como Vendedor</a>	</div>
+			  <a class="text float-right  textoo" v-on:click="registro" href="#">Registrarse Como Vendedor</a>	</div>
 		
 
 </div>

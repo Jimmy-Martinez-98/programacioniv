@@ -12,7 +12,8 @@ var appusuario = new Vue({
             pass	    	     :'',
             fecha            :'',
             msg          		 : ''
-        }
+        },
+        valorcheck:''
     },
     methods:{
         alerta:function(){
@@ -48,34 +49,43 @@ var appusuario = new Vue({
 		},
         guardarusuario:function(){
 
-           if($('#msgs').val("Segura!")){
-            fetch(`private/Modulos/usuarios/procesos.php?proceso=recibircliente&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
-                if(resp.msg==='mensaje enviado'){
-                    location.href="verify.html"
-                   
+          if(this.valorcheck!=''||this.valorcheck!=false){
+            if($('#msgs').val("Segura!")){
+              fetch(`private/Modulos/usuarios/procesos.php?proceso=recibircliente&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
+                  if(resp.msg==='mensaje enviado'){
+                      location.href="verify.html"
                     
-                }else{
-               
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text:resp.msg,
+                      
+                  }else{
+                
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text:resp.msg,
+                      
+                    });
                     
+                    this.usuario.pass=''
+                  }
                   });
+            
+              }
+              else{
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text:"la contraseña no comple con los requisitos ",
                   
-                  this.usuario.pass=''
-                 }
-                 });
-           
-             }
-             else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text:"la contraseña no comple con los requisitos ",
+                });
+              }
+            }else{
+              Swal.fire({
+                icon: 'warning',
+               
+                text:"debe aceptar Política de Privacidad ",
                 
               });
-             }
+            }
            
         },
         IniciarSesion:function(){
@@ -86,9 +96,12 @@ var appusuario = new Vue({
           }
        
         
-       
+       ,
+
+     
         
-    }
+    },
+   
 });
  
 (function() {
