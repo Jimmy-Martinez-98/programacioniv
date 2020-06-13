@@ -5,30 +5,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/vistasPerfil/perfil.css">
+	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	
 </head>
-
-<div class="wrapper">
-	<div class="sidebar">
-		<h3>MENU</h3>
-		<ul class="sideul">
-			<li class="sideli"><a class="sidea" id="nosotros"  href="#"><h4>Nosotros</h4></a></li>
-			<li class="sideli"><a  class="sidea"id="direccion" href="#"><h4>Direccion</h4></a></li>
-			<li class="sideli"><a  class="sidea" id="historial" href="#"><h4>Historial de Compras</h4></a></li>
-			<li class="sideli"><a class="sidea" id="productos" href="#"><h4>Mis Productos	</h4></a></li>
-		</ul>
-		
+<body>
+<div class="form-row" id="formulario">
+	<div class="col-md-3">
+		<ul class="list-group" >
+			<li class="list-group-item     "><h3 class=" d-flex justify-content-center ">MENU</h3></li>
+			<li class=" list-group-item       items " id="nosotros"  ><a class="sidea"   href="#"><h4>Nosotros</h4></a></li>
+				<li class=" list-group-item   items" id="direccion"  ><a  class="sidea" href="#"><h4>Direccion</h4></a></li>
+				<li class=" list-group-item   items"  id="historial"  > <a  class="sidea" href="#"><h4>Historial de Compras</h4></a></li>
+				<li class="  list-group-item  items" id="productos" ><a class="sidea"  href="#"><h4>Mis Productos	</h4></a></li>
+		  </ul>
 	</div>
-	<div class="contenido">
-		<div class="contenidoP"></div>
-	
-	
+	<div class="col-md-8">
+		<div class="contenido">
+			<div class="contenidoP"></div>
+		
+		
+		</div>
 	</div>
 </div>
-
-	
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 <script src="public/js/jquery-3.5.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="public/vistasPerfil/perfil.js"></script>
 </body>
 </html>
@@ -39,30 +41,3 @@
 
 	
 
-
-
-<!-- <div class="contenido">
-	<form accion="" method="POST">
-		<img src="http://www.coopjudicial.com/images/gallery/img1.jpg" class="img-fluid" alt="Responsive image">
-		<div class= "form-group">
-		  <label for="misionlabel">Mision</label>
-		  <input type="text" class="form-control" id="mision" aria-describedby="emailHelp" placeholder="Ingrese Mision">
-		</div>
-		<div class="form-group">
-		  <label for="visionlabel">Vision</label>
-		  <input type="text" class="form-control" id="vision" placeholder="Ingrese Vision">
-		</div>
-		<div class="form-group">
-			<label for="valoreslabel">Valores</label>
-			<input type="text" class="form-control" id="valores" placeholder="Ingrese Valores">
-		  </div>
-		  <div class="form-group">
-			<label for="principioslabel">Principios</label>
-			<input type="text" class="form-control" id="principios" placeholder="Ingrese Principios">
-		  </div>
-		  <div class="col-12">
-		<button type="submit" class="btn btn-primary btn-lg btn-block mb-3">Guardar</button>
-	</div>
-	  </form>
-	</div>
- -->

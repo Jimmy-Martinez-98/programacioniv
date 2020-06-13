@@ -1,11 +1,7 @@
 var appinfo = new Vue({
 	el: '#nosotrosdiv',
 	data: {
-	 nosotros:[]
-	 
-	
-		
-
+	 we:[]
 	 },
 	 created:function(){
 		 
@@ -17,20 +13,21 @@ var appinfo = new Vue({
 	
 		 todo:function(){
 		
-			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.nosotros)}`).then( resp=>resp.json() ).then(resp=>{ 
-				this.nosotros =resp[0];					
+			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
+				this.we =resp;					
 			});		
 			
 			
 		 },
-		 editardatos(id){
-			 appedit.edidar.descripcion=id.descripcion,
-			 appedit.edidar.imagenes=id.imagen
-			 appedit.edidar.accion=accion='modificar'
+	 editardatos(id){
+		 	 appedit.edidar.descripcion=id.descripcion,
+		 	 appedit.edidar.imagenes=id.imagen
+		 	 appedit.edidar.accion=accion='modificar'
+			
+				
 			
 			
-			
-		 }
+		  }
 		
 		
 		 }

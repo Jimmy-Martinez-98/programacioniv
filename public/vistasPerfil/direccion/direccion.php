@@ -14,34 +14,24 @@
 	
 <div class="container bg">
 
-<form action="#" method="post" id="frm-direcciones">
- <head> <h3 class="d-flex justify-content-center">Direcciones</h3><hr></head>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <label scope="col"> </label>
-      <th scope="col"></th>
-	  <th scope="col"></th>
-	  <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for='direccion in direction':key="direccion.idDireccion"  >
-      <td>{{direccion.Direccion}}</td> 
-	  <td>	<input type="button" class="btn btn-secondary " value="Modificar Dirección" v-on:click="editardire(direccion)"   data-toggle="modal" data-target="#moddirec" id="modificardireccion"></td>
-	  <td> <input v-on:click="deleteDireccion(direccion.idDireccion)" type="button" class="btn btn-danger text-white" value="Eliminar"></td>   
-    </tr>
-  </tbody>
-</table>
-		
-		<div class="row mb-3 mr-3 ml-3 mt-3">
-		<div class="col-12 mb-3">
-			<input type="button" class="btn btn-secondary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Dirección" id="newdireccion">
-		</div>
-		
-	</div>
 
+
+<form action="#" method="post"  id="frm-direcciones">
+ <head> <h3 class="d-flex justify-content-center">Dirección</h3><hr></head>
+<div class="form-row d-flex justify-content-center mb-3  bg-light rounded">
+	<div class="container d-flex justify-content-center  mt-3">
+	<p class="text-justify">
+	{{direction[0].Direccion}}
+	</p>
+	</div>
+</div>
+<div class="container mb-3">
+<input type="button" v-if="direction[0]===''" class="btn btn-primary btn-lg btn-block"data-toggle="modal"data-target="#nuevaD1"    value="Nueva Dirección" id="newdireccion">
+<input type="button" else class="btn btn-secondary btn-lg btn-block"  value="Modificar Dirección" v-on:click="editardire(direction[0])"   data-toggle="modal" data-target="#moddirec" id="modificardireccion">
+</div>
 </form>
+
+
 
 </div>
 <script src="public/js/jquery-3.5.js"></script>

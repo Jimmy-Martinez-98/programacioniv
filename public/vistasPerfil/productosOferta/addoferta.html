@@ -11,22 +11,22 @@
 		<div class="bg-white">
 			<ul class="list-group" v-for="datos in productos":key="datos.miproducto" >
 				<li class="list-group-item"><div class="row">
-					<div class="col-3">
+					<div class="col-md-3">
 						<div class="container">
 						<img width="250" height="200" id="img-preview" v-bind:src="datos.imagen"   alt=" image">
 						</div>
 					</div>
 					
-					<div class="col-8 mt-3">
+					<div class="col-md-8 mt-3">
 						<h4>{{datos.nombre_producto}}</h4>
 						
-					<div class="col-8 ">
+					<div class="col-md-8 ">
 					<div class="container">
 						<P class="text-justify ">{{datos.descprod}}	</P>
 					</div>
 					</div>
 					<div class="row">
-						<div class="col-12  mt-5">
+						<div class="col-md-12  mt-5">
 							<label class="float-left" for="#">Precio: ${{datos.precio_venta}}</label>
 							<label class=" ml-5" for="#">Precio de Oferta: ${{datos.precio_venta}}</label>
 							<button type="button" v-on:click="modoferta(datos)" class="btn btn-primary float-right" data-toggle="modal" data-target="#frmoferta">

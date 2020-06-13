@@ -69,7 +69,7 @@ $(document).ready(function () {
 	
 	});
 
-	cambiar_clase();
+
 
 
 });

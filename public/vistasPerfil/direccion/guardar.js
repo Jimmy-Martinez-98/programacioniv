@@ -17,30 +17,8 @@ var mostrardirecciones=new Vue({
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
                  
-		},
-		deleteDireccion:function(idDireccion){
-			console.log('hola');
-			Swal.fire({
-				title: '¿Estás seguro?',
-				text: "¡No podrás revertir esto!",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Si, Eliminalo!'
-			  }).then((result) => {
-				if (result.value) {
-					fetch(`Private/Modulos/direcciones/procesos.php?proceso=deleteDireccion&direction=${idDireccion}`).then(resp=>resp.json()).then(resp=>{
-						Swal.fire(
-							'Eliminado!',
-							resp.msg,
-							'success'
-						  )
-						  this.info();
-					})
-				}
-			  })					
 		}
+	
 	}
 });
 			
@@ -87,6 +65,7 @@ var editardirecciones= new Vue({
 				}else {
 					alertify.success(resp.msg);
 					this.info();
+					
 				}	
 				
 			

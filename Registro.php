@@ -139,7 +139,7 @@
 				<input class="form-check-input pol" v-model="verificarchek" type="checkbox" id="inlineCheckbox1" value="option1">
 				<label class="form-check-label pol" for="inlineCheckbox1"> <a id="ter" target="_bank" href="public/vistas/terminos_condiciones/terminos.html">Política de Privacidad</a></label>
 			</div>
-			<p>{{verificarchek}}</p>
+		
 			</div>
 			
 		  </div>

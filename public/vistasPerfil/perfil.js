@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 	$('#nosotros').click(()=>{
 		$('.contenidoP').load("public/vistasPerfil/contenido/nosotros.html", function (data) {
@@ -26,3 +27,6 @@ $(document).ready(function () {
 	});
 	
 });
+
+
+

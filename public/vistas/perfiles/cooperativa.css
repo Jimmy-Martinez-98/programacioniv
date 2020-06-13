@@ -2,7 +2,7 @@
 body{
   margin: 0;
   padding: 0;
-	font-family: 'Pacifico', cursive;
+	font-family: 'Balsamiq Sans', cursive;
 
 }
 
@@ -50,7 +50,6 @@ a.btn-lg:hover{
 .activa:hover::before{
   width: 100%;
 }
-
 
 
 

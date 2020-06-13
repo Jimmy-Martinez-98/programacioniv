@@ -22,6 +22,7 @@ var datosCuenta =new Vue({
 			
 			
 		   },
+		  
 		
 	},
 	created:function () {
@@ -67,6 +68,11 @@ var editfoto =new Vue({
 				}
 			})
 		},
+		cerrarmodal:function(){
+			console.log('hola');
+			
+			$('#moda').modal('hide');
+		   },
 
 		obtenerimagen(e){
 			

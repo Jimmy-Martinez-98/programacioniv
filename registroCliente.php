@@ -52,7 +52,7 @@
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom03">Correo</label>
-      <input type="text" class="form-control" id="validationCustom03" v-model="usuario.correo" required>
+      <input type="email" class="form-control" id="validationCustom03" v-model="usuario.correo" required>
       <div class="invalid-feedback bg-light rounded text-break text-center">
         Por favor rellena el campo con formato correcto!
 		</div>
