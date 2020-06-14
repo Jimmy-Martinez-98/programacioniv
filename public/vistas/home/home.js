@@ -49,8 +49,14 @@ var todoproducto= new Vue({
 				this.all = resp;		
 			 });
 		},
-		verProd:function(){
-
+		verdetalle:function(info){
+			var data={
+				info
+			 };
+			 
+				sessionStorage.setItem("data",JSON.stringify(data));
+			  
+			 
 		}		  
 	}
 })

@@ -81,7 +81,7 @@
 					<div class="targeta" >
 						<img v-bind:src="todo.imagen"	>		
 						<div class="cuerpotargeta" style="height: 155px;">	
-						 <a class="hole " href="#"  target="_blank" v-on:click="verProd(datos)"><h5> {{todo.nombre_producto}}</h5></a>
+						 <a class="hole " href="productos.html"  target="_blank" v-on:click="verdetalle(todo)"><h5> {{todo.nombre_producto}}</h5></a>
 						 <a href="#" class="info"  v-if="todo.nombrecooperativa==''"> {{todo.nombreu}}</a>
 						 <a href="#" class="info" v-else> {{todo.nombrecooperativa}}</a>
 						 <p class="clasificacion mb-0" v-model="todo.Libra">
