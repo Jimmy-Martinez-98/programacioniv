@@ -19,7 +19,7 @@ var misproductosapp = new Vue({
 			
 		 },
 		 deleteproducto:function(miproducto){
-			console.log('hola',miproducto);
+		
 			Swal.fire({
 				title: '¿Estás seguro?',
 				text: "¡No podrás revertir esto!",

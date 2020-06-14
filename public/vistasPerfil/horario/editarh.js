@@ -14,12 +14,38 @@ var appleerH = new Vue({
             
         });
         },
-        modifier:function(id) {    
-        apphorarios.horario=id;
-        apphorarios.horario.accion="modificar"
-       
-         
-         }
+        modifier:function(Htrabajo) {    
+        apphorarios.horario=Htrabajo;
+        apphorarios.horario.accion='modificar';
+         },
+         deleteH:function (id_horario) {
+             
+             
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Eliminalo!'
+              }).then((result) => {
+                if (result.value) {
+                    fetch(`Private/Modulos/about/procesos.php?proceso=eliminarhorario&nosotros=${id_horario}`).then(resp=>resp.json()).then(resp=>{
+                        Swal.fire(
+                            'Eliminado!',
+                            resp.msg,
+                            'success'
+                            
+                          )
+                    });
+                }
+              })	
+              
+              this.leerhorarios();
+
+          
+            }
     }
 
 

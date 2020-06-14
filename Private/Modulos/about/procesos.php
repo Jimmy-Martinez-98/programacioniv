@@ -107,12 +107,18 @@ class nosotros{
     }
      private function valiarhorario(){
       
-        if(empty($this->datos['Dias'])||empty(trim($this->datos['Horas1']))||empty(trim($this->datos['DE']))||empty(trim($this->datos['A']))||empty(trim($this->datos['id_info']))){
+        if(empty(trim($this->datos['Dias']))||empty(trim($this->datos['Horas1']))){
             $this->respuesta['msg']='Debe Completar los campos';
         }
-        else{
-            $this->guardarNuevohorario();
+        if(empty(trim($this->datos['DE']))||empty(trim($this->datos['A']))){
+            $this->respuesta['msg']='Debe Completar los campos';
         }
+        if(empty(trim($this->datos['id_info']))){
+            $this->respuesta['msg']='Debe Completar los campos';
+        }
+     
+            $this->guardarNuevohorario();
+       
      }
      private function guardarNuevohorario(){
         if($this->respuesta['msg']==='correcto'){
@@ -147,6 +153,15 @@ class nosotros{
                 $this->respuesta['msg'] = 'Horario Actualizado Correctamente';
             }
         }
+     }
+
+     public function eliminarhorario($id_horario = 0){
+        $this->db->consultas('
+        DELETE horarios
+        FROM horarios
+        WHERE horarios.id_horario="'.$id_horario.'"
+    ');
+    return $this->respuesta['msg'] = 'Horario eliminado correctamente';
      }
 
 
