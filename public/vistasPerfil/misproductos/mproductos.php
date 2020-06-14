@@ -14,7 +14,7 @@ session_start();
 				
 				<div class="col-md-8 mt-3">
 					<h4>{{miprodc.nombre_producto}}</h4>
-					 <input type="botton" v-on:click="deleteproducto(miprodc.miproducto)" class="btn btn-danger float-right"  value="eliminar Producto">
+					 <input type="botton" v-on:click="deleteproducto(miprodc.miproducto)" class="btn btn-danger float-right"  value="Eliminar Producto">
 				<div class="col-8 mr-5">
 				<P class="text-justify">{{miprodc.descprod}}	</P>
 				</div>

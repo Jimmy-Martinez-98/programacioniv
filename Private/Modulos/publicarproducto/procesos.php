@@ -85,7 +85,7 @@ class producto_nuevo {
 
 	private function modificarp(){
 		if($this->respuesta['msg']==='correcto'){	
-		if($this->datos['accion']==='modificar'){
+		
 			$this->db->consultas('
 				UPDATE  misproducto SET
 				fk_idusuario     	= "'. $this->datos['fk_idusuario'] .'",
@@ -107,7 +107,7 @@ class producto_nuevo {
 			
 			');
 		return	$this->respuesta['msg']='Su Producto Ha Sido Actualizado';
-		}
+		
 	}
 	}
 

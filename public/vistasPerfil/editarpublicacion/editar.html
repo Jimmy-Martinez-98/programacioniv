@@ -110,9 +110,18 @@
 			     </div>
 							
 					<div class="card-footer-fluid col-12 pb-2">
-						<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-							<button v-on:click="editar"  type="button" class="btn btn-primary btn-lg btn-small text-white" >Guardar Cambios</button>
-					    </div>
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
+									<button @click="editar"  type="button" class="btn btn-primary btn-lg btn-small text-white" >Guardar Cambios</button>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
+									<button  type="button" @click="limpiar" class="btn btn-warning btn-lg btn-small text-white" >Limpiar</button>
+								</div>
+							</div>
+						</div>
 					</div>
 			</form>
 			

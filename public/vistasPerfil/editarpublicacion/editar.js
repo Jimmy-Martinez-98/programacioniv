@@ -16,7 +16,6 @@ var appeditP = new Vue({
 			precio:'',
 			precio_venta:'',
 			fecha_subida:'',
-			accion:'modificar',
 			msg:''
 		},
 		imagenlittle:''
@@ -29,7 +28,7 @@ var appeditP = new Vue({
 			
 				 if(resp.msg=="Su Producto Ha Sido Actualizado"){
 					alertify.success(resp.msg);
-					  this.mod='';
+					
 				}else{
 					Swal.fire({
 						position: 'top-end',
@@ -42,6 +41,25 @@ var appeditP = new Vue({
 					
 			});	  
 		},
+		
+		limpiar:function(){
+			this.mod.miproduct=0,
+			this.mod.fk_idusuari=0,
+			this.mod.nombre_producto='',
+			this.mod.descprod='',
+			this.mod.codigo_producto='',
+			this.mod.categoria='',
+			this.mod.imagen='public/img/ico.png',
+			this.mod.Libra='',
+			this.mod.Arroba='',
+			this.mod.Quintal='',
+			this.mod.existencias='',
+			this.mod.precio='',
+			this.mod.precio_venta='',
+			this.mod.fecha_subida='';
+		
+		}
+		,
 		obtenerimagen:function(e){
 			var respuesta=null;
 			let file=e.target.files[0];
@@ -97,13 +115,8 @@ var apptodoP=new Vue({
             });
 
 		  },
-		  modi:function(id){
-		
+		  modi:function(id){		
 			 appeditP.mod=id;
-			console.log(	appeditP.mod.accion='modificar',appeditP.mod);
-			
-			 
-			  
 		  }
 
 	},
