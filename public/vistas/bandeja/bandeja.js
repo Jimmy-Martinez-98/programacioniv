@@ -78,7 +78,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
             msg.para === appbandeja.msg.de && msg.de === appbandeja.msg.para) {
             appbandeja.msgs.push(msg);
             if(msg.de!=appbandeja.msg.de){
-               $.notification("Agro Producers chat", msg.msg, '../../img/logo2,0.png');
+               $.notification("Agro Producers Tienes Un Mensaje", msg.msg, '../../img/logo2,0.png');
             }
         }
         

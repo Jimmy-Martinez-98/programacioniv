@@ -56,6 +56,9 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
         if (msg.de === appchat.msg.de && msg.para === appchat.msg.para ||
             msg.para === appchat.msg.de && msg.de === appchat.msg.para) {
             appchat.msgs.push(msg);
+            if(msg.de!=appchat.msg.de){
+               $.notification("Agro Producers Tienes Un Mensaje", msg.msg, '../../img/logo2,0.png');
+            }
            
         }
       
@@ -66,9 +69,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
         if (item.de === appchat.msg.de && item.para === appchat.msg.para ||
             item.para === appchat.msg.de && item.de === appchat.msg.para) {
              appchat.msgs.push(item);  
-             if (msg.de === appchat.msg.para) {
-               $.notification("Agro Producers chat", msg.msg, '../../img/logo2,0.png');
-           }
+            
           
         }
     });
