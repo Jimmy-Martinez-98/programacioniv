@@ -1,29 +1,4 @@
 
-var appleerH = new Vue({
-    el:'#leerhorario',
-    data:{
-        horarios:[]
-    },
-    created:function(){
-        this.leerhorarios();
-    },
-    methods:{
-        leerhorarios:function(){
-        fetch(`Private/Modulos/about/procesos.php?proceso=recibirlectura&nosotros=${JSON.stringify(this.horarios)}`).then(resp=>resp.json()).then(resp=>{
-         this.horarios=resp;
-            
-        })
-        },
-        modifier:function(id) {    
-        apphorarios.horario=id;
-        apphorarios.horario.accion="modificar"
-       
-         
-         }
-    }
-
-
-})
 
 var apphorarios=new Vue({
     el:'#horarioos',
@@ -61,7 +36,7 @@ var apphorarios=new Vue({
                             text: resp.msg
                            
                           })
-                          
+                       
                     }else{
                         Swal.fire({
                             icon: 'success',
@@ -69,7 +44,8 @@ var apphorarios=new Vue({
                           })
                     }
                 });
-            
+                this.horario
+                
             },
             editar_horario:function () {
                 fetch(`Private/Modulos/about/procesos.php?proceso=recibirhorario&nosotros=${JSON.stringify(this.horario)}`).then(resp=>resp.json()).then(resp=>{
@@ -78,23 +54,19 @@ var apphorarios=new Vue({
                             icon: 'success',
                             title: 'Felicidades',
                             text: resp.msg
-                           
+                          
                           })
-                        this.horario='';
+                          
+                        
                     }else{
                         Swal.fire({
                             icon: 'error',
                             text: resp.msg
                           })
-                          this.horario.id_info='',
-                          this.Horas1='',
-                          this.HORA2='',
-                          this.DE='',
-                          this.A='',
-                          this.Dias='',
-                          this.accion='nuevo'
+                         
                     }
                 });
+                this.horario=''
               }
            
           }

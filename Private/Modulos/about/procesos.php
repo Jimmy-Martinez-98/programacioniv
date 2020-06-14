@@ -107,7 +107,7 @@ class nosotros{
     }
      private function valiarhorario(){
       
-        if(empty(trim($this->datos['Dias']))||empty(trim($this->datos['Horas1']))||empty(trim($this->datos['DE']))||empty(trim($this->datos['A']))||empty(trim($this->datos['id_info']))){
+        if(empty($this->datos['Dias'])||empty(trim($this->datos['Horas1']))||empty(trim($this->datos['DE']))||empty(trim($this->datos['A']))||empty(trim($this->datos['id_info']))){
             $this->respuesta['msg']='Debe Completar los campos';
         }
         else{
@@ -150,11 +150,8 @@ class nosotros{
      }
 
 
-     public function recibirlectura($nosotros){
-        $this->datos = json_decode($nosotros, true);
-        $this->leer();
-     }
-     private function leer(){
+    
+     public function leer(){
          $this->db->consultas('
          SELECT horarios.id_horario, horarios.Dias,horarios.Horas1,horarios.DE,horarios.HORA2,horarios.A,horarios.id_info from horarios JOIN informacionnosotros WHERE horarios.id_info=informacionnosotros.infoUsuario and informacionnosotros.fk_idusuario="'. $_SESSION['usuario'].'"
          

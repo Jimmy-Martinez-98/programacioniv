@@ -6,15 +6,30 @@
         <div class="mt-3 form-row"  id="leerhorario">
            <div class="col-md-12 mb-2">  <h1 class=" d-flex justify-content-center">Horarios de Trabajo</h1></div>
            <div class="col-md-12 scrolle" >
-            <ul class="list-group grupo"v-for="Htrabajo in horarios":key="Htrabajo.id_horario" >
+            <ul class="list-group grupo"v-for="Htrabajo in horarios":key="Htrabajo.id_usuario" >
                 <li class="list-group-item listaitems" @click="modifier(Htrabajo)">
                     {{Htrabajo.Dias}}, De {{Htrabajo.Horas1}}{{Htrabajo.DE}} A {{Htrabajo.HORA2}}{{Htrabajo.A}}
                 </li>
               </ul>
         </div>
         </div>
+        <script src="public/vistasPerfil/horario/editarh.js"></script>
     </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container bgpp rounded">
     <form>
         <div class="form-row" id="horarioos">
@@ -32,7 +47,7 @@
                             <option value="AM">AM</option>
                             <option value="PM">PM</option>
                           </select>
-                        <input type="time"   v-model.trim="horario.Horas1" class="form-control">
+                        <input type="time" required  v-model.trim="horario.Horas1" class="form-control">
                        
                       </div>
                     </div>
@@ -45,7 +60,7 @@
                               <option value="AM">AM</option>
                               <option value="PM">PM</option>
                             </select>
-                          <input type="time"   v-model.trim="horario.HORA2"class="form-control">
+                          <input type="time" required  v-model.trim="horario.HORA2"class="form-control">
                          
                         </div>
                       </div>
@@ -55,10 +70,10 @@
             <button type="button"  class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-else @click="editar_horario">Editar Horario</button>
             </div>
         </div>
-      
+        <script src="public/vistasPerfil/horario/horario.js"></script>
       </form>
 
 
     
-      <script src="public/vistasPerfil/horario/horario.js"></script>
+    
 </div>
