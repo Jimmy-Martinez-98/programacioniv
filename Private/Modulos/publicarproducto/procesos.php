@@ -40,7 +40,7 @@ class producto_nuevo {
 			
             if($this->datos['accion']==='nuevo'){	
                 $this->db->consultas('
-                INSERT INTO misproducto (miproducto,fk_idusuario,nombre_producto,precio,precio_venta,existencias,descprod,codigo_producto,imagen,categoria,Libra,Arroba,Quintal,Caja,fecha_subida) VALUES(
+                INSERT INTO misproducto (miproducto,fk_idusuario,nombre_producto,precio,precio_venta,existencias,descprod,codigo_producto,imagen,categoria,Libra,Arroba,Quintal,Caja,fecha_subida,isagotado) VALUES(
 					"'. $this->datos['miproducto'] .'",
                     "'. $this->datos['idusuario'] .'",
                     "'. $this->datos['nombre_producto'] .'",
@@ -55,7 +55,8 @@ class producto_nuevo {
 					"'. $this->datos['arroba'] .'",
 					"'. $this->datos['quintal'] .'",
 					"'. $this->datos['caja'] .'",
-                    "'. $this->datos['fecha_subida'] .'"
+					"'. $this->datos['fecha_subida'] .'",
+								""
                     )
                 ');
                 $this->respuesta['msg']="Su Producto Fue Publicado Exitosamente";
@@ -112,13 +113,46 @@ class producto_nuevo {
 	}
 
 		public function deleteproducto($identificador=0){
-			$this->db->consultas('
+			if($idusuario!=0){
+				$this->db->consultas('
 			DELETE misproducto
 			FROM misproducto
 			WHERE misproducto.miproducto="'.$identificador.'"
-		');
-		$this->respuesta['msg']='Su  Producto  Ha Sido Eliminado';
-		
+			');
+			$this->respuesta['msg']='Su  Producto  Ha Sido Eliminado';
+			}
+			else{
+				$this->respuesta['msg']='Ha Ocurrido Un Error Inesperado!';
+			}
+		}
+
+		public function agotado($idproducto=0){
+			if($idproducto!=0){
+				$this->db->consultas('
+				UPDATE misproducto 
+				SET isagotado = "SI"
+				WHERE misproducto.miproducto= "'.$idproducto.'"
+				');
+			
+			$this->respuesta['msg']='Producto Marcado En Agotado';
+			}
+			else{
+				$this->respuesta['msg']='Ha Ocurrido Un Error Inesperado!';
+			}
+		}
+		public function habilitado($idproducto=0){
+			if($idproducto!=0){
+				$this->db->consultas('
+				UPDATE misproducto 
+				SET isagotado = "NO"
+				WHERE misproducto.miproducto= "'.$idproducto.'"
+				');
+			$this->respuesta['msg']='Producto Marcado En Agotado';
+			}else{
+
+				$this->respuesta['msg']='Ha Ocurrido Un Error Inesperado!';
+			}
+
 		}
 
 

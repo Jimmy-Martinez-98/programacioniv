@@ -4,10 +4,8 @@ var misproductosapp = new Vue({
 	 myproductos:[]
 	
 	 },
-	 created:function(){
-		 
-		 this.productosmios();
-		 
+	 created:function(){ 
+	    this.productosmios(); 
 	 },
 	 methods:{
 	
@@ -31,21 +29,88 @@ var misproductosapp = new Vue({
 			  }).then((result) => {
 				if (result.value) {
 					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=deleteproducto&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
-						Swal.fire(
-							'Eliminado!',
-							resp.msg,
-							'success'
-							
-						  )
-						  this.productosmios();	
+						if(resp.msg!='Su  Producto  Ha Sido Eliminado'){
+							Swal.fire(
+								'Ups...!',
+								resp.msg,
+								'error'
+								
+							  );
+							  this.productosmios();	
+						}else{
+							Swal.fire(
+								'Eliminado!',
+								resp.msg,
+								'success'
+								
+							  );
+							  this.productosmios();	
+						}
+					});
+				}
+			  });			
+		},
+		agotado:function(miproducto){
+		
+			Swal.fire({
+				title: '¿Estás seguro?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, Marcar Como Agotado!'
+			  }).then((result) => {
+				if (result.value) {
+					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=agotado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
+						if(resp.msg!='Producto Marcado En Agotado'){
+							Swal.fire(	
+								'Ups...!',		
+								resp.msg,
+								'error'	
+							  )
+							  this.productosmios();	
+						}else{
+							Swal.fire(	
+								'Marcado!',		
+								resp.msg,
+								'success'	
+							  )
+							  this.productosmios();	
+						}
 					})
 				}
-			  })	
-			 			
+			  })
+		}	,
+		habilitar:function(miproducto){
+			Swal.fire({
+				title: '¿Estás seguro?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, Marcar Como Habilitado!'
+			  }).then((result) => {
+				if (result.value) {
+					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=habilitado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
+					if(resp.msg!='Producto Marcado En Agotado'){
+						Swal.fire(
+							'Ups!'.			
+							resp.msg,
+							'error'	
+						  )
+						  this.productosmios();	
+					}else{
+						Swal.fire(
+							'Habilitado!'.			
+							resp.msg,
+							'success'	
+						  )
+						  this.productosmios();	
+					
+					}
+					})
+				}
+			  })
 		}
-
-
 	  }
-		
-		 
-	})
+})
