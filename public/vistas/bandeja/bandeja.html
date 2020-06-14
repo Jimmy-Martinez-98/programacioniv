@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist//css/bootstrap.css">
+	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="bandeja.css">
@@ -79,7 +79,8 @@
 				<div class="contener-msgs">
 					<div class="lista-mensajes" >
 						<ul class="listamsgs"v-for="item in msgs" v-if="item.de !=msg.de" >						
-							   	<li class="listamsgs-item text-break mr-auto mt-1" v-if="nombrechat!=''"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
+						 	<li class="listamsgs-item text-break mr-auto mt-1" v-if="nombrechat.imagen!=''"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
+							 
 						</ul>
 						<ul class="listamsgs" v-else="item.de==msg.de" >						
 							<li class="listamsgs-iteml text-break ml-auto mr-3">{{ item.msg }}</li>
@@ -102,6 +103,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="bandeja.js"></script>
+<script src="../../js/notificaciones.js"></script>
 
 </body>
 </html>
