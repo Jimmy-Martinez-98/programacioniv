@@ -25,6 +25,13 @@ $(document).ready(function () {
 			
 		});
 	});
+
+	$('#horario').click(()=>{
+		$('.contenidoP').load("public/vistasPerfil/horario/horario.html", function (data) {
+			$(this).html(data);
+				
+	});
+	});
 	
 });
 

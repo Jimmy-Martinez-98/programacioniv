@@ -80,13 +80,6 @@ class nosotros{
         }
     }
 
-
-
-
-
-
-
-
     public function recibirinfo($nosotros){
         $this->datos = json_decode($nosotros, true);
         $this->mostrarinfo();
@@ -104,7 +97,69 @@ class nosotros{
         $this->db->consultas('
         select informacionnosotros.infoUsuario from informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
         ');
-        $this->respuesta=$this->db->obtener_datos();
+       return $this->respuesta=$this->db->obtener_datos();
     }
+
+    
+    public function recibirhorario($nosotros){
+     $this->datos = json_decode($nosotros, true);
+      $this->valiarhorario();
+    }
+     private function valiarhorario(){
+      
+        if(empty(trim($this->datos['Dias']))||empty(trim($this->datos['Horas1']))||empty(trim($this->datos['DE']))||empty(trim($this->datos['A']))||empty(trim($this->datos['id_info']))){
+            $this->respuesta['msg']='Debe Completar los campos';
+        }
+        else{
+            $this->guardarNuevohorario();
+        }
+     }
+     private function guardarNuevohorario(){
+        if($this->respuesta['msg']==='correcto'){
+            if($this->datos['accion']==='nuevo'){
+                $this->db->consultas('
+                INSERT INTO horarios(id_horario,id_info,Dias,Horas1,DE,A,HORA2)
+                VALUES(
+                    "'. $this->datos['id_horario'].'",
+                    "'. $this->datos['id_info'].'",
+                    "'. $this->datos['Dias'].'",
+                   "'. $this->datos['Horas1'].'",
+                   "'. $this->datos['DE'].'",
+                   "'. $this->datos['A'].'",
+                   "'. $this->datos['HORA2'].'"
+                    )
+                
+                ');
+                $this->respuesta['msg'] = 'Horario Guardado Correctamente';
+            }else if($this->datos['accion']==='modificar'){
+                $this->db->consultas('
+                    UPDATE horarios
+                    SET 
+                        Dias    =    "'. $this->datos['Dias'].'",
+                        Horas1  =   "' .$this->datos['Horas1'].'",
+                        DE      =     "'. $this->datos['DE'].'",
+                        A       =    "'. $this->datos['A'].'",
+                        HORA2   =   "'. $this->datos['HORA2'].'"
+                        WHERE id_horario = "'. $this->datos['id_horario'].'"
+
+                    ;
+                ');
+                $this->respuesta['msg'] = 'Horario Actualizado Correctamente';
+            }
+        }
+     }
+
+
+     public function recibirlectura($nosotros){
+        $this->datos = json_decode($nosotros, true);
+        $this->leer();
+     }
+     private function leer(){
+         $this->db->consultas('
+         SELECT horarios.id_horario, horarios.Dias,horarios.Horas1,horarios.DE,horarios.HORA2,horarios.A,horarios.id_info from horarios JOIN informacionnosotros WHERE horarios.id_info=informacionnosotros.infoUsuario and informacionnosotros.fk_idusuario="'. $_SESSION['usuario'].'"
+         
+         ');
+         return $this->respuesta=$this->db->obtener_datos();
+     }
 }
 ?>

@@ -1,0 +1,27 @@
+.grupo .listaitems{
+    background-color: white;
+}
+.grupo .listaitems:hover{
+    cursor: pointer;
+    background-color: #0840da;
+    color: #ffffff;
+}
+
+.scrolle{
+    height: 259px;
+    overflow-y: scroll;
+}
+.scrolle::-webkit-scrollbar{
+	width:7px ;
+  background: rgb(206, 206, 206);
+  border-radius: 3px;
+  }
+  .scrolle::-webkit-scrollbar-thumb{
+	background: rgb(148, 148, 147);
+	border-radius: 3px;
+	
+	}
+
+.bgpp{
+    background-color: #5fb677;
+}
