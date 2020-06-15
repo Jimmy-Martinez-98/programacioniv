@@ -82,35 +82,47 @@ var misproductosapp = new Vue({
 			  })
 		}	,
 		habilitar:function(miproducto){
+			console.log(miproducto);
+			
 			Swal.fire({
 				title: '¿Estás seguro?',
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Si, Marcar Como Habilitado!'
+				confirmButtonText:  'Si, Marcar Como Habilitado!'
 			  }).then((result) => {
 				if (result.value) {
-					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=habilitado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
-					if(resp.msg!='Producto Marcado En Agotado'){
-						Swal.fire(
-							'Ups!'.			
-							resp.msg,
-							'error'	
-						  )
-						  this.productosmios();	
-					}else{
-						Swal.fire(
-							'Habilitado!'.			
-							resp.msg,
-							'success'	
-						  )
-						  this.productosmios();	
-					
+					if (result.value) {
+						fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=habilitado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
+							if(resp.msg!='Producto  Habilitado'){
+								Swal.fire(
+									'Ups...!'.			
+									resp.msg,
+									'error'	
+								  )
+							  this.productosmios(); 
+						}else{
+						  
+							  Swal.fire(
+								'Habilitado!',			
+								resp.msg,
+								'success'	
+							  )
+							  this.productosmios();	
+						}
+						})
 					}
-					})
 				}
 			  })
+
+
+
+
+		
+			
 		}
 	  }
 })
+
+

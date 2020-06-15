@@ -147,10 +147,10 @@ class producto_nuevo {
 				SET isagotado = "NO"
 				WHERE misproducto.miproducto= "'.$idproducto.'"
 				');
-			$this->respuesta['msg']='Producto Marcado En Agotado';
+			$this->respuesta['msg']='Producto  Habilitado';
 			}else{
 
-				$this->respuesta['msg']='Ha Ocurrido Un Error Inesperado!';
+				$this->respuesta['msg']='Ha Ocurrido un Error Inesperado';
 			}
 
 		}
