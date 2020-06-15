@@ -39,7 +39,7 @@ class miproducto{
   
     private function allp(){
 	  $this->db->consultas('
-      SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta,misproducto.Libra,misproducto.Arroba,misproducto.Quintal,misproducto.Caja  from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario
+      SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta,misproducto.Libra,misproducto.Arroba,misproducto.Quintal,misproducto.Caja,misproducto.isagotado  from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario
 		   ');
 		   return $this->respuesta = $this->db->obtener_datos();
       }
