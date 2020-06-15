@@ -62,7 +62,7 @@ var appusuario = new Vue({
                     location.href="verify.html"
                 }else{
               
-                    alertify.alert('Alert Title', resp.msg, function(){  });
+                    alertify.alert('Alerta', resp.msg, function(){  });
                
                  }
               

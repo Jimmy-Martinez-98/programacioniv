@@ -13,7 +13,7 @@ var applogin = new Vue({
 		 inicioSesion:function(){
 			fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.name)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg=="Bienvenido"){
-					location.href='cooperativa.php';
+					location.href='index.html';
 				
 				}else{
 					this.name.pass='';

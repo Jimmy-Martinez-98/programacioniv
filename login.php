@@ -2,7 +2,7 @@
 	session_start();
 
 	if(isset($_SESSION['usuario'])){
-	 header("Location: cooperativa.php");
+	 header("Location: index.html");
 	}
 ?>
 <!DOCTYPE html>
