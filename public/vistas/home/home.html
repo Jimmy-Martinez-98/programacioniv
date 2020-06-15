@@ -4,15 +4,8 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="public/vistas/home/carousel.css">
 
-	<div class="container mt-3 mb-3">
-		<div class="input-group input-group-lg">
-			<input type="text" class="form-control">
-		 <div class="input-group-prepend">
-			  <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fas fa-search"></i></span>
-			</div>
-		</div>
-	  </div>
-			<div id="slider"  class="carousel slide bg-light" data-interval="false">
+	
+			<div id="slider"  class="carousel slide bg-light mt-3" data-interval="false">
 				<p >	<b> Lo Mas Destacado</b></p>
 				<div class="carousel-inner row w-100 mx-auto" role="listbox">					
 					<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  ":class="{'active':index===0}" v-for="(datos,index) in productos" :key="datos.idusuario" >
@@ -20,9 +13,9 @@
 						<img v-bind:src="datos.imagen"	>
 							
 						<div class="cuerpotargeta" style="height: 155px;">	
-						 <a class="hole " href="productos.html"  target="_blank" v-on:click="verProd(datos)"><h5> {{datos.nombre_producto}}</h5></a>
+						 <a class="hole text-break" href="productos.html"  target="_blank" v-on:click="verProd(datos)"><h5> {{datos.nombre_producto}}</h5></a>
 						 <a href="#" class="info"  v-if="datos.nombrecooperativa==''"> {{datos.nombreu}}</a>
-						 <a href="#" class="info" v-else> {{datos.nombrecooperativa}}</a>
+						 <a href="#" class="info text-break" v-else> {{datos.nombrecooperativa}}</a>
 						 <p class="clasificacion mb-0" v-model="datos.Libra">
 								<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">
 								<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -77,12 +70,12 @@
 			<!-- todos los productos -->
 			<div class="container mt-2  d-flex justify-content-center" id="todoproducto">
 				<div class="row ">
-				  <div class="col-sm-4 " v-for="todo in all":key="todo.miproducto">
+				  <div class="col-sm-3 " v-for="todo in all":key="todo.miproducto">
 					<div class="targeta" >
 						<img v-bind:src="todo.imagen"	>		
 						<div class="cuerpotargeta" style="height: 155px;">	
 						 <a class="hole " href="productos.html"  target="_blank" v-on:click="verdetalle(todo)"><h5> {{todo.nombre_producto}}</h5></a>
-						 <a href="#" class="info"  v-if="todo.nombrecooperativa==''"> {{todo.nombreu}}</a>
+						 <a href="#" class="info text-break"  v-if="todo.nombrecooperativa==''"> {{todo.nombreu}}</a>
 						 <a href="#" class="info" v-else> {{todo.nombrecooperativa}}</a>
 						 <p class="clasificacion mb-0" v-model="todo.Libra">
 								<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">

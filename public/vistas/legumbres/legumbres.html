@@ -17,7 +17,7 @@
 			<div class="targeta " style="height: 400;">
 				<img v-bind:src="le.imagen"	>
 				<div class="cuerpotargeta" >
-				 <a class="hole" href="#" @click="verProd(le)" ><h4> {{le.nombre_producto}}</h4></a>
+				 <a class="hole text-break" href="#" @click="verProd(le)" ><h4> {{le.nombre_producto}}</h4></a>
 				  <a href="#" class="info"v-if=" le.nombrecooperativa==''" ><span>{{le.nombreu}}</span></a>
 				  <a href="#" class="info" v-else > {{le.nombrecooperativa}}</a>
 				 <div class="row px-3">
