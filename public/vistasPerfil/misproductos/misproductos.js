@@ -97,7 +97,7 @@ var misproductosapp = new Vue({
 						fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=habilitado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
 							if(resp.msg!='Producto  Habilitado'){
 								Swal.fire(
-									'Ups...!'.			
+									'Ups...!',			
 									resp.msg,
 									'error'	
 								  )

@@ -12,18 +12,17 @@ var mostrardirecciones=new Vue({
 			   this.direction = resp;		   
 		   });	   	     
 		},
-	
 		editardire:function(modD){		
         	editardirecciones.modDi = modD;
             editardirecciones.modDi.accion = 'modificar';
-                 
 		}
-	
 	}
 });
-			
-			
-		
+
+
+
+
+
 var editardirecciones= new Vue({
 	el:'#moddirec',
 	data:{
@@ -45,13 +44,8 @@ var editardirecciones= new Vue({
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
 				this.modDi.idusuario=resp[0].idusuario;	
-			
-								
 			})
-			
-			
 		},
-	
 		actualizar:function(){
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
 				if(resp.msg!="Dirección actualizada exitosamente"){	
@@ -67,12 +61,8 @@ var editardirecciones= new Vue({
 					this.info();
 					
 				}	
-				
-			
-									
 			});
 		}
-		
 	}
 });
 
@@ -91,13 +81,11 @@ var nuevadireccion = new Vue({
 			accion		:'nuevo',
 			msg			:''
 		}
-	
 	},
 	created:function(){
 		this.idlogueo();
 		this.info();
 	},
-	
 	methods:{	
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
@@ -111,7 +99,6 @@ var nuevadireccion = new Vue({
 		 },
 		almacenar:function(){	
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
-									
 				if(resp.msg!="Registro insertado correctamente"){		
 					Swal.fire({
 						position: 'top-end',
@@ -124,18 +111,12 @@ var nuevadireccion = new Vue({
 					
 				}else {
 					alertify.success(resp.msg);
+					mostrardirecciones.info();
 				}	
 				
 			});
-			
-			
 		}
-	
-		
-		
 	}
-
-
 });
 
 

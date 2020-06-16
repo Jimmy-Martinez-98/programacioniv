@@ -8,8 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/vistasPerfil/contenido/nosotros.css">
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="public/js/jquery-3.5.js"></script>
+	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
+	
 
 </head>
 
@@ -53,10 +53,11 @@
 		</div>
 
 	</div> 
-
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="public/vistasPerfil/contenido/nosotros.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="alertifyjs/alertify.js"></script>
 </body>
 
 </html>
@@ -95,8 +96,10 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-				<button v-on:click="guardar" type="button" class="btn btn-primary">Guardar Cambios</button>
+				<button @click='limpiar' class="btn btn-warning">Limpiar</button>
+				<button  class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button v-on:click="guardar"data-backdrop="false" data-dismiss="modal"  class="btn btn-primary">Guardar Cambios</button>
+				
 
 			</div>
 		</div>

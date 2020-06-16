@@ -65,7 +65,7 @@
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-		<input type="submit"class="btn btn-primary" v-on:click="almacenar"  value="Guardar ">
+		<input type="submit"class="btn btn-primary" data-backdrop="false" data-dismiss="modal" v-on:click="almacenar"  value="Guardar ">
 		</div>
 	  </div>
 	</div>

@@ -10,28 +10,17 @@ var appinfo = new Vue({
 		 
 	 },
 	 methods:{
-	
 		 todo:function(){
-		
 			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.we =resp;					
-			});		
-			
-			
+			});			
 		 },
-	 editardatos(id){
-		 	 appedit.edidar.descripcion=id.descripcion,
-		 	 appedit.edidar.imagenes=id.imagen
-		 	 appedit.edidar.accion=accion='modificar'
-			
-				
-			
-			
-		  }
-		
-		
+			editardatos(id){
+			appedit.edidar.descripcion=id.descripcion;
+			appedit.edidar.imagenes=id.imagen;
+			appedit.edidar.accion=accion='modificar';
+			}
 		 }
-	
   });
 
 
@@ -49,16 +38,13 @@ var appinfo = new Vue({
 			
 		},
 		datos:{
-			idusuario:0,
-			
+			idusuario:0,	
 		},
 	 imagenlittle:''
 	 },
 	created:function(){
 		this.traerid();
 		this.infousuario();
-		
-		
 		
 	},
 	 methods:{
@@ -69,42 +55,30 @@ var appinfo = new Vue({
 		 },
 
 		guardar:function(){		
-		
-			
-				fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then( resp=>resp.json() ).then(resp=>{ 
-			if(resp.msg!='Datos Actualizados Exitosamente'){
-				Swal.fire({
-					position: 'top-end',
-					icon: 'warning',
-					title: resp.msg,
-					showConfirmButton: false,
-					timer: 1500
-				  })	
-			}else{
-				Swal.fire({
-					position: 'top-end',
-					icon: 'success',
-					title: resp.msg,
-					showConfirmButton: false,
-					timer: 1500
-				  })	
-			}
+			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then( resp=>resp.json() ).then(resp=>{ 
+				if(resp.msg!='Datos Actualizados Exitosamente'){
+					alertify.warning(resp.msg);	
+				}else{
+					alertify.success(resp.msg);	
+					appinfo.todo();
+				
+				}
 		  });
 		},
-	
+		limpiar:function(){
+			this.edidar.accion='nuevo';
+					this.edidar.imagenes='public/img/ico.png';
+					this.edidar.usu='';
+					this.edidar.infoUsuario='';
+					this.edidar.descripcion='';
+		}
+		,
 		obtenerimagen(e){
-			
-			
 			let file=e.target.files[0];
 			this.cargar(file);
 			var respuesta=null;
-			
-			
 			var formData=new FormData($('#imgs')[0]);
-			
-			
 			var ruta='Private/Modulos/about/guardarimagencoo.php';
-			
 			$.ajax({
 				type: "POST",
 				url: ruta,
@@ -115,33 +89,20 @@ var appinfo = new Vue({
 				success: function (response) {
 				respuesta=response;
 				}
-				
 			});
 			this.edidar.imagenes="Private/Modulos/about/"+respuesta;
-			
-		
-			
-		
-			
-			
 		},
 		cargar(file){
 			let reader=new FileReader();
 			reader.onload=(e)=>{
 				this.imagenlittle=e.target.result;
-				
-				
 			}
 			reader.readAsDataURL(file);
 		},
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				this.datos.idusuario = resp[0].idusuario;
-				
+				this.datos.idusuario = resp[0].idusuario;			
 				this.edidar.usu= this.datos.idusuario;
-		
-				
-				
 			})
 		}
 	 },
@@ -187,24 +148,11 @@ var appinfo = new Vue({
 
 		nuevosdatos :function () {
 			fetch(`Private/Modulos/about/procesos.php?proceso=recibirdesc&nosotros=${JSON.stringify(this.descripciones)}`).then( resp=>resp.json() ).then(resp=>{ 
-				if(resp.msg!="Tus datos se almacenaron exitosamente"){		
-					Swal.fire({
-						position: 'top-end',
-						icon: 'error',
-						title:resp.msg,
-						showConfirmButton: false,
-						timer: 1500
-						
-					})
+				if(resp.msg!="Tus datos se almacenaron exitosamente"){
+					alertify.warning(resp.msg);		
 					
 				}else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'success',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1000
-					  })
+					alertify.success(resp.msg);	
 				}				
 			});		
 		   },obtenerimagenN(e){

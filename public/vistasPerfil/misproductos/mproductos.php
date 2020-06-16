@@ -32,10 +32,10 @@ session_start();
 						
 					</div>
 
-					<div class="col-md-2  mt-5 mb-2">
-						<button class="btn btn-outline-danger mb-5 ml-5 mr-auto " @click.prevent="deleteproducto(mercancia.miproducto)" >Eliminar</button>
-						<button class="btn btn-outline-secondary mb-5 ml-5  mr-auto"@click.prevent="agotado(mercancia.miproducto)" v-if="mercancia.isagotado==='NO'||mercancia.isagotado===''">Agotado</button>
-						<button class="btn btn-outline-primary mb-5 ml-5  mr-auto"@click.prevent="habilitar(mercancia.miproducto)" v-else>Habilitar</button>
+					<div class="col-md-2  mb-2 mt-3">
+						<button class="btn btn-outline-danger mb-5 mr-auto " @click.prevent="deleteproducto(mercancia.miproducto)"  >Eliminar</button>
+						<button class="btn btn-outline-secondary mb-5   mr-auto"@click.prevent="agotado(mercancia.miproducto)" v-if="mercancia.isagotado==='NO'||mercancia.isagotado===''" >Agotado</button>
+						<button class="btn btn-outline-primary mb-5  mr-auto"@click.prevent="habilitar(mercancia.miproducto)" v-else >Habilitar</button>
 					</div>
 					
 				</div>
