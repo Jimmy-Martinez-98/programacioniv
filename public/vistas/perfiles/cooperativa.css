@@ -3,7 +3,7 @@ body{
   margin: 0;
   padding: 0;
 	font-family: 'Balsamiq Sans', cursive;
-
+overflow-x: hidden;
 }
 
  
@@ -51,7 +51,10 @@ a.btn-lg:hover{
   width: 100%;
 }
 
-
+.dropdown-item{
+  font-size: 12px;
+  max-width: 50px;
+}
 
 
 

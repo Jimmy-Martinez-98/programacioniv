@@ -31,27 +31,23 @@ error_reporting(0);
 
   
 
-  <nav id="navbarrr" class="navbar navbar-expand-lg navbars">
+<nav id="navbarrr" class="navbar navbar-expand-lg navbars">
   <a href="index.html" class="navbar navbar-brand">
-     <img height="50" src="public/img/logo2,0.png" alt="">
-    </a>
-   
-    <ul class="navbar-nav ml-auto">
+    <img height="50" src="public/img/logo2,0.png" alt="">
+  </a>
+  <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown"> 
-    <div class="dropdown ml-auto ">
-     <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-    <img v-if="perfil[0].imagen!=''" v-bind:src="perfil[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
-    <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
-     {{perfil[0].nombreu}}
-    </a>
-   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
-   
+      <div class="dropdown ml-auto ">
+          <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{perfil[0].nombreu}}
+          </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
             <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i class="fas fa-inbox"></i></a> 
-           <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
-   </div>
+            <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
+        </div>
     </div>
     </li>
-    </ul>
+  </ul>
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light navbars">
  

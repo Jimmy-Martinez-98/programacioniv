@@ -2,32 +2,24 @@ var datosCuenta =new Vue({
 	el:'#cuenta',
 	data:{
 		datoscuenta:[]
-	},methods:{
+	},
+	methods:{
 		traerdatosusuario:function(){	
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.datoscuenta )}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.datoscuenta = resp;				   
 			});	   	     
 		 },
-		 modfoto:function (update) {
+		modfoto:function (update) {
 			editfoto.updatefoto=update;	
 			editfoto.updatefoto.accion="modificar";		
-			
-			
-		   },
-		   modificacionpass:function (passs) {
+		},
+		modificacionpass:function (passs) {
 			editpass.cambiopass=passs;	
-			
-			
-			
-			
-			
-		   },
-		  
-		
+		},
 	},
 	created:function () {
 		this.traerdatosusuario();
-	  }
+	}
 });
 
 
@@ -65,15 +57,11 @@ var editfoto =new Vue({
 				}else {
 					
 					  alertify.success(resp.msg);
+					  datosCuenta.traerdatosusuario();
+					  appcooperativa.traerdatosusuario();
 				}
 			})
 		},
-		cerrarmodal:function(){
-			console.log('hola');
-			
-			$('#moda').modal('hide');
-		   },
-
 		obtenerimagen(e){
 			
 			
@@ -118,8 +106,6 @@ var editfoto =new Vue({
 			return this.imagenvista;
 		}
 	}
-	
-	
 });
 
 
@@ -142,10 +128,7 @@ var editpass =new Vue({
 		
 	}
 	,methods:{
-
-	
 		alerta:function(){
-
 			var mayus		=new RegExp("^(?=.*[A-Z])");
 			var especial	= new RegExp("^(?=.*[*_.-])");
 			var numeros		= new RegExp("^(?=.*[0-9])");
@@ -157,76 +140,36 @@ var editpass =new Vue({
 			var wordpass=$('#nuevap').val();
 			for(var i=0; i<5; i++){
 				if(regexp[i].test(wordpass)){
-					checkval++;
-					
+					checkval++;	
 				}
 			}
-
-			if(checkval >=0 && checkval<=2){
-				$('#msgs').text("Muy Insegura!").css("color","red");
-			}else if(checkval >=3 && checkval<=4){
-				$('#msgs').text("Poco Segura!").css("color","orange");
-			}else if(checkval===5){
-				$('#msgs').text("Segura!").css("color","green");
-			}
-		
-
+			if(checkval===0){
+				$('#msgs').hide();
+			}else if(checkval >=0 && checkval<=2){
+				$('#msgs').show();
+					$('#msgs').text("Muy Insegura!").css("color","red");
+				}else if(checkval >=3 && checkval<=4){
+					$('#msgs').text("Poco Segura!").css("color","orange");
+				}else if(checkval===5){
+					$('#msgs').text("Segura!").css("color","green");
+				}
 		},
 
 		traeridusuario:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.actualizarcontra.idusuario=resp[0].idusuario;
-			
-				
-			})
-		
-			
+			})	
 		},
-
 		updatepass:function(){
-		
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${JSON.stringify(this.actualizarcontra)}`).then(resp=>resp.json()).then(resp=>{
-					if(resp.msg=="Favor Complete los Campós"){
-						Swal.fire({
-							position: 'top-end',
-							icon: 'warning',
-							title: resp.msg,
-							showConfirmButton: false,
-							timer: 1500
-						  });
-						
-						  
-						 
-					}else if(resp.msg=="Las Contraseñas Deben Coinsidir"){
-						Swal.fire({
-							position: 'top-end',
-						   icon: 'error',
-							title: resp.msg,
-							showConfirmButton: false,
-						   timer: 1500
-						  });
-						 
-					}else{
-						Swal.fire({
-							position: 'top-end',
-							icon: 'success',
-							title: resp.msg,
-							showConfirmButton: false,
-							timer: 1500
-						  });
-						
-					}
+				if(resp.msg=="Favor Complete los Campós"){
+					alertify.error(resp.msg);
+				}else if(resp.msg=="Las Contraseñas Deben Coinsidir"){
+					alertify.error(resp.msg);
+				}else{
+					alertify.success(resp.msg);
+				}
 				});
-				
-
-		
-				
-				 
-			
-
-			
 		}
-
-		
 	}
 });
