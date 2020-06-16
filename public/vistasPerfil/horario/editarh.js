@@ -9,18 +9,15 @@ var appleerH = new Vue({
     },
     methods:{
         leerhorarios:function(){
-        fetch(`Private/Modulos/about/procesos.php?proceso=leer&nosotros=${this.horarios}`).then(resp=>resp.json()).then(resp=>{
-         this.horarios=resp;
-            
-        });
+            fetch(`Private/Modulos/about/procesos.php?proceso=leer&nosotros=${this.horarios}`).then(resp=>resp.json()).then(resp=>{
+                this.horarios=resp;
+            });
         },
         modifier:function(Htrabajo) {    
-        apphorarios.horario=Htrabajo;
-        apphorarios.horario.accion='modificar';
-         },
-         deleteH:function (id_horario) {
-             
-             
+            apphorarios.horario=Htrabajo;
+            apphorarios.horario.accion='modificar';
+        },
+        deleteH:function (id_horario) { 
             Swal.fire({
                 title: '¿Estás seguro?',
                 text: "¡No podrás revertir esto!",
@@ -37,16 +34,13 @@ var appleerH = new Vue({
                             resp.msg,
                             'success'
                             
-                          )
+                        )
+                        this.leerhorarios();
+                        apphorarios.idtablainfo();
                     });
                 }
-              })	
-              
-              this.leerhorarios();
-
+              });	
           
-            }
+        }
     }
-
-
-})
+});

@@ -16,13 +16,11 @@ var appcooperativa =new Vue({
 })
 $(document).ready(function () {
 	toggle();
-
 	$('#info').click(()=>{
 		$("#contenedorP").load("public/vistasPerfil/infoperfil.html",function(data){
 			$(this).html(data);
 		});
 	});
-
 	$('#addProductos').click(()=>{
 		$("#contenedorP").load("public/vistasPerfil/addproducto/addproducto.html",function(data){
 			$(this).html(data);
@@ -36,44 +34,28 @@ $(document).ready(function () {
 	$('#POferta').click(()=>{
 		$("#contenedorP").load("public/vistasPerfil/productosOferta/addoferta.html",function(data){
 			$(this).html(data);
-	   });
-	
+		});
 	});
 	$('#Configc').click(()=>{
-	
-		
 		$("#contenedorP").load("public/vistasPerfil/configCuenta/configcuenta.html",function(data){
-		  $(this).html(data);
-	   });
+			$(this).html(data);
+		});
 	
 	});
 	$('#modP').click(()=>{
-	
-		
 		$("#contenedorP").load("public/vistasPerfil/editarpublicacion/editar.html",function(data){
-		  $(this).html(data);
-	   });
+			$(this).html(data);
+		});
 	
 	});
-
-
-
-
 });
-
-
-
-
-
 
 function toggle(){
 	$("#colapsar").click(function(){
-		
-		
         $(".collapse").animate({
 			height: 'toggle'
-		  });
-	  });
+		});
+	});
 }
 
 

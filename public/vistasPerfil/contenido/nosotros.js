@@ -64,13 +64,6 @@ var appinfo = new Vue({
 				
 				}
 		  });
-		},
-		limpiar:function(){
-			this.edidar.accion='nuevo';
-					this.edidar.imagenes='public/img/ico.png';
-					this.edidar.usu='';
-					this.edidar.infoUsuario='';
-					this.edidar.descripcion='';
 		}
 		,
 		obtenerimagen(e){
