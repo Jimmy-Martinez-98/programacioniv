@@ -56,7 +56,7 @@ class producto_nuevo {
 					"'. $this->datos['quintal'] .'",
 					"'. $this->datos['caja'] .'",
 					"'. $this->datos['fecha_subida'] .'",
-								""
+								"NO"
                     )
                 ');
                 $this->respuesta['msg']="Su Producto Fue Publicado Exitosamente";

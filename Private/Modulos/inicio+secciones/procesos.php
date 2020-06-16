@@ -185,6 +185,52 @@ class miproducto{
                     $this->db->consultas("SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like 'Legumbres' ORDER BY misproducto.precio_venta ASC");
                     return $this->respuesta = $this->db->obtener_datos();
                 }
+
+                public function guardarlista($miproducto) {
+                    $this->datos = json_decode($miproducto, true);
+                    $this->validarlista();
+                }
+
+                private function validarlista(){
+                    if(empty(trim($this->datos['fk_idusuario']))||empty(trim($this->datos['nombre_producto']))||empty(trim($this->datos['precio_venta']))||empty(trim($this->datos['descprod']))||empty(trim($this->datos['imagen']))||empty(trim($this->datos['isagotado']))||empty(trim($this->datos['id_quiere']))){
+                        $this->respuesta['msg']='Ha Ocurrido un Error Inesperado!';
+                    }else if(empty(trim($this->datos['Libra']))){
+                        $this->datos['Libra']=0;
+                    }else if(empty(trim($this->datos['Arroba']))){
+                        $this->datos['Arroba']=0;
+                    } else if(empty(trim($this->datos['Quintal']))){
+                        $this->datos['Quintal']=0;
+                    }else if(empty(trim($this->datos['Caja']))){
+                        $this->datos['Caja']=0;
+                    }
+             
+                        $this->insertarlista();
+                  
+                }
+
+                private function insertarlista(){
+                    if($this->respuesta['msg']==='correcto'){
+                        if($this->datos['accion']==='nuevo'){
+                            $this->db->consultas('
+                                INSERT INTO lista_deseos(fk_idusuario,nombre_producto,precio_venta,descprod,imagen,Libra,Arroba,Quintal,Caja,isagotado,id_quiere) VALUES(
+
+                                    "'. $this->datos['fk_idusuario'].'",
+                                    "'. $this->datos['nombre_producto'].'",
+                                    "'. $this->datos['precio_venta'].'",
+                                    "'. $this->datos['descprod'].'",
+                                    "'. $this->datos['imagen'].'",
+                                    "'. $this->datos['Libra'].'",
+                                    "'. $this->datos['Arroba'].'",
+                                    "'. $this->datos['Quintal'].'",
+                                    "'. $this->datos['Caja'].'",
+                                    "'. $this->datos['isagotado'].'",
+                                    "'. $this->datos['id_quiere'].'"
+                                )
+                            ');
+                            $this->respuesta['msg']='Producto Añadido a Lista de Deseos';
+                        }
+                    }
+                }
 }
 ?>
 
