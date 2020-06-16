@@ -467,6 +467,7 @@ class login{
     {
         $this->db->consultas('SELECT usuario.* from usuario where usuario.idusuario="'.$_SESSION['usuario'].'"');
         $this->respuesta=$this->db->obtener_datos();
+       
     }
 
     

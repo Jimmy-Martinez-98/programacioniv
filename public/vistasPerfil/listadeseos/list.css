@@ -6,3 +6,6 @@ h1.centro{
 	display: flex;
 	justify-content: center;
 }
+.badge{
+	z-index: 1;
+}

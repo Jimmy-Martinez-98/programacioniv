@@ -1,7 +1,7 @@
 
 
 
-   var validarsession=new Vue({
+ var validarsession=new Vue({
       el:"#hola",
       data:{
          valor:'',
@@ -74,14 +74,3 @@
         
       }
    });
-
-
-
-
-   
-   
-
-  
-
-
-

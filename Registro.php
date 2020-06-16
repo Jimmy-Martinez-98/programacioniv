@@ -71,8 +71,8 @@
 
 
 			<div class="col-md-6 mb-3" v-else >
-			<label for="validationCustom01">Nombre Cooperativa</label>
-			<input disabled type="text" class="form-control" id="validationCustom01" >
+				<label for="validationCustom01">Nombre Cooperativa</label>
+				<input disabled type="text" class="form-control" id="validationCustom01" >
 			</div>
 
 
@@ -104,7 +104,7 @@
 			</div>
 			<div class="valid-feedback bg-light  rounded  text-break text-center">
 							ok!
-							</div>
+			</div>
 			</div>
 
 			<div class="col-md-6 mb-3">

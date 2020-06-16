@@ -1,3 +1,5 @@
+
+
 var app=new Vue({
 	el:"#slider",
 	data:{
@@ -36,26 +38,19 @@ var todoproducto= new Vue({
 	data:{
 		all:[],
 		lista_deseo:{
-			fk_idusuario:'',
-			nombre_producto:'',
-			precio_venta:'',
-			descprod:'',
-			imagen:'',
-			Libra:'0',
-			Arroba:'0',
-			Quintal:'0',
-			Caja:'0',
-			isagotado:'',
-			id_quiere:'',
+			id_miproducto:'',
+			id_usuario:'',
 			accion:'nuevo'
 		},
+		session:''
 
-		pintar:false
+		
 	
 	},
 	created:function () {
 		this.traer_todo();
-		this.traerlogueo();
+		this.traersession();
+		this.traercuenta();
 	},
 	methods:{
 		traer_todo:function(){
@@ -69,33 +64,47 @@ var todoproducto= new Vue({
 			};
 			sessionStorage.setItem("data",JSON.stringify(data));
 		},
-		traerlogueo:function(){
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{
-				this.lista_deseo.id_quiere=resp[0].idusuario;
-			})
-		}
-		,
-		addlista:function(producto){
-		
-			this.lista_deseo.fk_idusuario=producto.idusuario,
-			this.lista_deseo.nombre_producto=producto.nombre_producto,
-			this.lista_deseo.precio_venta=producto.precio_venta,
-			this.lista_deseo.descprod=producto.descprod,
-			this.lista_deseo.imagen=producto.imagen,
-			this.lista_deseo.Libra=producto.Libra,
-			this.lista_deseo.Arroba=producto.Arroba,
-			this.lista_deseo.Quintal=producto.Quintal,
-			this.lista_deseo.Caja=producto.Caja,
-			this.lista_deseo.isagotado=producto.isagotado;
-			console.log(this.lista_deseo);
-			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
-				alertify.success(resp.msg);
-				if(resp.msg=='Producto Añadido a Lista de Deseos'){
-					pintar=true;
+		traersession:function(){
+            fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp=>resp.json()).then(resp=>{
+            	if(resp.msg=="regrese"){
+					this.session=0;
+					console.log(resp);
+            	}else{
+					this.session=1;
+					console.log(resp);
+            	}
+            });
+		 },
+		 traercuenta: function () {  
+            fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp=>resp.json()).then(resp=>{
+    			if(this.session!=1){
+					console.log('no hay session');
+					
 				}else{
-					pintar=false;
+					this.lista_deseo.id_usuario=resp[0].idusuario;
+
 				}
-			});
+               
+            })
+         },
+		
+		addlista:function(producto){
+			if(this.session==1){
+				this.lista_deseo.id_miproducto=producto.miproducto;
+				console.log(	this.lista_deseo);
+				
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
+					alertify.success(resp.msg);	
+				});
+			
+		}else{
+			Swal.fire(
+				'Ups...',
+				'Debes Iniciar Sesión Para Usar Esta Opción',
+				'warning'
+			  )
+		
+		}
 		}		  
 	}
 })

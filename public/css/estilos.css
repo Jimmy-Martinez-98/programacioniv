@@ -188,6 +188,8 @@ cursor: pointer;
   
   
 }
+
+
 @media(max-width:992px){
    ul.uls li.lis  a.as::before{
       display: none;
