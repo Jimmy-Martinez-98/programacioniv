@@ -22,13 +22,14 @@
 				
 					
 					<div class="card mt-2">
-						<img v-bind:src="we[0].imagen" width="100%" height="250px"  alt="">
+						<img v-bind:src="we.imagen" v-if="we.imagen!=null" width="100%" height="250px"  alt="">
+						<img src="public/img/ico.png" v-else="we.imagen==null" width="100%" height="250px"  alt="">
 					</div>
 				
 				<h2 class="d-flex justify-content-center">Decripcion</h2>
 				<hr>
 				<div class="card-text mt-2">
-				<p class=" text-justify">{{we[0].descripcion}}</p>
+				<p class=" text-justify">{{we.descripcion}}</p>
 				</div>
 				</div>
 			</div>
@@ -36,16 +37,19 @@
 			</div>
 				<div class="card-foote-fluid pb-2">
 					<div class="container ">
-						<div class="row">
+						<div class="row"  v-if="we!=null">
 
-							<div class="col-12" v-if="we[0]!=''" >
-								<input href="#modaleditar" v-on:click="editardatos(we[0])" type="button" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar" value="Modificar">
+							<div class="col-12" >
+								<input href="#modaleditar" v-on:click="editardatos(we)" type="button" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar" value="Modificar">
 								
 							</div>
-							<div class="col-12" v-else="we[0]==''">
+						</div>
+						<div class="row" v-else="we==null">
+							<div class="col-12" >
 								<input href="#modalnuevo"   type="button" id="modalas" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nuevam" value="Nueva">		
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			
@@ -79,7 +83,7 @@
 					<div class="modal-body" >
 						<form id="imgs">
 						<div class="col-12 d-flex justify-content-center card	">
-							<img  width="100%"  height="150px"   :src="bindearimagen"  v-bind:src="edidar.imagenes"  >
+							<img  width="100%"  height="150px" :src="bindearimagen"  v-bind:src="edidar.imagen"  >
 							<div class="custom-file">
 								<input type="file"  @change="obtenerimagen"  required name="archivo" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
 								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>

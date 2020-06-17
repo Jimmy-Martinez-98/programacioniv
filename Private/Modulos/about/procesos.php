@@ -23,8 +23,10 @@ class nosotros{
     }
 
     private function validar(){
-        if(empty(trim($this->datos['usu']))||empty(trim($this->datos['descripcion']))||empty(trim($this->datos['imagenes']))){
+        if(empty(trim($this->datos['descripcion']))||empty(trim($this->datos['imagen']))){
             $this->respuesta['msg']='Por Favor Rellene los Campos';
+        }else if(empty(trim($this->datos['fk_idusuario']))){
+            $this->respuesta['msg']='Ha Ocurrido un Error Inesperado';
         }
         return   $this->actualizar(); 
     }
@@ -44,10 +46,10 @@ class nosotros{
             } if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
                 UPDATE informacionnosotros SET
-                fk_idusuario      = "'. $this->datos['usu'].'",
-                 imagen         = "'. $this->datos['imagenes'] .'",
+                fk_idusuario      = "'. $this->datos['fk_idusuario'].'",
+                 imagen         = "'. $this->datos['imagen'] .'",
                  descripcion         = "'. $this->datos['descripcion'] .'"
-               WHERE infoUsuario  = "'. $this->datos['infousuario'] .'"
+               WHERE infoUsuario  = "'. $this->datos['infoUsuario'] .'"
                 ');
                 $this->respuesta['msg'] = 'Datos Actualizados Exitosamente';
              } 
@@ -86,7 +88,7 @@ class nosotros{
     }
     private function mostrarinfo(){
       $this->db->consultas('
-      SELECT informacionnosotros.descripcion,informacionnosotros.imagen FROM informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
+      SELECT informacionnosotros.infoUsuario,informacionnosotros.descripcion,informacionnosotros.imagen FROM informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
          ');
          return $this->respuesta = $this->db->obtener_datos();
     }
@@ -97,7 +99,12 @@ class nosotros{
         $this->db->consultas('
         select informacionnosotros.infoUsuario from informacionnosotros where informacionnosotros.fk_idusuario="'.$_SESSION['usuario'].'"
         ');
-       return $this->respuesta=$this->db->obtener_datos();
+        $this->respuesta=$this->db->obtener_datos();
+        if(!empty($this->respuesta)){
+            $this->respuesta;
+        }else{
+            $this->respuesta['msg']='nada encontrado';
+        }
     }
 
     

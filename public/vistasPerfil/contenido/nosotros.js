@@ -1,60 +1,54 @@
+
 var appinfo = new Vue({
 	el: '#nosotrosdiv',
 	data: {
-	 we:[]
-	 },
-	 created:function(){
-		 
-		 this.todo();
-		 this.editardatos();
-		 
-	 },
-	 methods:{
-		 todo:function(){
+		we:[]
+	},
+	created:function(){	
+		this.todo();
+		
+		
+	},
+	methods:{
+		todo:function(){
 			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
-				this.we =resp;					
+				this.we=resp[0];
+				
+				
+				
 			});			
-		 },
-			editardatos(id){
-			appedit.edidar.descripcion=id.descripcion;
-			appedit.edidar.imagenes=id.imagen;
-			appedit.edidar.accion=accion='modificar';
-			}
-		 }
-  });
+		},
+		editardatos:function(id){
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
+				appedit.edidar.fk_idusuario=resp[0].idusuario;	
+			});
+			appedit.edidar=id;
+			appedit.edidar.accion='modificar'
+		}
+			
+	}
+});
 
 
 
-  var appedit = new Vue({
+var appedit = new Vue({
 	el: '#modaleditar',
 	data: {
 
 		edidar:{
-			accion:'nuevo',
-			imagenes:'',
+			accion:'modificar',
 			descripcion:'',
-			usu:'',
-			infousuario:''
+			imagen:'',
+			infoUsuario:'',
+			fk_idusuario:''
 			
 		},
-		datos:{
-			idusuario:0,	
-		},
-	 imagenlittle:''
-	 },
-	created:function(){
-		this.traerid();
-		this.infousuario();
-		
+	
+		imagenlittle:''
 	},
-	 methods:{
-		 infousuario:function(){
-			fetch(`Private/Modulos/about/procesos.php?proceso=traeridinfo&nosotros=""`).then(resp=>resp.json()).then(resp=>{
-				this.edidar.infousuario=resp[0].infoUsuario;	
-			})
-		 },
-
-		guardar:function(){		
+	methods:{
+		guardar:function(){	
+		
 			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then( resp=>resp.json() ).then(resp=>{ 
 				if(resp.msg!='Datos Actualizados Exitosamente'){
 					alertify.warning(resp.msg);	
@@ -63,7 +57,7 @@ var appinfo = new Vue({
 					appinfo.todo();
 				
 				}
-		  });
+			});
 		}
 		,
 		obtenerimagen(e){
@@ -83,7 +77,7 @@ var appinfo = new Vue({
 				respuesta=response;
 				}
 			});
-			this.edidar.imagenes="Private/Modulos/about/"+respuesta;
+			this.edidar.imagen="Private/Modulos/about/"+respuesta;
 		},
 		cargar(file){
 			let reader=new FileReader();
@@ -91,21 +85,16 @@ var appinfo = new Vue({
 				this.imagenlittle=e.target.result;
 			}
 			reader.readAsDataURL(file);
-		},
-		traerid:function(){
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				this.datos.idusuario = resp[0].idusuario;			
-				this.edidar.usu= this.datos.idusuario;
-			})
 		}
-	 },
-	 computed:{
+		
+	},
+	computed:{
 		bindearimagen(){	
 			return this.imagenlittle;	
 			
 		}
 	}
-  });
+});
 
 
 
@@ -116,7 +105,7 @@ var appinfo = new Vue({
 
 
 
-  var appnueva=new Vue({
+var appnueva=new Vue({
 	el:'#nuevam',
 	data:{
 		descripciones:{
@@ -129,6 +118,7 @@ var appinfo = new Vue({
 	},
 	created:function(){
 		this.traerusuario();
+	
 	}
 	,methods:{
 
@@ -146,19 +136,18 @@ var appinfo = new Vue({
 					
 				}else {
 					alertify.success(resp.msg);	
+					appinfo.todo();
 				}				
 			});		
-		   },obtenerimagenN(e){
-			
-			
+		},obtenerimagenN(e){
 			let file=e.target.files[0];
+
 			this.cargar(file);
+
 			var respuesta=null;
-			
-			
+
 			var formData=new FormData($('#datos')[0]);
-			
-			
+
 			var ruta='Private/Modulos/about/guardarimagencoo.php';
 			
 			$.ajax({
@@ -173,15 +162,8 @@ var appinfo = new Vue({
 				}
 				
 			});
+
 			this.descripciones.imagen="Private/Modulos/about/"+respuesta;
-			console.log(	this.descripciones.imagen="Private/Modulos/about/"+respuesta);
-			
-			
-		
-			
-		
-			
-			
 		},
 		cargar(file){
 			let reader=new FileReader();
@@ -192,14 +174,10 @@ var appinfo = new Vue({
 			}
 			reader.readAsDataURL(file);
 		},
-
 	},
 	computed:{
 		bindearimagenN(){
-			
 			return this.imglittle;
-			
-			
 		}
 	}
 });	
