@@ -10,25 +10,22 @@ var mostrardirecciones=new Vue({
 
 		 /**
 		  * Trae la direccion de el usuario desde la DB
-		  * Si lo que trae es nulo
+		  
 		  */
 		info:function(){  	
-		   fetch(`private/Modulos/direcciones/procesos.php?proceso=mostrardirecciones&direction=${this.direction}`).then( resp=>resp.json() ).then(resp=>{ 			
-					this.direction=resp[0];
+		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccionView&direction=${JSON.stringify(this.direction)}`).then( resp=>resp.json() ).then(resp=>{ 			
+				this.direction=resp;
 			});	   	     
 		},
 
 		/**
-		 * asigna el item selecionado a la variable editardirecciones en su data: modi
+		 * Asigna el item selecionado a la variable editardirecciones en su data: modirec
 		 * @param {contiene la direccion seleccionada} modD 
 		 */
 		editardire:function(modD){		
+        	editardirecciones.modDirec = modD[0];
+			editardirecciones.modDirec.accion = 'modificar';
 			
-        	editardirecciones.modDi = modD;
-			editardirecciones.modDi.accion = 'modificar';
-			console.log(editardirecciones.modDi);
-			
-		
 		}
 	}
 });
@@ -36,23 +33,28 @@ var mostrardirecciones=new Vue({
 
 
 
-
+ 
 var editardirecciones= new Vue({
 	el:'#modalmodificar',
 	data:{
-		modDi:{
+		modDirec:{
 			idDireccion :0,
-			fkUsuario	:0,
-			accion		:'nuevo',
-			Direccion	:''
+			Direccion	:'',
+			accion		:'modificar'
 		}
 			
 	},
 	methods:{
+		/**
+		 * Metodo para actualizar direccion 
+		 */
 		actualizar:function(){
-				
-				fetch(`private/Modulos/direcciones/procesos.php?proceso=validarupdate&direction=${JSON.stringify(this.modDi)}`).then( resp=>resp.json() ).then(resp=>{
-					if(resp.msg!="Dirección actualizada exitosamente"){	
+				fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDirec)}`).then( resp=>resp.json() ).then(resp=>{
+					if(resp.msg=="Dirección actualizada exitosamente"){	
+						alertify.success(resp.msg);
+						mostrardirecciones.info();
+					}else {
+					
 						Swal.fire({
 							position: 'top-end',
 							icon: 'error',
@@ -60,9 +62,6 @@ var editardirecciones= new Vue({
 							showConfirmButton: false,
 							timer: 1500
 						})	
-					}else {
-						alertify.success(resp.msg);
-						this.info();
 					}	
 				});
 		}
@@ -78,9 +77,9 @@ var nuevadireccion = new Vue({
 	el:'#nuevaD1',
 	data:{
 		Ndireccion:{
-			iddireccion	:0,
-			idusuario:0,
-			direccions	:'',
+			idDireccion	:0,
+			fkUsuario:0,
+			Direccion	:'',
 			accion		:'nuevo',
 		}
 	},
@@ -97,7 +96,7 @@ var nuevadireccion = new Vue({
 		 */
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
-				this.Ndireccion.idusuario=resp[0].idusuario;
+				this.Ndireccion.fkUsuario=resp[0].idusuario;
 			})		
 		},
 		/**
@@ -106,7 +105,7 @@ var nuevadireccion = new Vue({
 		 */
 		almacenar:function(){	
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
-				if(resp.msg!="Registro insertado correctamente"){		
+				if(resp.msg!="Dirección Guardada Correctamente"){		
 					Swal.fire({
 						position: 'top-end',
 						icon: 'error',

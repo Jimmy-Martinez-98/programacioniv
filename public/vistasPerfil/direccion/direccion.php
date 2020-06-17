@@ -18,22 +18,30 @@
 		<div class="form-row d-flex justify-content-center mb-3  bg-light rounded">
 			<div class="container d-flex justify-content-center  mt-3">
 				<p class="text-justify"v-if="direction!=''">
-					{{direction.Direccion}}
+					{{direction[0].Direccion}}
+				</p>
+				<p class="text-justify" v-else>
+					Nada Por Aquí
 				</p>
 			</div>
 		</div>
 
-		<div class="container mb-3"v-if="direction!=''">
-			<button type="button"
-			class="btn btn-secondary btn-lg btn-block"  
-			data-toggle="modal" data-target="#modalmodificar"
-			@click="editardire(direction)">
-				Modificar Drección
+		<div class="container mb-3">
+			<button type="button" v-if="direction==''"
+			class="btn btn-primary btn-lg btn-block"  
+			data-toggle="modal" data-target="#nuevaD1"
+			>
+				Nueva Dirección
 			</button>
-		
-		<div class="container mb-3" v-else="direction==''" >
-			<input type="button" class="btn btn-primary btn-lg btn-block" data-toggle='modal'data-target="#nuevaD1" value="Nueva Direccion">
+			<input type="button" v-else
+				class="btn btn-secondary btn-lg btn-block"
+				data-toggle='modal'
+				data-target="#modalmodificar" 
+				value="Modificar Drección"
+				@click="editardire(direction)">
 		</div>
+		
+		
 	</form>
 </div>
 <script src="public/js/jquery-3.5.js"></script>
@@ -61,7 +69,7 @@
 		<div class="modal-body">
 		<div class="form-group">
 				<label for="exampleFormControlTextarea1">Nueva Dirección</label>
-				<textarea class="form-control" v-model="Ndireccion.direccions"  id="ndireccion" rows="3"></textarea>
+				<textarea class="form-control" v-model="Ndireccion.Direccion"  id="ndireccion" rows="3"></textarea>
 			</div>
 
 		</div>
@@ -71,10 +79,8 @@
 		</div>
 	  </div>
 	</div>
-  </div>
+</div>
 
- 
- 
 
 
 
@@ -83,24 +89,25 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalmodificar" tabindex="-1" role="dialog" aria-labelledby="modalmodificarLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalmodificarLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <div class="modal-body">
-		<div class="form-group"  >
-			<label for="exampleFormControlTextarea1">Modificar Dirección</label>
-			<textarea class="form-control"  v-model="modDi.Direccion" id="ndireccion" rows="3"></textarea>
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="modalmodificarLabel">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" @click="actualizar" >Guardar Cambios</button>
-    </div>
-    </div>
-  </div>
+		<div class="modal-body">
+			<div class="form-group"  >
+				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
+				<textarea class="form-control" v-model.trim="modDirec.Direccion" id="ndireccion" rows="3"></textarea>
+			</div>
+			
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-primary" @click="actualizar" >Guardar Cambios</button>
+		</div>
+		</div>
+	</div>
 </div>
