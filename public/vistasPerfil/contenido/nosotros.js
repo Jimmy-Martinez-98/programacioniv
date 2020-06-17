@@ -4,20 +4,28 @@ var appinfo = new Vue({
 	data: {
 		we:[]
 	},
+	/*
+		ejecuta la funcion cuando se carga la pagina
+	*/
 	created:function(){	
 		this.todo();
 		
 		
 	},
 	methods:{
+		/**
+		 * 	Trae imagen y descripcion de la cooperativa o productor
+		 */
 		todo:function(){
 			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.we=resp[0];
-				
-				
-				
 			});			
 		},
+		/**
+		 * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
+		 * Igualmente le asigna la informacion del item seleccionado 
+		 * @param {contiene todo aserca del item seleccionado} id 
+		 */
 		editardatos:function(id){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				appedit.edidar.fk_idusuario=resp[0].idusuario;	

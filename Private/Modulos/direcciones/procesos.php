@@ -23,9 +23,17 @@ class direccion{
        $this->validar();
     }
     public function validar(){
-        if(empty(trim($this->datos['Direccion']))){
+        if(empty(trim($this->datos['direccions']))){
             $this->respuesta['msg']='por favor ingrese la Dirección';      
         }else if (empty($this->datos['idusuario'])) {
+            $this->respuesta['msg'] = 'Identificador Faltante';
+        }
+        $this->almacenar_direccion();
+    }
+    public function validarupdate(){
+        if(empty(trim($this->datos['Direccion']))){
+            $this->respuesta['msg']='por favor ingrese la Dirección';      
+        }else if (empty($this->datos['fkUsuario'])) {
             $this->respuesta['msg'] = 'Identificador Faltante';
         }
         $this->almacenar_direccion();
@@ -35,20 +43,22 @@ class direccion{
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
                     INSERT INTO direcciones (idDireccion,fkUsuario,Direccion) VALUES(
-                         "'. $this->datos['iddireccion'].'",
+                        "'. $this->datos['iddireccion'].'",
                         "'. $this->datos['idusuario'].'",
-                        "'. $this->datos['Direccion'] .'") ');
-				$this->respuesta['msg'] = 'Registro insertado correctamente';
+                        "'. $this->datos['direccions'] .'") 
+                    ');
+                $this->respuesta['msg'] = 'Registro insertado correctamente';
+                
 			}else if($this->datos['accion']==='modificar'){
                 $this->db->consultas('
                     UPDATE direcciones SET
-                 fkUsuario     = "'. $this->datos['idusuario'] .'",
-                 Direccion     = "'. $this->datos['Direccion'] .'"
-                  WHERE idDireccion = "'. $this->datos['idDireccion'] .'"
+                        fkUsuario     = "'. $this->datos['fkUsuario'] .'",
+                        Direccion     = "'. $this->datos['Direccion'] .'"
+                    WHERE idDireccion = "'. $this->datos['iddireccion'] .'"
                 ');
                 $this->respuesta['msg'] = 'Dirección actualizada exitosamente';
             }
-         }
+        }
     }
     
 
@@ -67,17 +77,15 @@ class direccion{
     
 
 
-	public function recibirdireccion($direccion){
-        $this->datos = json_decode($direccion, true);
-        $this->mostrarinfo();
-    }
-    private function mostrarinfo(){
-       $this->db->consultas('SELECT usuario.idusuario,direcciones.idDireccion,direcciones.fkUsuario,direcciones.Direccion from usuario JOIN direcciones where usuario.idusuario=direcciones.fkUsuario and usuario.idusuario="'.$_SESSION['usuario'].'" ');
-         return $this->respuesta = $this->db->obtener_datos();
+	
+    public function mostrardirecciones(){
+       $this->db->consultas('SELECT direcciones.* from direcciones JOIN usuario where usuario.idusuario=direcciones.fkUsuario and usuario.idusuario="'.$_SESSION['usuario'].'" ');
+       $this->respuesta = $this->db->obtener_datos();
+       
     }
 		
 		
 }
-			
+
 
 ?>
