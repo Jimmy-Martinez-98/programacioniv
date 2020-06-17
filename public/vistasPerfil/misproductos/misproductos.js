@@ -35,20 +35,19 @@ var misproductosapp = new Vue({
 								resp.msg,
 								'error'
 								
-							  );
-							  this.productosmios();	
+							);
 						}else{
 							Swal.fire(
 								'Eliminado!',
 								resp.msg,
 								'success'
 								
-							  );
-							  this.productosmios();	
+							);
+							this.productosmios();	
 						}
 					});
 				}
-			  });			
+			});	
 		},
 		agotado:function(miproducto){
 		

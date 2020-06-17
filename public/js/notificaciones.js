@@ -29,7 +29,7 @@ switch (window.Notification.permission) {
         break;
 }
 /**
- * @callback crea una apli de notificacion, para mostrar notificaciones.
+ * @callback crea una api de notificacion, para mostrar notificaciones.
  * @param {object} $ framework de jQuery.
  */
 (($)=>{
