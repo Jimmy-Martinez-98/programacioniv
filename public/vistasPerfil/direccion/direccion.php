@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<div class="container mb-3">
+		<div class="container mb-3 py-3">
 			<button type="button" v-if="direction==''"
 			class="btn btn-primary btn-lg btn-block"  
 			data-toggle="modal" data-target="#nuevaD1"
@@ -104,7 +104,7 @@
 			</div>
 			
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer ">
 			<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
 			<button type="button" class="btn btn-primary" @click="actualizar" >Guardar Cambios</button>
 		</div>

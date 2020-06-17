@@ -56,20 +56,22 @@ var apphorarios=new Vue({
                             text: resp.msg
                         })
                         
-                        this.idtablainfo();
+                        appleerH.leerhorarios();
                        
                     }
                 });
         
             },
             limpiar:function () {
+              
                 this.horario.id_horario=0,
                         this.horario.id_inf='';
                         this.horario .Horas1='';
                         this.horario.HORA2='';
                         this.horario .Dias='';
                         this.horario.accion='nuevo';
-            }   
+                     
+            }    
         }
 
 });
