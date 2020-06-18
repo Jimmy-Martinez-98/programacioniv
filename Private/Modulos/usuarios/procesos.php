@@ -253,6 +253,7 @@ class login{
                 }
             } catch (Exception $e) {
                 $this->respuesta['msg']= "error: {$mail->ErrorInfo}";
+              
             }
     }
 
@@ -634,6 +635,14 @@ class login{
             $this->respuesta['msg'] = 'Bienvenido';
         }
     }
+
+
+
+    public function traerusuarios(){
+        $this->db->consultas('SELECT usuario.* from usuario');
+        $this->respuesta=$this->db->obtener_datos();
+    }
+
 
 
 

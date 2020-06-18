@@ -87,9 +87,10 @@
 					</ul>
 					</div>
 				</div>
-			
+			{{msg.msg}}
 			<div class="footer ">
-				<input  type="text" v-model="msg.msg"  class="form-control" placeholder="Escribe un Mensaje" >
+				<input  type="text" v-model.trim="msg.msg"  class="form-control" placeholder="Escribe un Mensaje" >
+
 				<a class="enviar" v-on:click="enviarMensaje"><i class="far fa-paper-plane"></i></a>
 			</div>
 		</div>
