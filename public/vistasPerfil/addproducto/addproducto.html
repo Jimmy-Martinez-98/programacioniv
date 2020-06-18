@@ -32,7 +32,7 @@
 				<div class="col-md-6 mb-3">
 					<div class="form-group">
 						<label for="desc">Codigo Producto</label>
-						<input  v-model.trim="publicP.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Codigo">	
+						<input  v-model.trim="publicP.codigo_producto" type="text" pattern="[0-9]{4}" maxlength="4" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Codigo">	
 					</div>
 				</div>
 			<div class="col-md-6 mb-3">
@@ -49,19 +49,19 @@
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="cantidad">Cantidad  Existencias</label>
-					<input v-model.trim="publicP.existencias" pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
+					<input v-model.trim="publicP.existencias" pattern="[0-9]{6}"  maxlength="6 " type="text" class="form-control money"  id="cantidad" placeholder="050.10">
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
-					<label for="cantidad">Precio</label>
-					<input v-model.trim="publicP.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
+					<label for="precio">Precio</label>
+					<input v-model.trim="publicP.precio" pattern="[0-9]{6}"  maxlength="6" minlength="2" type="number" class="form-control money"  id="precio" placeholder="050.10">
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
-					<label for="cantidad">Precio De Venta</label>
-					<input  v-model.trim="publicP.precio_venta" pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
+					<label for="precio_venta">Precio De Venta</label>
+					<input  v-model.trim="publicP.precio_venta" pattern="[0-9]{6}"  maxlength="6" minlength="2"  type="number" class="form-control money"  id="precioventa" placeholder="050.10">
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
@@ -100,7 +100,9 @@
 			</div>
 		</div>
 	</form>
+	<script src="public/js/jquery.mask.js"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+
 <script src="public/vistasPerfil/addproducto/productosadd.js"></script>
 </body>
 </html>

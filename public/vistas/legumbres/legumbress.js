@@ -20,6 +20,11 @@ var seccionlegumbre = new Vue({
 		});
 		  }
 		,
+		autobusquda:function(){
+			if(this.valor==''){
+				this.traerlegumbres();
+			}
+		},
 		verProd(info){
 			var data={
 				info

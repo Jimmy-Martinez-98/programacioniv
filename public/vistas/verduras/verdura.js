@@ -9,6 +9,8 @@ var seccionverduras =new Vue({
 			this.traer();
 		},
 	methods:{
+		
+		
 			traer(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirverduras&miproducto=${JSON.stringify(this.verdes)}`).then(resp=>resp.json()).then(resp=>{
 				this.verdes=resp;	
@@ -16,10 +18,17 @@ var seccionverduras =new Vue({
 						
 			});
 		},
+		autobusquda:function(){
+			if(this.valor==''){
+				this.traer();
+			}
+		},
 		buscarV:function () {
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductosV&miproducto=${this.valor}`).then(resp=>resp.json()).then(resp=>{
 				
 				this.verdes=resp;	
+				
+
             });
 		  }
 		,

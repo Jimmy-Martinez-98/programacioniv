@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
+	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<link
     rel="stylesheet"
@@ -86,7 +87,7 @@
 						  </div>
 					  </div>
 					  <div class="container">
-					  <button class=" btn btn-outline-danger float-right">Añadir a deseos <i class="fas fa-heart"></i> </button>
+					  <button class=" btn btn-outline-danger float-right" @click="addlista(detallesprod)">Añadir a deseos <i class="fas fa-heart"></i> </button>
 					  </div>
 				  </div>
 				  <br>
@@ -161,6 +162,8 @@
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="alertifyjs/alertify.js"></script>
     <script src="public/vistas/verproductos/publicproductos.js"></script>	
  	 <script src="public/vistas/verproductos/chat.js"></script>	
 </body>

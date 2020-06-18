@@ -9,11 +9,19 @@ var seccionfrutas =new Vue({
 			
 		},
 	methods:{
+
+
+
 			traer(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirfrutos&miproducto=${JSON.stringify(this.fruta)}`).then(resp=>resp.json()).then(resp=>{
 				this.fruta=resp;	
 					
 			});
+		},
+		autobusquda:function(){
+			if(this.valor==''){
+				this.traer();
+			}
 		},
 		buscarF:function(){		
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductoss&miproducto=${this.valor}`).then(resp=>resp.json()).then(resp=>{

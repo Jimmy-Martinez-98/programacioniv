@@ -25,7 +25,7 @@ session_start();
 						<p class="text-justify text-black-50 mb-3" >{{mercancia.descprod}}</p>
 
 						<div class="mt-5">
-						<span class="text-black-50 " >{{mercancia.precio_venta}}</span>
+						<span class="text-black-50 " >${{mercancia.precio_venta}}</span>
 						<span class="text-black-50 ml-5" v-if="mercancia.nombrecooperativa!=''" >{{mercancia.nombrecooperativa}}</span>
 						<span class="text-black-50 mr-auto" v-else >{{mercancia.nombreu}}</span>
 						</div>

@@ -3,12 +3,22 @@ var mostrardetalle = new Vue({
 	data:{
 		detallesprod:[],
 		productosrelacionados:[],
-		contador:1
+		contador:1,
+		lista_deseo:{
+			id_miproducto:'',
+			id_usuario:'',
+			accion:'nuevo'
+		},
+		session:'',
+		valor:'',
+		cuentalogueada:[]
 		
 	},
 	created:function(){
 		this.todo();
 		this.traerproductos();
+		this.traersession();
+		this.traeridlogue();
 		
 	},
 	methods:{
@@ -18,6 +28,25 @@ var mostrardetalle = new Vue({
 			this.detallesprod=datafromstorage;	
 
 			
+		},
+		
+		addlista:function(producto){
+			if(this.session==1){
+				this.lista_deseo.id_miproducto=producto.info.miproducto;
+			
+			
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
+					alertify.success(resp.msg);	
+				});	
+			}
+			else{
+				Swal.fire(
+					'Ups...',
+					'Debes Iniciar Sesión Para Usar Esta Opción',
+					'warning'
+				)
+	
+			}
 		},
 		traerproductos:function(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productosrelacionados)}`).then(resp=>resp.json()).then(resp=>{
@@ -39,66 +68,28 @@ var mostrardetalle = new Vue({
 		},
 		contactar:function(){
 			location.href="public/vistas/chat/chat.html"
-		}
+		},
+		traersession:function(){
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp=>resp.json()).then(resp=>{
+			   if(resp.msg=="regrese"){
+				  this.session=0;
+			   }else{
+				  this.session=1;
+			   }
+				  
+			   
+			})
+		 },
+		 traeridlogue:function(){
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.cuentalogueada}`).then(resp=>resp.json()).then(resp=>{
+			
+				this.lista_deseo.id_usuario=resp[0].idusuario;
+				
+				
+				
+			 })
+		 }
 	
 	}
 });
 
-var validarsession=new Vue({
-	el:"#nave",
-	data:{
-	   valor:'',
-	   session:'',
-	   datoscuenta:[]
-	},
-	created:function(){
-	   this.traersession();
-	   this.traercuenta();
-	},
-
-	methods:{
-	   traersession:function(){
-		  fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp=>resp.json()).then(resp=>{
-			 if(resp.msg=="regrese"){
-				this.session=0;
-			 }else{
-				this.session=1;
-			 }
-				
-			 
-		  })
-	   },
-	   traercuenta: function () {  
-		  fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp=>resp.json()).then(resp=>{
-			 this.datoscuenta=resp;
-			 
-		  })
-	   },
-	   colapsar:function(){  
-		
-		$("#toggles").animate({
-		 height: 'toggle'
-		});
-	 },
-	 home:function(){
-		 console.log('hola');
-		 $('#')
-		
-	 },
-	 verduras:function () { 
-		 	$("#contenedor").load("public/vistas/verduras/verduras.html",function(data){
-		$(this).html(data);
-		 });
-	},
-	 frutos:function () { 
-		 	$("#contenedor").load("public/vistas/frutos/frutos.html",function(data){
-			$(this).html(data);
-		 });
-	 },
-	 legumbres:function () { 
-		$("#contenedor").load("public/vistas/legumbres/legumbres.html",function(data){
-			$(this).html(data);
-		 });
-	  }
-	}
- })

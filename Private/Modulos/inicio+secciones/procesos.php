@@ -208,7 +208,7 @@ class miproducto{
          */
         public function buscarproductosV($valor=''){
             $this->db->consultas("
-                SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,,misproducto.miproducto,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND (misproducto.categoria like 'Verduras' and misproducto.nombre_producto like '%$valor%')
+                SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.miproducto,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND (misproducto.categoria like 'Verduras' and misproducto.nombre_producto like '%$valor%')
             ");
             return $this->respuesta=$this->db->obtener_datos();
         }

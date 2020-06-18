@@ -26,7 +26,7 @@ var appleerH = new Vue({
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, Eliminalo!'
-              }).then((result) => {
+            }).then((result) => {
                 if (result.value) {
                     fetch(`Private/Modulos/about/procesos.php?proceso=eliminarhorario&nosotros=${id_horario}`).then(resp=>resp.json()).then(resp=>{
                         Swal.fire(
@@ -39,8 +39,7 @@ var appleerH = new Vue({
                         apphorarios.idtablainfo();
                     });
                 }
-              });	
-          
+            });	
         }
     }
 });

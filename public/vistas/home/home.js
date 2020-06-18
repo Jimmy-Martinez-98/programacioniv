@@ -5,6 +5,11 @@ var app=new Vue({
 	data:{
 		productos:[],
 		stars:[],
+		lista_deseox:{
+			id_miproducto:'',
+			id_usuario:'',
+			accion:'nuevo'
+		}
 		
 	},
 	created:function(){
@@ -13,25 +18,40 @@ var app=new Vue({
 	},
 	methods:{
 	   datoss:function(){         
-		  fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
+		  fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirall&miproducto=${JSON.stringify(this.productos )}`).then( resp=>resp.json() ).then(resp=>{ 
 			 this.productos = resp;		
 			
 		  });		  
 	   },
-	verProd(info){
-		var data={
-		info
-		}
-		sessionStorage.setItem("data",JSON.stringify(data));
+		verProd(info){
+			var data={
+			info
+			}
+			sessionStorage.setItem("data",JSON.stringify(data));
 		
-	},
-
-
+		},
 	
+		addlista:function(producto){
+			if(this.session==1){
+				this.lista_deseox.id_miproducto=producto.miproducto;
+				console.log(this.lista_deseo);
+			
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
+					alertify.success(resp.msg);	
+				});	
+			}else{
+				Swal.fire(
+					'Ups...',
+					'Debes Iniciar Sesión Para Usar Esta Opción',
+					'warning'
+				)
+	
+			}
+		}	
+
 	}
-	
-	});
- 
+});
+
 
 var todoproducto= new Vue({
 	el:'#todoproducto',

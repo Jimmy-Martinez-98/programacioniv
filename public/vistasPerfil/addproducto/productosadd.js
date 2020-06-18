@@ -29,11 +29,15 @@ var publicarp=new Vue({
 		imagenlittle:''
 
 	},
-	created:function(){this.traerid()
+	created:function(){
+		this.traerid()
 	
 	},
+
+	
 	
 	methods:{
+		
 	
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
@@ -117,3 +121,9 @@ var publicarp=new Vue({
 	
 });
 
+
+$(function(){
+	
+		$('.money').mask('000.00');
+	
+})
