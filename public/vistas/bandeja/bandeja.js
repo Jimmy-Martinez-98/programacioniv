@@ -1,66 +1,59 @@
-var socket = io.connect("http://localhost:3001",{'forceNew':true}),
+var socket = io.connect("http://localhost:3001",{'forceNew':true})
+,
     appbandeja = new Vue({
         el:'#bandejas',
         data:{
             msg :{
-               de:0,
-               para:0,
-               msg:''
-			   },
+                de:0,
+                para:0,
+                msg:''
+			},
 			
-            msgs : [],
-            users:[],
-            allmsg:[],
-            nombrechat:[]
+			msgs : [],
+			users:[],
+         allmsg:[],
+         nombrechat:[]
         },
         methods:{
 			traerusuario:function(){
 				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp=>resp.json()).then(resp=>{
 					this.msg.de=resp[0].idusuario;				
-            })
-          
-            
+				})
 			},
+         
             enviarMensaje(){
 
 				var msj=this.msg.msg;
 				this.msg.msg=msj.trim();
                if(this.msg.msg!='' && this.msg.para!='' && this.msg.de!=''){
                   socket.emit('enviarMensaje', this.msg);
-                
-                 this.msg.msg=''
-               } 
-            
+                  this.msg.msg = ''; 
+               }
               
-               
 			},
 			vermensajes:function(){
 				fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp=>resp.json()).then(resp=>{	                         
-                   this.users=resp    
-                  
-               
+                   this.users=resp              
             });
+         
             
            
             
 			},
 			openchat:function(id) {
             
-            
+            socket.emit('chatHistory'); 
 				this.msg.para=id
-            this.msgs=[];
-            console.log('openchat',this.msgs);
-            
+				this.msgs=[];
 				this.allmsg.forEach(item=>{
                this.util(item);
-              console.log(item);
               
             })
            
          
             this.users.forEach(user=>{
              if(user.idusuario==id){
-               this.nombrechat=user;    
+               this.nombrechat=user;            
              }         
             })
             
@@ -70,8 +63,6 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true}),
 				if (item.de === this.msg.de && item.para === this.msg.para ||
                     item.de === this.msg.para && item.para === this.msg.de) {
                     this.msgs.push(item);
-                    console.log(this.msgs);
-                    
                 }
            },
         
