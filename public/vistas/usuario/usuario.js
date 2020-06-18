@@ -14,7 +14,7 @@ var appusuario = new Vue({
 			correo  		 : '',
             pass		     :'',
             fecha            :'', 
-            msg      		 : ''
+            
         },
         verificarchek:''
     },

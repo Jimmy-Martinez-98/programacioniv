@@ -155,25 +155,38 @@ class login{
     private function almacenar_registro(){
         $hash=mt_rand(1000,9999);
 
-        if($this->respuesta['msg']==='correcto'){
-    
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
-                INSERT INTO usuario (nombreu,nombrecooperativa,telefono,tipoUsuario,correo,passwords,activo,fechaR,hash) VALUES(
-                    "'. $this->datos['nombreu'] .'",
-                    "'. $this->datos['nombrecooperativa'] .'",
-                    "'. $this->datos['telefono'] .'",
-                    "'. $this->datos['selected'] .'",
-                    "'. $this->datos['correo'] .'",
-                    "'. $this->datos['pass'] .'",
-                                "ceroo",
-                    "'. $this->datos['fecha'] .'"
+                    INSERT INTO usuario (
+                        idusuario,
+                        nombreu,
+                        imagen,
+                        nombrecooperativa,
+                        telefono,
+                        tipoUsuario,
+                        correo,
+                        passwords,
+                        activo,
+                        fechaR,
+                        hash) 
+                        VALUES(
+                            "'.$this->datos['idUsuario'].'",
+                            "'.$this->datos['nombreu'].'",
+                            "imagen",
+                            "'.$this->datos['nombrecooperativa'].'",
+                            "'.$this->datos['telefono'].'",
+                            "'.$this->datos['selected'].'",
+                            "'.$this->datos['correo'].'",
+                            "'.$this->datos['pass'].'",
+                                "0",
+                            "'.$this->datos['fecha'].'",
+                            "'.$hash.'"
                     )
                 '); 
                 $this->respuesta['msg']="usuario registrado correctamente" ; 
             $this->enviaremailVendedor($this->datos['nombreu'],$this->datos['nombrecooperativa'],$this->datos['correo'],$hash);
             }
-        }
+        
         
     }
 
