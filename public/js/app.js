@@ -1,6 +1,7 @@
-
-
-
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file app.js-> sirve para la interaccion con la barra de navegacion
+ */
  var validarsession=new Vue({
       el:"#hola",
       data:{
