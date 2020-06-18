@@ -43,7 +43,7 @@ class direccion{
 
     /**
 	  * @access public
-     * @function recibirDatos recibe los datos del producto desde el formulario
+     * @function recibirDatos recibe los datos de la direccion desde el formulario
      * @param object  $direccion representa los datos en si
      */
     public function recibirDatos($direccion){

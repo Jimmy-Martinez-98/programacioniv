@@ -117,9 +117,9 @@ var appnueva=new Vue({
 	el:'#nuevam',
 	data:{
 		descripciones:{
-			idusuario:0,
+			fk_idusuario:0,
 			imagen:'',
-			describ:'',
+			descripcion:'',
 			accion:'nuevo'
 		},
 		imglittle:''
@@ -132,7 +132,7 @@ var appnueva=new Vue({
 
 		traerusuario:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				this.descripciones.idusuario = resp[0].idusuario;
+				this.descripciones.fk_idusuario = resp[0].idusuario;
 				
 			});
 		},
