@@ -69,6 +69,7 @@ var validarsession=new Vue({
        * @function inicio
        */
       inicio(){
+         todoproducto.traersession();
          $("#contenedor").load("public/vistas/home/home.html",function(data){
             $(this).html(data);       
          });

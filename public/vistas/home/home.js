@@ -4,16 +4,19 @@ var app=new Vue({
 	el:"#slider",
 	data:{
 		productos:[],
-		stars:[],
 		lista_deseox:{
 			id_miproducto:'',
 			id_usuario:'',
 			accion:'nuevo'
-		}
-		
+		},
+		ItSession:0,
+		ItValor:'',
+		ItCuenta:''
 	},
 	created:function(){
 	this.datoss();
+	this.variablesession();
+	
 	
 	},
 	methods:{
@@ -23,6 +26,17 @@ var app=new Vue({
 			
 		  });		  
 	   },
+	   cuentalogueada: function () {  
+		fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`).then(resp=>resp.json()).then(resp=>{
+			if(this.ItSession!=1){
+				console.log('no hay session');
+				
+			}else{
+				this.lista_deseox.id_usuario=resp[0].idusuario;
+			}
+		   
+		})
+	 },
 		verProd(info){
 			var data={
 			info
@@ -30,16 +44,34 @@ var app=new Vue({
 			sessionStorage.setItem("data",JSON.stringify(data));
 		
 		},
-	
+		variablesession:function(){
+            fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`).then(resp=>resp.json()).then(resp=>{
+            	if(resp.msg=="regrese"){
+					this.ItSession=0;
+					console.log('nohay>',resp);
+            	}else{
+					this.ItSession=1;
+					console.log("si hay>",resp);
+            	}
+			});
+			this.cuentalogueada();
+		},
+
+
 		addlista:function(producto){
-			if(this.session==1){
-				this.lista_deseox.id_miproducto=producto.miproducto;
-				console.log(this.lista_deseo);
-			
-				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
+			if(this.ItSession!=0){
+				
+				idproducto=producto.miproducto
+				this.lista_deseox.id_miproducto=idproducto;
+
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
 					alertify.success(resp.msg);	
-				});	
+				});
+					
+				
+				
 			}else{
+				
 				Swal.fire(
 					'Ups...',
 					'Debes Iniciar Sesión Para Usar Esta Opción',

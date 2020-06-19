@@ -76,7 +76,7 @@ class miproducto{
      */
     public function lista_deseos(){
         $this->db->consultas('
-        SELECT lista_deseos.id_miproducto,misproducto.*,usuario.nombreu,usuario.nombrecooperativa from lista_deseos JOIN misproducto JOIN usuario WHERE lista_deseos.id_miproducto=misproducto.miproducto and usuario.idusuario=misproducto.fk_idusuario and lista_deseos.id_usuario="'.$_SESSION['usuario'].'"
+        SELECT lista_deseos.id_desos,misproducto.*,usuario.nombreu,usuario.nombrecooperativa from lista_deseos JOIN misproducto JOIN usuario WHERE lista_deseos.id_miproducto=misproducto.miproducto and usuario.idusuario=misproducto.fk_idusuario and lista_deseos.id_usuario="'.$_SESSION['usuario'].'"
         ');
         return $this->respuesta=$this->db->obtener_datos();
     }
@@ -93,7 +93,7 @@ class miproducto{
         $this->db->consultas('
             DELETE lista_deseos 
             FROM   lista_deseos
-            WHERE lista_deseos.id_miproducto="'.$idProducto.'"
+            WHERE lista_deseos.id_desos="'.$idProducto.'"
 
         ');
         $this->respuesta['msg']='Eliminado de la Lista';

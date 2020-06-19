@@ -377,14 +377,13 @@ class miproducto{
         }
 
 
-
         /**
          * Valida si los datos enviados del formulario estan vacios
          * @access private
          * @function validarlista
          */
         private function validarlista(){
-            if(empty(trim($this->datos['id_miproducto']))||empty(trim($this->datos['id_usuario']))){
+            if($this->datos['id_miproducto']===null||$this->datos['id_usuario']===null){
                 $this->respuesta['msg']='Ha Ocurrido un Error Inesperado!';
             }
                 $this->insertarlista();

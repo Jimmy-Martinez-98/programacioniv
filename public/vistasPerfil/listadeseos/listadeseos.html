@@ -2,7 +2,7 @@
 <form id="list_deseos">
 	<link rel="stylesheet" href="public/vistasPerfil/listadeseos/list.css">
 
-		<ul class="list-group wow fadeIn" v-for="Deseos in AllDeseos":key="Deseos.id_lista">
+		<ul class="list-group wow fadeIn" v-for="Deseos in AllDeseos":key="Deseos.id_desos">
 			<li class="list-group-item bg-white">
 			<div class="badge badge-danger text-wrap position-absolute" v-if="Deseos.isagotado==='SI'" style="width: 3.5rem; height:6rem">
 						<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
@@ -31,7 +31,7 @@
 					</div>
 
 					<div class="col-md-2  mb-2 mt-3">
-						<button class="btn btn-outline-danger mb-5 mr-auto " @click.prevent="deleteproducto(Deseos.miproducto)"  >Eliminar de la Lista</button>
+						<button class="btn btn-outline-danger mb-5 mr-auto " @click.prevent="deleteproducto(Deseos.id_desos)"  >Eliminar de la Lista</button>
 					
 						<button class="btn btn-secondary mb-5   mr-auto"  v-if="Deseos.isagotado==='NO'||Deseos.isagotado===''" >Comprar Ahora</button>
 						<button class="btn btn-secondary mb-5   mr-auto"  v-else disabled>Comprar Ahora</button>
