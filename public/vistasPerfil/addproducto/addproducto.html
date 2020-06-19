@@ -5,10 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
 </head>
 <body>
-	<form  enctype="multipart/form-data" id="frm-productoN" class="container bg card"> 
+	<form  enctype="multipart/form-data" id="frm-productoN" class="container bg card wow fadeIn"> 
 		<h1 class=" h1s">Nuevo Producto</h1>
 		<hr class="hrs">
 		<div class="d-flex justify-content-center">
@@ -104,5 +105,16 @@
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 
 <script src="public/vistasPerfil/addproducto/productosadd.js"></script>
+<script src="public/vistas/blog/dist/wow.js"></script>
+<script>
+  var wow = new WOW(
+    {
+    boxClass:     'wow',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       0,          // distance to the element when triggering the animation (default is 0)
+    }
+  );
+  wow.init();
+</script>
 </body>
 </html>

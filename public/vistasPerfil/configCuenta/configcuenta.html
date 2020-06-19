@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/configCuenta/configcuenta.css">
 </head>
 <body>
 	<form method="POST" id="cuenta" class="rounded p-2 container colores mb-3">
-		<div class="form-row">
+		<div class="form-row wow fadeIn">
 			<div class="d-flex justify-content-center col-md-12">
 				<div class="col-md-6 d-flex justify-content-center">
 					<div style="width: 250px;">
@@ -68,7 +69,19 @@
 <script src="public/js/jquery-3.5.js"></script>
 <script src="public/js/jquery-ui.js"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+<script src="public/vistas/blog/dist/wow.js"></script>
 <script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
+
+<script>
+	var wow = new WOW(
+		{
+		boxClass:     'wow',      // animated element css class (default is wow)
+		animateClass: 'animated', // animation css class (default is animated)
+		offset:       0,          // distance to the element when triggering the animation (default is 0)
+		}
+	);
+	wow.init();
+</script>
 </body>
 </html>
 

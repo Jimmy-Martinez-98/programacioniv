@@ -2,11 +2,12 @@
 session_start();
 ?>
 <form action="#" method="post" id="misprod">
+<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/misproductos/misproduc.css">
 	
-		<ul class="list-group" v-for="mercancia in myproductos":key="mercancia.miproducto">
+		<ul class="list-group wow fadeIn" v-for="mercancia in myproductos":key="mercancia.miproducto">
 			<li class="list-group-item bg-white">
-			<div class="badge badge-danger text-wrap position-absolute" v-if="mercancia.isagotado==='SI'" style="width: 3.5rem; height:6rem">
+			<div class="badge badge-danger text-wrap position-absolute wow fadeIn" v-if="mercancia.isagotado==='SI'" style="width: 3.5rem; height:6rem">
 						<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
 					
 						<br>
@@ -46,4 +47,15 @@ session_start();
 
 
 <script src="public/vistasPerfil/misproductos/misproductos.js"></script>
+<script src="public/vistas/blog/dist/wow.js"></script>
+<script>
+  var wow = new WOW(
+    {
+    boxClass:     'wow',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       0,          // distance to the element when triggering the animation (default is 0)
+    }
+  );
+  wow.init();
+</script>
 </form>

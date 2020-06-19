@@ -8,11 +8,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/direccion/direcc.css">
 </head>
 <body>
 	
-<div class="container bg">
+<div class="container bg wow fadeIn">
 	<form   id="frm-direcciones">
 		<head> <h3 class="d-flex justify-content-center">Dirección</h3><hr></head>
 		<div class="form-row d-flex justify-content-center mb-3  bg-light rounded">
@@ -49,7 +50,17 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script src="public/vistasPerfil/direccion/guardar.js"></script>
-
+<script src="public/vistas/blog/dist/wow.js"></script>
+<script>
+  var wow = new WOW(
+    {
+    boxClass:     'wow',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       0,          // distance to the element when triggering the animation (default is 0)
+    }
+  );
+  wow.init();
+</script>
 
 </body>
 </html>

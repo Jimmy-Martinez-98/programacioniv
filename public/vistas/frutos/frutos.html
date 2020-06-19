@@ -2,10 +2,11 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/css/estilos.css">
 	<link rel="stylesheet" href="public/vistas/frutos/frutos.css">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 
 	<div class="container" id="frutas">
-		<div class="container mt-3 mb-3">
-			<div class="input-group input-group-lg">
+		<div class="container mt-3 mb-3  ">
+			<div class="input-group input-group-lg wow fadeIn">
 				<input type="text" class="form-control" v-model="valor" @keyup="autobusquda">
 			 <div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroup-sizing-lg" v-on:click="buscarF"><i class="fas fa-search"></i></span>
@@ -13,11 +14,11 @@
 			</div>
 		
 		  </div>
-		  <div class="container bg-light forma">
+		  <div class="container bg-light forma wow fadeIn">
 			<label for=""> Ordenar Por Precio:	<button @click="descF" class=" btn btn-outline-dark"><img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente"> </button> <button @click="ascF" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente"></button> </label>
 		</div>
 		<div class="row py-2" >
-			<div class="col-sm-4" v-for="fruto in fruta"  >
+			<div class="col-sm-4 wow fadeIn" v-for="fruto in fruta"  >
 				<div class="targeta " style="height: 400;">
 					<img v-bind:src="fruto.imagen"	>
 					<div class="cuerpotargeta" >
@@ -45,5 +46,17 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+	<script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
 	<script src="public/vistas/frutos/frutos.js"></script>
+	<script>
+		var wow = new WOW(
+		  {
+		  boxClass:     'wow',      // animated element css class (default is wow)
+		  animateClass: 'animated', // animation css class (default is animated)
+		  offset:       0,          // distance to the element when triggering the animation (default is 0)
+		  }
+		);
+		wow.init();
+		</script>

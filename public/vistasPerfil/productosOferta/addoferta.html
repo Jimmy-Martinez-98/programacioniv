@@ -3,13 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+
 </head>
 <body>
 	<form action="#" method="post" id="frm-ofertas">
 		
 		<div class="bg-white">
-			<ul class="list-group" v-for="datos in productos":key="datos.miproducto" >
+			<ul class="list-group wow fadeIn" v-for="datos in productos":key="datos.miproducto" >
 				<li class="list-group-item"><div class="row">
 					<div class="col-md-3">
 						<div class="container">
@@ -46,6 +48,17 @@
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/vistasPerfil/productosOferta/ofert.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
+<script>
+  var wow = new WOW(
+    {
+    boxClass:     'wow',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       0,          // distance to the element when triggering the animation (default is 0)
+    }
+  );
+  wow.init();
+</script>
 </body>
 </html>
 

@@ -1,44 +1,41 @@
-
-<div class="container bgpp rounded ">
+<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+<div class="container bgpp rounded wow fadeIn">
     <link rel="stylesheet" href="public/vistasPerfil/horario/horario.css">
+
     <form class="d-flex justify-content-center mb-3"  >
       
-        <div class="mt-3 form-row"  id="leerhorario">
-           <div class="col-md-12 mb-2">  <h1 class=" d-flex justify-content-center">Horarios de Trabajo</h1></div>
-           <div class="col-md-12 scrolle" >
-            <ul class="list-group grupo"v-for="Htrabajo in horarios":key="Htrabajo.id_horario" >
+        <div class="mt-3 form-row "  id="leerhorario">
+          <div class="col-md-12 mb-2">  <h1 class=" d-flex justify-content-center">Horarios de Trabajo</h1></div>
+          <div class="col-md-12 scrolle" >
+            <ul class="list-group grupo wow fadeIn" v-for="Htrabajo in horarios":key="Htrabajo.id_horario" >
               
                 <li class="list-group-item listaitems">
                   <p class="float-left" @click="modifier(Htrabajo)">
                     {{Htrabajo.Dias}}, De {{Htrabajo.Horas1}}{{Htrabajo.DE}} A {{Htrabajo.HORA2}}{{Htrabajo.A}}
-                   
                   </p>
                   <button class="btn btn-outline-danger iz" @click.prevent="deleteH(Htrabajo.id_horario)">Eliminar</button>
                 </li>
-              
-                 
               </ul>
         </div>
         </div>
         <script src="public/vistasPerfil/horario/editarh.js"></script>
+        <script src="public/vistas/blog/dist/wow.js"></script>
+        <script>
+          var wow = new WOW(
+            {
+            boxClass:     'wow',      // animated element css class (default is wow)
+            animateClass: 'animated', // animation css class (default is animated)
+            offset:       0,          // distance to the element when triggering the animation (default is 0)
+            }
+          );
+          wow.init();
+        </script>
     </form>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container bgpp rounded">
-    <form>
+<div class="container bgpp rounded wow fadeIn">
+    <form class="wow fadeIn">
+   
         <div class="form-row" id="horarioos">
             <div class="col-md-12  mt-5">
                 <div class="form-row">
@@ -55,7 +52,6 @@
                             <option value="PM">PM</option>
                           </select>
                         <input type="time" required  v-model.trim="horario.Horas1" class="form-control">
-                       
                       </div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -68,12 +64,11 @@
                               <option value="PM">PM</option>
                             </select>
                           <input type="time" required  v-model.trim="horario.HORA2"class="form-control">
-                         
                         </div>
                       </div>
                   </div>
           
-         <div class="form-row">
+        <div class="form-row">
           <div class="col-md-6">
             <button type="button"  class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-if="horario.accion!='modificar'" @click="guardar_horario">Guardar Horario</button>
             <button type="button"  class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-else @click="editar_horario">Editar Horario</button>
@@ -82,12 +77,20 @@
             <button type="button"  class="btn btn-warning btn-lg btn-block mt-3 mb-3" @click="limpiar">Limpiar</button>
           </div>
             </div>
-         </div>
         </div>
+        </div>
+
         <script src="public/vistasPerfil/horario/horario.js"></script>
       </form>
-
-
-    
-    
 </div>
+<script src="public/vistas/blog/dist/wow.js"></script>
+<script>
+  var wow = new WOW(
+    {
+    boxClass:     'wow',      // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset:       0,          // distance to the element when triggering the animation (default is 0)
+    }
+  );
+  wow.init();
+</script>

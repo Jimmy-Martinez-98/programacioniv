@@ -7,33 +7,31 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
 	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
- 	 />
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 	<title>Agro Producers</title>
 </head>
 <body>
 
 
-	  <nav aria-label="breadcrumb">
-		<ol class="breadcrumb bg-white">
-		  <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-		  <li class="breadcrumb-item active" aria-current="page">Producto.</li>
-		</ol>
-	  </nav>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb bg-white">
+		<li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Producto.</li>
+	</ol>
+</nav>
 
-	  <div class="container-fluid  mb-2" id="productovista">
-		<div class="row ">
-			<div class="col-sm  mt-2  imges " >	
-					  
-				  <img v-bind:src="detallesprod.info.imagen" width="100%" height="400px"alt=" image">
-			</div>
+<div class="container-fluid  mb-2" id="productovista">
+	<div class="row ">
+		<div class="col-sm  mt-2  imges wow fadeIn" >	
+			<img v-bind:src="detallesprod.info.imagen" width="100%" height="400px"alt=" image">
+		</div>
 		
-			<div class="col-sm mt-5">
-			
-			  <div class="container columna form-row">
+		<div class="col-sm mt-5 wow fadeIn">
+			<div class="container columna form-row">
 				<div class="col-md-12 form-row">
 					<h1>{{detallesprod.info.nombre_producto}}</h1>
 					<div class=" badge badge-danger text-wrap ml-3"  style="width: 3.5rem; height:6rem" v-if="detallesprod.info.isagotado==='SI'">
@@ -43,128 +41,126 @@
 						<br>
 						<span class="text-white mt-5">Agotado</span>
 					</div>	
-					
 				</div>
 					
-				  <p class="clasificacion">
-					  <input id="radio1" type="radio" name="estrellas" value="5">
-					  <label for="radio1">  &#9733;</label>
-					  <input id="radio2" type="radio" name="estrellas" value="4">
-					  <label for="radio2"> &#9733;</label>
-				  <input id="radio3" type="radio" name="estrellas" value="3">
-					  <label for="radio3">  &#9733;</label>
-					  <input id="radio4" type="radio" name="estrellas" value="2">
-					  <label for="radio4"> &#9733;</label>
-					  <input id="radio5" type="radio" name="estrellas" value="1">
-					  <label for="radio5">&#9733;</label>
+				<p class="clasificacion">
+					<input id="radio1" type="radio" name="estrellas" value="5">
+					<label for="radio1">  &#9733;</label>
+					<input id="radio2" type="radio" name="estrellas" value="4">
+					<label for="radio2"> &#9733;</label>
+					<input id="radio3" type="radio" name="estrellas" value="3">
+					<label for="radio3">  &#9733;</label>
+					<input id="radio4" type="radio" name="estrellas" value="2">
+					<label for="radio4"> &#9733;</label>
+					<input id="radio5" type="radio" name="estrellas" value="1">
+					<label for="radio5">&#9733;</label>
+				</p>
+				<div class="container-sm">
+					<p class="text-justify text-black-50">
+						{{detallesprod.info.descprod}}  
 					</p>
-				
-				  <div class="container-sm">
-					  <p class="text-justify text-black-50">
-						  {{detallesprod.info.descprod}}
-						  
-					  </p>
-					  <a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
-				  <div class="container mb-5 columna">
-					  <h4>Cantidad:</h4>
-					  <button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Libra=='1'">Libra</button>
-					  <button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Arroba=='1'">Arroba</button>
-					  <button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Quintal=='1'">Quintal </button>
-					  <button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Caja=='1'">Caja</button>
-					  
-					  <div class="container mt-2">	
-						 <div class="row float-left d-flex justify-content-center" style="width: 100px;" >
-					  
-							  <div class="col mb-2 d-flex justify-content-center" >
-								  <button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
-							  </div>
-							  <div class="col columna text-center d-flex justify-content-center">
-								<input type="text" disabled  class="form-control p-2"v-model="contador" min="1" style="width: 50px;">
-							  </div>
-							  <div class="col columna mt-2 mb-2 d-flex justify-content-center">
-								  <button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
-							  </div>
-						  </div>
-					  </div>
-					  <div class="container">
-					  <button class=" btn btn-outline-danger float-right" @click="addlista(detallesprod)">Añadir a deseos <i class="fas fa-heart"></i> </button>
-					  </div>
-				  </div>
-				  <br>
-				  <div class="container">
-					  <button class="btn btn-dark form-control"  v-if="detallesprod.info.isagotado==='SI'" disabled>Comprar Ahora</button>
-					  <button class="btn btn-dark form-control"  v-else >Comprar Ahora</button>
-				  </div>
-					  <br>
-					  <hr>
-				  
-					  <div class="row"><div class="col">
-						  <h4 class="float-left"> ${{detallesprod.info.precio_venta}}</h4>
-					  </div>
-					  <div class="col">
-						  <h4 class="float-right" v-if="detallesprod.info.nombrecooperativa==''"> {{detallesprod.info.nombreu}}</h4>
-						  <h4 class="float-right" v-else> {{detallesprod.info.nombrecooperativa}}</h4>
-					  </div>
-				  </div>
-						  
-					  
-				  </div>
-			  </div>
+					<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
+					<div class="container mb-5 columna">
+						<h4>Cantidad:</h4>
+						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Libra=='1'">Libra</button>
+						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Arroba=='1'">Arroba</button>
+						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Quintal=='1'">Quintal </button>
+						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Caja=='1'">Caja</button>
+						<div class="container mt-2">	
+							<div class="row float-left d-flex justify-content-center" style="width: 100px;" >
+								<div class="col mb-2 d-flex justify-content-center" >
+									<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
+								</div>
+								<div class="col columna text-center d-flex justify-content-center">
+									<input type="text" disabled  class="form-control p-2"v-model="contador" min="1" style="width: 50px;">
+								</div>
+								<div class="col columna mt-2 mb-2 d-flex justify-content-center">
+									<button class="btn btn-success" v-on:click="suma">  <i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+						<button class=" btn btn-outline-danger float-right" @click="addlista(detallesprod)">Añadir a deseos <i class="fas fa-heart"></i> </button>
+					</div>
+				</div>
+				<br>
+				<div class="container">
+					<button class="btn btn-dark form-control"  v-if="detallesprod.info.isagotado==='SI'" disabled>Comprar Ahora</button>
+					<button class="btn btn-dark form-control"  v-else >Comprar Ahora</button>
+				</div>
+					<br>
+					<hr>
+					<div class="row"><div class="col">
+						<h4 class="float-left"> ${{detallesprod.info.precio_venta}}</h4>
+					</div>
+					<div class="col">
+						<h4 class="float-right" v-if="detallesprod.info.nombrecooperativa==''"> {{detallesprod.info.nombreu}}</h4>
+						<h4 class="float-right" v-else> {{detallesprod.info.nombrecooperativa}}</h4>
+					</div>
+				</div> 
 			</div>
-		   
-		  </div>
-		  <hr>
-		  <div class="card text-center mb-2">
-			  <div class="card-header">
+		</div>
+	</div>
+	</div>
+		<hr>
+		<div class="card text-center mb-2">
+			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs" >
-				  <li4 class="nav-item">
-					<a class="nav-link active" href="#">Productos Relacionados</a>
-				  </li4>
-				  
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Productos Relacionados</a>
+					</li>
 				</ul>
-			  </div>
-			  <div class="card-body">
-				  <ul class="list-unstyled">
-					  <li class="media" v-for="relacion in productosrelacionados">
+			</div>
+			<div class="card-body">
+				<ul class="list-unstyled">
+					<li class="media wow fadeIn" v-for="relacion in productosrelacionados">
 						<img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
 						<div class="media-body">
-						  <div class="col ">
-							  <h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
-							  
-						  </div>
-						  <div class="col float-right">
-							  <div class="container">
-								  <p class="text-justify  text-black-50">
-									  {{relacion.descprod}}
-								  </p>
-								  <div class="row mx-md-n5 mt-3">
-									  <div class="col-6 px-md-5">
-										  <div class="p-2   float-right" v-if="relacion.nombrecooperativa==''"> {{relacion.nombreu}}</div>
-										  <div class="p-2   float-right" v-else> {{relacion.nombrecooperativa}}</div>
-										  <div class="p-2   float-left">${{relacion.precio_venta}}</div>
-									  </div>
-									  
+								<div class="col ">
+									<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+								</div>
+							<div class="col float-right">
+								<div class="container">
+									<p class="text-justify  text-black-50">
+										{{relacion.descprod}}
+									</p>
+								<div class="row mx-md-n5 mt-3">
+									<div class="col-6 px-md-5">
+										<div class="p-2   float-right" v-if="relacion.nombrecooperativa==''"> {{relacion.nombreu}}</div>
+											<div class="p-2   float-right" v-else> {{relacion.nombrecooperativa}}</div>
+											<div class="p-2   float-left">${{relacion.precio_venta}}</div>
+										</div>
 									</div>
-							  </div>
+								</div>
 							</div>
-						  </div>
-						  
-					  </li>
-				  
-					</ul>
-			  </div>
+						</div> 
+					</li>
+				</ul>
 			</div>
-	  </div>
-	 <div class="card-footer bg-dark">
+		</div>
+</div>
+	<div class="card-footer bg-dark">
 		<p>© 2020 AgroProducer,Todos los derechos reservados.</p>
-	 </div>
+	</div>
 
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="alertifyjs/alertify.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
     <script src="public/vistas/verproductos/publicproductos.js"></script>	
- 	 <script src="public/vistas/verproductos/chat.js"></script>	
+	<script src="public/vistas/verproductos/chat.js"></script>	
+
+<script>
+		var wow = new WOW(
+			{
+			boxClass:     'wow',      // animated element css class (default is wow)
+			animateClass: 'animated', // animation css class (default is animated)
+			offset:       0,          // distance to the element when triggering the animation (default is 0)
+			}
+		);
+		wow.init();
+</script>
 </body>
 </html>
