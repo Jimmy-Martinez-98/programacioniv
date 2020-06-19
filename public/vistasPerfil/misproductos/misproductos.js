@@ -1,22 +1,41 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file misproductos.js-> Sirve para la configuracion de los productos
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
+
 var misproductosapp = new Vue({
 	el: '#misprod',
 	data: {
-	 myproductos:[]
-	
-	 },
-	 created:function(){ 
+		myproductos:[]
+	},
+	created:function(){ 
 	    this.productosmios(); 
-	 },
-	 methods:{
+	},
+	methods:{
 	
-		 productosmios:function(){	
+		/**
+		 * Mustra los productos del usuario
+		 * @access public
+		 * @function productosmios
+		 */
+		productosmios:function(){	
 			fetch(`Private/Modulos/misproductos/proceso.php?proceso=recibirDatos&miproducto=${JSON.stringify(this.myproductos)}`).then( resp=>resp.json() ).then(resp=>{ 
 					this.myproductos = resp;	
 				
 			});
 			
-		 },
-		 deleteproducto:function(miproducto){
+		},
+
+
+		/**
+		 * Elimina un item
+		 * @access public
+		 * @function deleteproducto
+		 * @param {Int} miproducto - Representa el identificador del item
+		 */
+		deleteproducto:function(miproducto){
 		
 			Swal.fire({
 				title: '¿Estás seguro?',
@@ -26,7 +45,7 @@ var misproductosapp = new Vue({
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Si, Eliminalo!'
-			  }).then((result) => {
+			}).then((result) => {
 				if (result.value) {
 					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=deleteproducto&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
 						if(resp.msg!='Su  Producto  Ha Sido Eliminado'){
@@ -49,6 +68,13 @@ var misproductosapp = new Vue({
 				}
 			});	
 		},
+
+		/**
+		 * Marca un producto como agotado
+		 * @access public
+		 * @function agotado
+		 * @param {Int} miproducto - Representa el identificador del producto 
+		 */
 		agotado:function(miproducto){
 		
 			Swal.fire({
@@ -58,7 +84,7 @@ var misproductosapp = new Vue({
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Si, Marcar Como Agotado!'
-			  }).then((result) => {
+			}).then((result) => {
 				if (result.value) {
 					fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=agotado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
 						if(resp.msg!='Producto Marcado En Agotado'){
@@ -66,20 +92,28 @@ var misproductosapp = new Vue({
 								'Ups...!',		
 								resp.msg,
 								'error'	
-							  )
-							  this.productosmios();	
+							)
+							this.productosmios();	
 						}else{
 							Swal.fire(	
 								'Marcado!',		
 								resp.msg,
 								'success'	
-							  )
-							  this.productosmios();	
+							)
+							this.productosmios();	
 						}
 					})
 				}
-			  })
-		}	,
+			})
+		},
+
+
+		/**
+		 * Marca un Producto como habilitado
+		 * @access public
+		 * @function habilitar
+		 * @param {Int} miproducto - Representa el identificador del producto
+		 */
 		habilitar:function(miproducto){
 			console.log(miproducto);
 			
@@ -90,7 +124,7 @@ var misproductosapp = new Vue({
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText:  'Si, Marcar Como Habilitado!'
-			  }).then((result) => {
+			}).then((result) => {
 				if (result.value) {
 					if (result.value) {
 						fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=habilitado&nuevoP=${miproducto}`).then(resp=>resp.json()).then(resp=>{
@@ -99,29 +133,22 @@ var misproductosapp = new Vue({
 									'Ups...!',			
 									resp.msg,
 									'error'	
-								  )
-							  this.productosmios(); 
-						}else{
-						  
-							  Swal.fire(
-								'Habilitado!',			
-								resp.msg,
-								'success'	
-							  )
-							  this.productosmios();	
-						}
+								)
+								this.productosmios(); 
+							}else{
+								Swal.fire(
+									'Habilitado!',			
+									resp.msg,
+									'success'	
+								)
+								this.productosmios();	
+							}
 						})
 					}
 				}
-			  })
-
-
-
-
-		
-			
+			})
 		}
-	  }
+	}
 })
 
 

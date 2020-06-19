@@ -1,12 +1,15 @@
-
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file nosotros.js-> Sirve para la configuracion de la informacion del productor
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var appinfo = new Vue({
 	el: '#nosotrosdiv',
 	data: {
 		we:[]
 	},
-	/*
-		ejecuta la funcion cuando se carga la pagina
-	*/
+
 	created:function(){	
 		this.todo();
 		
@@ -15,6 +18,8 @@ var appinfo = new Vue({
 	methods:{
 		/**
 		 * 	Trae imagen y descripcion de la cooperativa o productor
+		 * @access public
+		 * @function todo
 		 */
 		todo:function(){
 			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
@@ -24,7 +29,9 @@ var appinfo = new Vue({
 		/**
 		 * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
 		 * Igualmente le asigna la informacion del item seleccionado 
-		 * @param {contiene todo aserca del item seleccionado} id 
+		 * @access public
+		 * @function editardatos
+		 * @param {object} id - Representa la informacion del item seleccionado 
 		 */
 		editardatos:function(id){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
@@ -37,8 +44,9 @@ var appinfo = new Vue({
 	}
 });
 
-
-
+	/** 
+	 * @instance objeto de instancia de Vue.js
+	*/
 var appedit = new Vue({
 	el: '#modaleditar',
 	data: {
@@ -55,8 +63,13 @@ var appedit = new Vue({
 		imagenlittle:''
 	},
 	methods:{
+
+		/**
+		 * Actualiza los datos de la informacion del usuario
+		 * @access public
+		 * @function guardar
+		 */
 		guardar:function(){	
-		
 			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then( resp=>resp.json() ).then(resp=>{ 
 				if(resp.msg!='Datos Actualizados Exitosamente'){
 					alertify.warning(resp.msg);	
@@ -66,8 +79,15 @@ var appedit = new Vue({
 				
 				}
 			});
-		}
-		,
+		},
+
+		/**
+		  * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
+		  *  asignarlo a edidar.imagen su direccion
+		  * @access public
+		  * @function obtenerimagen
+		  * @param {objec} e - Representa el cambio en el tag img 
+		  */
 		obtenerimagen(e){
 			let file=e.target.files[0];
 			this.cargar(file);
@@ -87,6 +107,13 @@ var appedit = new Vue({
 			});
 			this.edidar.imagen="Private/Modulos/about/"+respuesta;
 		},
+
+		/**
+		 * Carga la imagen en el tag img
+		 * @access public
+		 * @function cargarimagen
+		 * @param {object} file -Reprecenta el archivo de imagen 
+		 */
 		cargar(file){
 			let reader=new FileReader();
 			reader.onload=(e)=>{
@@ -97,6 +124,13 @@ var appedit = new Vue({
 		
 	},
 	computed:{
+
+		/**
+		 * Retorna la imagen en el tag img
+		 * @access public
+		 * @function bindearimagen	
+		 * @returns imagenlittle - Representa la imagen en si
+		 */
 		bindearimagen(){	
 			return this.imagenlittle;	
 			

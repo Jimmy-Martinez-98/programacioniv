@@ -1,6 +1,6 @@
 /**
  * @author Michael Rodriguez <scottlovos503@gmail.com>
- * @file app.js-> Sirve para la interaccion con la barra de navegacion
+ * @file bandeja.js-> Sirve para comunicarse con los usuarios 
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  * 

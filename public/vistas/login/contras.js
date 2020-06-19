@@ -1,3 +1,10 @@
+
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file contras.js-> Sirve para restablecer contraseña de usuario
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var appcontras = new Vue({
 	el:'#frm-Recuperar',
 	data:{
@@ -12,9 +19,12 @@ var appcontras = new Vue({
 	},
 	methods:{
 	
-		
+		/**
+		 * Muestra un mensaje para indicar si la contraseña cumple con los requisitos
+		 * @access public
+		 * @function alerta
+		 */
 		alerta:function(){
-
 			var mayus		=new RegExp("^(?=.*[A-Z])");
 			var especial	= new RegExp("^(?=.*[*_.-])");
 			var numeros		= new RegExp("^(?=.*[0-9])");
@@ -38,33 +48,38 @@ var appcontras = new Vue({
 			}else if(checkval===5){
 				$('#msgs').text("Segura!").css("color","green");
 			}
-		
+		},
 
-		}
-
-		,
+		/**
+		 * redirige al usuario a la pantalla de ligin si se actualizo la contraseña
+		 * @access public
+		 * @function Recuperar
+		 */
 		Recuperar:function(){
-			
-				fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRecuperacion&login=${JSON.stringify(this.name)}`).then( resp=>resp.json() ).then(resp=>{		
-					if(resp.msg!="contraseña actualizada"){
-						Swal.fire({
-							position: 'top-end',
-							icon: 'warning',
-							title: resp.msg,
-						   showConfirmButton: false,
-						   timer: 1500
-					  })
+			fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRecuperacion&login=${JSON.stringify(this.name)}`).then( resp=>resp.json() ).then(resp=>{		
+				if(resp.msg!="contraseña actualizada"){
+					Swal.fire({
+						position: 'top-end',
+						icon: 'warning',
+						title: resp.msg,
+						showConfirmButton: false,
+						timer: 1500
+					})
 				}else{
-						  location.href="login.php"
-					}
-			   });
-			
-		 },
+					location.href="login.php"
+				}
+			});	
+		},
+
+		/**
+		 * Redirige al usuario a la pantalla de login
+		 * @access public
+		 * @function atras
+		 */
 		atras:function(){
 			location.href="login.php";
 		},
 
-		
 	}
 
 

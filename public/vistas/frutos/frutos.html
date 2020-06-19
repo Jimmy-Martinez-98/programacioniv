@@ -3,6 +3,7 @@
 	<link rel="stylesheet" href="public/css/estilos.css">
 	<link rel="stylesheet" href="public/vistas/frutos/frutos.css">
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 
 	<div class="container" id="frutas">
 		<div class="container mt-3 mb-3  ">
@@ -31,7 +32,7 @@
 							  <p class="card-text float-left  ">
 								  ${{fruto.precio_venta}} 
 							  </p>
-							  <i class="far fa-heart fav float-right"></i>
+							  <i class="far fa-heart fav float-right" @click="addlistaF(fruto)"></i>
 						   
 							</div>
 						  </div>
@@ -46,9 +47,9 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 	<script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
+	<script src="alertifyjs/alertify.js"></script>
 	<script src="public/vistas/frutos/frutos.js"></script>
 	<script>
 		var wow = new WOW(

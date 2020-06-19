@@ -1,18 +1,42 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file cuenta.js-> Sirve para la configuracion de la cuenta
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var datosCuenta =new Vue({
 	el:'#cuenta',
 	data:{
 		datoscuenta:[]
 	},
 	methods:{
+
+		/**
+		 * Trae el identificador del usuario logueado
+		 * @access public
+		 * @function traerdatosusuario
+		 */
 		traerdatosusuario:function(){	
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.datoscuenta )}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.datoscuenta = resp;				   
 			});	   	     
-		 },
+		},
+
+		/**
+		  * Pasa los datos del item seleccionado  a otra variable para su edicion
+		  * @access public 
+		  * @function modfoto
+		  * @param {object} update - Representa los datos a modificar
+		  */
 		modfoto:function (update) {
 			editfoto.updatefoto=update;	
 			editfoto.updatefoto.accion="modificar";		
 		},
+
+		/**
+		 * pasa los datos de lo seleccionado a otra variable para su modificacion
+		 * @param {object} passs - Representa los datos a modificacion 
+		 */
 		modificacionpass:function (passs) {
 			editpass.cambiopass=passs;	
 		},
@@ -23,6 +47,10 @@ var datosCuenta =new Vue({
 });
 
 
+
+/**
+ * @instance objeto de instancia de Vue.js
+ */
 var editfoto =new Vue({
 	el:'#fotoperfiledit',
 	data:{
@@ -36,14 +64,26 @@ var editfoto =new Vue({
 		this.traerid()
 	 },
 	methods:{
+
+		/**
+		 * Trae el identificador del usuario logueado
+		 * @access public 
+		 * @function traerid
+		 */
 		traerid:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.updatefoto.idusuario=resp[0].idusuario;
 				
 			})
 		},
+
+
+		/**
+		 * Es cuando le da cargar foto, guarda los datos
+		 * @access public
+		 * @function Guardarimg 
+		 */
 		Guardarimg:function(){
-			
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirFoto&login=${JSON.stringify(this.updatefoto)}`).then(resp=>resp.json()).then(resp=>{
 				if(resp.msg!="Foto de Perfil Actualizada"){
 					Swal.fire({
@@ -52,27 +92,30 @@ var editfoto =new Vue({
 						title: resp.msg,
 						showConfirmButton: false,
 						timer: 1500
-					  })
-					  alertify.warning(resp.msg);
+					})
+					alertify.warning(resp.msg);
 				}else {
 					
-					  alertify.success(resp.msg);
-					  datosCuenta.traerdatosusuario();
-					  appcooperativa.traerdatosusuario();
+					alertify.success(resp.msg);
+					datosCuenta.traerdatosusuario();
+					appcooperativa.traerdatosusuario();
 				}
 			})
 		},
+
+
+		/**
+		  * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
+		  *  asignarlo a updatefoto.imagen su direccion
+		  * @access public
+		  * @function obtenerimagen
+		  * @param {objec} e - Representa el cambio en el tag img 
+		  */
 		obtenerimagen(e){
-			
-			
 			let file=e.target.files[0];
-			console.log('foot',e);
-			
-		
+
 			var respuesta=null
 			var formdata=new FormData($('#editfotoo')[0]);
-			console.log(formdata);
-			
 			var ruta='Private/Modulos/usuarios/imgperfil.php';
 			
 			$.ajax({
@@ -87,12 +130,20 @@ var editfoto =new Vue({
 				}
 				
 			});
+			
 			this.updatefoto.imagen="Private/Modulos/usuarios/"+respuesta;
 			
 			this.cargarimagen(file);
 			this.datosCuenta();
 
 		},
+
+		/**
+		 * Carga la imagen en el tag img
+		 * @access public
+		 * @function cargarimagen
+		 * @param {object} file -Reprecenta el archivo de imagen 
+		 */
 		cargarimagen(file){
 			let reader=new FileReader();
 			reader.onload=(e)=>{
@@ -102,6 +153,13 @@ var editfoto =new Vue({
 		}
 	},
 	computed:{
+
+		/**
+		 * Retorna la imagen en el tag img
+		 * @access public
+		 * @function imagenes	
+		 * @returns imagenvista - Representa la imagen en si
+		 */
 		imagenes(){
 			return this.imagenvista;
 		}
@@ -110,6 +168,9 @@ var editfoto =new Vue({
 
 
 
+/**
+ * @instance objeto de instancia de Vue.js
+ */
 var editpass =new Vue({
 	el:'#edicontra',
 	data:{
@@ -126,8 +187,13 @@ var editpass =new Vue({
 	created:function(){
 		this.traeridusuario();
 		
-	}
-	,methods:{
+	},
+	methods:{
+		/**
+		 * Verifica la que la contraseña cumpla los requisitos
+		 * @access public
+		 * @function alerta
+		 */
 		alerta:function(){
 			var mayus		=new RegExp("^(?=.*[A-Z])");
 			var especial	= new RegExp("^(?=.*[*_.-])");
@@ -155,11 +221,26 @@ var editpass =new Vue({
 				}
 		},
 
+
+
+		/**
+		 * Trael el id del usuario logueado
+		 * @access public
+		 * @function traeridusuario
+		 */
 		traeridusuario:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.actualizarcontra.idusuario=resp[0].idusuario;
 			})	
 		},
+
+
+		/**
+		 * Manda los datos al archivo.php para su procesamiento 
+		 * y si es exitoso el cambio muestra una alerta
+		 * @access public
+		 * @function updatepass
+		 */
 		updatepass:function(){
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=recibirpass&login=${JSON.stringify(this.actualizarcontra)}`).then(resp=>resp.json()).then(resp=>{
 				if(resp.msg=="Favor Complete los Campós"){
@@ -169,7 +250,7 @@ var editpass =new Vue({
 				}else{
 					alertify.success(resp.msg);
 				}
-				});
+			});
 		}
 	}
 });

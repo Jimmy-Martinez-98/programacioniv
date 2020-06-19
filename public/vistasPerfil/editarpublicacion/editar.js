@@ -1,3 +1,9 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file editar.js-> Sirve para la edicion de productos
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var appeditP = new Vue({
 	el:'#frm-edit',
 	data:{
@@ -22,11 +28,14 @@ var appeditP = new Vue({
 	},
 	
 	methods:{
-	
+		/**
+		 * Actualiza los datos de producto seleccionado
+		 * @access public
+		 * @function editar
+		 */
 		editar:function (){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatosmod&nuevoP=${JSON.stringify(this.mod )}`).then( resp=>resp.json() ).then(resp=>{ 
-			
-				 if(resp.msg=="Su Producto Ha Sido Actualizado"){
+				if(resp.msg=="Su Producto Ha Sido Actualizado"){
 					alertify.success(resp.msg);
 					
 				}else{
@@ -36,12 +45,16 @@ var appeditP = new Vue({
 						title: resp.msg,
 						showConfirmButton: false,
 						timer: 1500
-					  })
+					})
 				}
-					
 			});	  
 		},
 		
+		/**
+		 * Limpia los inputs del formulario
+		 * @access public
+		 * @function limpiar
+		 */
 		limpiar:function(){
 			this.mod.miproduct=0,
 			this.mod.fk_idusuari=0,
@@ -57,9 +70,18 @@ var appeditP = new Vue({
 			this.mod.precio='',
 			this.mod.precio_venta='',
 			this.mod.fecha_subida='';
+			apptodoP.buscar();
 		
 		}
 		,
+
+		/**
+		  * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
+		  *  asignarlo a updatefoto.imagen su direccion
+		  * @access public
+		  * @function obtenerimagen
+		  * @param {objec} e - Representa el cambio en el tag img 
+		  */
 		obtenerimagen:function(e){
 			var respuesta=null;
 			let file=e.target.files[0];
@@ -82,6 +104,13 @@ var appeditP = new Vue({
 			this.cargar(file);
 
 		},
+
+		/**
+		 * Carga la imagen en el tag img
+		 * @access public
+		 * @function cargarimagen
+		 * @param {object} file -Reprecenta el archivo de imagen 
+		 */
 		cargar(file){
 			let reader=new FileReader();
 			reader.onload=(e)=>{
@@ -93,6 +122,13 @@ var appeditP = new Vue({
 
 
 	},computed:{
+
+		/**
+		 * Retorna la imagen en el tag img
+		 * @access public
+		 * @function imagenes	
+		 * @returns imagenlittle - Representa la imagen en si
+		 */
 		imagen(){
 			return this.imagenlittle;
 		}
@@ -101,7 +137,9 @@ var appeditP = new Vue({
 
 });
 
-
+	/** 
+	 * @instance objeto de instancia de Vue.js
+	*/
 var apptodoP=new Vue({
 	el:'#frmMis',
 	data:{
@@ -109,22 +147,32 @@ var apptodoP=new Vue({
 		todo_prod:[]
 	},
 	methods:{
+
+		/**
+		 * Busca los productos y si el input se digita algo lo busca en base a eso
+		 * @access public
+		 * @function busca
+		 */
 		buscar:function() {
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerproductos&nuevoP=${this.valor}`).then(resp=>resp.json()).then(resp=>{
                 this.todo_prod = resp;
             });
 
-		  },
-		  modi:function(id){		
-			 appeditP.mod=id;
-		  }
+		},
+
+		/**
+		 * Asigna los datos del item seleccionado para su modificacion
+		 *@access public
+		 *@function modi
+		 * @param {object} id - Representa los datos del item seleciconado 
+		*/
+		modi:function(id){		
+			appeditP.mod=id;
+		}
 
 	},
 	created:function () {
 		this.buscar();
-	  }
-
-
-
+	}
 
 })

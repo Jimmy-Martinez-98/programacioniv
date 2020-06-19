@@ -1,3 +1,10 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file guardar.js-> Sirve para guardar datos de la direccion del usuario
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
+
 var mostrardirecciones=new Vue({
 	el:'#frm-direcciones',
 	data: {
@@ -8,19 +15,22 @@ var mostrardirecciones=new Vue({
 	},
 	methods:{
 
-		 /**
+		/**
 		  * Trae la direccion de el usuario desde la DB
-		  
-		  */
+		  * @access public
+		  * @function info 
+		*/
 		info:function(){  	
-		   fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccionView&direction=${JSON.stringify(this.direction)}`).then( resp=>resp.json() ).then(resp=>{ 			
+			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirdireccionView&direction=${JSON.stringify(this.direction)}`).then( resp=>resp.json() ).then(resp=>{ 			
 				this.direction=resp;
 			});	   	     
 		},
 
 		/**
 		 * Asigna el item selecionado a la variable editardirecciones en su data: modirec
-		 * @param {contiene la direccion seleccionada} modD 
+		 * @access public
+		 * @function editardire
+		 * @param {object} modD - contiene la direccion seleccionada
 		 */
 		editardire:function(modD){		
         	editardirecciones.modDirec = modD[0];
@@ -32,8 +42,9 @@ var mostrardirecciones=new Vue({
 
 
 
-
- 
+	/** 
+	 * @instance objeto de instancia de Vue.js
+	*/
 var editardirecciones= new Vue({
 	el:'#modalmodificar',
 	data:{
@@ -47,6 +58,8 @@ var editardirecciones= new Vue({
 	methods:{
 		/**
 		 * Metodo para actualizar direccion 
+		 * @access public
+		 * @function actualizar
 		 */
 		actualizar:function(){
 				fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.modDirec)}`).then( resp=>resp.json() ).then(resp=>{
@@ -54,7 +67,6 @@ var editardirecciones= new Vue({
 						alertify.success(resp.msg);
 						mostrardirecciones.info();
 					}else {
-					
 						Swal.fire({
 							position: 'top-end',
 							icon: 'error',
@@ -73,6 +85,9 @@ var editardirecciones= new Vue({
 
 
 
+	/** 
+	 * @instance objeto de instancia de Vue.js
+	*/
 var nuevadireccion = new Vue({
 	el:'#nuevaD1',
 	data:{
@@ -83,16 +98,17 @@ var nuevadireccion = new Vue({
 			accion		:'nuevo',
 		}
 	},
-	/**
-	 * ejecuta funcion cuando se carga la pagina
-	 */
+
 	created:function(){
 		this.idlogueo();
 	},
 	methods:{	
+
 		/**
 		 * hace peticion al archivo php para traer desde la DB el id del usuario que esta logueado
 		 * Y se le asigna dicho valor a la arreglo: Ndireccion
+		 * @access public
+		 * @function idlogueo
 		 */
 		idlogueo:function(){	
 			fetch(`Private/Modulos/direcciones/procesos.php?proceso=idlogueo&direction=""`).then(resp=>resp.json()).then(resp=>{
@@ -101,7 +117,10 @@ var nuevadireccion = new Vue({
 		},
 		/**
 		 * envia los datos recolectados en el arrego Ndireccion para su procesamiento en php
-		 * Donde si php responde con Registro Insertado Correctamente mostrara alerta de exito si no una de error
+		 * Donde si php responde con Registro Insertado Correctamente mostrara alerta de exito
+		 *  si no una de error
+		 * @access public
+		 * @function almacenar
 		 */
 		almacenar:function(){	
 			fetch(`private/Modulos/direcciones/procesos.php?proceso=recibirDatos&direction=${JSON.stringify(this.Ndireccion)}`).then(resp => resp.json()).then(resp => {
