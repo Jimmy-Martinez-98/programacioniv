@@ -111,7 +111,7 @@ class miproducto{
      */
     private function verduras(){
         $this->db->consultas('
-        SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta,misproducto.Libra,misproducto.Arroba,misproducto.Quintal,misproducto.Caja from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"Verduras"
+        SELECT usuario.idusuario,usuario.nombreu,usuario.nombrecooperativa,misproducto.miproducto,misproducto.nombre_producto,misproducto.imagen,misproducto.descprod,misproducto.precio_venta,misproducto.Libra,misproducto.Arroba,misproducto.Quintal,misproducto.Caja from usuario JOIN misproducto where usuario.idusuario=misproducto.fk_idusuario AND misproducto.categoria like"Verduras"
         ');
         return $this->respuesta = $this->db->obtener_datos();
     }

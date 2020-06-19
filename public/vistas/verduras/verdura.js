@@ -9,10 +9,19 @@ var seccionverduras =new Vue({
 	data:{
 		verdes:[],
 		
-		valor:''
+		valor:'',
+		lista_deseox:{
+			id_miproducto:'',
+			id_usuario:'',
+			accion:'nuevo'
+		},
+		ItSession:0,
+		ItValor:'',
+		ItCuenta:''
 	},
 		created:function(){
 			this.traer();
+			this.variablesession();
 		},
 	methods:{
 		
@@ -24,8 +33,6 @@ var seccionverduras =new Vue({
 			traer(){
 			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirverduras&miproducto=${JSON.stringify(this.verdes)}`).then(resp=>resp.json()).then(resp=>{
 				this.verdes=resp;	
-			
-						
 			});
 		},
 
@@ -53,7 +60,67 @@ var seccionverduras =new Vue({
             });
 		},
 
+		/**
+		* Verifica si hay una variable de session iniciada
+		* @access public
+		* @function variablesession
+		*/
+		variablesession:function(){
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`).then(resp=>resp.json()).then(resp=>{
+				if(resp.msg=="regrese"){
+					this.ItSession=0;
+					console.log('nohay>',resp);
+				}else{
+					this.ItSession=1;
+					console.log("si hay > ",resp);
+				}
+			});
+			this.cuentalogueada();
+		},
 
+
+		/**
+		* Trae la cuenta loguea
+		* @access public
+		* @function cuentalogueada
+		* 
+		*/
+		cuentalogueada: function () {  
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`).then(resp=>resp.json()).then(resp=>{
+				if(this.ItSession!=1){
+					console.log('no hay session');
+
+				}else{
+				this.lista_deseox.id_usuario=resp[0].idusuario;
+				}
+			})
+		},
+
+
+
+		/**
+		* Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
+		* @access public
+		* @function addlista
+		* @param {Int} producto Representa el identificador del producto seleccionado
+		*/
+		addlistaV:function(producto){
+			if(this.ItSession!=0){
+				idproducto=producto.miproducto;
+				this.lista_deseox.id_miproducto=idproducto;
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
+					alertify.success(resp.msg);	
+				}); 
+			}else{
+				Swal.fire(
+					'Ups...',
+					'Debes Iniciar Sesión Para Usar Esta Opción',
+					'warning'
+				)
+			}
+		},
+
+		
 		/**
 		 * Guarda el item en localStorage temporalmente para su uso posterior
 		 * @access public

@@ -104,12 +104,9 @@ var app=new Vue({
 				
 				idproducto=producto.miproducto
 				this.lista_deseox.id_miproducto=idproducto;
-				console.log('sdfs',this.lista_deseox);
-				
-
-				/*fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
 					alertify.success(resp.msg);	
-				});*/
+				});
 					
 				
 				

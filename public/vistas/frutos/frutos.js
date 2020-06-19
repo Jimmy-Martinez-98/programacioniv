@@ -37,7 +37,7 @@ var seccionfrutas =new Vue({
 			});
 		},
 
-/**
+		/**
 		 * Verifica si hay una variable de session iniciada
 		 * @access public
 		 * @function variablesession
