@@ -156,7 +156,13 @@ var mostrardetalle = new Vue({
 			})
 		},
 
-
+		/**
+		 * Verifica si hay variable de session iniciada si lo hay abre la ventana modal
+		 * Y pasa los datos del producto a Comprax
+		 * @access public
+		 * @function passdatos
+		 * @param {object} id - Representa los datos del producto 
+		 */
 		passdatos:function(id){
 			this.Compra.cantidad=this.contador;
 			if(mostrardetalle.session!=0){
@@ -170,9 +176,10 @@ var mostrardetalle = new Vue({
 						'Ops..',
 						'Debes Seleccionar un Tipo de Compra',
 						'info'
-				 	 )
+					)
 				}
 			}else{
+				location.href="login.php"
 				console.log('adios');
 				
 			}
@@ -183,6 +190,9 @@ var mostrardetalle = new Vue({
 	}
 });
 
+	/**
+	 * @instance objeto de instancia de Vue.js
+	*/
 var appcomprar= new Vue({
 	el:'#staticBackdrop',
 	data:{
@@ -200,6 +210,26 @@ var appcomprar= new Vue({
 
 	},
 	methods:{
+
+		/**
+		 * Es cuando el usuario manda los datos de su nombre y correo para generar una factura
+		 * @access public
+		 * @function enviarcorreo
+		 */
+		enviarcorreo:function() {
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(this.Correo)}`).then(resp=>resp.json()).then(resp=>{
+				if(resp.msg=='Mensaje Enviado'){
+					this.comprar();
+				}
+				
+			})
+		},
+		
+		/**
+		 * es cuando se muestra la alerta de que se envio correo al usuario
+		 * @access public
+		 * @function comprar
+		 */
 		comprar:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirCompras&nuevoP=${JSON.stringify(this.Comprax)}`).then(resp=>resp.json()).then(resp=>{	
 				if(resp.msg=='Compra Realizada!'){
@@ -209,22 +239,9 @@ var appcomprar= new Vue({
 							'success'
 						)
 				}
-
 			})
 
 		
-		},
-		enviarcorreo:function() {
-		
-			
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(this.Correo)}`).then(resp=>resp.json()).then(resp=>{
-				if(resp.msg=='Mensaje Enviado'){
-					this.comprar();
-					
-					
-				}
-				
-			})
 		}
 	}
 })

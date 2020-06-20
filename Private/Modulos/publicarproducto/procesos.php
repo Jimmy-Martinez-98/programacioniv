@@ -58,7 +58,7 @@ class producto_nuevo {
 	/**
 	  * @access public
      * @function recibirDatos recibe los datos del producto desde el formulario
-     * @param object  $login representa los datos en si
+     * @param object  $producto representa los datos en si
      */
     public function recibirDatos($producto)
     {
@@ -282,12 +282,22 @@ class producto_nuevo {
 		return  $this->respuesta = $this->db->obtener_datos();
 	}
 
-
+	/**
+	  * @access public
+     * @function recibirCompras recibe los datos del producto para su modificacion
+     * @param object  $producto representa los datos en si
+     */
 	public function recibirCompras($producto){
 		$this->datos = json_decode($producto, true);
         $this->validarCompra();
 	}
-	
+
+
+	/**
+	 * Valida si el dato enviado desde el formulario no esta vacio
+	 * @access private
+	 * @function validarCompra
+	 */
 	private function validarCompra(){
 		if(empty($this->datos['select_Cantidad'])){
 			$this->respuesta['msg']='Debe Seleccionar un Tipo de Cantidad!';
@@ -300,7 +310,11 @@ class producto_nuevo {
 	
 	
 
-
+	/**
+	 * Inserta los datos en la Base de Datos
+	 * @access private
+	 * @function guardarCompra
+	 */
 	private function guardarCompra(){
 		if($this->respuesta['msg']==='correcto'){
 			$this->db->consultas('
@@ -318,12 +332,22 @@ class producto_nuevo {
 		}
 	}
 
-
+		/**
+	  * @access public
+     * @function recibirCorreo recibe los datos del producto para su modificacion
+     * @param object  $producto representa los datos en si
+     */
 	public function recibirCorreo($producto){
 		$this->datos = json_decode($producto, true);
         $this->validarcorreo();
 	}
 
+
+		/**
+		 * Valida si los datos enviados desde el formulario no esten vacios
+		 * @access private
+		 * @function validarcorreo
+		 */
 	private function validarcorreo(){
 		
 		if(empty($this->datos['nombre'])||empty($this->datos['email'])){
@@ -333,6 +357,13 @@ class producto_nuevo {
 		}
 		$this->enviaremail($this->datos['nombre'],$this->datos['email']);
 	}
+
+
+		/**
+		 * envia un mensaje al correo y nombre que se envio desde el formulario
+		 * @access private
+		 * @function eviaremail
+		 */
 	private function enviaremail($namedestino,$correo){
         $destino=$correo;
         $nombre=$namedestino;
