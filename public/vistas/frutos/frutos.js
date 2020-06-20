@@ -89,7 +89,9 @@ var seccionfrutas =new Vue({
 				
 				
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
-					alertify.success(resp.msg);	
+					var alerta = alertify.success(resp.msg);	
+					alerta.delay(2);	
+					alertify.set('notifier','position', 'top-right');
 				});
 					
 				

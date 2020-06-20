@@ -89,14 +89,14 @@ li.lis a.as{
   
   }
   
-  label:hover,
-  label:hover ~ label {
+  .labeli:hover,
+  .labeli:hover ~ .labeli {
   color: orange;
   cursor: pointer;
  
   }
   
-  input[type="radio"]:checked ~ label {
+  .estrellas[type="radio"]:checked ~ .labeli {
   color: orange;
   cursor: pointer;
  

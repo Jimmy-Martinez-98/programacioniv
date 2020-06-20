@@ -109,7 +109,9 @@ var seccionverduras =new Vue({
 				idproducto=producto.miproducto;
 				this.lista_deseox.id_miproducto=idproducto;
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
-					alertify.success(resp.msg);	
+					var alerta = alertify.success(resp.msg);	
+					alerta.delay(2);	
+					alertify.set('notifier','position', 'top-right');
 				}); 
 			}else{
 				Swal.fire(

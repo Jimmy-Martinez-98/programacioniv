@@ -867,10 +867,17 @@
   margin-top: 10px;
 }
 .alertify-notifier .ajs-message.ajs-success {
-  background: rgba(91, 189, 114, 0.95);
+  background: rgb(112, 119, 115);
+  border-radius: 8px;
+  color: white;
+  
+  
+  
 }
 .alertify-notifier .ajs-message.ajs-error {
-  background: rgba(217, 92, 92, 0.95);
+  background: rgba(248, 0, 0, 0.993);
+  border-radius: 8px;
+  color: white;
 }
 .alertify-notifier .ajs-message.ajs-warning {
   background: rgba(252, 248, 215, 0.95);

@@ -98,5 +98,23 @@ class miproducto{
         ');
         $this->respuesta['msg']='Eliminado de la Lista';
     }
+
+
+
+    /**
+     * Trae las compras del usuario logueado
+     * @access public
+     * @function Mis_Compras
+     * @return respuesta - Representa el resultado de la consulta
+     */
+    public function Mis_Compras(){
+        $this->db->consultas('
+            SELECT misproducto.imagen,misproducto.nombre_producto,misproducto.descprod,misproducto.precio_venta,usuario.nombreu,usuario.nombrecooperativa,mis_compras.*
+            from misproducto JOIN mis_compras JOIN usuario 
+            where usuario.idusuario= misproducto.fk_idusuario and mis_compras.fk_miproducto=misproducto.miproducto
+            and mis_compras.usuario="'.$_SESSION['usuario'].'"
+        ');
+        return $this->respuesta= $this->db->obtener_datos();;
+    }
 }
 ?>

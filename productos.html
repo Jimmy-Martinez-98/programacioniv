@@ -9,9 +9,7 @@
 	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-	<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+	
 	<title>Agro Producers</title>
 </head>
 <body>
@@ -44,16 +42,16 @@
 				</div>
 					
 				<p class="clasificacion">
-					<input id="radio1" type="radio" name="estrellas" value="5">
-					<label for="radio1">  &#9733;</label>
-					<input id="radio2" type="radio" name="estrellas" value="4">
-					<label for="radio2"> &#9733;</label>
-					<input id="radio3" type="radio" name="estrellas" value="3">
-					<label for="radio3">  &#9733;</label>
-					<input id="radio4" type="radio" name="estrellas" value="2">
-					<label for="radio4"> &#9733;</label>
-					<input id="radio5" type="radio" name="estrellas" value="1">
-					<label for="radio5">&#9733;</label>
+					<input id="radio1" type="radio" class="estrellas" value="5">
+					<label class="labeli" for="radio1">  &#9733;</label>
+					<input id="radio2" type="radio" class="estrellas" value="4">
+					<label class="labeli" for="radio2"> &#9733;</label>
+					<input id="radio3" type="radio" class="estrellas" value="3">
+					<label class="labeli" for="radio3">  &#9733;</label>
+					<input id="radio4" type="radio" class="estrellas" value="2">
+					<label class="labeli" for="radio4"> &#9733;</label>
+					<input id="radio5" type="radio" class="estrellas" value="1">
+					<label class="labeli" for="radio5">&#9733;</label>
 				</p>
 				<div class="container-sm">
 					<p class="text-justify text-black-50">
@@ -61,12 +59,20 @@
 					</p>
 					<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i> Contactar </a>
 					<div class="container mb-5 columna">
-						<h4>Cantidad:</h4>
-						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Libra=='1'">Libra</button>
-						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Arroba=='1'">Arroba</button>
-						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Quintal=='1'">Quintal </button>
-						<button type="button" class="btn btn-outline-danger rounded" data-toggle="button" v-if="detallesprod.info.Caja=='1'">Caja</button>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="inputGroupSelect01">Cantidad:</label>
+							</div>
+							<select class="custom-select" v-model="Compra.select_Cantidad" id="inputGroupSelect01">
+								<option selected value="">Elige...</option>
+								<option value="Libra" v-if="detallesprod.info.Libra=='1'">Libra</option>
+								<option value="Arroba" v-if="detallesprod.info.Arroba=='1'">Arroba</option>
+								<option value="Quintal" v-if="detallesprod.info.Quintal=='1'">Quintal</option>
+								<option value="Caja" v-if="detallesprod.info.Caja=='1'">Caja</option>
+							</select>
+						</div>
 						<div class="container mt-2">	
+
 							<div class="row float-left d-flex justify-content-center" style="width: 100px;" >
 								<div class="col mb-2 d-flex justify-content-center" >
 									<button class="btn btn-secondary" v-on:click="resta"><i class="fas fa-minus"></i></button>
@@ -86,7 +92,7 @@
 				<br>
 				<div class="container">
 					<button class="btn btn-dark form-control"  v-if="detallesprod.info.isagotado==='SI'" disabled>Comprar Ahora</button>
-					<button class="btn btn-dark form-control"  v-else >Comprar Ahora</button>
+					<button class="btn btn-dark form-control"  v-else   @click="passdatos(Compra)">Comprar Ahora</button>
 				</div>
 					<br>
 					<hr>
@@ -143,6 +149,42 @@
 		<p>© 2020 AgroProducer,Todos los derechos reservados.</p>
 	</div>
 
+
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+			<form >
+				<div class="form-group">
+					<label for="nombre">Nombre</label>
+					<input type="text" v-model="Correo.nombre" class="form-control" id="nombre" placeholder="Juan">
+				</div>
+				<div class="form-group">
+					<label for="email">Correo</label>
+					<input type="email" v-model="Correo.email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
+				</div>
+				
+				
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-outline-danger" data-dismiss="modal">cancelar</button>
+			<input type="button"  class="btn btn-primary" value="Enviar"v-on:click="enviarcorreo" >
+		</div>
+		</div>
+	</div>
+	
+  </div>
+
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/vue.min.js"></script>
@@ -162,5 +204,13 @@
 		);
 		wow.init();
 </script>
+
+  
+ 
 </body>
 </html>
+
+
+
+
+

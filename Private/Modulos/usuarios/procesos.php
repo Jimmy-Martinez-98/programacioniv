@@ -387,7 +387,7 @@ class login{
         } catch (Exception $e) {
             $this->respuesta['msg']= "error: {$mail->ErrorInfo}";
         } 
-}
+    }
 
 
     /**

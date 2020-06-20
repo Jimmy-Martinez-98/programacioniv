@@ -17,7 +17,16 @@ var mostrardetalle = new Vue({
 		},
 		session:'',
 		valor:'',
-		cuentalogueada:[]
+		cuentalogueada:[],
+
+		Compra:{
+			idcompras:0,
+			cantidad:'',
+			select_Cantidad:'',
+			usuario:'',
+			miproductofk:''
+		},
+		
 		
 	},
 	created:function(){
@@ -31,7 +40,7 @@ var mostrardetalle = new Vue({
 	
 
 		/**
-		 * Obtiene la informacion del item seleccinado en localStorage para mostrarlo 
+		 * Obtiene la informacion del item seleccinado desde localStorage para mostrarlo y asignarle siertos datos a Compra 
 		 * @access public 
 		 * @function todo
 		 * 
@@ -39,8 +48,8 @@ var mostrardetalle = new Vue({
 		todo:function(){
 			var datafromstorage=JSON.parse(sessionStorage.getItem("data"));
 			this.detallesprod=datafromstorage;	
-
-			
+			this.Compra.usuario=datafromstorage.info.idusuario;
+			this.Compra.miproductofk=datafromstorage.info.miproducto;
 		},
 		
 
@@ -55,6 +64,7 @@ var mostrardetalle = new Vue({
 				this.lista_deseo.id_miproducto=producto.info.miproducto;
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
 					alertify.success(resp.msg);	
+					alertify.set('notifier','position', 'top-right');
 				});	
 			}
 			else{
@@ -121,8 +131,12 @@ var mostrardetalle = new Vue({
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp=>resp.json()).then(resp=>{
 				if(resp.msg=="regrese"){
 					this.session=0;
+					console.log(resp);
+					
 				}else{
 					this.session=1;
+					console.log(resp);
+					
 				}
 			})
 		},
@@ -135,11 +149,82 @@ var mostrardetalle = new Vue({
 		 */
 		traeridlogue:function(){
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.cuentalogueada}`).then(resp=>resp.json()).then(resp=>{	
+				console.log(resp);
+				
 				this.lista_deseo.id_usuario=resp[0].idusuario;
 
 			})
+		},
+
+
+		passdatos:function(id){
+			this.Compra.cantidad=this.contador;
+			if(mostrardetalle.session!=0){
+				console.log('hola');
+				if(this.Compra.select_Cantidad!=''){
+					appcomprar.Comprax=id;
+					$('#staticBackdrop').modal('show');
+				
+				}else{
+					Swal.fire(
+						'Ops..',
+						'Debes Seleccionar un Tipo de Compra',
+						'info'
+				 	 )
+				}
+			}else{
+				console.log('adios');
+				
+			}
+			
+			
+		
 		}
-	
 	}
 });
 
+var appcomprar= new Vue({
+	el:'#staticBackdrop',
+	data:{
+		Correo:{
+			email:'',
+			nombre:''
+		},	
+		Comprax:{
+			idcompras:0,
+			cantidad:'',
+			select_Cantidad:'',
+			usuario:'',
+			miproductofk:''
+		},
+
+	},
+	methods:{
+		comprar:function(){
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirCompras&nuevoP=${JSON.stringify(this.Comprax)}`).then(resp=>resp.json()).then(resp=>{	
+				if(resp.msg=='Compra Realizada!'){
+						Swal.fire(
+							resp.msg,
+							'Se ha Enviado un E-mail a su Correo Electronico con la Factura Junto con Información Nuestra',
+							'success'
+						)
+				}
+
+			})
+
+		
+		},
+		enviarcorreo:function() {
+		
+			
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(this.Correo)}`).then(resp=>resp.json()).then(resp=>{
+				if(resp.msg=='Mensaje Enviado'){
+					this.comprar();
+					
+					
+				}
+				
+			})
+		}
+	}
+})

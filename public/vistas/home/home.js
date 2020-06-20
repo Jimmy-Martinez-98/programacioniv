@@ -52,7 +52,8 @@ var app=new Vue({
 				
 				}else{
 					this.lista_deseox.id_usuario=resp[0].idusuario;
-
+					
+					
 					
 				}
 			})
@@ -99,13 +100,18 @@ var app=new Vue({
 		 * @function addlista
 		 * @param {Int} producto Representa el identificador del producto seleccionado
 		 */
-		addlista:function(producto){
+		addlistaC:function(producto){
 			if(this.ItSession!=0){
+			
 				
-				idproducto=producto.miproducto
+				var idproducto=producto.miproducto
 				this.lista_deseox.id_miproducto=idproducto;
+				
+				
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
-					alertify.success(resp.msg);	
+					var mensaje =alertify.success(resp.msg);
+					mensaje.delay(2);	
+					alertify.set('notifier','position', 'top-right');
 				});
 					
 				
@@ -223,7 +229,9 @@ var todoproducto= new Vue({
 				
 				
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseo) }`).then(resp=>resp.json()).then(resp=>{
-					alertify.success(resp.msg);	
+					var alerta=	alertify.success(resp.msg);	
+					alerta.delay(2);	
+					alertify.set('notifier','position', 'top-right');
 				});
 			
 			}else{
