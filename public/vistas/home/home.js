@@ -52,7 +52,8 @@ var app=new Vue({
 				
 				}else{
 					this.lista_deseox.id_usuario=resp[0].idusuario;
-				
+					console.log('Hay session');
+					
 				}
 			})
 		},
@@ -88,6 +89,8 @@ var app=new Vue({
 					this.ItSession=1;
 					console.log("si hay>",resp);
 					this.cuentalogueada();
+				
+					
             	}
 			});
 			
@@ -103,17 +106,17 @@ var app=new Vue({
 		addlistaC:function(producto){
 			if(this.ItSession!=0){
 			
-				
 				var idproducto=producto.miproducto
 				this.lista_deseox.id_miproducto=idproducto;
 				
-				
-				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
-					var mensaje =alertify.success(resp.msg);
-					mensaje.delay(2);	
-					alertify.set('notifier','position', 'top-right');
-				});
-					
+				if(this.lista_deseox!=''){
+					fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
+						var mensaje =alertify.success(resp.msg);
+						mensaje.delay(2);	
+						alertify.set('notifier','position', 'top-right');
+					});
+				}
+			
 				
 				
 			}else{
