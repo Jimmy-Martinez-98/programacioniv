@@ -68,8 +68,9 @@ var appusuario = new Vue({
                     if( resp.msg==='mensaje enviado'){
                         location.href="verify.html"
                     }else{
-                
-                        alertify.alert('Alerta', resp.msg, function(){});
+                        console.log(resp);
+                        
+                        alertify.alert('Alerta', resp, function(){});
                 
                     }
                 

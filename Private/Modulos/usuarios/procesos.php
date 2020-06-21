@@ -132,8 +132,7 @@ class login{
             $valcorreo=$this->respuesta;
         if (empty(trim($this->datos['correo']))||empty(trim($this->datos['selected']))  || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
             $this->respuesta['msg'] = 'complete los campos vacios';
-            }else if($this->datos['selected']!='Cooperativa'){
-            $this->datos['nombrecooperativa']=='';
+            }else if($this->datos['selected']==='Cooperativa'){
             }else if($valcorreo!=null){
                 $this->respuesta['msg']='Este Correo ya Existe';
             }
@@ -172,7 +171,7 @@ class login{
                         VALUES(
                             "'.$this->datos['idUsuario'].'",
                             "'.$this->datos['nombreu'].'",
-                            "imagen",
+                            "",
                             "'.$this->datos['nombrecooperativa'].'",
                             "'.$this->datos['telefono'].'",
                             "'.$this->datos['selected'].'",
@@ -266,7 +265,6 @@ class login{
                 }
             } catch (Exception $e) {
                 $this->respuesta['msg']= "error: {$mail->ErrorInfo}";
-              
             }
     }
 
