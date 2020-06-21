@@ -79,6 +79,7 @@ class miproducto{
         SELECT lista_deseos.id_desos,misproducto.*,usuario.nombreu,usuario.nombrecooperativa from lista_deseos JOIN misproducto JOIN usuario WHERE lista_deseos.id_miproducto=misproducto.miproducto and usuario.idusuario=misproducto.fk_idusuario and lista_deseos.id_usuario="'.$_SESSION['usuario'].'"
         ');
         return $this->respuesta=$this->db->obtener_datos();
+        
     }
 
 

@@ -52,9 +52,7 @@ var app=new Vue({
 				
 				}else{
 					this.lista_deseox.id_usuario=resp[0].idusuario;
-					
-					
-					
+				
 				}
 			})
 		},
@@ -85,12 +83,14 @@ var app=new Vue({
             	if(resp.msg=="regrese"){
 					this.ItSession=0;
 					console.log('nohay>',resp);
+					
             	}else{
 					this.ItSession=1;
 					console.log("si hay>",resp);
+					this.cuentalogueada();
             	}
 			});
-			this.cuentalogueada();
+			
 		},
 
 
