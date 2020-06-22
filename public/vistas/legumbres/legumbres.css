@@ -1,14 +1,3 @@
-*{
-	font-family: 'Balsamiq Sans', cursive;
-}
-.card-footer{
-	border: none;
-	background-color: #ffffff;
-}
-.input-group-text{
-	cursor: pointer;
-
-}
 .form-check-input{
     display: none;
     color: gray;

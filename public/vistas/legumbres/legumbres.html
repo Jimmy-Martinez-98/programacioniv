@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 <link rel="stylesheet" href="public/css/estilos.css">
+<link rel="stylesheet" href="public/vistas/legumbres/legumbres.css">
 <link rel="stylesheet" href="alertifyjs/css/alertify.css">
 <div class="container mt-3 mb-3" >
 </div>
@@ -21,6 +22,24 @@
 					<a class="hole text-break" href="#" @click="verProd(le)" ><h4> {{le.nombre_producto}}</h4></a>
 					<a href="#" class="info"v-if=" le.nombrecooperativa==''" ><span>{{le.nombreu}}</span></a>
 					<a href="#" class="info" v-else > {{le.nombrecooperativa}}</a>
+					<p class="clasificacion mb-0">
+						<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">
+						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox2"   value="option2">
+						<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox3"  value="option3" >
+						<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox4"  value="option4" >
+						<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox5"  value="option5" >
+						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+							
+							
+					</p>
 					<div class="row px-3">
 						<div class="col-12 "> 
 							<p class="card-text float-left  ">

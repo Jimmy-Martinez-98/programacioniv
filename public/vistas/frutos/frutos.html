@@ -9,13 +9,13 @@
 		<div class="container mt-3 mb-3  ">
 			<div class="input-group input-group-lg wow fadeIn">
 				<input type="text" class="form-control" v-model="valor" @keyup="autobusquda">
-			 <div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroup-sizing-lg" v-on:click="buscarF"><i class="fas fa-search"></i></span>
+			<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-lg" v-on:click="buscarF"><i class="fas fa-search"></i></span>
 				</div>
 			</div>
 		
-		  </div>
-		  <div class="container bg-light forma wow fadeIn">
+		</div>
+		<div class="container bg-light forma wow fadeIn">
 			<label for=""> Ordenar Por Precio:	<button @click="descF" class=" btn btn-outline-dark"><img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente"> </button> <button @click="ascF" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente"></button> </label>
 		</div>
 		<div class="row py-2" >
@@ -23,17 +23,34 @@
 				<div class="targeta " style="height: 400;">
 					<img v-bind:src="fruto.imagen"	>
 					<div class="cuerpotargeta" >
-					 <a class="hole text-break" href="#" @click="verProd(fruto)" ><h4> {{fruto.nombre_producto}}</h4></a>
-					  <a href="#" class="info"v-if=" fruto.nombrecooperativa==''" ><span> {{fruto.nombreu}}</span></a>
-					  <a href="#" class="info" v-else > {{fruto.nombrecooperativa}}</a>
-					 <div class="card-footer">
+					<a class="hole text-break" href="#" @click="verProd(fruto)" ><h4> {{fruto.nombre_producto}}</h4></a>
+					<a href="#" class="info"v-if=" fruto.nombrecooperativa==''" ><span> {{fruto.nombreu}}</span></a>
+					<a href="#" class="info" v-else > {{fruto.nombrecooperativa}}</a>
+					<p class="clasificacion mb-0">
+						<input class="form-check-input" type="checkbox"  id="inlineCheckbox1" value="option1">
+						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox2"   value="option2">
+						<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox3"  value="option3" >
+						<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox4"  value="option4" >
+						<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+								
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox5"  value="option5" >
+						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+							
+							
+					</p>
+					<div class="card-footer">
 						<div class="row ">
 							<div class="col-12 mt-3"> 
-							  <p class="card-text float-left  ">
-								  ${{fruto.precio_venta}} 
-							  </p>
-							  <i class="far fa-heart fav float-right" @click="addlistaF(fruto)"></i>
-						   
+								<p class="card-text float-left  ">
+									${{fruto.precio_venta}} 
+								</p>
+								<i class="far fa-heart fav float-right" @click="addlistaF(fruto)"></i>
 							</div>
 						  </div>
 					 </div>
