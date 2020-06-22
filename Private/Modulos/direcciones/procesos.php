@@ -1,7 +1,9 @@
 <?php 
 
 /**
-  * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file procesos.php-> Sirve para realizar los procesos en peticion desde JavaScript
+ * @license MIT Libre disttribucion
  */
 
 /** Iniciar una nueva sesión o reanudar la existente */

@@ -1,9 +1,9 @@
 <?php 
-
 /**
-  * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file procesos.php-> Sirve para realizar los procesos en peticion desde JavaScript
+ * @license MIT Libre disttribucion
  */
-
 /**
  * Incluye implementacion de la configuracion de conexion a la Base de Datos
 */
@@ -70,7 +70,7 @@ class miproducto{
      *  recibe los datos del producto desde el formulario
      * @access public
      * @function recibirall
-     * @param object $miproducto Representa los datos en si
+     * @param object $miproducto - Representa los datos en si
      */
     public function recibirall($miproducto){
         $this->datos = json_decode($miproducto, true);
@@ -96,7 +96,7 @@ class miproducto{
      *  recibe los datos del producto desde el formulario
      * @access public
      * @function recibirverduras
-     * @param object $miproducto Representa los datos en si
+     * @param object $miproducto - Representa los datos en si
     */
     public function recibirverduras($miproducto){
         $this->datos = json_decode($miproducto, true);
@@ -146,7 +146,7 @@ class miproducto{
          *  recibe los datos del producto desde el formulario
          * @access public
          * @function recibirlegumbres
-         * @param object $miproducto Representa los datos en si
+         * @param object $miproducto -  Representa los datos en si
         */
         public function recibirlegumbres($miproducto){
                 $this->datos = json_decode($miproducto, true);
