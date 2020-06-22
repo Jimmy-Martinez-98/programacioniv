@@ -62,7 +62,14 @@ var AppListaD =new Vue({
 			});	
             
             
-        }
+		},
+		comprara:function(info){
+			var data={
+				info
+				}
+				sessionStorage.setItem("data",JSON.stringify(data));
+				location.href="productos.html"
+		}
     },
     created:function(){
         this.Lista_Deseos();
