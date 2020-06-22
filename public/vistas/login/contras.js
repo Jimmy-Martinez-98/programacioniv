@@ -33,7 +33,7 @@ var appcontras = new Vue({
 			var regexp		=[mayus,especial,numeros,lower,len];
 			var checkval=0;
 			
-			var wordpass=$('#nuevap').val();
+			var wordpass=$('#contraN').val();
 			for(var i=0; i<5; i++){
 				if(regexp[i].test(wordpass)){
 					checkval++;
@@ -41,7 +41,10 @@ var appcontras = new Vue({
 				}
 			}
 
-			if(checkval >=0 && checkval<=2){
+			if(checkval===0){
+				$('#msgs').hide();
+			}else if(checkval >=0 && checkval<=2){
+				$('#msgs').show();
 				$('#msgs').text("Muy Insegura!").css("color","red");
 			}else if(checkval >=3 && checkval<=4){
 				$('#msgs').text("Poco Segura!").css("color","orange");
@@ -60,10 +63,10 @@ var appcontras = new Vue({
 				if(resp.msg!="contraseña actualizada"){
 					Swal.fire({
 						position: 'top-end',
-						icon: 'warning',
+						icon: 'info',
 						title: resp.msg,
 						showConfirmButton: false,
-						timer: 1500
+						timer: 1000
 					})
 				}else{
 					location.href="login.php"

@@ -130,18 +130,15 @@ class login{
     {
         if($this->respuesta['msg']==='correcto'){
             $this->db->consultas('select * from usuario where correo="' . $this->datos['correo'] . '" limit 1');
-            $this->respuesta = $this->db->obtener_datos();
-            $valcorreo=$this->respuesta;
+            $valcorreo=$this->db->obtener_datos();
+        
         if (empty(trim($this->datos['correo']))||empty(trim($this->datos['selected']))  || empty(trim($this->datos['pass']))||empty(trim($this->datos['nombreu']))||empty(trim($this->datos['telefono']))||empty(trim($this->datos['fecha']))) {
             $this->respuesta['msg'] = 'complete los campos vacios';
             }else if($this->datos['selected']==='Cooperativa'){
-            }else if($valcorreo!=null){
+            }else if($valcorreo!=''){
                 $this->respuesta['msg']='Este Correo ya Existe';
             }
-            else{
             $this->almacenar_registro();
-            }
-        
         }
         
     }
@@ -556,24 +553,8 @@ class login{
      */
     public function recibirRecuperacion($login){
         $this->datos = json_decode($login, true);
-            $this->validardatosc();    
+            $this->traercorreo();    
     }
-
-
-
-    /**
-     * Valida los datos enviados desde el formulario si estan vacios
-     * @access private
-     * @function validardatosc
-     */
-    private function validardatosc(){
-        if(empty(trim($this->datos['correo']))||empty(trim($this->datos['pass']))||empty(trim($this->datos['confir']))){
-            $this->respuesta['msg']="Rellene todos los campos";
-        }
-        $this->traercorreo(); 
-        }
-        
-
 
 
         /**
