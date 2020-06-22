@@ -631,7 +631,11 @@ class login{
     }
 
 
-
+    /**
+     * traer usuario de la base de datos para la bandeja de mensajes
+     * @access public
+     * @function traerusuarios
+     */
     public function traerusuarios(){
         $this->db->consultas('SELECT usuario.* from usuario');
         $this->respuesta=$this->db->obtener_datos();

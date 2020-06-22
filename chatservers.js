@@ -4,8 +4,7 @@ var http = require('http').Server(),
     url  = 'mongodb://localhost:27017',
     
     dbName = 'message';
-   
-   
+
 
 io.on('connection',socket=>{
     socket.on('enviarMensaje',(msg)=>{
