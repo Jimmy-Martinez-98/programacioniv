@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 	/**
 	 * carga formulario en el contenedor
-	 * @event #info
+	 * @event #addProductos
 	 * 
 	 */
 	$('#addProductos').click(()=>{
@@ -64,7 +64,7 @@ $(document).ready(function () {
 
 	/**
 	 * carga formulario en el contenedor
-	 * @event #info
+	 * @event #listadeseos
 	 * 
 	 */
 	$('#listdeseos').click(()=>{	
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
 	/**
 	 * carga formulario en el contenedor
-	 * @event #info
+	 * @event #POferta
 	 * 
 	 */
 	$('#POferta').click(()=>{
@@ -88,7 +88,7 @@ $(document).ready(function () {
 
 	/**
 	 * carga formulario en el contenedor
-	 * @event #info
+	 * @event #COnfigc
 	 * 
 	 */
 	$('#Configc').click(()=>{
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
 	/**
 	 * carga formulario en el contenedor
-	 * @event #info
+	 * @event #modP
 	 * 
 	 */
 	$('#modP').click(()=>{

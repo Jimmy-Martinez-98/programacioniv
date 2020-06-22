@@ -66,6 +66,7 @@ var appeditP = new Vue({
 			this.mod.Libra='',
 			this.mod.Arroba='',
 			this.mod.Quintal='',
+			this.mod.Caja='',
 			this.mod.existencias='',
 			this.mod.precio='',
 			this.mod.precio_venta='',

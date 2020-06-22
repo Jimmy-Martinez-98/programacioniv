@@ -7,8 +7,7 @@
 var appusuario = new Vue({
     el:'#frm-cliente',
     data:{
-      
-       
+
         usuario:{
             idUsuario   		 : 0,
             accion   	    	 : 'nuevo',

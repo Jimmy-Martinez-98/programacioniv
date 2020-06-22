@@ -106,7 +106,7 @@ var seccionverduras =new Vue({
 		*/
 		addlistaV:function(producto){
 			if(this.ItSession!=0){
-				idproducto=producto.miproducto;
+				var idproducto=producto.miproducto;
 				this.lista_deseox.id_miproducto=idproducto;
 				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
 					var alerta = alertify.success(resp.msg);	
