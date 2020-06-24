@@ -36,6 +36,8 @@ var appinfo = new Vue({
 		editardatos:function(id){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				appedit.edidar.fk_idusuario=resp[0].idusuario;	
+				
+				
 			});
 			appedit.edidar=id;
 			appedit.edidar.accion='modificar'
@@ -167,6 +169,9 @@ var appnueva=new Vue({
 		traerusuario:function(){
 			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
 				this.descripciones.fk_idusuario = resp[0].idusuario;
+				
+				
+
 				
 			});
 		},

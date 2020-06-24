@@ -106,10 +106,10 @@ class nosotros{
 	 * @return respuesta Representa el resultado de la validacion
 	*/
     private function validar2(){
-        if(empty(trim($this->datos['idusuario']))||empty(trim($this->datos['describ']))||empty(trim($this->datos['imagen']))){
-            $this->respuesta['msg']='Por Favor Rellene los Campos';
+        if(!empty($this->datos['fk_idusuario'])||!empty(trim($this->datos['descripcion']))||!empty(trim($this->datos['imagen']))){
+            return   $this->guardar();
         }
-        return   $this->guardar(); 
+        $this->respuesta['msg']='Por Favor Rellene los Campos';
     }
 
 
@@ -123,9 +123,9 @@ class nosotros{
             if($this->datos['accion']==='nuevo'){
                 $this->db->consultas('
                     INSERT INTO informacionnosotros(fk_idusuario,imagen,descripcion) VALUES(
-                        "'. $this->datos['idusuario'].'",
+                        "'. $this->datos['fk_idusuario'].'",
                         "'. $this->datos['imagen'].'",
-                        "'. $this->datos['describ'].'"
+                        "'. $this->datos['descripcion'].'"
                     )
                 ');
                 $this->respuesta['msg'] = 'Tus datos se almacenaron exitosamente';
