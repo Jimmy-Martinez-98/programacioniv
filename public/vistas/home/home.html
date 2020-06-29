@@ -115,6 +115,12 @@
 <script src="public/vistas/home/home.js"></script>
 
 <script>
+		$(document).ready(function () {
+		
+		$('.carousel').carousel({
+			wrap:false
+		})
+	});
     var wow = new WOW(
       {
       boxClass:     'wow',      // animated element css class (default is wow)
@@ -122,5 +128,6 @@
       offset:       0,          // distance to the element when triggering the animation (default is 0)
       }
     );
-    wow.init();
+	wow.init();
+
     </script>
