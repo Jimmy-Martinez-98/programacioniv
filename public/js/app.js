@@ -62,7 +62,9 @@ var validarsession=new Vue({
          });
       },
 
-
+      slide:function(){
+         $('.dropdown-menu').slideToggle();
+      },
       /**
        * Carga un archivo html en contenedor
        * @access public

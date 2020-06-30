@@ -21,6 +21,9 @@ var appcooperativa =new Vue({
 			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.perfil )}`).then( resp=>resp.json() ).then(resp=>{ 
 				this.perfil = resp;	
 			});	   	     
+		},
+		slidedropdown:function(){
+			$('.dropdown-menu').slideToggle();
 		}
 	},
 	created:function () {
@@ -109,6 +112,8 @@ $(document).ready(function () {
 		});
 	
 	});
+
+
 });
 
 /**

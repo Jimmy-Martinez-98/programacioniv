@@ -105,7 +105,7 @@ var socket = io.connect("http://localhost:3001",{'forceNew':true})
                item.de === this.msg.para && item.para === this.msg.de) {
                this.msgs.push(item);
             }
-         },
+         }
       },
 
 
@@ -216,9 +216,12 @@ var validarsession=new Vue({
        * Redirige a la pantalla de login
        * @function login
        */
-   login(){
-      location.href="login.php"
-   }
+      login(){
+         location.href="login.php"
+      },
+      slidetoggle:function(){
+         $('.dropdown-menu').slideToggle();
+      }
    }
 
 });

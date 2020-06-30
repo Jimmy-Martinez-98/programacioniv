@@ -33,15 +33,14 @@
 	
 			<li class="nav-item dropdown" v-else> 
 			  <div class="dropdown ml-auto ">
-			   <a class="btn btn-lg  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+			   <a class="btn btn-lg  dropdown-toggle" href="#"@click="slidetoggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
 			  <img v-if="datoscuenta[0].imagen!=''" v-bind:src="'../../../'+datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
 			  <img v-else src="../../img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
-				  {{datoscuenta[0].nombreu}}
+					{{datoscuenta[0].nombreu}}
 			  </a>
 			 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
-					  <a class="dropdown-item " href="../../../cooperativa.php    ">Perfil <i class="fas fa-user-tie"></i></a>   
-					 
-					 <a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
+					<a class="dropdown-item " href="../../../cooperativa.php    ">Perfil <i class="fas fa-user-tie"></i></a>   
+					<a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
 			 </div>
 			  </div>
 			  </li>
