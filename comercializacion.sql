@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2020 a las 20:32:26
+-- Tiempo de generación: 01-07-2020 a las 03:48:16
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.29
 
@@ -65,10 +65,10 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id_horario`, `id_info`, `Dias`, `Horas1`, `DE`, `A`, `HORA2`) VALUES
-(20, 2, 'Lunes a Viernes', '05:41', 'AM', 'PM', '06:41'),
+(20, 2, 'Lunes a Jueves', '05:41', 'AM', 'PM', '06:41'),
 (22, 11, 'Lunes a viernes', '10:25', 'AM', 'PM', '10:25'),
-(27, 2, 'Sabado Y Domingo', '06:13', 'AM', 'PM', '23:36'),
-(28, 1, 'Martes a Sabado', '07:01', 'AM', 'PM', '07:00');
+(28, 1, 'Martes a Sabado', '07:01', 'AM', 'PM', '07:00'),
+(30, 2, 'Sabado Y domingo', '07:06', 'AM', 'PM', '10:06');
 
 -- --------------------------------------------------------
 
@@ -89,9 +89,10 @@ CREATE TABLE `informacionnosotros` (
 
 INSERT INTO `informacionnosotros` (`infoUsuario`, `fk_idusuario`, `imagen`, `descripcion`) VALUES
 (1, 25, 'Private/Modulos/about/imagenesco/192532823cyber2.jpg', 'no nada'),
-(2, 24, 'Private/Modulos/about/imagenesco/1088958184ra.jpg', 'Fincomercio es una cooperativa de ahorro y crédito, sólida y confiable, que presta servicios financieros y sociales a personas naturales y jurídicas, para beneficiarlos con rentabilidad económica y social. '),
+(2, 24, 'Private/Modulos/about/imagenesco/1088958184ra.jpg', 'Fincomercio es una cooperativa de ahorro y crédito, sólida y confiable, que presta servicios financieros y sociales a personas naturales y jurídicas, para beneficiarlos con rentabilidad económica y social.  '),
 (3, 26, 'Private/Modulos/about/imagenesco/2105401588Cooperativas_interna.png', 'La Federación de Asociaciones Cooperativas de Ahorro y Crédito de El Salvador de Responsabilidad Limitada, FEDECACES de R.L., es la organización cooperativa de segundo piso, fundada el 11 de junio de 1966, con 52 años, con más de 115 agencias a nivel nacional las que atienden a diversos sectores de población salvadoreña, sean trabajadores asalariados privados o públicos, micro y pequeñas empresas, artesanos, agricultores, profesionales, y pequeños y medianos productores entre otros.'),
-(11, 61, 'Private/Modulos/about/imagenesco/1485062701kali.jpg', 'asdas');
+(11, 61, 'Private/Modulos/about/imagenesco/1485062701kali.jpg', 'asdas'),
+(14, 75, 'Private/Modulos/about/imagenesco/1115300299cyber2.jpg', 'sadfasda');
 
 -- --------------------------------------------------------
 
@@ -117,15 +118,22 @@ INSERT INTO `lista_deseos` (`id_desos`, `id_miproducto`, `id_usuario`) VALUES
 (127, 36, 24),
 (128, 57, 24),
 (129, 36, 24),
-(132, 69, 24),
 (138, 36, 25),
 (139, 41, 25),
 (142, 58, 25),
 (143, 57, 25),
-(146, 36, 24),
 (147, 70, 25),
 (148, 71, 24),
-(149, 58, 25);
+(149, 58, 25),
+(150, 41, 69),
+(152, 41, 24),
+(153, 71, 0),
+(154, 69, 24),
+(155, 36, 24),
+(156, 36, 24),
+(157, 41, 24),
+(158, 36, 75),
+(159, 41, 24);
 
 -- --------------------------------------------------------
 
@@ -157,14 +165,15 @@ CREATE TABLE `misproducto` (
 --
 
 INSERT INTO `misproducto` (`miproducto`, `fk_idusuario`, `codigo_producto`, `nombre_producto`, `precio`, `precio_venta`, `existencias`, `descprod`, `imagen`, `categoria`, `Libra`, `Arroba`, `Quintal`, `Caja`, `fecha_subida`, `isagotado`) VALUES
-(36, 24, '0001', 'PAPAS', 1.15, 1.25, '100', 'SOLOMA', 'Private/Modulos/misproductos/imagenes/1904442263unnamed.jpg', 'Verduras', '1', '', '1', '', '2020-05-14', 'NO'),
-(41, 24, '0002', 'Chile Jalapeño', 0.35, 0.75, '1000', 'Chile jalapeño', 'Private/Modulos/misproductos/imagenes/1946703030chile-jalapeno.jpg', 'Verduras', '1', '', '1', '0', '2020-05-14', 'NO'),
+(36, 24, '0001', 'PAPAS', 1.15, 1.25, '100', 'SOLOMA', 'Private/Modulos/misproductos/imagenes/1904442263unnamed.jpg', 'Verduras', '1', '', '1', '1', '2020-05-14', 'NO'),
+(41, 24, '0002', 'Chile Jalapeño', 1.35, 1.75, '1000', 'Chile jalapeño', 'Private/Modulos/misproductos/imagenes/1946703030chile-jalapeno.jpg', 'Verduras', '1', '', '1', '0', '2020-05-14', 'NO'),
 (57, 25, '0001', 'Tomate Raf', 1, 1.75, '1000', 'Nuestro tomate RAF más distinguido, asurcado por naturaleza, de color verde oscuro de diferente intensidad, textura crujiente, exquisito y dulce con un punto ácido. Sin duda la mejor opción para ensaladas o degustar directamente.', 'Private/Modulos/misproductos/imagenes/1869893357Tomata_Raf_2015-12-29-1543.jpg', 'Verduras', '0', '0', '0', '0', '2020-05-17', 'NO'),
 (58, 26, '0001', 'Tomatoides', 0.25, 0.5, '1000', 'Rojo tomate ', 'Private/Modulos/misproductos/imagenes/13439243721371809248tomate-1024x680.jpg', 'Verduras', '0', '0', '0', '0', '2020-05-23', 'NO'),
 (60, 27, '0001', 'Manzana ', 1.55, 2, '1000', 'Manzanas para elaborar mermeladas o cualquier otro producto de cocina a base de esta exquisita fruta. Nos hemos animado a poner esta oferta bajo la demanda de varios consumidores de las colmenas. ¡Debemos avisar que las manzanas que van son manzanas ', 'Private/Modulos/misproductos/imagenes/1356474443manzana.jpg', 'Frutos', '0', '0', '0', '0', '2020-05-30', 'NO'),
 (69, 61, '01', 'Lechuga', 1, 1.5, '100', 'Fresca', 'Private/Modulos/misproductos/imagenes/1250126831descarga.jpeg', 'Legumbres', '', '', '', '1', '2020-06-16', 'SI'),
 (70, 24, '0003', 'Lechuga', 1.5, 2.25, '100.00', 'regional', 'Private/Modulos/misproductos/imagenes/1891327410lechuga.jpg', 'Verduras', '', '', '', '1', '2020-06-18', 'NO'),
-(71, 25, '0002', 'Mango Rojo', 1.5, 2, '100.00', '....', 'Private/Modulos/misproductos/imagenes/1475155466mang.jpeg', 'Frutos', '', '', '', '1', '2020-06-21', 'NO');
+(71, 25, '0002', 'Mango Rojo', 1.5, 2, '100.00', '....', 'Private/Modulos/misproductos/imagenes/1475155466mang.jpeg', 'Frutos', '', '', '', '1', '2020-06-21', 'NO'),
+(72, 75, '0001', 'Mango', 1.5, 1.75, '001.00', 'Rojo Mango', 'Private/Modulos/misproductos/imagenes/390333460descarga.jpg', 'Frutos', '', '', '', '1', '2020-06-23', 'NO');
 
 -- --------------------------------------------------------
 
@@ -186,7 +195,10 @@ CREATE TABLE `mis_compras` (
 
 INSERT INTO `mis_compras` (`id_compras`, `usuario`, `fk_miproducto`, `cantidad_compra`, `forma_compra`) VALUES
 (32, 24, 41, 9, 'Libra'),
-(33, 24, 36, 1, 'Libra');
+(33, 24, 36, 1, 'Libra'),
+(34, 24, 36, 1, 'Libra'),
+(35, 24, 36, 1, 'Libra'),
+(36, 24, 41, 3, 'Quintal');
 
 -- --------------------------------------------------------
 
@@ -241,7 +253,13 @@ INSERT INTO `usuario` (`idusuario`, `nombreu`, `imagen`, `nombrecooperativa`, `t
 (58, 'scott', '', '', '73737377', 'Cliente', 'scottlovos503@gmail.com', 'Slayer.1', '1', '2020-06-09', '1693'),
 (61, 'Cecilia Rodríguez', '', '', '76814676', 'Cliente', 'cecyrodriguez73@gmail.com', 'Ocwanomarino.73', '1', '2020-06-16', '2407'),
 (62, 'Tania', '', '', '31231231', 'Cliente', 'toisplisetsky@gmail.com', 'Slayer.60', '1', '2020-06-17', '2348'),
-(68, 'Michael', '', '', '12312312', 'Productor Pequeño', 'michael5031rodriguez@gmail.com', 'Slayer.60', '1', '2020-06-21', '8606');
+(69, 'juan', '', '', '34321231', 'Productor Pequeño', 'michael5031rodriguez@gmail.com', 'Slayer.60', '1', '2020-06-21', '7750'),
+(70, 'Michi', '', '', '82828282', 'Cliente', 'agroproducers2020@gmail.com', 'Slayer.60', 'cero', '2020-06-21', '2975'),
+(71, '', '', '', '', '', '', 'sdf', '0', '0000-00-00', '2349'),
+(72, '', '', '', '', '', '', 'sdf', '0', '0000-00-00', '6495'),
+(73, '', '', '', '', '', '', 'sdf', '0', '0000-00-00', '2453'),
+(74, 'michael', '', '', '', 'Productor Pequeño', '', 'sdf', '0', '0000-00-00', '6178'),
+(75, 'Michael', '', '', '72745936', 'Cliente', 'luishernandez@ugb.edu.sv', 'Slayer.60', '1', '2020-06-23', '5765');
 
 --
 -- Índices para tablas volcadas
@@ -316,31 +334,31 @@ ALTER TABLE `direcciones`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_horario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_horario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `informacionnosotros`
 --
 ALTER TABLE `informacionnosotros`
-  MODIFY `infoUsuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `infoUsuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `lista_deseos`
 --
 ALTER TABLE `lista_deseos`
-  MODIFY `id_desos` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id_desos` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT de la tabla `misproducto`
 --
 ALTER TABLE `misproducto`
-  MODIFY `miproducto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `miproducto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `mis_compras`
 --
 ALTER TABLE `mis_compras`
-  MODIFY `id_compras` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_compras` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_oferta`
@@ -352,7 +370,7 @@ ALTER TABLE `productos_oferta`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `idusuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Restricciones para tablas volcadas
