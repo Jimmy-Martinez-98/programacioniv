@@ -4,50 +4,50 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-var publicarp=new Vue({
-	el:'#frm-productoN',
+var publicarp = new Vue({
+	el: '#frm-productoN',
 	data: {
-	
-		publicP:{
-			miproducto:0,
-			idusuario:0,
-			nombre_producto:'',
-			descprod:'',
-			codigo_producto:'',
-			categoria:'',
-			libra:'',
-			quintal:'',
-			arroba:'',
-			caja:'',
-			imagen:'',
-			existencias:'',
-			precio:'',
-			precio_venta:'',
-			fecha_subida:'',
-			accion:'nuevo',
-			msg:''
-		},
-		
-		
 
-	
-	
-		imagenlittle:''
+		publicP: {
+			miproducto: 0,
+			idusuario: 0,
+			nombre_producto: '',
+			descprod: '',
+			codigo_producto: '',
+			categoria: '',
+			libra: '',
+			quintal: '',
+			arroba: '',
+			caja: '',
+			imagen: '',
+			existencias: '',
+			precio: '',
+			precio_venta: '',
+			fecha_subida: '',
+			accion: 'nuevo',
+			msg: ''
+		},
+
+
+
+
+
+		imagenlittle: ''
 
 	},
-	created:function(){
+	created: function () {
 		this.traerid();
 	},
-	methods:{
+	methods: {
 
 		/**
 		 * Trae el identificador del usuario logueado
 		 * @access public 
 		 * @function traerid
 		 */
-		traerid:function(){
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				this.publicP.idusuario=resp[0].idusuario;
+		traerid: function () {
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
+				this.publicP.idusuario = resp[0].idusuario;
 			})
 		},
 
@@ -56,13 +56,13 @@ var publicarp=new Vue({
 		 * @access public
 		 * @function guardar
 		 */
-		guardar:function(){	
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP )}`).then( resp=>resp.json() ).then(resp=>{ 
-				if(resp.msg=="Su Producto Fue Publicado Exitosamente"){
+		guardar: function () {
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP)}`).then(resp => resp.json()).then(resp => {
+				if (resp.msg == "Su Producto Fue Publicado Exitosamente") {
 					alertify.success(resp.msg);
 
-					this.publicP='';
-				}else{
+					this.publicP = '';
+				} else {
 					Swal.fire({
 						position: 'top-end',
 						icon: 'warning',
@@ -70,8 +70,8 @@ var publicarp=new Vue({
 						showConfirmButton: false,
 						timer: 1500
 					})
-				}		
-			});	  
+				}
+			});
 		},
 
 
@@ -82,27 +82,27 @@ var publicarp=new Vue({
 		 * @function obtenerimagen
 		 * @param {object} e - Representa el cambio que sucede en el tag img 
 		 */
-		obtenerimagen(e){
-			var respuesta=null;
-			let file=e.target.files[0];
-			var formdata=new FormData($('#frm-productoN')[0]);
-			var ruta='Private/Modulos/guardarruta.php';
-			
+		obtenerimagen(e) {
+			var respuesta = null;
+			let file = e.target.files[0];
+			var formdata = new FormData($('#frm-productoN')[0]);
+			var ruta = 'Private/Modulos/guardarruta.php';
+
 			$.ajax({
 				type: "POST",
 				url: ruta,
 				data: formdata,
-				contentType:false,
-				processData:false,
-				async:false,
+				contentType: false,
+				processData: false,
+				async: false,
 				success: function (response) {
-				respuesta=response;
+					respuesta = response;
 				}
-				
+
 			});
-			this.publicP.imagen= 'Private/Modulos/'+respuesta	
+			this.publicP.imagen = 'Private/Modulos/' + respuesta
 			this.cargar(file);
-	
+
 		},
 
 
@@ -112,34 +112,34 @@ var publicarp=new Vue({
 		 * @function cargar
 		 * @param {object} file - Representa la imagen en si 
 		 */
-		cargar(file){
-			let reader=new FileReader();
-			reader.onload=(e)=>{
-				this.imagenlittle=e.target.result;
+		cargar(file) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				this.imagenlittle = e.target.result;
 			}
 			reader.readAsDataURL(file);
 		}
-		
-		
+
+
 
 	},
-	computed:{
+	computed: {
 		/**
 		 * Retorna la imagen en el tag img
 		 * @access public
 		 * @function imagen
 		 * @returns imagenlittle - Representa la imagen a retornar
 		 */
-		imagen(){
+		imagen() {
 			return this.imagenlittle;
 		}
 	}
-	
+
 });
 
 /**
  * Asigna la mascar de dinero a los inputs
  */
-$(function(){
+$(function () {
 	$('.money').mask('000.00');
 })

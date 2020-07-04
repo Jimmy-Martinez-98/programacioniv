@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +8,7 @@
 	<link rel="stylesheet" href="public/vistasPerfil/contenido/nosotros.css">
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
-	
+
 
 </head>
 
@@ -20,44 +18,47 @@
 
 			<div class="row card  ">
 				<div class="col-12 card-text">
-				
-					
-					<div class="card mt-2">
-						<img v-bind:src="we.imagen" v-if="we.imagen!=null" width="100%" height="250px"  alt="">
-						<img src="public/img/ico.png" v-else="we.imagen==null" width="100%" height="250px"  alt="">
-					</div>
-				
-				<h2 class="d-flex justify-content-center">Decripcion</h2>
-				<hr>
-				<div class="card-text mt-2">
-				<p class=" text-justify">{{we.descripcion}}</p>
-				</div>
-				</div>
-			</div>
-		
-			</div>
-				<div class="card-foote-fluid pb-2">
-					<div class="container ">
-						<div class="row"  v-if="we!=''">
 
-							<div class="col-12" >
-								<input href="#modaleditar" v-on:click="editardatos(we)" type="button" id="modala" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar" value="Modificar">
-								
-							</div>
-						</div>
-						<div class="row" v-else="we==null">
-							<div class="col-12" >
-								<input href="#modalnuevo"   type="button" id="modalas" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nuevam" value="Nueva">		
-							</div>
-						</div>
-						
+
+					<div class="card mt-2">
+						<img v-bind:src="we.imagen" v-if="we.imagen!=null" width="100%" height="250px" alt="">
+						<img src="public/img/ico.png" v-else="we.imagen==null" width="100%" height="250px" alt="">
+					</div>
+
+					<h2 class="d-flex justify-content-center">Decripcion</h2>
+					<hr>
+					<div class="card-text mt-2">
+						<p class=" text-justify">{{we.descripcion}}</p>
 					</div>
 				</div>
-			
+			</div>
 
 		</div>
+		<div class="card-foote-fluid pb-2">
+			<div class="container ">
+				<div class="row" v-if="we!=''">
 
-	</div> 
+					<div class="col-12">
+						<input href="#modaleditar" v-on:click="editardatos(we)" type="button" id="modala"
+							class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar"
+							value="Modificar">
+
+					</div>
+				</div>
+				<div class="row" v-else="we==null">
+					<div class="col-12">
+						<input href="#modalnuevo" type="button" id="modalas" class="btn btn-primary btn-lg btn-block"
+							data-toggle="modal" data-target="#nuevam" value="Nueva">
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	</div>
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -67,9 +68,9 @@
 	<script>
 		var wow = new WOW(
 			{
-			boxClass:     'wow',      // animated element css class (default is wow)
-			animateClass: 'animated', // animation css class (default is animated)
-			offset:       0,          // distance to the element when triggering the animation (default is 0)
+				boxClass: 'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset: 0,          // distance to the element when triggering the animation (default is 0)
 			}
 		);
 		wow.init();
@@ -82,40 +83,41 @@
 
 
 <!-- Modal-->
-<div class="modal fade" id="modaleditar"  tabindex="-1" role="dialog" aria-labelledby="modaleditar" aria-hidden="true">
+<div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="modaleditar" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content">
-				
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="imgs">
+					<div class="col-12 d-flex justify-content-center card	">
+						<img width="100%" height="150px" :src="bindearimagen" v-bind:src="edidar.imagen">
+						<div class="custom-file">
+							<input type="file" @change="obtenerimagen" required name="archivo" class="custom-file-input"
+								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+							<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+						</div>
 					</div>
-					<div class="modal-body" >
-						<form id="imgs">
-						<div class="col-12 d-flex justify-content-center card	">
-							<img  width="100%"  height="150px" :src="bindearimagen"  v-bind:src="edidar.imagen"  >
-							<div class="custom-file">
-								<input type="file"  @change="obtenerimagen"  required name="archivo" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-							</div>
+					<hr>
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Descripcion</label>
+							<textarea class="form-control" id="mision" rows="3" v-model="edidar.descripcion"></textarea>
 						</div>
-						<hr>
-						<div class="col-12 text-dark">
-							<div class="form-group">
-								<label for="desc">Descripcion</label>
-								<textarea class="form-control" id="mision" rows="3" v-model="edidar.descripcion"></textarea>
-							</div>
-						</div>
-		
+					</div>
+
 				</form>
 			</div>
 			<div class="modal-footer">
-			
-				<button  class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-				<button v-on:click="guardar"  class="btn btn-primary">Guardar Cambios</button>
-				
+
+				<button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button v-on:click="guardar" class="btn btn-primary">Guardar Cambios</button>
+
 
 			</div>
 		</div>
@@ -125,32 +127,33 @@
 <!-- modal nuevo -->
 <div class="modal fade" id="nuevam" tabindex="-1" role="dialog" aria-labelledby="nuevam" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title" id="nuevam">Nueva Descripcion</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-		<div class="modal-body">
-		  <form id="datos">
-			<div class="col-12 d-flex justify-content-center card	">
-				<img   v-bind:src="descripciones.imagen"  width="100%"  height="150px" :src="bindearimagenN" >
-				<input @change="obtenerimagenN"  required name="archivo"   type="file" class="form-control"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="nuevam">Nueva Descripcion</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-			<hr>
-			<div class="col-12 text-dark">
-				<div class="form-group">
-					<label for="desc">Descripcion</label>
-					<textarea class="form-control" id="mision" rows="3" v-model="descripciones.describ"></textarea>
-				</div>
+			<div class="modal-body">
+				<form id="datos">
+					<div class="col-12 d-flex justify-content-center card	">
+						<img v-bind:src="descripciones.imagen" width="100%" height="150px" :src="bindearimagenN">
+						<input @change="obtenerimagenN" required name="archivo" type="file" class="form-control">
+					</div>
+					<hr>
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Descripcion</label>
+							<textarea class="form-control" id="mision" rows="3"
+								v-model="descripciones.describ"></textarea>
+						</div>
+					</div>
+				</form>
 			</div>
-		  </form>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button type="button" v-on:click="nuevosdatos" class="btn btn-primary">Guardar</button>
+			</div>
 		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-		  <button type="button" v-on:click="nuevosdatos" class="btn btn-primary">Guardar</button>
-		</div>
-	  </div>
 	</div>
-  </div> 
+</div>

@@ -5,31 +5,31 @@
  * @instance objeto de instancia de Vue.js
  */
 var seccionlegumbre = new Vue({
-	el:'#legum',
-	data:{
-		legumbressss:[],
-		valor:'',
-		ItSession:0,
-		ItValor:'',
-		ItCuenta:'',
-		lista_deseox:{
-			id_miproducto:'',
-			id_usuario:'',
-			accion:'nuevo'
+	el: '#legum',
+	data: {
+		legumbressss: [],
+		valor: '',
+		ItSession: 0,
+		ItValor: '',
+		ItCuenta: '',
+		lista_deseox: {
+			id_miproducto: '',
+			id_usuario: '',
+			accion: 'nuevo'
 		}
-		
+
 	},
-	methods:{
+	methods: {
 
 		/**
 		 * Trae los productos legumbres
 		 * @access public
 		 * @function traerlegumbres
 		 */
-		traerlegumbres:function(){
-			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirlegumbres&miproducto=${JSON.stringify(this.legumbressss )}`).then( resp=>resp.json() ).then(resp=>{ 
-			this.legumbressss=resp;		
-			});	
+		traerlegumbres: function () {
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirlegumbres&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp => resp.json()).then(resp => {
+				this.legumbressss = resp;
+			});
 		},
 
 
@@ -38,9 +38,9 @@ var seccionlegumbre = new Vue({
 		 * @access public
 		 * @function buscarL
 		 */
-		buscarL:function () {
-			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductosL&miproducto=${this.valor}`).then(resp=>resp.json()).then(resp=>{
-			this.legumbressss=resp;	
+		buscarL: function () {
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductosL&miproducto=${this.valor}`).then(resp => resp.json()).then(resp => {
+				this.legumbressss = resp;
 			});
 		},
 
@@ -51,78 +51,78 @@ var seccionlegumbre = new Vue({
 		 * @access public
 		 * @function variablesession
 		 */
-		variablesession:function(){
-            fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`).then(resp=>resp.json()).then(resp=>{
-            	if(resp.msg=="regrese"){
-					this.ItSession=0;
-					console.log('nohay>',resp);
-            	}else{
-					this.ItSession=1;
-					console.log("si hay>",resp);
-            	}
+		variablesession: function () {
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`).then(resp => resp.json()).then(resp => {
+				if (resp.msg == "regrese") {
+					this.ItSession = 0;
+					console.log('nohay>', resp);
+				} else {
+					this.ItSession = 1;
+					console.log("si hay>", resp);
+				}
 			});
 			this.cuentalogueada();
 		},
 
 
-			/**
-		 * Trae la cuenta loguea
-		 * @access public
-		 * @function cuentalogueada
-		 * 
-		 */
-		cuentalogueada: function () {  
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`).then(resp=>resp.json()).then(resp=>{
-				if(this.ItSession!=1){
+		/**
+	 * Trae la cuenta loguea
+	 * @access public
+	 * @function cuentalogueada
+	 * 
+	 */
+		cuentalogueada: function () {
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`).then(resp => resp.json()).then(resp => {
+				if (this.ItSession != 1) {
 					console.log('no hay session');
-				
-				}else{
-					this.lista_deseox.id_usuario=resp[0].idusuario;
+
+				} else {
+					this.lista_deseox.id_usuario = resp[0].idusuario;
 				}
 			})
 		},
 
 
 
-			/**
-		 * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
-		 * @access public
-		 * @function addlista
-		 * @param {Int} producto Representa el identificador del producto seleccionado
-		 */
-		addlistaL:function(producto){
-			if(this.ItSession!=0){
-				
-				idproducto=producto.miproducto;
-				this.lista_deseox.id_miproducto=idproducto;
-				
-				
-				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox) }`).then(resp=>resp.json()).then(resp=>{
-					var alerta = alertify.success(resp.msg);	
-					alerta.delay(2);	
-					alertify.set('notifier','position', 'top-right');
+		/**
+	 * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
+	 * @access public
+	 * @function addlista
+	 * @param {Int} producto Representa el identificador del producto seleccionado
+	 */
+		addlistaL: function (producto) {
+			if (this.ItSession != 0) {
+
+				idproducto = producto.miproducto;
+				this.lista_deseox.id_miproducto = idproducto;
+
+
+				fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(this.lista_deseox)}`).then(resp => resp.json()).then(resp => {
+					var alerta = alertify.success(resp.msg);
+					alerta.delay(2);
+					alertify.set('notifier', 'position', 'top-right');
 				});
-					
-				
-				
-			}else{
-				
+
+
+
+			} else {
+
 				Swal.fire(
 					'Ups...',
 					'Debes Iniciar Sesión Para Usar Esta Opción',
 					'warning'
 				)
-	
+
 			}
-		},	
+		},
 
 		/**
 		 * Es cuando el input esta vacion ejecuta denuevo la funcion de traer los productos
 		 * @access public
 		 * @function autobusquda
 		 */
-		autobusquda:function(){
-			if(this.valor==''){
+		autobusquda: function () {
+			if (this.valor == '') {
 				this.traerlegumbres();
 			}
 		},
@@ -133,12 +133,12 @@ var seccionlegumbre = new Vue({
 		 * @function verProd
 		 * @param {object} info - Representa los datos de un item 
 		 */
-		verProd(info){
-			var data={
+		verProd(info) {
+			var data = {
 				info
 			}
-			sessionStorage.setItem("data",JSON.stringify(data));
-			location.href="productos.html"
+			sessionStorage.setItem("data", JSON.stringify(data));
+			location.href = "productos.html"
 		},
 
 
@@ -147,9 +147,9 @@ var seccionlegumbre = new Vue({
 		 * @access public
 		 * @function descL
 		 */
-		descL:function () { 
-			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoDESCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp=>resp.json()).then(resp=>{		
-				this.legumbressss=resp;			
+		descL: function () {
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoDESCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp => resp.json()).then(resp => {
+				this.legumbressss = resp;
 			});
 		},
 
@@ -159,17 +159,17 @@ var seccionlegumbre = new Vue({
 		 * @access public
 		 * @function ascL
 		 */
-		ascL:function () { 
-			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoASCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp=>resp.json()).then(resp=>{		
-				this.legumbressss=resp;			
+		ascL: function () {
+			fetch(`Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipoASCL&miproducto=${JSON.stringify(this.legumbressss)}`).then(resp => resp.json()).then(resp => {
+				this.legumbressss = resp;
 			});
 		}
 	},
 
-	created:function(){
+	created: function () {
 		this.traerlegumbres();
 		this.variablesession();
-	
+
 	}
 
 

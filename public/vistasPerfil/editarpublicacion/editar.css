@@ -1,33 +1,30 @@
-*{
-	font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Balsamiq Sans", cursive;
 }
-body{
-	overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
 
-
-.table-responsive-sm{
-
-	overflow-y: scroll;
-	height: 300px;
+.table-responsive-sm {
+  overflow-y: scroll;
+  height: 300px;
 }
-.table-responsive-sm::-webkit-scrollbar{
-	width:7px ;
+.table-responsive-sm::-webkit-scrollbar {
+  width: 7px;
   background: rgb(206, 206, 206);
   border-radius: 3px;
-  }
-
-.table-responsive-sm::-webkit-scrollbar-thumb{
-	background: rgb(148, 148, 147);
-	border-radius: 3px;
-	
-	}
-	
-.fondotext{
-	background-color: rgba(145, 145, 145, 0.712);
-	color: #fff;
 }
-.fondotext:focus{
-	background-color: rgba(145, 145, 145, 0.712);
-	color: #fff;
+
+.table-responsive-sm::-webkit-scrollbar-thumb {
+  background: rgb(148, 148, 147);
+  border-radius: 3px;
+}
+
+.fondotext {
+  background-color: rgba(145, 145, 145, 0.712);
+  color: #fff;
+}
+.fondotext:focus {
+  background-color: rgba(145, 145, 145, 0.712);
+  color: #fff;
 }

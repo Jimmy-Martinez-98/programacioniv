@@ -1,56 +1,52 @@
-
-*{
-	font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Balsamiq Sans", cursive;
 }
-h1.h1s{
-	display: flex;
-	justify-content: center;
-	color: black;
+h1.h1s {
+  display: flex;
+  justify-content: center;
+  color: black;
 }
-hr.hrs{
-	background-color: black;
+hr.hrs {
+  background-color: black;
 }
-label{
-	color: black;
+label {
+  color: black;
 }
-button.btn{
-	color: black;
-}
-
-div.tiempo  {
-	display: flex;
-	justify-content: center;
+button.btn {
+  color: black;
 }
 
-div.botones{
-	display: flex;
-	justify-content: center;
-	
+div.tiempo {
+  display: flex;
+  justify-content: center;
 }
-#frm-productoN{
-	background: #5fb677;
+
+div.botones {
+  display: flex;
+  justify-content: center;
 }
-.bg{
-	background: #5fb677;
+#frm-productoN {
+  background: #5fb677;
+}
+.bg {
+  background: #5fb677;
 }
 .close {
-    float: right;
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .5;
+  float: right;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
 }
 
-.list-item{
-	list-style-type: none;
-	text-decoration: none;
-	padding: 10px;
-	width: 60px;
-	border-radius: 10px;
-	background-color: rgba(66, 62, 62, 0.527);
-	font-size: 11px;
-	
+.list-item {
+  list-style-type: none;
+  text-decoration: none;
+  padding: 10px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: rgba(66, 62, 62, 0.527);
+  font-size: 11px;
 }
-

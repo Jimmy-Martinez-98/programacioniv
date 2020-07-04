@@ -1,108 +1,129 @@
-  
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist/css/bootstrap.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="bandeja.css">
-	
+
 	<title>bandeja</title>
 </head>
+
 <body>
-	<nav class="navbar navbar-expand-lg  navbar-light" id="hola" >
+	<nav class="navbar navbar-expand-lg  navbar-light" id="hola">
 		<a class="navbar-brand" href="../../../index.html"> <img height="50" src="../../img/logo2,0.png"></a>
-		<button class="navbar-toggler boton"  v-on:click="colapsar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
+		<button class="navbar-toggler boton" v-on:click="colapsar" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
 		</button>
-	  
+
 		<div class="collapse navbar-collapse" id="toggles">
-		  <ul class="navbar-nav mr-auto uls">
-			<li class="nav-item  lis" >
-			  <a class="nav-item nav-link  as" id="home" href="#"  @click="inicio" ><h4 >Inicio</h4> <span class="sr-only"></span></a>
-			</li>
-		  </ul>
-		  <ul class="navbar-nav uls ">
-		  
-			<li class="lis" v-if="session===0">
-			  <a class="nav-link  as" id="login"  href="#"  @click="login"><h4 > Iniciar Sesion</h4></a>
-			</li>
-	
-	
-			<li class="nav-item dropdown" v-else> 
-			  <div class="dropdown ml-auto ">
-			   <a class="btn btn-lg  dropdown-toggle" href="#"@click="slidetoggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-			  <img v-if="datoscuenta[0].imagen!=''" v-bind:src="'../../../'+datoscuenta[0].imagen" class=" rounded-circle" width="30px" height="30px"> 
-			  <img v-else src="../../img/avatars.gif" class=" rounded-circle" width="30px" height="30px"> 
-					{{datoscuenta[0].nombreu}}
-			  </a>
-			 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
-					<a class="dropdown-item " href="../../../cooperativa.php    ">Perfil <i class="fas fa-user-tie"></i></a>   
-					<a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
-			 </div>
-			  </div>
-			  </li>
-		   
-		  </ul>
-		
-		  
+			<ul class="navbar-nav mr-auto uls">
+				<li class="nav-item  lis">
+					<a class="nav-item nav-link  as" id="home" href="#" @click="inicio">
+						<h4>Inicio</h4> <span class="sr-only"></span>
+					</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav uls ">
+
+				<li class="lis" v-if="session===0">
+					<a class="nav-link  as" id="login" href="#" @click="login">
+						<h4> Iniciar Sesion</h4>
+					</a>
+				</li>
+
+
+				<li class="nav-item dropdown" v-else>
+					<div class="dropdown ml-auto ">
+						<a class="btn btn-lg  dropdown-toggle" href="#" @click="slidetoggle" role="button"
+							id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							<img v-if="datoscuenta[0].imagen!=''" v-bind:src="'../../../'+datoscuenta[0].imagen"
+								class=" rounded-circle" width="30px" height="30px">
+							<img v-else src="../../img/avatars.gif" class=" rounded-circle" width="30px" height="30px">
+							{{datoscuenta[0].nombreu}}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<a class="dropdown-item " href="../../../cooperativa.php    ">Perfil <i
+									class="fas fa-user-tie"></i></a>
+							<a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i
+									class="fas fa-sign-in-alt"></i></a>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+
+
 		</div>
-	  </nav>
+	</nav>
 
 
-	<div  class="contenedor" id="bandejas">
+	<div class="contenedor" id="bandejas">
 		<div class="sidebar">
 			<div class="header-sidebar ">
-				<img width="30px" height="30px" src="../../../public/img/chat.png" >
-			<h4>Mensajes</h4>
+				<img width="30px" height="30px" src="../../../public/img/chat.png">
+				<h4>Mensajes</h4>
 			</div>
-			<div class="list-msg" >
-				<ul class="list-group lista-items"  v-for="items in users" :key="items.idusuario"  v-on:click="openchat(items.idusuario)" >
-				<li class="list-group-item" v-if="items.idusuario!=msg.de "><img v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{items.nombreu}}</li>
+			<div class="list-msg">
+				<ul class="list-group lista-items" v-for="items in users" :key="items.idusuario"
+					v-on:click="openchat(items.idusuario)">
+					<li class="list-group-item" v-if="items.idusuario!=msg.de "><img
+							v-bind:src="'../../../'+items.imagen" width="20px" height="20px" class="rounded-circle mr-2"
+							alt=""> {{items.nombreu}}</li>
 				</ul>
-				
+
 			</div>
-		
+
 		</div>
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-msg ">
-			<h5 class="titulomsg ml-2" >
-				<img src="../../img/avatars.gif" v-if="nombrechat.imagen==''" class="rounded-circle mr-2" width="30px" height="30px">
-				<img v-bind:src="'../../../'+nombrechat.imagen" v-else class="rounded-circle mr-2" width="30px" height="30px"> {{   nombrechat.nombreu}}
-			</h5>
-			
-			</div>	
-		
-				<div class="contener-msgs">
-					<div class="lista-mensajes" >
-						<ul class="listamsgs"v-for="item in msgs" v-if="item.de !=msg.de" >						
-						 	<li class="listamsgs-item text-break mr-auto mt-1" v-if="nombrechat.imagen!=''"> <img v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px" class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
-							 
-						</ul>
-						<ul class="listamsgs" v-else="item.de==msg.de" >						
-							<li class="listamsgs-iteml text-break ml-auto mr-3">{{ item.msg }}</li>
+				<h5 class="titulomsg ml-2">
+					<img src="../../img/avatars.gif" v-if="nombrechat.imagen==''" class="rounded-circle mr-2"
+						width="30px" height="30px">
+					<img v-bind:src="'../../../'+nombrechat.imagen" v-else class="rounded-circle mr-2" width="30px"
+						height="30px"> {{   nombrechat.nombreu}}
+				</h5>
+
+			</div>
+
+			<div class="contener-msgs">
+				<div class="lista-mensajes">
+					<ul class="listamsgs" v-for="item in msgs" v-if="item.de !=msg.de">
+						<li class="listamsgs-item text-break mr-auto mt-1" v-if="nombrechat.imagen!=''"> <img
+								v-bind:src="'../../../'+nombrechat.imagen" width="20px" height="20px"
+								class="rounded-circle mr-2" alt=""> {{ item.msg }}</li>
+
 					</ul>
-					</div>
+					<ul class="listamsgs" v-else="item.de==msg.de">
+						<li class="listamsgs-iteml text-break ml-auto mr-3">{{ item.msg }}</li>
+					</ul>
 				</div>
-			
+			</div>
+
 			<div class="footer ">
-				<input  type="text" v-model="msg.msg"  class="form-control" placeholder="Escribe un Mensaje" >
+				<input type="text" v-model="msg.msg" class="form-control" placeholder="Escribe un Mensaje">
 				<a class="enviar" v-on:click="enviarMensaje"><i class="far fa-paper-plane"></i></a>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<script src="../../../public/js/jquery-3.5.js"></script>
-<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="bandeja.js"></script>
-<script src="../../js/notificaciones.js"></script>
+	<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="bandeja.js"></script>
+	<script src="../../js/notificaciones.js"></script>
 
 </body>
+
 </html>

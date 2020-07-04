@@ -2,60 +2,65 @@
 <form id="list_deseos">
 	<link rel="stylesheet" href="public/vistasPerfil/listadeseos/list.css">
 
-		<ul class="list-group wow fadeIn" v-for="Deseos in AllDeseos":key="Deseos.id_desos">
-			<li class="list-group-item bg-white">
-			<div class="badge badge-danger text-wrap position-absolute" v-if="Deseos.isagotado==='SI'" style="width: 3.5rem; height:6rem">
-						<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
-					
-						<br>
-						<br>
-						<br>
-						<span class="text-white mt-5">Agotado</span>
-					</div>
-				<div class="form-row">
-			
-					<div class="col-md-3 m-auto">
-						<img :src="Deseos.imagen" class="rounded" width="100%" height="50%">
-					</div>
-					<div class="col-md-7 mt-5">
-					
-						<h2 class="mb-3 font-weight-bold "> {{Deseos.nombre_producto}}</h2>
-					
+	<ul class="list-group wow fadeIn" v-for="Deseos in AllDeseos" :key="Deseos.id_desos">
+		<li class="list-group-item bg-white">
+			<div class="badge badge-danger text-wrap position-absolute" v-if="Deseos.isagotado==='SI'"
+				style="width: 3.5rem; height:6rem">
+				<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
 
-						<div class="mt-5">
-						<span class="text-black-50 " >${{Deseos.precio_venta}}</span>
-						<span class="text-black-50 ml-5" v-if="Deseos.nombrecooperativa!=''" >{{Deseos.nombrecooperativa}}</span>
-						<span class="text-black-50 mr-auto" v-else >{{Deseos.nombreu}}</span>
-						</div>
-						
-					</div>
+				<br>
+				<br>
+				<br>
+				<span class="text-white mt-5">Agotado</span>
+			</div>
+			<div class="form-row">
 
-					<div class="col-md-2  mb-2 mt-3">
-						<button class="btn btn-outline-danger mb-5 mr-auto " @click.prevent="deleteproducto(Deseos.id_desos)"  >Eliminar de la Lista</button>
-					
-						<button class="btn btn-secondary mb-5   mr-auto"  v-if="Deseos.isagotado==='NO'||Deseos.isagotado===''" @click.prevent="comprara(Deseos)">Comprar Ahora</button>
-						<button class="btn btn-secondary mb-5   mr-auto"  v-else disabled>Comprar Ahora</button>
-
-					</div>
-					
+				<div class="col-md-3 m-auto">
+					<img :src="Deseos.imagen" class="rounded" width="100%" height="50%">
 				</div>
-			</li>
-		</ul>
+				<div class="col-md-7 mt-5">
+
+					<h2 class="mb-3 font-weight-bold "> {{Deseos.nombre_producto}}</h2>
+
+
+					<div class="mt-5">
+						<span class="text-black-50 ">${{Deseos.precio_venta}}</span>
+						<span class="text-black-50 ml-5"
+							v-if="Deseos.nombrecooperativa!=''">{{Deseos.nombrecooperativa}}</span>
+						<span class="text-black-50 mr-auto" v-else>{{Deseos.nombreu}}</span>
+					</div>
+
+				</div>
+
+				<div class="col-md-2  mb-2 mt-3">
+					<button class="btn btn-outline-danger mb-5 mr-auto "
+						@click.prevent="deleteproducto(Deseos.id_desos)">Eliminar de la Lista</button>
+
+					<button class="btn btn-secondary mb-5   mr-auto"
+						v-if="Deseos.isagotado==='NO'||Deseos.isagotado===''" @click.prevent="comprara(Deseos)">Comprar
+						Ahora</button>
+					<button class="btn btn-secondary mb-5   mr-auto" v-else disabled>Comprar Ahora</button>
+
+				</div>
+
+			</div>
+		</li>
+	</ul>
 
 
 
 
-		<script src="public/vistasPerfil/listadeseos/lista_deseos.js"></script>
-		
+	<script src="public/vistasPerfil/listadeseos/lista_deseos.js"></script>
+
 </form>
 <script src="public/vistas/blog/dist/wow.js"></script>
 <script>
-  var wow = new WOW(
-    {
-    boxClass:     'wow',      // animated element css class (default is wow)
-    animateClass: 'animated', // animation css class (default is animated)
-    offset:       0,          // distance to the element when triggering the animation (default is 0)
-    }
-  );
-  wow.init();
+	var wow = new WOW(
+		{
+			boxClass: 'wow',      // animated element css class (default is wow)
+			animateClass: 'animated', // animation css class (default is animated)
+			offset: 0,          // distance to the element when triggering the animation (default is 0)
+		}
+	);
+	wow.init();
 </script>

@@ -9,10 +9,10 @@ $(document).ready(function () {
 	 * @access public
 	 * @event click#nosotros
 	 */
-	$('#nosotros').click(()=>{
+	$('#nosotros').click(() => {
 		$('.contenidoP').load("public/vistasPerfil/contenido/nosotros.html", function (data) {
-		$(this).html(data);;
-			
+			$(this).html(data);;
+
 		});
 	});
 
@@ -21,10 +21,10 @@ $(document).ready(function () {
 	 * @access public
 	 * @event click#direccion
 	 */
-	$('#direccion').click(()=>{
+	$('#direccion').click(() => {
 		$('.contenidoP').load("public/vistasPerfil/direccion/direccion.php", function (data) {
-		$(this).html(data);
-			
+			$(this).html(data);
+
 		});
 	});
 
@@ -35,10 +35,10 @@ $(document).ready(function () {
 	 * @access public
 	 * @event click#historial
 	 */
-	$('#historial').click(()=>{
+	$('#historial').click(() => {
 		$('.contenidoP').load("public/vistasPerfil/historialCompras/historialCompras.php", function (data) {
-		$(this).html(data);
-			
+			$(this).html(data);
+
 		});
 	});
 
@@ -47,10 +47,10 @@ $(document).ready(function () {
 	 * @access public
 	 * @event click#productos
 	 */
-	$('#productos').click(()=>{
+	$('#productos').click(() => {
 		$('.contenidoP').load("public/vistasPerfil/misproductos/mproductos.php", function (data) {
-		$(this).html(data);
-			
+			$(this).html(data);
+
 		});
 	});
 
@@ -60,13 +60,13 @@ $(document).ready(function () {
 	 * @access public
 	 * @event click#horario
 	 */
-	$('#horario').click(()=>{
+	$('#horario').click(() => {
 		$('.contenidoP').load("public/vistasPerfil/horario/horario.html", function (data) {
 			$(this).html(data);
-				
+
+		});
 	});
-	});
-	
+
 });
 
 

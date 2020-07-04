@@ -1,78 +1,64 @@
-
-body{
+body {
   margin: 0;
   padding: 0;
-	font-family: 'Balsamiq Sans', cursive;
-overflow-x: hidden;
+  font-family: "Balsamiq Sans", cursive;
+  overflow-x: hidden;
 }
 
- 
-
-
-
-.navbars{
+.navbars {
   margin: 0;
   width: 100%;
-	background: #5fb677;
+  background: #5fb677;
 }
 
-
-
-a.btn-lg{
+a.btn-lg {
   background: #006780;
   color: white;
 }
-a.btn-lg:hover{
+a.btn-lg:hover {
   background: #006780;
   color: white;
 }
 
-
-.nav-link{
+.nav-link {
   color: #000000;
 }
 
-
-.activa::before{
+.activa::before {
   content: "";
   display: block;
   width: 0%;
   height: 3px;
   background: white;
-  bottom:0;
-  transition: all .3s;
-
+  bottom: 0;
+  transition: all 0.3s;
 }
-.nav-link:hover{
+.nav-link:hover {
   color: #000000;
 }
 
-.activa:hover::before{
+.activa:hover::before {
   width: 100%;
 }
 
-.dropdown-item{
+.dropdown-item {
   font-size: 12px;
   max-width: 50px;
 }
 
-
-
-@media(max-width:992px){
-  .activa::before{
+@media (max-width: 992px) {
+  .activa::before {
     display: none;
+  }
+  .nav-link:hover {
+    color: #000000;
+  }
 
-}
-.nav-link:hover{
-  color: #000000;
-}
-
-.activa:hover::before{
- display: none;
-}
-.activa:hover{
-  display: block;
-  background-color: rgba(255, 255, 255, 0.432);
-}
-
+  .activa:hover::before {
+    display: none;
+  }
+  .activa:hover {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.432);
+  }
 }

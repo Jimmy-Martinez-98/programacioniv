@@ -1,9 +1,9 @@
 <?php
-	session_start();
+session_start();
 
-	if(isset($_SESSION['usuario'])){
-	 header("Location: index.html");
-	}
+if (isset($_SESSION['usuario'])) {
+    header("Location: index.html");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,44 +21,44 @@
 		<form action=""  v-on:submit.prevent="inicioSesion"  id="frm-login" method="post">
 		<div class="form-header border-bottom mb-5">
 			<h1 class="form-title">LOGIN</h1>
-		
+
 		</div>
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-			  <span class="input-group-text" id="basic-addon1">@</span>
+				<span class="input-group-text" id="basic-addon1">@</span>
 			</div>
 			<input type="email" class="form-control" required  v-model="name.correo" placeholder="Correo Electronico" aria-label="Correoelectronico" aria-describedby="basic-addon1">
-		  </div>
-		  <div class="input-group mb-3">
+		</div>
+		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-			  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+				<span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
 			</div>
 			<input type="password" class="form-control" required v-model="name.pass" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
-		  </div>
-		  <button type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Iniciar Sesión</button>
-		  <div class="row mt-3">
-			  <div class="col-4 ">
-				 <a class="text enlace1" v-on:click="Recuperar" href="#">Olvido Contraseña?</a>
-			  </div>
-			  <div class="col-8 d-flex justify-content-end ">
-				<p class="float-roght enlace2">Aun no tienes una cuenta? <a class="text" v-on:click="Registrate" href="#">Registrate Aquí</a></p>	
-			  </div>	
-		  </div>
-		 
 		</div>
-	
+		<button type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Iniciar Sesión</button>
+		<div class="row mt-3">
+			<div class="col-4 ">
+				<a class="text enlace1" v-on:click="Recuperar" href="#">Olvido Contraseña?</a>
+			</div>
+			<div class="col-8 d-flex justify-content-end ">
+				<p class="float-roght enlace2">Aun no tienes una cuenta? <a class="text" v-on:click="Registrate" href="#">Registrate Aquí</a></p>
+			</div>
+		</div>
+
+		</div>
+
 		</form>
-		
+
 	</div>
 
-	
+
 
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="public/js/vue.min.js"></script>
-	 <script src="public/vistas/login/login.js"></script>
-	
+	<script src="public/vistas/login/login.js"></script>
+
 </body>
 </html>

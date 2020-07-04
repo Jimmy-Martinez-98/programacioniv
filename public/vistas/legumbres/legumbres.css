@@ -1,12 +1,12 @@
-.form-check-input{
-    display: none;
-    color: gray;
+.form-check-input {
+  display: none;
+  color: gray;
 }
-.form-check-label{
-    color: gray;
-    font-size: 20px;
+.form-check-label {
+  color: gray;
+  font-size: 20px;
 }
 
-.form-check-input:checked~label{
-    color: orange;
+.form-check-input:checked ~ label {
+  color: orange;
 }

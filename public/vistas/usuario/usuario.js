@@ -5,23 +5,23 @@
  * @instance objeto de instancia de Vue.js
  */
 var appusuario = new Vue({
-    el:'#frm-usuarios',
-    data:{
-        usuario:{
-            idUsuario 		 : 0,
-            accion   		 : 'nuevo',
-            nombreu   		 : '',
-            selected         :'',
-        nombrecooperativa    : '',
-            telefono         :'',
-			correo  		 : '',
-            pass		     :'',
-            fecha            :'', 
-            
+    el: '#frm-usuarios',
+    data: {
+        usuario: {
+            idUsuario: 0,
+            accion: 'nuevo',
+            nombreu: '',
+            selected: '',
+            nombrecooperativa: '',
+            telefono: '',
+            correo: '',
+            pass: '',
+            fecha: '',
+
         },
-        verificarchek:''
+        verificarchek: ''
     },
-    methods:{
+    methods: {
 
 
 	    /**
@@ -29,30 +29,30 @@ var appusuario = new Vue({
 		 * @access public
 		 * @function alerta
 		 */
-        alerta:function(){
-            var mayus		=new RegExp("^(?=.*[A-Z])");
-			var especial	= new RegExp("^(?=.*[*_.-])");
-			var numeros		= new RegExp("^(?=.*[0-9])");
-			var lower 		= new RegExp("^(?=.*[a-z])");
-			var len	 		= new RegExp("^(?=.{8,})");
-			var regexp		=[mayus,especial,numeros,lower,len];
-			var checkval=0;
-			
-			var wordpass=$('#contra').val();
-			for(var i=0; i<5; i++){
-				if(regexp[i].test(wordpass)){
-					checkval++;
-					
-				}
-			}
+        alerta: function () {
+            var mayus = new RegExp("^(?=.*[A-Z])");
+            var especial = new RegExp("^(?=.*[*_.-])");
+            var numeros = new RegExp("^(?=.*[0-9])");
+            var lower = new RegExp("^(?=.*[a-z])");
+            var len = new RegExp("^(?=.{8,})");
+            var regexp = [mayus, especial, numeros, lower, len];
+            var checkval = 0;
 
-			if(checkval >=0 && checkval<=2){
-				$('#msgs').text("Muy Insegura!").css("color","red");
-			}else if(checkval >=3 && checkval<=4){
-				$('#msgs').text("Poco Segura!").css("color","orange");
-			}else if(checkval===5){
-				$('#msgs').text("Segura!").css("color","green");
-			}
+            var wordpass = $('#contra').val();
+            for (var i = 0; i < 5; i++) {
+                if (regexp[i].test(wordpass)) {
+                    checkval++;
+
+                }
+            }
+
+            if (checkval >= 0 && checkval <= 2) {
+                $('#msgs').text("Muy Insegura!").css("color", "red");
+            } else if (checkval >= 3 && checkval <= 4) {
+                $('#msgs').text("Poco Segura!").css("color", "orange");
+            } else if (checkval === 5) {
+                $('#msgs').text("Segura!").css("color", "green");
+            }
         },
 
 
@@ -61,47 +61,47 @@ var appusuario = new Vue({
          * @access public
          * @function guardarusuario
          */
-        guardarusuario:function(){
-            if (this.verificarchek!=false||this.verificarchek!='') {
-                if($('#msgs').val("Segura!")){
-                fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then( resp=>resp.json() ).then(resp=>{
-                    if( resp.msg==='mensaje enviado'){
-                        location.href="verify.html"
-                    }else{
-                    
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Oops...',
-                            text: resp.msg,
-                            
-                        });
-                
-                    }
-                
-                    }).catch(e=>{ console.log(e); })
-            
-                }else{
+        guardarusuario: function () {
+            if (this.verificarchek != false || this.verificarchek != '') {
+                if ($('#msgs').val("Segura!")) {
+                    fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then(resp => resp.json()).then(resp => {
+                        if (resp.msg === 'mensaje enviado') {
+                            location.href = "verify.html"
+                        } else {
+
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Oops...',
+                                text: resp.msg,
+
+                            });
+
+                        }
+
+                    }).catch(e => { console.log(e); })
+
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text:"la contraseña no comple con los requisitos ",
-                        
+                        text: "la contraseña no comple con los requisitos ",
+
                     });
                 }
-            }else{
+            } else {
                 Swal.fire({
                     icon: 'warning',
-                    text:"Debe Aceptar La Política de Privacidad ",
-                    
+                    text: "Debe Aceptar La Política de Privacidad ",
+
                 });
             }
-                
+
         },
-        IniciarSesion:function(){
-            location.href="login.php";
+        IniciarSesion: function () {
+            location.href = "login.php";
         },
-        Rcliente:function () {
-            location.href="registroCliente.php"
+        Rcliente: function () {
+            location.href = "registroCliente.php"
         }
     }
 });
@@ -112,5 +112,5 @@ var appusuario = new Vue({
  */
 $(function () {
     $('[data-toggle="popover"]').popover()
-    })
-  
+})
+

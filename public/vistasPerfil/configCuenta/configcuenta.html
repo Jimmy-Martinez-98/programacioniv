@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,36 @@
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/configCuenta/configcuenta.css">
 </head>
+
 <body>
 	<form method="POST" id="cuenta" class="rounded p-2 container colores mb-3">
 		<div class="form-row wow fadeIn">
 			<div class="d-flex justify-content-center col-md-12">
 				<div class="col-md-6 d-flex justify-content-center">
 					<div style="width: 250px;">
-						<img  v-if="datoscuenta[0].imagen!=''" height="200px"v-bind:src="datoscuenta[0].imagen" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
-						<img v-else  height="200px" src="public/img/avatars.gif" width="230" height="200"  class=" rounded-circle "  alt="imagen de perfil">
+						<img v-if="datoscuenta[0].imagen!=''" height="200px" v-bind:src="datoscuenta[0].imagen"
+							width="230" height="200" class=" rounded-circle " alt="imagen de perfil">
+						<img v-else height="200px" src="public/img/avatars.gif" width="230" height="200"
+							class=" rounded-circle " alt="imagen de perfil">
 					</div>
 				</div>
-				<div class="col-md-6">	
-					<button type="button"  class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal" v-on:click="modfoto(datoscuenta[0])" data-target="#fotoperfiledit">Editar Foto de Perfil</button>
+				<div class="col-md-6">
+					<button type="button" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal"
+						v-on:click="modfoto(datoscuenta[0])" data-target="#fotoperfiledit">Editar Foto de
+						Perfil</button>
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group ">
 					<label for="nombre">Nombre de Usuario</label>
-					<input type="text" v-model="datoscuenta[0].nombreu" disabled  class="form-control" id="nombre">						
-				</div>	
+					<input type="text" v-model="datoscuenta[0].nombreu" disabled class="form-control" id="nombre">
+				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group " v-if="datoscuenta[0].nombrecooperativa!=''">
 					<label for="nombreC">Nombre Cooperativa</label>
-					<input type="text" v-model="datoscuenta[0].nombrecooperativa" disabled class="form-control" id="nombrec">					
+					<input type="text" v-model="datoscuenta[0].nombrecooperativa" disabled class="form-control"
+						id="nombrec">
 				</div>
 				<div class="form-group" v-else="datoscuenta[0].nombrecooperativa==''"></div>
 			</div>
@@ -43,76 +50,83 @@
 			<div class="col-md-12">
 				<label for="tel">Telefono</label>
 				<div class="input-group ">
-					<input type="tel" disabled v-model="datoscuenta[0].telefono" disabled class="form-control" >
+					<input type="tel" disabled v-model="datoscuenta[0].telefono" disabled class="form-control">
 					<div class="input-group-append ">
-						<button class="btn btn-secondary " type="button"   data-toggle="modal" data-target="#editelefono">Editar Telefono</button>
+						<button class="btn btn-secondary " type="button" data-toggle="modal"
+							data-target="#editelefono">Editar Telefono</button>
 					</div>
 				</div>
-			</div>  
+			</div>
 			<div class="col-md-12 mt-1">
 				<label for="contra">Contraseña</label>
 				<div class="input-group ">
-					<input type="password" disabled v-model="datoscuenta[0].passwords"  class="form-control" >
+					<input type="password" disabled v-model="datoscuenta[0].passwords" class="form-control">
 					<div class="input-group-append ">
-						<button class="btn btn-secondary " v-on:click="modificacionpass(datoscuenta[0].passwords)" type="button"  data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
+						<button class="btn btn-secondary " v-on:click="modificacionpass(datoscuenta[0].passwords)"
+							type="button" data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
 					</div>
 				</div>
-			</div>  
+			</div>
 			<div class="col-md-12 mt-1 mb-2">
 				<label for="fecha">Fecha de Registro</label>
 				<div class="input-group ">
-					<input type="date" disabled v-model="datoscuenta[0].fechaR"  class="form-control" >
+					<input type="date" disabled v-model="datoscuenta[0].fechaR" class="form-control">
 				</div>
-			</div>  
+			</div>
 		</div>
-	</form>	
-<script src="public/js/jquery-3.5.js"></script>
-<script src="public/js/jquery-ui.js"></script>
-<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-<script src="public/vistas/blog/dist/wow.js"></script>
-<script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
+	</form>
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="public/js/jquery-ui.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
+	<script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
 
-<script>
-	var wow = new WOW(
-		{
-		boxClass:     'wow',      // animated element css class (default is wow)
-		animateClass: 'animated', // animation css class (default is animated)
-		offset:       0,          // distance to the element when triggering the animation (default is 0)
-		}
-	);
-	wow.init();
-</script>
+	<script>
+		var wow = new WOW(
+			{
+				boxClass: 'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset: 0,          // distance to the element when triggering the animation (default is 0)
+			}
+		);
+		wow.init();
+	</script>
 </body>
+
 </html>
 
 <!-- Modal1 -->
 
-<div class="modal fade" id="fotoperfiledit" tabindex="-1"  role="dialog" aria-labelledby="foto" aria-hidden="true">
+<div class="modal fade" id="fotoperfiledit" tabindex="-1" role="dialog" aria-labelledby="foto" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-			<h5 class="modal-title" id="foto">Foto de Perfil</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
+				<h5 class="modal-title" id="foto">Foto de Perfil</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body ">
 				<form id="editfotoo" method="POST">
-				<div class="container d-flex justify-content-center">
-					<div class="card mb-2" style="width: 18rem;">
-					
-							<img width="200" height="200"  id="img-preview" :src='imagenes'  v-bind:src="updatefoto.imagen"  class="card-img-top"  alt="la imagen va aquí" >
+					<div class="container d-flex justify-content-center">
+						<div class="card mb-2" style="width: 18rem;">
+
+							<img width="200" height="200" id="img-preview" :src='imagenes'
+								v-bind:src="updatefoto.imagen" class="card-img-top" alt="la imagen va aquí">
 							<div class="custom-file">
-							<input type="file"  @change="obtenerimagen "  required name="archivo" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-							<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+								<input type="file" @change="obtenerimagen " required name="archivo"
+									class="custom-file-input" id="inputGroupFile01"
+									aria-describedby="inputGroupFileAddon01">
+								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+							</div>
 						</div>
-					</div>	 	 
-				</div>
-			</form>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
-				<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg"  data-dismiss="modal" data-backdrop="false">Cargar foto</button>
+				<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg" data-dismiss="modal"
+					data-backdrop="false">Cargar foto</button>
 			</div>
 		</div>
 	</div>
@@ -125,27 +139,30 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-			<h5 class="modal-title" id="editelefono">Edicion de telefono</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
+				<h5 class="modal-title" id="editelefono">Edicion de telefono</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
-				<p>Para mayor seguridad, debemos enviarle un código de verificación de un único uso que nos permitirá verificar si existe.</p>
+				<p>Para mayor seguridad, debemos enviarle un código de verificación de un único uso que nos permitirá
+					verificar si existe.</p>
 				<div class="input-group ">
-					<input type="password" class="form-control" placeholder="Ingresa tu numero de telefono" >
+					<input type="password" class="form-control" placeholder="Ingresa tu numero de telefono">
 					<div class="input-group-append ">
-					<button class="btn btn-outline-secondary "  type="button" >Enviar Codigo</button>
+						<button class="btn btn-outline-secondary " type="button">Enviar Codigo</button>
 					</div>
 				</div>
 				<div class="form-group mt-3">
 					<label for="codigo">Codigo de verificación</label>
-					<input type="email" class="form-control" id="codigov" aria-describedby="codigov" placeholder="Ingresa codigo">
+					<input type="email" class="form-control" id="codigov" aria-describedby="codigov"
+						placeholder="Ingresa codigo">
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary"  data-dismiss="modal" data-backdrop="false">Guardar Cambios</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" data-backdrop="false">Guardar
+					Cambios</button>
 			</div>
 		</div>
 	</div>
@@ -165,28 +182,32 @@
 			<div class="modal-body">
 				<form action="#" method="post">
 					<div class="container">
-						<p class="text-justify"><b> <h6> Requisitos</h6></b>
-						Contiene entre 8 y 36 caracteres
-						Contener al menos 1 letra en mayúsculas y minúsculas
-						Contiene al menos 1 número
-						No será lo mimdo que Nombre de pantalla</p>
+						<p class="text-justify"><b>
+								<h6> Requisitos</h6>
+							</b>
+							Contiene entre 8 y 36 caracteres
+							Contener al menos 1 letra en mayúsculas y minúsculas
+							Contiene al menos 1 número
+							No será lo mimdo que Nombre de pantalla</p>
 					</div>
 					<div class="form-group ">
 						<label for="contraA">Contraseña Antigua</label>
-						<input type="password" disabled v-model="cambiopass"  class="form-control" id="contraA">					
+						<input type="password" disabled v-model="cambiopass" class="form-control" id="contraA">
 					</div>
 					<div class="form-group ">
 						<label for="exampleInputPassword1">Contraseña</label>
-						<input type="password" v-on:keyup="alerta"  class="form-control" v-model="actualizarcontra.contranueva" id="nuevap">
+						<input type="password" v-on:keyup="alerta" class="form-control"
+							v-model="actualizarcontra.contranueva" id="nuevap">
 						<label for="exampleInputPassword1">Confirmar Contraseña</label>
-						<input type="password" v-model="actualizarcontra.confirmarcontra" class="form-control" id="confirmarp">
+						<input type="password" v-model="actualizarcontra.confirmarcontra" class="form-control"
+							id="confirmarp">
 						<span id="msgs"></span>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" v-on:click="updatepass" class="btn btn-primary"  >Guardar Cambios</button>
+				<button type="button" v-on:click="updatepass" class="btn btn-primary">Guardar Cambios</button>
 			</div>
 		</div>
 	</div>

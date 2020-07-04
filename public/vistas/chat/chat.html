@@ -1,88 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist//css/bootstrap.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" href="chats.css">
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-	
+
 	<title>chat</title>
 </head>
+
 <body>
 	<nav class="navbar navbar-expand-lg   " id="nav">
 		<div class="container-fluid">
-		
-		  <a class="navbar-brand text-dark"  href="../../../index.html"><img width="150" height="70" class="imagen" src="../../../public/img/logo2,0.png" alt=""></a>
-		  <button class="navbar-toggler mb-2"  id="toggles" type="button"  v-on:click="collapse" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		   <img width="50px" height="50px" src="../../../public/img/menu.png">
-		  </button>
-		  <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
-			  <ul class="navbar-nav mr-auto uls" >
-				<li class="nav-item  lis" >
-			  <a class="nav-item nav-link  as" id="home" href="../.../../../../index.html" ><h4>Inicio</h4> <span class="sr-only"></span></a>
-			</li>
-		
-		  </ul>
-		  <ul class="navbar-nav uls">
-		   <li class="nav-item dropdown" >
-			<div class="dropdown ml-auto ">
-			  <a class="btn btn-lg" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"> 
-			 <span class="text-black-50"> {{datoscuenta[0].nombreu}}</span>
-			 <p class="correo">{{datoscuenta[0].correo}}</p>
-			 
-			 </a>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-			  <a class="dropdown-item " href="../../../cooperativa.php">Perfil <i class="far fa-user-circle"></i></a>  
-			 <a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>   
+			<a class="navbar-brand text-dark" href="../../../index.html"><img width="150" height="70" class="imagen"
+					src="../../../public/img/logo2,0.png" alt=""></a>
+			<button class="navbar-toggler mb-2" id="toggles" type="button" v-on:click="collapse" data-toggle="collapse"
+				data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<img width="50px" height="50px" src="../../../public/img/menu.png">
+			</button>
+			<div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
+				<ul class="navbar-nav mr-auto uls">
+					<li class="nav-item  lis">
+						<a class="nav-item nav-link  as" id="home" href="../.../../../../index.html">
+							<h4>Inicio</h4> <span class="sr-only"></span>
+						</a>
+					</li>
+
+				</ul>
+				<ul class="navbar-nav uls">
+					<li class="nav-item dropdown">
+						<div class="dropdown ml-auto ">
+							<a class="btn btn-lg" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+								data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="text-black-50"> {{datoscuenta[0].nombreu}}</span>
+								<p class="correo">{{datoscuenta[0].correo}}</p>
+
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+								<a class="dropdown-item " href="../../../cooperativa.php">Perfil <i
+										class="far fa-user-circle"></i></a>
+								<a class="dropdown-item " href="../../../cerrarsesion.php">Cerrar Sesión <i
+										class="fas fa-sign-in-alt"></i></a>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+
 			</div>
-			 </div>
-		  </li>
-  
-		  </ul>
-		   
-		  </div>
 		</div>
-  
-		</nav>
+
+	</nav>
 
 
-	<div  class="contenedor">	 
+	<div class="contenedor">
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-sidebar">
-			<img   width="30px" height="30px" src="../../../public/img/chat.png" alt="">
-			<h4 class="ml-3" >  {{receptor.nombreu}} </h4>
-			
-			</div>	
-		
-				<div class="contener-msgs" id="tope">
-					<div class="lista-mensajes" >
-						<ul class="listamsgs"v-for="item in msgs" >						
-								<li class="listamsgs-item text-break mr-auto " v-if="item.de!=msg.de">{{item.msg}}</li>
-								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else="item.de==msg.de">{{item.msg}}</li>
-						</ul>
-						
-					
-					</div>
+				<img width="30px" height="30px" src="../../../public/img/chat.png" alt="">
+				<h4 class="ml-3"> {{receptor.nombreu}} </h4>
+
+			</div>
+
+			<div class="contener-msgs" id="tope">
+				<div class="lista-mensajes">
+					<ul class="listamsgs" v-for="item in msgs">
+						<li class="listamsgs-item text-break mr-auto " v-if="item.de!=msg.de">{{item.msg}}</li>
+						<li class="listamsgs-iteml text-break ml-auto mr-2" v-else="item.de==msg.de">{{item.msg}}</li>
+					</ul>
+
+
 				</div>
-			
+			</div>
+
 			<div class="footer ">
-				<input  type="text" v-model="msg.msg"  class="form-control" placeholder="Escribe un Mensaje" >
+				<input type="text" v-model="msg.msg" class="form-control" placeholder="Escribe un Mensaje">
 				<a class="enviar" v-on:click="enviarMensaje"><i class="far fa-paper-plane"></i></a>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<script src="../../../public/js/jquery-3.5.js"></script>
-<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="chat.js"></script>
-<script src="../../js/notificaciones.js"></script>
+	<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="chat.js"></script>
+	<script src="../../js/notificaciones.js"></script>
 </body>
+
 </html>

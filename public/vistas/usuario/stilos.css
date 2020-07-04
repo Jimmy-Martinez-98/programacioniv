@@ -1,18 +1,17 @@
-body{
-	font-family: 'Pacifico', cursive;
+body {
+  font-family: "Pacifico", cursive;
+}
+.invalid-feedback {
+  color: red;
+}
+#ter {
+  color: black;
+  font-size: 12px;
+}
 
+#ter:hover {
+  color: white;
 }
-.invalid-feedback{
-	color: red;
-}
-#ter{
-color: black;
-font-size: 12px;
-}
-
-#ter:hover{
-	color: white;	
-}
-.textoo{
-	font-size: 12px;
+.textoo {
+  font-size: 12px;
 }

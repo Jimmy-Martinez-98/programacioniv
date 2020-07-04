@@ -1,17 +1,17 @@
-*{
-	font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Balsamiq Sans", cursive;
 }
-h1,p{
-	color: black;
+h1,
+p {
+  color: black;
 }
-p{
-	text-justify: auto;
+p {
+  text-justify: auto;
 }
-div.bg{
-	background: #5fb677;
-}
-
-.btn-lg{
-color: black;
+div.bg {
+  background: #5fb677;
 }
 
+.btn-lg {
+  color: black;
+}

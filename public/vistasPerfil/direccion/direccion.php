@@ -1,5 +1,5 @@
 <?php
-	session_start();
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="public/vistasPerfil/direccion/direcc.css">
 </head>
 <body>
-	
+
 <div class="container bg wow fadeIn">
 	<form   id="frm-direcciones">
 		<head> <h3 class="d-flex justify-content-center">Dirección</h3><hr></head>
@@ -29,7 +29,7 @@
 
 		<div class="container mb-3 py-3">
 			<button type="button" v-if="direction==''"
-			class="btn btn-primary btn-lg btn-block"  
+			class="btn btn-primary btn-lg btn-block"
 			data-toggle="modal" data-target="#nuevaD1"
 			>
 				Nueva Dirección
@@ -37,12 +37,12 @@
 			<input type="button" v-else
 				class="btn btn-secondary btn-lg btn-block"
 				data-toggle='modal'
-				data-target="#modalmodificar" 
+				data-target="#modalmodificar"
 				value="Modificar Drección"
 				@click="editardire(direction)">
 		</div>
-		
-		
+
+
 	</form>
 </div>
 <script src="public/js/jquery-3.5.js"></script>
@@ -113,7 +113,7 @@
 				<label for="exampleFormControlTextarea1">Modificar Dirección</label>
 				<textarea class="form-control" v-model.trim="modDirec.Direccion" id="ndireccion" rows="3"></textarea>
 			</div>
-			
+
 		</div>
 		<div class="modal-footer ">
 			<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>

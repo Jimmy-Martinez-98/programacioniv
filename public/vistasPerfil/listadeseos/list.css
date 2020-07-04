@@ -1,11 +1,11 @@
-*{
-	font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Balsamiq Sans", cursive;
 }
 
-h1.centro{
-	display: flex;
-	justify-content: center;
+h1.centro {
+  display: flex;
+  justify-content: center;
 }
-.badge{
-	z-index: 1;
+.badge {
+  z-index: 1;
 }

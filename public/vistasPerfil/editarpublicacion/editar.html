@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,40 +9,49 @@
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<title>edicion</title>
 </head>
+
 <body>
-	
-<div class="form-row">
+
+	<div class="form-row">
 		<div class="col-md-12 wow fadeIn">
 			<div class="container-fluid rounded">
-				<form enctype="multipart/form-data" class="form-row p-2 bg rounded" id="frm-edit"> 
-					<div class="col-md-12 mt-2">		
+				<form enctype="multipart/form-data" class="form-row p-2 bg rounded" id="frm-edit">
+					<div class="col-md-12 mt-2">
 						<h1 class=" h1s">Edicion de Producto</h1>
 						<hr class="text-dark">
 						<div class="form-group ">
 							<div class="d-flex justify-content-center">
 								<div class="card mb-2" style="width: 18rem;">
-									<img width="200" height="200" v-if="imagen!=''||mod.imagen!=''" id="img-preview"	:src="imagen"  class="card-img-top" v-bind:src="mod.imagen"   alt="la imagen va aquí" >
-									<img width="200" height="200" v-else src="public/img/ico.png" class="card-img-top p-2" >
-									<input @change="obtenerimagen"  required name="archivo"   type="file" class="form-control"> 
-									
-								</div>	 
-							</div> 
-							<label for="nameproduct">Nombre  Producto</label>
-							<input v-model="mod.nombre_producto"    type="text"  class="form-control" id="addproducto" aria-describedby="productohelp" placeholder="Ingresa Producto">
-							
+									<img width="200" height="200" v-if="imagen!=''||mod.imagen!=''" id="img-preview"
+										:src="imagen" class="card-img-top" v-bind:src="mod.imagen"
+										alt="la imagen va aquí">
+									<img width="200" height="200" v-else src="public/img/ico.png"
+										class="card-img-top p-2">
+									<input @change="obtenerimagen" required name="archivo" type="file"
+										class="form-control">
+
+								</div>
+							</div>
+							<label for="nameproduct">Nombre Producto</label>
+							<input v-model="mod.nombre_producto" type="text" class="form-control" id="addproducto"
+								aria-describedby="productohelp" placeholder="Ingresa Producto">
+
 						</div>
 					</div>
-					<div class="col-md-6">	
+					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Descripcion Producto</label>
-							<textarea v-model="mod.descprod"  type="text" class="form-control" id="descproducto" placeholder="Ingresa Descripcion"></textarea>
+							<textarea v-model="mod.descprod" type="text" class="form-control" id="descproducto"
+								placeholder="Ingresa Descripcion"></textarea>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input  v-model="mod.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa codigo del Producto">	
-						</div>		
+							<input v-model="mod.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8"
+								minlength="4" class="form-control codigo" id="codigoproducto"
+								placeholder="Ingresa codigo del Producto">
+						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
@@ -51,68 +61,77 @@
 								<option value="Verduras">Verduras</option>
 								<option value="Frutos">Frutos</option>
 								<option value="Legumbres">Legumbres</option>
-							</select>		
-								
+							</select>
+
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="cantidad">Cantidad  Existencias</label>
-							<input v-model="mod.existencias" pattern="[0-9]{6}" maxlength="6 " type="text" class="form-control"  id="cantidad" placeholder="Ingresa Cantidad">
+							<label for="cantidad">Cantidad Existencias</label>
+							<input v-model="mod.existencias" pattern="[0-9]{6}" maxlength="6 " type="text"
+								class="form-control" id="cantidad" placeholder="Ingresa Cantidad">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input  v-model="mod.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text" class="form-control"  id="precio" placeholder="Ingresa Precio">
+							<input v-model="mod.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
+								class="form-control" id="precio" placeholder="Ingresa Precio">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input v-model="mod.precio_venta"  pattern="[0-9]{6}" maxlength="6" minlength="2"  type="text" class="form-control"  id="precioventa" placeholder="Ingresa Precio de Venta">
+							<input v-model="mod.precio_venta" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
+								class="form-control" id="precioventa" placeholder="Ingresa Precio de Venta">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Fecha</label>
-							<input v-model="mod.fecha_subida" class="form-control" type="date" >
+							<input v-model="mod.fecha_subida" class="form-control" type="date">
 						</div>
 					</div>
 					<div class="col-md-6 bg-light rounded">
 						<label for="forma_venta" class="d-flex justify-content-center">Forma de Venta</label>
 						<div class="form-group d-flex justify-content-center">
-							<div class="form-check-inline "     id="validationCustom04">
+							<div class="form-check-inline " id="validationCustom04">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" v-model="mod.Libra"  required	 type="checkbox" id="libra" value="Libra">
-									<label class="form-check-label"  for="libra">Libra</label>
+									<input class="form-check-input" v-model="mod.Libra" required type="checkbox"
+										id="libra" value="Libra">
+									<label class="form-check-label" for="libra">Libra</label>
 								</div>
-							<div class="form-check form-check-inline">
-									<input class="form-check-input"required v-model="mod.Arroba" type="checkbox" id="arroba" value="Arroba">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" required v-model="mod.Arroba" type="checkbox"
+										id="arroba" value="Arroba">
 									<label class="form-check-label" for="arroba">Arroba</label>
-							</div>
+								</div>
 								<div class="form-check form-check-inline ">
-									<input class="form-check-input"required v-model="mod.Quintal" type="checkbox"  id="quintal" value="Quintal" >
+									<input class="form-check-input" required v-model="mod.Quintal" type="checkbox"
+										id="quintal" value="Quintal">
 									<label class="form-check-label" for="quintal">Quintal</label>
 								</div>
-							</div>			
+							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input"required v-model="mod.Caja" type="checkbox" id="caja" value="Arroba">
+								<input class="form-check-input" required v-model="mod.Caja" type="checkbox" id="caja"
+									value="Arroba">
 								<label class="form-check-label" for="caja">Caja</label>
-						</div>
+							</div>
 						</div>
 
-					</div>	
+					</div>
 					<div class="card-footer-fluid col-12 pb-2 ">
 						<div class="form-row">
-								<div class="col-md-6">
-									<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-										<button @click="editar"  type="button" class="btn btn-primary btn-lg btn-small text-white" >Guardar Cambios</button>
-									</div>
-								</div>
 							<div class="col-md-6">
 								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-									<button  type="button" @click="limpiar" class="btn btn-warning btn-lg btn-small text-white" >Limpiar</button>
+									<button @click="editar" type="button"
+										class="btn btn-primary btn-lg btn-small text-white">Guardar Cambios</button>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
+									<button type="button" @click="limpiar"
+										class="btn btn-warning btn-lg btn-small text-white">Limpiar</button>
 								</div>
 							</div>
 						</div>
@@ -121,49 +140,51 @@
 			</div>
 		</div>
 
-	<div class="container  p-3 col-md-12 mt-3 wow fadeIn" id="frmMis">
-		<div class="table-responsive-sm">
-			<table class="table bg ">
-				<thead>
-					<tr>
-						<form class="form-control ">
-							<input   type="text"  class="form-control fondotext"  v-model="valor" id="busquedap" v-on:keyup="buscar" placeholder="Buscar Producto por: codigo, Nombre o Categoria">
-						</form>
-					</tr>
-				</thead>
-				<tbody  class="scrollable">
-					<tr  v-for="productos in todo_prod":key="productos.idusuario" v-on:click="modi(productos)">
-						<th scope="row">{{productos.codigo_producto }}</th>
-						<td >
-							<img v-bind:src="productos.imagen" width="100px" height="50px" >
-						</td>
-						<td>{{productos.nombre_producto }}</td>
-						<td class="text-justify">{{productos.descprod}}</td>
-						<td>{{ productos.categoria}}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="container  p-3 col-md-12 mt-3 wow fadeIn" id="frmMis">
+			<div class="table-responsive-sm">
+				<table class="table bg ">
+					<thead>
+						<tr>
+							<form class="form-control ">
+								<input type="text" class="form-control fondotext" v-model="valor" id="busquedap"
+									v-on:keyup="buscar" placeholder="Buscar Producto por: codigo, Nombre o Categoria">
+							</form>
+						</tr>
+					</thead>
+					<tbody class="scrollable">
+						<tr v-for="productos in todo_prod" :key="productos.idusuario" v-on:click="modi(productos)">
+							<th scope="row">{{productos.codigo_producto }}</th>
+							<td>
+								<img v-bind:src="productos.imagen" width="100px" height="50px">
+							</td>
+							<td>{{productos.nombre_producto }}</td>
+							<td class="text-justify">{{productos.descprod}}</td>
+							<td>{{ productos.categoria}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
 		</div>
-		
 	</div>
-</div>
 
 
 
 
 
 
-<script src="public/vistasPerfil/editarpublicacion/editar.js"></script>
-<script src="public/vistas/blog/dist/wow.js"></script>
-<script>
-  var wow = new WOW(
-    {
-    boxClass:     'wow',      // animated element css class (default is wow)
-    animateClass: 'animated', // animation css class (default is animated)
-    offset:       0,          // distance to the element when triggering the animation (default is 0)
-    }
-  );
-  wow.init();
-</script>
+	<script src="public/vistasPerfil/editarpublicacion/editar.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
+	<script>
+		var wow = new WOW(
+			{
+				boxClass: 'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset: 0,          // distance to the element when triggering the animation (default is 0)
+			}
+		);
+		wow.init();
+	</script>
 </body>
+
 </html>

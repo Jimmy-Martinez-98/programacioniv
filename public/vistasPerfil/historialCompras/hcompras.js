@@ -7,25 +7,25 @@
 var appprod = new Vue({
 	el: '#productoss',
 	data: {
-		productos:[],
-		compras_M:[]
+		productos: [],
+		compras_M: []
 
 	},
-	created:function(){
+	created: function () {
 		this.fullp();
 	},
-	methods:{
+	methods: {
 		/**
 		 * Trae todos los productos de su lista de compras
 		 * @access public
 		 * @function fullp
 		 */
-		fullp:function(){
-			fetch(`Private/Modulos/misproductos/proceso.php?proceso=Mis_Compras&miproducto=${this.productos}`).then(resp=>resp.json()).then(resp=>{
-				this.compras_M=resp;
-				
+		fullp: function () {
+			fetch(`Private/Modulos/misproductos/proceso.php?proceso=Mis_Compras&miproducto=${this.productos}`).then(resp => resp.json()).then(resp => {
+				this.compras_M = resp;
+
 			})
-		
+
 		}
 	}
 });

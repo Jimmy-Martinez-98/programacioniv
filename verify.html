@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +10,20 @@
 	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 	<title>Verificacion</title>
 </head>
-<body> 
-	
-	<form class="needs-validation forms"v-on:submit.Prevent="verificar"id="frm-verify"  novalidate>
+
+<body>
+
+	<form class="needs-validation forms" v-on:submit.Prevent="verificar" id="frm-verify" novalidate>
 		<img src="public/img/logo2,0.png" width="100%" alt="">
-		<div class="divicion" ></div>
+		<div class="divicion"></div>
 		<p class="text-justify mt-3 mb-3">
 			Hemos Enviado un Mensaje a Su Correo Con Un codigo de Verificación
 		</p>
 		<div class="form-row mt-3">
 			<div class="col-md-12 mb-3">
 				<label for="validationCustom01">Codigo de Verificacion</label>
-				<input autocomplete="off" type="text" class="form-control" v-model="code.codigo" id="validationCustom01" maxlength="4" minlength="4" placeholder="Codigo:" required>
+				<input autocomplete="off" type="text" class="form-control" v-model="code.codigo" id="validationCustom01"
+					maxlength="4" minlength="4" placeholder="Codigo:" required>
 				<div class="valid-feedback">
 					Looks good!
 				</div>
@@ -30,36 +32,36 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary"   type="submit">Confirmar</button>
+		<button class="btn btn-primary" type="submit">Confirmar</button>
 	</form>
 
-	
-<script>
-	(function() {
-		'use strict';
-		window.addEventListener('load', function() {
-			// Fetch all the forms we want to apply custom Bootstrap validation styles to
-				var forms = document.getElementsByClassName('needs-validation');
-			// Loop over them and prevent submission
-				var validation = Array.prototype.filter.call(forms, function(form) {
-					form.addEventListener('submit', function(event) {
-						if (form.checkValidity() === false) {
-						event.preventDefault();
-						event.stopPropagation();
-					}
-					form.classList.add('was-validated');
-				}, false);
-			});
-		}, false);
-	})();
-</script>
 
-<script src="public/js/jquery-3.5.js"></script>
-<script src="public/js/jquery-ui.js"></script>
-<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>	
-<script src="public/js/vue.min.js"></script>
-<script src="alertifyjs/alertify.js"></script>
-<script src="public/js/verify.js"></script>
+	<script>
+		(function () {
+			'use strict';
+			window.addEventListener('load', function () {
+				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+				var forms = document.getElementsByClassName('needs-validation');
+				// Loop over them and prevent submission
+				var validation = Array.prototype.filter.call(forms, function (form) {
+					form.addEventListener('submit', function (event) {
+						if (form.checkValidity() === false) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+						form.classList.add('was-validated');
+					}, false);
+				});
+			}, false);
+		})();
+	</script>
+
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="public/js/jquery-ui.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<script src="public/js/vue.min.js"></script>
+	<script src="alertifyjs/alertify.js"></script>
+	<script src="public/js/verify.js"></script>
 </body>
 
 </html>

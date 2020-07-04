@@ -5,28 +5,28 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-var appcooperativa =new Vue({
-	el:'#navbarrr',
-	data:{
-		perfil:[]
+var appcooperativa = new Vue({
+	el: '#navbarrr',
+	data: {
+		perfil: []
 	},
-	methods:{
+	methods: {
 
 		/**
 		 * Trae la cuenta del usuario logueado
 		 * @access public 
 		 * @function traerdatosusuario
 		 */
-		traerdatosusuario:function(){  
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.perfil )}`).then( resp=>resp.json() ).then(resp=>{ 
-				this.perfil = resp;	
-			});	   	     
+		traerdatosusuario: function () {
+			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.perfil)}`).then(resp => resp.json()).then(resp => {
+				this.perfil = resp;
+			});
 		},
-		slidedropdown:function(){
+		slidedropdown: function () {
 			$('.dropdown-menu').slideToggle();
 		}
 	},
-	created:function () {
+	created: function () {
 		this.traerdatosusuario();
 	}
 });
@@ -46,8 +46,8 @@ $(document).ready(function () {
 	 * @event #info
 	 * 
 	 */
-	$('#info').click(()=>{
-		$("#contenedorP").load("public/vistasPerfil/infoperfil.html",function(data){
+	$('#info').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/infoperfil.html", function (data) {
 			$(this).html(data);
 		});
 	});
@@ -58,8 +58,8 @@ $(document).ready(function () {
 	 * @event #addProductos
 	 * 
 	 */
-	$('#addProductos').click(()=>{
-		$("#contenedorP").load("public/vistasPerfil/addproducto/addproducto.html",function(data){
+	$('#addProductos').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/addproducto/addproducto.html", function (data) {
 			$(this).html(data);
 		});
 	});
@@ -70,8 +70,8 @@ $(document).ready(function () {
 	 * @event #listadeseos
 	 * 
 	 */
-	$('#listdeseos').click(()=>{	
-		$("#contenedorP").load("public/vistasPerfil/listadeseos/listadeseos.html",function(data){
+	$('#listdeseos').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/listadeseos/listadeseos.html", function (data) {
 			$(this).html(data);
 		});
 	});
@@ -82,8 +82,8 @@ $(document).ready(function () {
 	 * @event #POferta
 	 * 
 	 */
-	$('#POferta').click(()=>{
-		$("#contenedorP").load("public/vistasPerfil/productosOferta/addoferta.html",function(data){
+	$('#POferta').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/productosOferta/addoferta.html", function (data) {
 			$(this).html(data);
 		});
 	});
@@ -94,11 +94,11 @@ $(document).ready(function () {
 	 * @event #COnfigc
 	 * 
 	 */
-	$('#Configc').click(()=>{
-		$("#contenedorP").load("public/vistasPerfil/configCuenta/configcuenta.html",function(data){
+	$('#Configc').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/configCuenta/configcuenta.html", function (data) {
 			$(this).html(data);
 		});
-	
+
 	});
 
 	/**
@@ -106,11 +106,11 @@ $(document).ready(function () {
 	 * @event #modP
 	 * 
 	 */
-	$('#modP').click(()=>{
-		$("#contenedorP").load("public/vistasPerfil/editarpublicacion/editar.html",function(data){
+	$('#modP').click(() => {
+		$("#contenedorP").load("public/vistasPerfil/editarpublicacion/editar.html", function (data) {
 			$(this).html(data);
 		});
-	
+
 	});
 
 
@@ -121,9 +121,9 @@ $(document).ready(function () {
  * @access public
  * @function toggle
  */
-function toggle(){
-	$("#colapsar").click(function(){
-        $(".collapse").animate({
+function toggle() {
+	$("#colapsar").click(function () {
+		$(".collapse").animate({
 			height: 'toggle'
 		});
 	});

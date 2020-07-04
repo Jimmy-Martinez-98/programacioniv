@@ -1,137 +1,125 @@
-*{
-  font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Balsamiq Sans", cursive;
 }
-p{
+p {
   color: white;
 }
-.card-footer{
+.card-footer {
   align-self: flex-end;
   width: 100%;
   background-color: rgba(51, 51, 51, 0.815);
 }
 
-#nave{
-   background-color: #5fb677;;
+#nave {
+  background-color: #5fb677;
 }
-.lista{
+.lista {
   list-style-type: circle;
   color: white;
   margin-top: unset;
   text-justify: inter-word;
 }
-footer>img{
+footer > img {
   display: flex;
   justify-content: center;
 }
 
-.col-sm .text-break{
+.col-sm .text-break {
   font-size: 14px;
   font-style: inherit;
   text-decoration: unset;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-#hola{
+#hola {
   background: #5fb677;
 }
 
-
-  .as{
-    color: black;
-}
-.as:hover{
+.as {
   color: black;
 }
-  ul.uls li.lis a.as::before{
-    content: "";
-    display: block;
-    width: 0%;
-    height: 3px;
-    background: white;
-    bottom:0;
-    transition: all .3s;
-
+.as:hover {
+  color: black;
 }
-.fondonav{
+ul.uls li.lis a.as::before {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 3px;
+  background: white;
+  bottom: 0;
+  transition: all 0.3s;
+}
+.fondonav {
   background-color: #5fb677;
 }
 
-ul.uls li.lis a.as:hover::before{
-   
-    width: 100%;
-   
-  
+ul.uls li.lis a.as:hover::before {
+  width: 100%;
 }
-li.lis a.as{
-    margin: 1px;
+li.lis a.as {
+  margin: 1px;
 }
 
-  #form p {
-	text-align: center;
-  }
-  
-  #form label {
-	font-size: 20px;
-  }
-  
-  input[type="radio"] {
-	display: none;
-  }
-  
-  label {
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
   color: grey;
   font-size: 20px;
-  }
-  
-  .clasificacion {
-	direction: rtl;
-  unicode-bidi: bidi-override;
-  
-  }
-  
-  .labeli:hover,
-  .labeli:hover ~ .labeli {
-  color: orange;
-  cursor: pointer;
- 
-  }
-  
-  .estrellas[type="radio"]:checked ~ .labeli {
-  color: orange;
-  cursor: pointer;
- 
-  }
+}
 
-.btn{
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.labeli:hover,
+.labeli:hover ~ .labeli {
+  color: orange;
+  cursor: pointer;
+}
+
+.estrellas[type="radio"]:checked ~ .labeli {
+  color: orange;
+  cursor: pointer;
+}
+
+.btn {
   border-radius: 20px;
 }
 
-
-.subtitulo{
+.subtitulo {
   color: white;
 }
 
-.contactar{
+.contactar {
   color: black;
 }
-.contactar:hover{
+.contactar:hover {
   text-decoration: none;
   color: rgb(0, 255, 64);
 }
 
-
-
-@media(max-width:700px){
-  .btn{
+@media (max-width: 700px) {
+  .btn {
     font-size: 12px;
     margin-bottom: 5px;
   }
-  .row{
+  .row {
     display: flex;
     flex-direction: row;
   }
-  .imges{
-
+  .imges {
     width: 100%;
   }
 }

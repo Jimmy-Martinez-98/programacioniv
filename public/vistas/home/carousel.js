@@ -14,12 +14,12 @@ $('#slider').on('slide.bs.carousel', function (e) {
     var idx = $e.index();
     var itemsPerSlide = 5;
     var totalItems = $('.carousel-item').length;
-    
-    if (idx >= totalItems-(itemsPerSlide-1)) {
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
         var it = itemsPerSlide - (totalItems - idx);
-        for (var i=0; i<it; i++) {
+        for (var i = 0; i < it; i++) {
             // agregar diapositivas para finalizar
-            if (e.direction=="left") {
+            if (e.direction == "left") {
                 $('.carousel-item').eq(i).appendTo('.carousel-inner');
             }
             else {

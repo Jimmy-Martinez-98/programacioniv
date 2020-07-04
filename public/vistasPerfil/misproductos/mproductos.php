@@ -4,24 +4,24 @@ session_start();
 <form action="#" method="post" id="misprod">
 <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/misproductos/misproduc.css">
-	
+
 		<ul class="list-group wow fadeIn" v-for="mercancia in myproductos":key="mercancia.miproducto">
 			<li class="list-group-item bg-white">
 			<div class="badge badge-danger text-wrap position-absolute wow fadeIn" v-if="mercancia.isagotado==='SI'" style="width: 3.5rem; height:6rem">
 						<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
-					
+
 						<br>
 						<br>
 						<br>
 						<span class="text-white mt-5">Agotado</span>
 					</div>
 				<div class="form-row">
-			
+
 					<div class="col-md-4 m-auto">
 						<img :src="mercancia.imagen" class="rounded" width="100%">
 					</div>
 					<div class="col-md-6 mt-2">
-					
+
 						<h2 class="mb-3 font-weight-bold "> {{mercancia.nombre_producto}}</h2>
 						<p class="text-justify text-black-50 mb-3" >{{mercancia.descprod}}</p>
 
@@ -30,7 +30,7 @@ session_start();
 						<span class="text-black-50 ml-5" v-if="mercancia.nombrecooperativa!=''" >{{mercancia.nombrecooperativa}}</span>
 						<span class="text-black-50 mr-auto" v-else >{{mercancia.nombreu}}</span>
 						</div>
-						
+
 					</div>
 
 					<div class="col-md-2  mb-2 mt-3">
@@ -38,7 +38,7 @@ session_start();
 						<button class="btn btn-outline-secondary mb-5   mr-auto"@click.prevent="agotado(mercancia.miproducto)" v-if="mercancia.isagotado==='NO'||mercancia.isagotado===''" >Agotado</button>
 						<button class="btn btn-outline-primary mb-5  mr-auto"@click.prevent="habilitar(mercancia.miproducto)" v-else >Habilitar</button>
 					</div>
-					
+
 				</div>
 			</li>
 		</ul>

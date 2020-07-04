@@ -7,24 +7,24 @@
 var appinfo = new Vue({
 	el: '#nosotrosdiv',
 	data: {
-		we:[]
+		we: []
 	},
 
-	created:function(){	
+	created: function () {
 		this.todo();
-		
-		
+
+
 	},
-	methods:{
+	methods: {
 		/**
 		 * 	Trae imagen y descripcion de la cooperativa o productor
 		 * @access public
 		 * @function todo
 		 */
-		todo:function(){
-			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then( resp=>resp.json() ).then(resp=>{ 
-				this.we=resp[0];
-			});			
+		todo: function () {
+			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then(resp => resp.json()).then(resp => {
+				this.we = resp[0];
+			});
 		},
 		/**
 		 * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
@@ -33,52 +33,52 @@ var appinfo = new Vue({
 		 * @function editardatos
 		 * @param {object} id - Representa la informacion del item seleccionado 
 		 */
-		editardatos:function(id){
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
-				appedit.edidar.fk_idusuario=resp[0].idusuario;	
-				
-				
+		editardatos: function (id) {
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
+				appedit.edidar.fk_idusuario = resp[0].idusuario;
+
+
 			});
-			appedit.edidar=id;
-			appedit.edidar.accion='modificar'
+			appedit.edidar = id;
+			appedit.edidar.accion = 'modificar'
 		}
-			
+
 	}
 });
 
-	/** 
-	 * @instance objeto de instancia de Vue.js
-	*/
+/** 
+ * @instance objeto de instancia de Vue.js
+*/
 var appedit = new Vue({
 	el: '#modaleditar',
 	data: {
 
-		edidar:{
-			accion:'modificar',
-			descripcion:'',
-			imagen:'',
-			infoUsuario:'',
-			fk_idusuario:''
-			
+		edidar: {
+			accion: 'modificar',
+			descripcion: '',
+			imagen: '',
+			infoUsuario: '',
+			fk_idusuario: ''
+
 		},
-	
-		imagenlittle:''
+
+		imagenlittle: ''
 	},
-	methods:{
+	methods: {
 
 		/**
 		 * Actualiza los datos de la informacion del usuario
 		 * @access public
 		 * @function guardar
 		 */
-		guardar:function(){	
-			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then( resp=>resp.json() ).then(resp=>{ 
-				if(resp.msg!='Datos Actualizados Exitosamente'){
-					alertify.warning(resp.msg);	
-				}else{
-					alertify.success(resp.msg);	
+		guardar: function () {
+			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then(resp => resp.json()).then(resp => {
+				if (resp.msg != 'Datos Actualizados Exitosamente') {
+					alertify.warning(resp.msg);
+				} else {
+					alertify.success(resp.msg);
 					appinfo.todo();
-				
+
 				}
 			});
 		},
@@ -90,24 +90,24 @@ var appedit = new Vue({
 		  * @function obtenerimagen
 		  * @param {objec} e - Representa el cambio en el tag img 
 		  */
-		obtenerimagen(e){
-			let file=e.target.files[0];
+		obtenerimagen(e) {
+			let file = e.target.files[0];
 			this.cargar(file);
-			var respuesta=null;
-			var formData=new FormData($('#imgs')[0]);
-			var ruta='Private/Modulos/about/guardarimagencoo.php';
+			var respuesta = null;
+			var formData = new FormData($('#imgs')[0]);
+			var ruta = 'Private/Modulos/about/guardarimagencoo.php';
 			$.ajax({
 				type: "POST",
 				url: ruta,
 				data: formData,
-				contentType:false,
-				processData:false,
-				async:false,
+				contentType: false,
+				processData: false,
+				async: false,
 				success: function (response) {
-				respuesta=response;
+					respuesta = response;
 				}
 			});
-			this.edidar.imagen="Private/Modulos/about/"+respuesta;
+			this.edidar.imagen = "Private/Modulos/about/" + respuesta;
 		},
 
 		/**
@@ -116,16 +116,16 @@ var appedit = new Vue({
 		 * @function cargarimagen
 		 * @param {object} file -Reprecenta el archivo de imagen 
 		 */
-		cargar(file){
-			let reader=new FileReader();
-			reader.onload=(e)=>{
-				this.imagenlittle=e.target.result;
+		cargar(file) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				this.imagenlittle = e.target.result;
 			}
 			reader.readAsDataURL(file);
 		}
-		
+
 	},
-	computed:{
+	computed: {
 
 		/**
 		 * Retorna la imagen en el tag img
@@ -133,9 +133,9 @@ var appedit = new Vue({
 		 * @function bindearimagen	
 		 * @returns imagenlittle - Representa la imagen en si
 		 */
-		bindearimagen(){	
-			return this.imagenlittle;	
-			
+		bindearimagen() {
+			return this.imagenlittle;
+
 		}
 	}
 });
@@ -149,81 +149,81 @@ var appedit = new Vue({
 
 
 
-var appnueva=new Vue({
-	el:'#nuevam',
-	data:{
-		descripciones:{
-			fk_idusuario:0,
-			imagen:'',
-			descripcion:'',
-			accion:'nuevo'
+var appnueva = new Vue({
+	el: '#nuevam',
+	data: {
+		descripciones: {
+			fk_idusuario: 0,
+			imagen: '',
+			descripcion: '',
+			accion: 'nuevo'
 		},
-		imglittle:''
+		imglittle: ''
 	},
-	created:function(){
+	created: function () {
 		this.traerusuario();
-	
+
 	}
-	,methods:{
+	, methods: {
 
-		traerusuario:function(){
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp=>resp.json()).then(resp=>{
+		traerusuario: function () {
+			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
 				this.descripciones.fk_idusuario = resp[0].idusuario;
-				
-				
 
-				
+
+
+
 			});
 		},
 
-		nuevosdatos :function () {
-			fetch(`Private/Modulos/about/procesos.php?proceso=recibirdesc&nosotros=${JSON.stringify(this.descripciones)}`).then( resp=>resp.json() ).then(resp=>{ 
-				if(resp.msg!="Tus datos se almacenaron exitosamente"){
-					alertify.warning(resp.msg);		
-					
-				}else {
-					alertify.success(resp.msg);	
+		nuevosdatos: function () {
+			fetch(`Private/Modulos/about/procesos.php?proceso=recibirdesc&nosotros=${JSON.stringify(this.descripciones)}`).then(resp => resp.json()).then(resp => {
+				if (resp.msg != "Tus datos se almacenaron exitosamente") {
+					alertify.warning(resp.msg);
+
+				} else {
+					alertify.success(resp.msg);
 					appinfo.todo();
-				}				
-			});		
-		},obtenerimagenN(e){
-			let file=e.target.files[0];
+				}
+			});
+		}, obtenerimagenN(e) {
+			let file = e.target.files[0];
 
 			this.cargar(file);
 
-			var respuesta=null;
+			var respuesta = null;
 
-			var formData=new FormData($('#datos')[0]);
+			var formData = new FormData($('#datos')[0]);
 
-			var ruta='Private/Modulos/about/guardarimagencoo.php';
-			
+			var ruta = 'Private/Modulos/about/guardarimagencoo.php';
+
 			$.ajax({
 				type: "POST",
 				url: ruta,
 				data: formData,
-				contentType:false,
-				processData:false,
-				async:false,
+				contentType: false,
+				processData: false,
+				async: false,
 				success: function (response) {
-				respuesta=response;
+					respuesta = response;
 				}
-				
+
 			});
 
-			this.descripciones.imagen="Private/Modulos/about/"+respuesta;
+			this.descripciones.imagen = "Private/Modulos/about/" + respuesta;
 		},
-		cargar(file){
-			let reader=new FileReader();
-			reader.onload=(e)=>{
-				this.imglittle=e.target.result;
-				
-				
+		cargar(file) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				this.imglittle = e.target.result;
+
+
 			}
 			reader.readAsDataURL(file);
 		},
 	},
-	computed:{
-		bindearimagenN(){
+	computed: {
+		bindearimagenN() {
 			return this.imglittle;
 		}
 	}
