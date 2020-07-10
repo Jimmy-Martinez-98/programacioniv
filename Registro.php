@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +20,7 @@ if (isset($_SESSION['usuario'])) {
 	<title>Login</title>
 </head>
 <body>
-
-
-
-
-	<form class="needs-validation"   v-on:submit.prevent="guardarusuario"  id="frm-usuarios" novalidate>
+	<form class="needs-validation"   v-on:submit.prevent="guardarUsuario"  id="frm-usuarios" novalidate>
 		<div class="form-header border-bottom mb-4">
 			<h1 class="form-title">REGISTRO VENDEDOR</h1>
 		</div>
@@ -32,7 +28,7 @@ if (isset($_SESSION['usuario'])) {
 		<div class="form-row">
 			<div class="col-md-6 mb-3">
 				<label for="validationCustom01">Nombre</label>
-				<input type="text" class="form-control" id="validationCustom01"  v-model="usuario.nombreu"   required>
+				<input type="text" class="form-control" id="validationCustom01"  v-model="usuario.nombreU"   required>
 				<div class="invalid-feedback bg-light  rounded  text-break text-center">
 					Rellena este campo
 				</div>
@@ -43,7 +39,7 @@ if (isset($_SESSION['usuario'])) {
 
 			<div class="col-md-6 mb-3">
 				<label for="validationCustom04">Quien eres?</label>
-				<select class="custom-select" v-model="usuario.selected" id="validationCustom04" required>
+				<select class="custom-select" v-model="usuario.selectU" id="validationCustom04" required>
 					<option selected disabled value="">Elige</option>
 					<option value="Cooperativa">Cooperativa</option>
 					<option value="Productor Pequeño">Productor Pequeño</option>
@@ -56,9 +52,9 @@ if (isset($_SESSION['usuario'])) {
 				</div>
 			</div>
 
-			<div class="col-md-6 mb-3" v-if="usuario.selected==='Cooperativa'">
+			<div class="col-md-6 mb-3" v-if="usuario.selectU==='Cooperativa'">
 				<label for="validationCustom01">Nombre Cooperativa</label>
-				<input type="text" class="form-control" id="validationCustom01" v-model="usuario.nombrecooperativa" required>
+				<input type="text" class="form-control" id="validationCustom01" v-model="usuario.nombreCooperativa" required>
 				<div class="invalid-feedback bg-light  rounded  text-break text-center">
 					Rellene este Campo
 				</div>
@@ -83,7 +79,7 @@ if (isset($_SESSION['usuario'])) {
 				</div>
 				<div class="col-md-3 mb-3">
 					<label for="validationCustom01">Fecha Registro</label>
-				<input type="date" class="form-control"  v-model="usuario.fecha" id="fecha" required>
+				<input type="date" class="form-control"  v-model="usuario.fechaRegistro" id="fecha" required>
 
 				<div class="invalid-feedback bg-light  rounded  text-break text-center">
 					Seleccione fecha de registro
@@ -141,9 +137,10 @@ if (isset($_SESSION['usuario'])) {
 					<a class="text  " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>
 			</div>
 			<div class="col-6 ">
-					<a class="text  " v-on:click="Rcliente" href="#">Registrarse Como Cliente</a>	</div>
+					<a class="text  " v-on:click="rCliente" href="#">Registrarse Como Cliente</a>	</div>
 			</div>
 		</div>
+
 	</form>
 
 
@@ -169,15 +166,23 @@ if (isset($_SESSION['usuario'])) {
 </script>
 
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+<script src="public/js/configFirebase.js"></script>
 
+<!-- JQuery and Boostrap -->
 <script src="public/js/jquery-3.5.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-
 <script src="public/js/jquery-ui.js"></script>
+<!-- Vuejs -->
 <script src="public/js/vue.min.js"></script>
+<!-- alertify and Sweetalert2 -->
 <script src="alertifyjs/alertify.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- mis scripts -->
 <script src="public/vistas/usuario/usuario.js"></script>
 
 </body>

@@ -4,6 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+var DB= firebase.database();
 var applogin = new Vue({
 	el: '#frm-login',
 	data: {
@@ -22,19 +23,7 @@ var applogin = new Vue({
 		 * @function inicioSesion
 		 */
 		inicioSesion: function () {
-			fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.name)}`).then(resp => resp.json()).then(resp => {
-				if (resp.msg == "Bienvenido") {
-					location.href = 'index.html';
-				} else {
-					this.name.pass = '';
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: resp.msg,
-
-					})
-				}
-			});
+			
 		},
 
 

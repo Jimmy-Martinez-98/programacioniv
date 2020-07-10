@@ -4,19 +4,20 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+
+var db = firebase.database();
+var fAuth = firebase.auth();
 var appusuario = new Vue({
     el: '#frm-usuarios',
     data: {
         usuario: {
-            idUsuario: 0,
-            accion: 'nuevo',
-            nombreu: '',
-            selected: '',
-            nombrecooperativa: '',
+            nombreU: '',
+            selectU: '',
+            nombreCooperativa: '',
             telefono: '',
             correo: '',
             pass: '',
-            fecha: '',
+            fechaRegistro: '',
 
         },
         verificarchek: ''
@@ -57,29 +58,39 @@ var appusuario = new Vue({
 
 
         /**
-         * Es cuando verifica si las contraseñas coninciden manda los datos al archivo.php para su procesamiento
+         * Verifica si se cumplen los regisitos del formulario para su posterior
+         * insercion en la Base de Datos
          * @access public
          * @function guardarusuario
          */
-        guardarusuario: function () {
+        guardarUsuario: function () {
             if (this.verificarchek != false || this.verificarchek != '') {
                 if ($('#msgs').val("Segura!")) {
-                    fetch(`private/Modulos/usuarios/procesos.php?proceso=recibirRegistro&login=${JSON.stringify(this.usuario)}`).then(resp => resp.json()).then(resp => {
-                        if (resp.msg === 'mensaje enviado') {
-                            location.href = "verify.html"
-                        } else {
+                    fAuth.createUserWithEmailAndPassword(this.usuario.correo, this.usuario.pass).then(() => {
+                        //Registra el usuario en la Base de Datos...
+                        db.ref('users/' + fAuth.currentUser.uid).set({
+                            'uId': fAuth.currentUser.uid,
+                            'nombreU': this.usuario.nombreU,
+                            'selectU': this.usuario.selectU,
+                            'nombreCooperativa': this.usuario.nombreCooperativa,
+                            'telefono': this.usuario.telefono,
+                            'correo': fAuth.currentUser.email,
+                            'password': this.usuario.pass,
+                            'fechaRegistro': this.usuario.fechaRegistro
+                        }).then(() => {
+                            this.enviarEmail();
+                        }).catch((error) => {
+                            alertify.error(error);
+                        })
 
-                            Swal.fire({
-                                icon: 'info',
-                                title: 'Oops...',
-                                text: resp.msg,
 
-                            });
+                    }).catch(function (error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorCode, errorMessage);
 
-                        }
-
-                    }).catch(e => { console.log(e); })
-
+                    });
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -97,10 +108,21 @@ var appusuario = new Vue({
             }
 
         },
+        enviarEmail() {
+            let user = fAuth.currentUser;
+            user.sendEmailVerification().then(() => {
+                swal.fire('Se le envio  un mensaje a su correo para verificar su cuenta', 'seccess')
+            })
+
+
+        },
+
+
+
         IniciarSesion: function () {
             location.href = "login.php";
         },
-        Rcliente: function () {
+        rCliente: function () {
             location.href = "registroCliente.php"
         }
     }

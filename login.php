@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,13 +52,26 @@ if (isset($_SESSION['usuario'])) {
 	</div>
 
 
+	<!-- Firebase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+<script src="public/js/configFirebase.js"></script>
 
-	<script src="public/js/jquery-3.5.js"></script>
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="public/js/jquery-ui.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="public/js/vue.min.js"></script>
-	<script src="public/vistas/login/login.js"></script>
+<!-- jQuery -->
+<script src="public/js/jquery-3.5.js"></script>
+
+<!--  Boostrap -->
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+<!-- JQueryUi -->
+<script src="public/js/jquery-ui.js"></script>
+<!-- Sweetalert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- Vuejs -->
+<script src="public/js/vue.min.js"></script>
+<!-- mis scrips -->
+<script src="public/vistas/login/login.js"></script>
 
 </body>
 </html>
