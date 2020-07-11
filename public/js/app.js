@@ -18,6 +18,7 @@ var validarsession = new Vue({
    },
 
 
+
    created: function () {
       this.traercuenta();
       $("#contenedor").load("public/vistas/home/home.html", function (data) {
