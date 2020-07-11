@@ -120,7 +120,7 @@ var appusuario = new Vue({
 
 
         IniciarSesion: function () {
-            location.href = "login.php";
+            location.href = "login.html";
         },
         rCliente: function () {
             location.href = "registroCliente.php"

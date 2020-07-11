@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!--css-->
-
+  <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
   <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
   <link rel="stylesheet" href="public/css/estilos.css">
@@ -57,27 +57,23 @@
         </li>
       </ul>
       <ul class="navbar-nav uls">
-        <li class="lis" v-if="session===0">
-          <a class="nav-link  as" id="login" href="#" @click="login">
+        <li class="lis">
+          <a class="nav-link  as" id="login" href="#Login" @click="login"  v-if="session=='regrese'">
             <h4> Iniciar Sesion</h4>
           </a>
-        </li>
-        <li class="nav-item dropdown " v-else>
-          <div class="dropdown ml-auto ">
+          <div class="dropdown ml-auto " v-else>
             <a class="btn btn-lg  dropdown-toggle" @click="slide" href="#" role="button" id="dropdownMenuLink"
-              data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img v-if="datoscuenta[0].imagen!=''" v-bind:src="datoscuenta[0].imagen" class=" rounded-circle"
-                width="30px" height="30px">
-              <img v-else src="public/img/avatars.gif" class=" rounded-circle" width="30px" height="30px">
-              {{datoscuenta[0].nombreu}}
+              data-toggle="dropdown" data-hover="dropdown">
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-menu bg-success" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item " href="cooperativa.php">Perfil <i class="fas fa-user-tie"></i></a>
-              <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i class="fas fa-inbox"></i></a>
-              <a class="dropdown-item " href="cerrarsesion.php">Cerrar Sesión <i class="fas fa-sign-in-alt"></i></a>
+              <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox<i class="fas fa-inbox"></i></a>
+              <a @click="singOut" class="dropdown-item " href="#SignOut">Cerrar Sesión <i
+                  class="fas fa-sign-in-alt"></i></a>
             </div>
           </div>
         </li>
+        
       </ul>
     </div>
   </nav>
@@ -87,6 +83,7 @@
 
 
   <!--js librerias-->
+
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
@@ -107,25 +104,24 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!-- wow.js -->
   <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
-  <!-- soccket.io -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-  <!-- js propio -->
-  <script src="public/js/app.js"></script>
-  <!-- API Notifications -->
-  <script src="public/js/notificaciones.js"></script>
   <!-- inicializacion de wow.js -->
   <script>
-    var wow = new WOW(
+   /*var wow = new WOW(
       {
         boxClass: 'wow',      // animated element css class (default is wow)
         animateClass: 'animated', // animation css class (default is animated)
         offset: 0,          // distance to the element when triggering the animation (default is 0)
       }
     );
-    wow.init();
-
-
+    wow.init();*/
   </script>
+  <!-- soccket.io -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <!-- js propio -->
+  <script src="public/js/app.js"></script>
+  <!-- API Notifications -->
+  <script src="public/js/notificaciones.js"></script>
+
 
 
 

@@ -4,6 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+var fireAuth = firebase.auth();
 var validarsession = new Vue({
    /**
     * @property el elemento del DOM a enlazar
@@ -12,43 +13,45 @@ var validarsession = new Vue({
    data: {
       valor: '',
       session: '',
-      datoscuenta: []
+      datoscuenta: [],
+
    },
 
 
    created: function () {
-      this.traersession();
       this.traercuenta();
       $("#contenedor").load("public/vistas/home/home.html", function (data) {
          $(this).html(data);
       });
    },
    methods: {
-
-      /**
-       * Trae el resultado de la verificacion de una variable de session 
-       * @access public
-       * @function traersession
-       */
-      traersession: function () {
-         fetch(`Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
-            if (resp.msg == "regrese") {
-               this.session = 0;
-            } else {
-               this.session = 1;
-            }
-         })
-      },
-
       /**
        * Trae los datos de la cuenta del usuario logueado
        * @access public
        * @function traercuenta
        */
       traercuenta: function () {
-         fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp => resp.json()).then(resp => {
-            this.datoscuenta = resp;
-         })
+
+         fireAuth.onAuthStateChanged(function (user) {
+            if (user) {
+               validarsession.session = 'Bienvenido';
+               console.log('**********');
+               console.log(validarsession.session);
+               console.log('**********');
+
+            } else {
+               validarsession.session = 'regrese';
+               console.log('**********');
+               console.log(validarsession.session);
+               console.log('**********');
+
+            }
+         });
+      },
+      singOut: function () {
+         fireAuth.signOut().catch(function (error) {
+            alertify.warning('Ocurrio un error', error)
+         });
       },
 
       /**
@@ -71,7 +74,7 @@ var validarsession = new Vue({
        * @function inicio
        */
       inicio() {
-         todoproducto.traersession();
+
          $("#contenedor").load("public/vistas/home/home.html", function (data) {
             $(this).html(data);
          });
@@ -127,7 +130,7 @@ var validarsession = new Vue({
        * @function login
        */
       login() {
-         location.href = "login.php"
+         location.href = "login.html"
       }
    }
 });
