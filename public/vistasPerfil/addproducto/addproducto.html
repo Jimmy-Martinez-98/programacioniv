@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8">
@@ -23,21 +23,21 @@
 		</div>
 		<div class="form-group ">
 			<label for="nameproduct">Nombre Producto</label>
-			<input v-model.trim="publicP.nombre_producto" type="text" class="form-control" id="addproducto"
+			<input v-model.trim="publicP.nombreProducto" type="text" class="form-control" id="addproducto"
 				aria-describedby="productohelp" placeholder="Ingresa Producto">
 		</div>
 		<div class="form-row">
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<textarea v-model.trim="publicP.descprod" type="text" class="form-control" id="descproducto"
+					<textarea v-model.trim="publicP.descProd" type="text" class="form-control" id="descproducto"
 						placeholder="Ingresa Descripcion"></textarea>
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="desc">Codigo Producto</label>
-					<input v-model.trim="publicP.codigo_producto" type="text" pattern="[0-9]{4}" maxlength="4"
+					<input v-model.trim="publicP.codeProducto" type="text" pattern="[0-9]{4}" maxlength="4"
 						minlength="4" class="form-control codigo" id="codigoproducto" placeholder="Ingresa Codigo">
 				</div>
 			</div>
@@ -69,14 +69,15 @@
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="precio_venta">Precio De Venta</label>
-					<input v-model.trim="publicP.precio_venta" pattern="[0-9]{6}" maxlength="6" minlength="2"
+					<input v-model.trim="publicP.precioVenta" pattern="[0-9]{6}" maxlength="6" minlength="2"
 						type="number" class="form-control money" id="precioventa" placeholder="050.10">
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="cantidad">Fecha</label>
-					<input v-model.trim="publicP.fecha_subida" class="form-control" type="date">
+					<input v-model.trim="publicP.fechaSubida" class="form-control" type="date">
+				{{publicP.fechaSubida}}
 				</div>
 			</div>
 			<div class="col-md-6 mb-3 bg-white rounded">
@@ -100,8 +101,13 @@
 						</div>
 						<div class="form-check form-check-inline ">
 							<input class="form-check-input" v-model="publicP.caja" type="checkbox" id="caja"
-								value="Quintal">
+								value="caja">
 							<label class="form-check-label" for="caja">Caja</label>
+						</div>
+						<div class="form-check form-check-inline ">
+							<input class="form-check-input" v-model="publicP.unidad" type="checkbox" id="caja"
+								value="Unidad">
+							<label class="form-check-label" for="unidad">Unidad</label>
 						</div>
 					</div>
 				</div>
@@ -113,6 +119,10 @@
 			</div>
 		</div>
 	</form>
+
+
+
+
 	<script src="public/js/jquery.mask.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 

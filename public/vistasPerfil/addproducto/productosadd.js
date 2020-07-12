@@ -4,28 +4,27 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+var DB = firebaseDB;
 var publicarp = new Vue({
 	el: '#frm-productoN',
 	data: {
 
 		publicP: {
-			miproducto: 0,
-			idusuario: 0,
-			nombre_producto: '',
-			descprod: '',
-			codigo_producto: '',
+			idUsuario: '',
+			nombreProducto: '',
+			descProducto: '',
+			codeProducto: '',
 			categoria: '',
 			libra: '',
 			quintal: '',
 			arroba: '',
 			caja: '',
+			unidad: '',
 			imagen: '',
 			existencias: '',
 			precio: '',
-			precio_venta: '',
-			fecha_subida: '',
-			accion: 'nuevo',
-			msg: ''
+			precioVenta: '',
+			fechaSubida: ''
 		},
 
 
@@ -46,34 +45,103 @@ var publicarp = new Vue({
 		 * @function traerid
 		 */
 		traerid: function () {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
-				this.publicP.idusuario = resp[0].idusuario;
-			})
-		},
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (user) {
+					var dbchild = DB.ref('users/');
+					dbchild.on('value', snap => {
+						snap.forEach(element => {
+							if (user.uid === element.key) {
+								publicarp.publicP.idUsuario = element.val().uId;
 
-		/**
-		 * Es cuando le da clic en publicar producto 
-		 * @access public
-		 * @function guardar
-		 */
-		guardar: function () {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatos&nuevoP=${JSON.stringify(this.publicP)}`).then(resp => resp.json()).then(resp => {
-				if (resp.msg == "Su Producto Fue Publicado Exitosamente") {
-					alertify.success(resp.msg);
-
-					this.publicP = '';
+							} else {
+								console.log('no coincide');
+							}
+						});
+					});
 				} else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'warning',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1500
-					})
+					console.log('error');
+
 				}
 			});
 		},
 
+		/**
+		 * Publica el producto del usuario en la base de datos 
+		 * @access public
+		 * @function guardar
+		 */
+		guardar: function () {
+			//Crea nueva key para el json del producto
+			var newKey = DB.ref().child('Productos/').push().key;
+
+			var arrayData = this.JsonParse(
+				newKey, this.publicP.idUsuario,
+				this.publicP.nombreProducto, this.publicP.descProducto,
+				this.publicP.codeProducto, this.publicP.categoria,
+				this.publicP.libra, this.publicP.arroba,
+				this.publicP.quintal, this.publicP.unidad,
+				this.publicP.caja, this.publicP.imagen,
+				this.publicP.existencias, this.publicP.precio,
+				this.publicP.precioVenta, this.publicP.fechaSubida
+			);
+
+				//insercion
+			DB.ref('Productos/' + newKey).set(arrayData, (error) => {
+				if (error) {
+					swal.fire({
+						title: 'Error ',
+						text: error,
+						icon: 'error'
+					})
+				} else {
+					Swal.fire({
+						icon: 'success',
+						title: 'Tu Producto Se Publico',
+					})
+					this.publicP.idUsuario = '';
+					this.publicP.nombreProducto = '';
+					this.publicP.descProducto = '';
+					this.publicP.codeProducto;
+					this.publicP.categoria = '';
+					this.publicP.libra = '';
+					this.publicP.arroba = '';
+					this.publicP.quintal = '';
+					this.publicP.unidad = '';
+					this.publicP.caja = '';
+					this.publicP.imagen = '';
+					this.publicP.existencias = '';
+					this.publicP.precio = '';
+					this.publicP.precioVenta = '';
+					this.publicP.fechaSubida = '';
+				}
+			});
+		},
+
+
+		JsonParse: function (idP, idU, nombreProducto, descProducto, codeProducto, categoria, libra, arroba, quintal,
+			unidad, caja, imagen, existencias, precio, precioVenta, fechaSubida) {
+
+			let Data = {
+				'idProducto': idP,
+				'idUsuario': idU,
+				'nombreProducto': nombreProducto,
+				'descProducto': descProducto,
+				'codeProducto': codeProducto,
+				'categoria': categoria,
+				'libra': libra,
+				'arroba': arroba,
+				'quintal': quintal,
+				'unidad': unidad,
+				'caja': caja,
+				'imagen': imagen,
+				'existencias': existencias,
+				'precio': precio,
+				'precioVenta': precioVenta,
+				'fechaSubida': fechaSubida
+			}
+
+			return Data;
+		},
 
 		/**
 		 * Obtiene la imagen que esta en el tag img, lo almacena en una carpeta y
@@ -83,10 +151,10 @@ var publicarp = new Vue({
 		 * @param {object} e - Representa el cambio que sucede en el tag img 
 		 */
 		obtenerimagen(e) {
-			var respuesta = null;
+			let respuesta = null;
 			let file = e.target.files[0];
-			var formdata = new FormData($('#frm-productoN')[0]);
-			var ruta = 'Private/Modulos/guardarruta.php';
+			let formdata = new FormData($('#frm-productoN')[0]);
+			let ruta = 'Private/Modulos/guardarruta.php';
 
 			$.ajax({
 				type: "POST",
@@ -102,7 +170,6 @@ var publicarp = new Vue({
 			});
 			this.publicP.imagen = 'Private/Modulos/' + respuesta
 			this.cargar(file);
-
 		},
 
 
@@ -138,7 +205,7 @@ var publicarp = new Vue({
 });
 
 /**
- * Asigna la mascar de dinero a los inputs
+ * Asigna la mascara de dinero a los inputs
  */
 $(function () {
 	$('.money').mask('000.00');

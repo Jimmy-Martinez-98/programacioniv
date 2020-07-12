@@ -12,9 +12,6 @@
   <link rel="stylesheet" href="public/css/estilos.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
-
   <link rel="icon" href="public/img/logo2,0icon.ico">
   <title>Agro Producers </title>
 </head>
@@ -22,6 +19,7 @@
 <body>
   <nav class="navbar navbar-expand-lg fixed-top  navbar-light " id="hola">
     <a class="navbar-brand" href="index.html"> <img height="50" src="public/img/logo2,0.png"></a>
+
     <button class="navbar-toggler boton" v-on:click="colapsar" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation">
@@ -64,9 +62,11 @@
           <div class="dropdown ml-auto " v-else>
             <a class="btn btn-lg  dropdown-toggle" @click="slide" href="#" role="button" id="dropdownMenuLink"
               data-toggle="dropdown" data-hover="dropdown">
+              <span v-if="datoscuenta.nombreCooperativa==''">{{datoscuenta.nombreU}}</span>
+              <span v-else>{{datoscuenta.nombreCooperativa}}</span>
             </a>
-            <div class="dropdown-menu bg-success" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item " href="cooperativa.php">Perfil <i class="fas fa-user-tie"></i></a>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item " href="cooperativa.html">Perfil <i class="fas fa-user-tie"></i></a>
               <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox<i class="fas fa-inbox"></i></a>
               <a @click="singOut" class="dropdown-item " href="#SignOut">Cerrar Sesión <i
                   class="fas fa-sign-in-alt"></i></a>
@@ -80,7 +80,6 @@
 
 
   <div id="contenedor" class="container-fluid" style="margin-top: 100px; "></div>
-
 
   <!--js librerias-->
 

@@ -117,8 +117,6 @@ var appusuario = new Vue({
 
         },
 
-
-
         IniciarSesion: function () {
             location.href = "login.html";
         },

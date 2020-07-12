@@ -5,6 +5,7 @@
  * @instance objeto de instancia de Vue.js
  */
 var fireAuth = firebase.auth();
+var firebaseDB = firebase.database()
 var validarsession = new Vue({
    /**
     * @property el elemento del DOM a enlazar
@@ -32,7 +33,6 @@ var validarsession = new Vue({
        * @function traercuenta
        */
       traercuenta: function () {
-
          fireAuth.onAuthStateChanged(function (user) {
             if (user) {
                validarsession.session = 'Bienvenido';
@@ -40,6 +40,8 @@ var validarsession = new Vue({
                console.log(validarsession.session);
                console.log('**********');
 
+               validarsession.UsuarioLogueado();
+               
             } else {
                validarsession.session = 'regrese';
                console.log('**********');
@@ -52,6 +54,14 @@ var validarsession = new Vue({
       singOut: function () {
          fireAuth.signOut().catch(function (error) {
             alertify.warning('Ocurrio un error', error)
+         });
+      },
+      UsuarioLogueado: function () {
+         var dbchild = firebaseDB.ref('users/');
+         dbchild.on('value', snap => {
+            snap.forEach(element => {
+               this.datoscuenta=element.val();
+            });
          });
       },
 

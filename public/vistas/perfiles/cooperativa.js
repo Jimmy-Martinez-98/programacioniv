@@ -5,6 +5,8 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+var firebaseAuth = firebase.auth();
+var firebaseDB = firebase.database();
 var appcooperativa = new Vue({
 	el: '#navbarrr',
 	data: {
@@ -18,8 +20,22 @@ var appcooperativa = new Vue({
 		 * @function traerdatosusuario
 		 */
 		traerdatosusuario: function () {
-			fetch(`Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${JSON.stringify(this.perfil)}`).then(resp => resp.json()).then(resp => {
-				this.perfil = resp;
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (user) {
+					var dbchild = firebaseDB.ref('users/');
+					dbchild.on('value', snap => {
+						snap.forEach(element => {
+							if (user.uid === element.key) {
+								appcooperativa.perfil = element.val();
+								
+							} else {
+								console.log('no coincide');
+							}
+						});
+					});
+				} else {
+					location.href = "login.html";
+				}
 			});
 		},
 		slidedropdown: function () {
