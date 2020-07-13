@@ -1,0 +1,50 @@
+<form action="#" method="post" id="misprod">
+	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+	<link rel="stylesheet" href="public/vistasPerfil/misproductos/misproduc.css">
+
+	<div class="mt-2 wow fadeIn p-1 mb-2 rounded" style="background-color: #5fb677;" >
+		<div class="card mb-2 " v-for="productos in myproductos" >
+			<div class="form-row card-body bg-ligth">
+				<div class="col-md-4 m-auto " >
+					<img :src="productos.imagen" class="rounded" width="100%" height="100%">
+				</div>
+				<div class="col-md-6 mt-2">
+
+					<h2 class="mb-3 card-title font-weight-bold "> {{productos.nombreProducto}}</h2>
+					<p class="text-justify card-text text-black-50 mb-3">{{productos.descProducto}}</p>
+
+					<div class="mt-5 ">
+						<span class="text-black-50 ">${{productos.precioVenta}}</span>
+						<span class="text-black-50 ml-5"
+							v-if="productos.nombreCooperativa!=''">{{productos.nombreCooperativa}}</span>
+						<span class="text-black-50 mr-auto" v-else>{{productos.nombreU}}</span>
+					</div>
+
+				</div>
+
+				<div class="col-md-2  mb-2 mt-3">
+					<button class="btn btn-outline-danger mb-5 mr-auto "
+						@click.prevent="deleteproducto(productos.idProducto)">Eliminar</button>
+				</div>
+
+			</div>
+		</li>
+		
+	</ul>
+
+
+
+
+	<script src="public/vistasPerfil/misproductos/misproductos.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
+	<script>
+		var wow = new WOW(
+			{
+				boxClass: 'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset: 0,          // distance to the element when triggering the animation (default is 0)
+			}
+		);
+		wow.init();
+	</script>
+</form>

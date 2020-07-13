@@ -4,6 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+
 var appeditP = new Vue({
 	el: '#frm-edit',
 	data: {
@@ -155,9 +156,22 @@ var apptodoP = new Vue({
 		 * @function busca
 		 */
 		buscar: function () {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerproductos&nuevoP=${this.valor}`).then(resp => resp.json()).then(resp => {
-				this.todo_prod = resp;
-			});
+			var user = firebase.auth().currentUser;
+			let dbchild = firebaseDB.ref('Productos/');
+			if (user) {
+				dbchild.on('value', (snapshot) => {
+					let todoProducto = []
+					snapshot.forEach(element => {
+						if (user.uid === element.val().idUsuario) {
+							todoProducto.push(element.val());
+						}
+					});
+					this.todo_prod = todoProducto;
+				});
+
+			} else {
+				// No user is signed in.
+			}
 
 		},
 

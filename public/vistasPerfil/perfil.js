@@ -48,7 +48,7 @@ $(document).ready(function () {
 	 * @event click#productos
 	 */
 	$('#productos').click(() => {
-		$('.contenidoP').load("public/vistasPerfil/misproductos/mproductos.php", function (data) {
+		$('.contenidoP').load("public/vistasPerfil/misproductos/mproductos.html", function (data) {
 			$(this).html(data);
 
 		});

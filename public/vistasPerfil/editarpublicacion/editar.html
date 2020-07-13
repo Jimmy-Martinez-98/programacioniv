@@ -152,14 +152,15 @@
 						</tr>
 					</thead>
 					<tbody class="scrollable">
-						<tr v-for="productos in todo_prod" :key="productos.idusuario" v-on:click="modi(productos)">
-							<th scope="row">{{productos.codigo_producto }}</th>
+						<tr v-for="productos in todo_prod" :key="productos.idUsuario" v-on:click="modi(productos)">
+							<th scope="row">{{productos.codeProducto }}</th>
 							<td>
 								<img v-bind:src="productos.imagen" width="100px" height="50px">
 							</td>
-							<td>{{productos.nombre_producto }}</td>
-							<td class="text-justify">{{productos.descprod}}</td>
+							<td>{{productos.nombreProducto }}</td>
+							<td class="text-justify">{{productos.descProducto}}</td>
 							<td>{{ productos.categoria}}</td>
+							
 						</tr>
 					</tbody>
 				</table>
