@@ -27,7 +27,6 @@ var appeditP = new Vue({
 		},
 		imagenlittle: ''
 	},
-
 	methods: {
 		/**
 		 * Actualiza los datos de producto seleccionado
@@ -35,47 +34,79 @@ var appeditP = new Vue({
 		 * @function editar
 		 */
 		editar: function () {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=recibirDatosmod&nuevoP=${JSON.stringify(this.mod)}`).then(resp => resp.json()).then(resp => {
-				if (resp.msg == "Su Producto Ha Sido Actualizado") {
-					alertify.success(resp.msg);
+			if (this.mod.idProducto === '' && this.mod.idUsuario === '' && this.mod.nombreProducto === ''
+				&& this.mod.descProducto === '' && this.mod.codeProducto === '' && this.mod.categoria === ''
+				&& this.mod.existencias === '' && this.mod.precio === '' && this.mod.caja === ''
+				&& this.mod.unidad === '' && this.mod.precioVenta === '' && this.mod.fechaSubida === '' 
+				&& this.mod.libra === '' && this.mod.arroba === '' && this.mod.quintal === '') {
+				swal.fire({
+					title: 'Error',
+					text: 'Los campos estan vacios',
+					icon:'warning'
+				
+				})
 
-				} else {
-					Swal.fire({
-						position: 'top-end',
-						icon: 'warning',
-						title: resp.msg,
-						showConfirmButton: false,
-						timer: 1500
+			} else {
+				let dbChild = firebaseDB.ref('Productos/' + this.mod.idProducto);
+				let data = this.jsonParse(this.mod.idProducto, this.mod.idUsuario, this.mod.nombreProducto,
+					this.mod.descProducto, this.mod.codeProducto, this.mod.categoria, this.mod.existencias, this.mod.precio,
+					this.mod.precioVenta, this.mod.fechaSubida, this.mod.libra, this.mod.arroba, this.mod.quintal, this.mod.caja, this.mod.unidad);
+				dbChild.update(data).then(() => {
+					swal.fire({
+						title: 'ok',
+						text: 'Producto Modificado existosamente',
+						icon: 'success'
 					})
-				}
-			});
+
+					appeditP.limpiar();
+				}).catch(error => {
+					console.log(error);
+
+				})
+				apptodoP.buscar();
+
+			}
+		},
+		jsonParse: function (id, idU, nombre, descripcion, codigo, categoria, cantidad, precio,
+			preciov, fecha, libra, arroba, quintal, caja, unidad) {
+			let data = {
+				'idProducto': id,
+				'idUsuario': idU,
+				'nombreProducto': nombre,
+				'descProducto': descripcion,
+				'codeProducto': codigo,
+				'categoria': categoria,
+				'existencias': cantidad,
+				'precio': precio,
+				'precioVenta': preciov,
+				'fechaSubida': fecha,
+				'libra': libra,
+				'arroba': arroba,
+				'quintal': quintal,
+				'caja': caja,
+				'unidad': unidad
+			}
+			return data;
+		},
+		limpiar: function () {
+			this.mod.idProducto = '';
+			this.mod.idUsuario = '';
+			this.mod.descProducto = '';
+			this.mod.codeProducto = '';
+			this.mod.categoria = '';
+			this.mod.imagen = 'public/img/ico.png';
+			this.mod.libra = '';
+			this.mod.arroba = '';
+			this.mod.quintal = '';
+			this.mod.caja = '';
+			this.mod.unidad = '';
+			this.mod.existencias = '';
+			this.mod.precio = '';
+			this.mod.precioVenta = '';
+			this.mod.fechaSubida = '';
+			this.mod.nombreProducto = '';
 		},
 
-		/**
-		 * Limpia los inputs del formulario
-		 * @access public
-		 * @function limpiar
-		 */
-		limpiar: function () {
-			this.mod.miproduct = 0,
-				this.mod.fk_idusuari = 0,
-				this.mod.nombre_producto = '',
-				this.mod.descprod = '',
-				this.mod.codigo_producto = '',
-				this.mod.categoria = '',
-				this.mod.imagen = 'public/img/ico.png',
-				this.mod.Libra = '',
-				this.mod.Arroba = '',
-				this.mod.Quintal = '',
-				this.mod.Caja = '',
-				this.mod.existencias = '',
-				this.mod.precio = '',
-				this.mod.precio_venta = '',
-				this.mod.fecha_subida = '';
-			apptodoP.buscar();
-
-		}
-		,
 
 		/**
 		  * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
@@ -139,6 +170,15 @@ var appeditP = new Vue({
 
 });
 
+
+
+
+
+
+
+
+
+
 /** 
  * @instance objeto de instancia de Vue.js
 */
@@ -159,7 +199,12 @@ var apptodoP = new Vue({
 			var user = firebase.auth().currentUser;
 			let dbchild = firebaseDB.ref('Productos/');
 			if (user) {
-				dbchild.on('value', (snapshot) => {
+				/*orderByChild(funciona como el select)
+				* equalTo(funciona como el where)
+				*starAt - funciona igual que where solo que muestra los datos tipo mas acertados 
+				* en la busqueda
+				*/
+				dbchild.orderByChild('nombreProducto').startAt(this.valor).on('value', (snapshot) => {
 					let todoProducto = []
 					snapshot.forEach(element => {
 						if (user.uid === element.val().idUsuario) {
@@ -168,7 +213,9 @@ var apptodoP = new Vue({
 					});
 					this.todo_prod = todoProducto;
 				});
-
+				if (this.valor === '') {
+					this.autoSearch()
+				}
 			} else {
 				// No user is signed in.
 			}
@@ -183,11 +230,27 @@ var apptodoP = new Vue({
 		*/
 		modi: function (id) {
 			appeditP.mod = id;
+
+
+		},
+		autoSearch: function () {
+			var user = firebase.auth().currentUser;
+			let dbchild = firebaseDB.ref('Productos/');
+			dbchild.on('value', (snapshot) => {
+				let todoProducto = []
+				snapshot.forEach(element => {
+					if (user.uid === element.val().idUsuario) {
+						todoProducto.push(element.val());
+					}
+				});
+				this.todo_prod = todoProducto;
+			});
 		}
 
 	},
 	created: function () {
 		this.buscar();
+		this.autoSearch();
 	}
 
 })

@@ -33,7 +33,7 @@
 								</div>
 							</div>
 							<label for="nameproduct">Nombre Producto</label>
-							<input v-model="mod.nombre_producto" type="text" class="form-control" id="addproducto"
+							<input v-model="mod.nombreProducto" type="text" class="form-control" id="addproducto"
 								aria-describedby="productohelp" placeholder="Ingresa Producto">
 
 						</div>
@@ -41,14 +41,14 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Descripcion Producto</label>
-							<textarea v-model="mod.descprod" type="text" class="form-control" id="descproducto"
+							<textarea v-model="mod.descProducto" type="text" class="form-control" id="descproducto"
 								placeholder="Ingresa Descripcion"></textarea>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input v-model="mod.codigo_producto" type="text" pattern="[0-9]{8}" maxlength="8"
+							<input v-model="mod.codeProducto" type="text" pattern="[0-9]{8}" maxlength="8"
 								minlength="4" class="form-control codigo" id="codigoproducto"
 								placeholder="Ingresa codigo del Producto">
 						</div>
@@ -82,14 +82,14 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input v-model="mod.precio_venta" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
+							<input v-model="mod.precioVenta" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
 								class="form-control" id="precioventa" placeholder="Ingresa Precio de Venta">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Fecha</label>
-							<input v-model="mod.fecha_subida" class="form-control" type="date">
+							<input v-model="mod.fechaSubida" class="form-control" type="date">
 						</div>
 					</div>
 					<div class="col-md-6 bg-light rounded">
@@ -97,42 +97,44 @@
 						<div class="form-group d-flex justify-content-center">
 							<div class="form-check-inline " id="validationCustom04">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" v-model="mod.Libra" required type="checkbox"
+									<input class="form-check-input" v-model="mod.libra" required type="checkbox"
 										id="libra" value="Libra">
 									<label class="form-check-label" for="libra">Libra</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" required v-model="mod.Arroba" type="checkbox"
+									<input class="form-check-input" required v-model="mod.arroba" type="checkbox"
 										id="arroba" value="Arroba">
 									<label class="form-check-label" for="arroba">Arroba</label>
 								</div>
 								<div class="form-check form-check-inline ">
-									<input class="form-check-input" required v-model="mod.Quintal" type="checkbox"
+									<input class="form-check-input" required v-model="mod.quintal" type="checkbox"
 										id="quintal" value="Quintal">
 									<label class="form-check-label" for="quintal">Quintal</label>
 								</div>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" required v-model="mod.Caja" type="checkbox" id="caja"
+								<input class="form-check-input" required v-model="mod.caja" type="checkbox" id="caja"
 									value="Arroba">
 								<label class="form-check-label" for="caja">Caja</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" required v-model="mod.unidad" type="checkbox" id="unidad"
+									value="Arroba">
+								<label class="form-check-label" for="unidad">Unidad</label>
 							</div>
 						</div>
 
 					</div>
 					<div class="card-footer-fluid col-12 pb-2 ">
 						<div class="form-row">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
 									<button @click="editar" type="button"
 										class="btn btn-primary btn-lg btn-small text-white">Guardar Cambios</button>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-									<button type="button" @click="limpiar"
-										class="btn btn-warning btn-lg btn-small text-white">Limpiar</button>
-								</div>
+							
+							
 							</div>
 						</div>
 					</div>
