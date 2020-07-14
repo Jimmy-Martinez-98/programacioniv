@@ -54,9 +54,9 @@
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav uls">
+      <ul class="navbar-nav uls ml-auto">
         <li class="lis">
-          <a class="nav-link  as" id="login" href="#Login" @click="login"  v-if="session=='regrese'">
+          <a class="nav-link  as" id="login" href="#Login" @click="login" v-if="session=='regrese'">
             <h4> Iniciar Sesion</h4>
           </a>
           <div class="dropdown ml-auto " v-else>
@@ -73,7 +73,7 @@
             </div>
           </div>
         </li>
-        
+
       </ul>
     </div>
   </nav>
@@ -105,14 +105,14 @@
   <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
   <!-- inicializacion de wow.js -->
   <script>
-   /*var wow = new WOW(
-      {
-        boxClass: 'wow',      // animated element css class (default is wow)
-        animateClass: 'animated', // animation css class (default is animated)
-        offset: 0,          // distance to the element when triggering the animation (default is 0)
-      }
-    );
-    wow.init();*/
+    /*var wow = new WOW(
+       {
+         boxClass: 'wow',      // animated element css class (default is wow)
+         animateClass: 'animated', // animation css class (default is animated)
+         offset: 0,          // distance to the element when triggering the animation (default is 0)
+       }
+     );
+     wow.init();*/
   </script>
   <!-- soccket.io -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>

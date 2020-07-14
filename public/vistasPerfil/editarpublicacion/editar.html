@@ -48,8 +48,8 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input v-model="mod.codeProducto" type="text" pattern="[0-9]{8}" maxlength="8"
-								minlength="4" class="form-control codigo" id="codigoproducto"
+							<input v-model="mod.codeProducto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4"
+								class="form-control codigo" id="codigoproducto"
 								placeholder="Ingresa codigo del Producto">
 						</div>
 					</div>
@@ -118,8 +118,8 @@
 								<label class="form-check-label" for="caja">Caja</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" required v-model="mod.unidad" type="checkbox" id="unidad"
-									value="Arroba">
+								<input class="form-check-input" required v-model="mod.unidad" type="checkbox"
+									id="unidad" value="Arroba">
 								<label class="form-check-label" for="unidad">Unidad</label>
 							</div>
 						</div>
@@ -133,42 +133,42 @@
 										class="btn btn-primary btn-lg btn-small text-white">Guardar Cambios</button>
 								</div>
 							</div>
-							
-							
-							</div>
+
+
 						</div>
 					</div>
-				</form>
 			</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="container  p-3 col-md-12 mt-3 wow fadeIn" id="frmMis">
+		<div class="table-responsive-sm">
+			<table class="table bg ">
+				<thead>
+					<tr>
+						<form class="form-control ">
+							<input type="text" class="form-control fondotext" v-model="valor" id="busquedap"
+								v-on:keyup="buscar" placeholder="Buscar Producto por: codigo, Nombre o Categoria">
+						</form>
+					</tr>
+				</thead>
+				<tbody class="scrollable">
+					<tr v-for="productos in todo_prod" :key="productos.idUsuario" v-on:click="modi(productos)">
+						<th scope="row">{{productos.codeProducto }}</th>
+						<td>
+							<img v-bind:src="productos.imagen" width="100px" height="50px">
+						</td>
+						<td>{{productos.nombreProducto }}</td>
+						<td class="text-justify">{{productos.descProducto}}</td>
+						<td>{{ productos.categoria}}</td>
+
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
-		<div class="container  p-3 col-md-12 mt-3 wow fadeIn" id="frmMis">
-			<div class="table-responsive-sm">
-				<table class="table bg ">
-					<thead>
-						<tr>
-							<form class="form-control ">
-								<input type="text" class="form-control fondotext" v-model="valor" id="busquedap"
-									v-on:keyup="buscar" placeholder="Buscar Producto por: codigo, Nombre o Categoria">
-							</form>
-						</tr>
-					</thead>
-					<tbody class="scrollable">
-						<tr v-for="productos in todo_prod" :key="productos.idUsuario" v-on:click="modi(productos)">
-							<th scope="row">{{productos.codeProducto }}</th>
-							<td>
-								<img v-bind:src="productos.imagen" width="100px" height="50px">
-							</td>
-							<td>{{productos.nombreProducto }}</td>
-							<td class="text-justify">{{productos.descProducto}}</td>
-							<td>{{ productos.categoria}}</td>
-							
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
+	</div>
 	</div>
 
 

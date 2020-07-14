@@ -17,7 +17,7 @@
   border-radius: 3px;
 }
 .scrolle::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 147);
+  background: rgba(148, 148, 147, 0);
   border-radius: 3px;
 }
 

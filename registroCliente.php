@@ -106,7 +106,7 @@ if (isset($_SESSION['usuario'])) {
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	 <script src="public/vistas/usuario/registrocliente.js"></script>
+	<script src="public/vistas/usuario/registrocliente.js"></script>
 
 </body>
 </html>
