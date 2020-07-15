@@ -9,26 +9,37 @@ var appinfo = new Vue({
   data: {
     we: [],
   },
-
   created: function () {
-    this.todo();
+    this.datos();
   },
   methods: {
     /**
      * 	Trae imagen y descripcion de la cooperativa o productor
      * @access public
-     * @function todo
+     * @function datos
      */
-    todo: function () {
-      fetch(
-        `Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(
-          this.we
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.we = resp[0];
+    datos: function () {
+      let user = firebaseAuth.currentUser;
+      let db = firebaseDB;
+      let data = [];
+      if (user) {
+        db.ref("descUsuario/").on("value", (snap) => {
+          snap.forEach((element) => {
+            if (user.uid === element.val().idU) {
+              data.push(element.val());
+            }
+          });
+          if (data != "" || data != null) {
+            appinfo.we = data[0];
+            console.log("=>", appinfo.we);
+          } else {
+            appinfo.we = "";
+            console.log("=>", appinfo.we);
+          }
         });
+      } else {
+        console.log("wrror");
+      }
     },
     /**
      * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
@@ -37,16 +48,8 @@ var appinfo = new Vue({
      * @function editardatos
      * @param {object} id - Representa la informacion del item seleccionado
      */
-    editardatos: function (id) {
-      fetch(
-        `Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          appedit.edidar.fk_idusuario = resp[0].idusuario;
-        });
-      appedit.edidar = id;
-      appedit.edidar.accion = "modificar";
+    editarDatos: function (id) {
+      appEdit.modificarDatos = id;
     },
   },
 });
@@ -54,16 +57,10 @@ var appinfo = new Vue({
 /**
  * @instance objeto de instancia de Vue.js
  */
-var appedit = new Vue({
+var appEdit = new Vue({
   el: "#modaleditar",
   data: {
-    edidar: {
-      accion: "modificar",
-      descripcion: "",
-      imagen: "",
-      infoUsuario: "",
-      fk_idusuario: "",
-    },
+    modificarDatos: [],
 
     imagenlittle: "",
   },
@@ -74,20 +71,47 @@ var appedit = new Vue({
      * @function guardar
      */
     guardar: function () {
-      fetch(
-        `private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(
-          this.edidar
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg != "Datos Actualizados Exitosamente") {
-            alertify.warning(resp.msg);
-          } else {
-            alertify.success(resp.msg);
-            appinfo.todo();
-          }
-        });
+      let key = this.modificarDatos.idDesc;
+      let data = this.jsonParse(
+        key,
+        this.modificarDatos.idU,
+        this.modificarDatos.imagen,
+        this.modificarDatos.descripcion
+      );
+
+      let db = firebaseDB;
+      if (
+        (this.modificarDatos.imagen != "" &&
+          this.modificarDatos.descripcion != "") ||
+        (this.modificarDatos.imagen != "" &&
+          this.modificarDatos.descripcion != "")
+      ) {
+        db.ref("descUsuario/" + key)
+          .update(data)
+          .then(() => {
+            swal.fire({
+              title: "OK!",
+              text: "Datos Actualizados!!",
+              icon: "success",
+            });
+          })
+          .catch(() => {
+            swal.fire({
+              title: "Ups..",
+              text: "Ocurrio un error inesperado",
+              icon: "error",
+            });
+          });
+      }
+    },
+    jsonParse(key, id, imagen, descripcion) {
+      let data = {
+        idDesc: key,
+        idU: id,
+        imagen: imagen,
+        descripcion: descripcion,
+      };
+      return data;
     },
 
     /**
@@ -114,7 +138,7 @@ var appedit = new Vue({
           respuesta = response;
         },
       });
-      this.edidar.imagen = "Private/Modulos/about/" + respuesta;
+      this.modificarDatos.imagen = "Private/Modulos/about/" + respuesta;
     },
 
     /**
@@ -144,46 +168,80 @@ var appedit = new Vue({
   },
 });
 
+/**
+ * @instance objeto de instancia de Vue.js
+ */
 var appnueva = new Vue({
   el: "#nuevam",
   data: {
     descripciones: {
-      fk_idusuario: 0,
       imagen: "",
       descripcion: "",
-      accion: "nuevo",
     },
     imglittle: "",
   },
-  created: function () {
-    this.traerusuario();
-  },
   methods: {
-    traerusuario: function () {
-      fetch(
-        `Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.descripciones.fk_idusuario = resp[0].idusuario;
-        });
+    /**
+     * Guarda la Informacion del formulario en Firebase
+     * la funcion lo que ejecuta es:
+     * 1 - Verificar el usuario logueado si lo esta entonces
+     * 2 - Verifica si los datos no estan vacios
+     * 3 - Hace la incersion en firebase database
+     * @access public
+     * @function guardarInformacion
+     */
+    guardarInformacion: function () {
+      let user = firebaseAuth.currentUser;
+      let db = firebaseDB;
+      if (user) {
+        console.log("si Hay");
+        if (
+          (this.descripciones.imagen != "",
+          this.descripciones.descripcion != "")
+        ) {
+          let uId = user.uid;
+          let key = db.ref().child("descUsuario/").push().key;
+          let data = this.jsonParse(
+            uId,
+            key,
+            this.descripciones.imagen,
+            this.descripciones.descripcion
+          );
+          db.ref("descUsuario/" + key)
+            .set(data)
+            .then(() => {
+              swal.fire({
+                title: "OK!",
+                text: "Datos Guardados Exitosamente",
+                icon: "success",
+              });
+            })
+            .catch(() => {
+              swal.fire({
+                title: "Error",
+                text: "Ocurrio un error inesperado",
+                icon: "error",
+              });
+            });
+        } else {
+          swal.fire({
+            title: "Alerta!",
+            text: "Complete los campos",
+            icon: "info",
+          });
+        }
+      } else {
+        console.log("no Hay");
+      }
     },
-
-    nuevosdatos: function () {
-      fetch(
-        `Private/Modulos/about/procesos.php?proceso=recibirdesc&nosotros=${JSON.stringify(
-          this.descripciones
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg != "Tus datos se almacenaron exitosamente") {
-            alertify.warning(resp.msg);
-          } else {
-            alertify.success(resp.msg);
-            appinfo.todo();
-          }
-        });
+    jsonParse(idU, id, imagen, descripcion) {
+      let data = {
+        idU: idU,
+        idDesc: id,
+        imagen: imagen,
+        descripcion: descripcion,
+      };
+      return data;
     },
     obtenerimagenN(e) {
       let file = e.target.files[0];

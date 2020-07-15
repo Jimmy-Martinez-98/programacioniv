@@ -57,7 +57,6 @@ var validarsession = new Vue({
       dbchild.on("value", (snap) => {
         snap.forEach((element) => {
           if(uid===element.key){
-           console.log(element.val());
            this.datoscuenta = element.val();
           }
         });

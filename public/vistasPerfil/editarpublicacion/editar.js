@@ -56,7 +56,18 @@ var appeditP = new Vue({
           text: "Los campos estan vacios",
           icon: "warning",
         });
-      } else {
+      } else if (
+        this.mod.idProducto != "" &&
+        this.mod.idUsuario != "" &&
+        this.mod.nombreProducto != "" &&
+        this.mod.descProducto != "" &&
+        this.mod.codeProducto != "" &&
+        this.mod.categoria != "" &&
+        this.mod.existencias != "" &&
+        this.mod.precio != "" &&
+        this.mod.precioVenta != "" &&
+        this.mod.fechaSubida != ""
+      ) {
         let dbChild = firebaseDB.ref("Productos/" + this.mod.idProducto);
 
         let data = this.jsonParse(

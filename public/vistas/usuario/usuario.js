@@ -111,7 +111,7 @@ var appusuario = new Vue({
       user.sendEmailVerification().then(() => {
         swal.fire(
           "Se le envio  un mensaje a su correo para verificar su cuenta",
-          "seccess"
+          "success"
         );
       });
     },

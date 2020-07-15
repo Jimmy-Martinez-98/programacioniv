@@ -9,24 +9,8 @@ var appleerH = new Vue({
   data: {
     horarios: [],
   },
-  created: function () {
-    this.leerhorarios();
-  },
   methods: {
-    /**
-     * Trae los horarios del usuario
-     * @access public
-     * @function leerhorarios
-     */
-    leerhorarios: function () {
-      fetch(
-        `Private/Modulos/about/procesos.php?proceso=leer&nosotros=${this.horarios}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.horarios = resp;
-        });
-    },
+  
     /**
      * pasa los datos del item seleccionados a apphorarios.horario para su modificacion
      * @access public
@@ -62,7 +46,7 @@ var appleerH = new Vue({
             .then((resp) => {
               Swal.fire("Eliminado!", resp.msg, "success");
               this.leerhorarios();
-              apphorarios.idtablainfo();
+             
             });
         }
       });
