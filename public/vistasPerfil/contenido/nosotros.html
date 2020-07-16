@@ -18,16 +18,20 @@
 
 			<div class="row card  ">
 				<div class="col-12 card-text">
-					<div class="card mt-2">
-						<img v-if="we.imagen===null||we===''"  src="public/img/ico.png"  width="100%" height="250px" alt=""  >
-						<img v-else="we.imagen!=''" :src="we.imagen"  width="100%" height="250px" alt="">
+					<div class="card mt-2" v-if="infoNosotros.imagen">
+						<img  :src="infoNosotros.imagen"
+							width="100%" height="250px" alt="">
 					</div>
-
+					<div class="card mt-2" v-else>
+						<img src="public/img/manzanas.jpg"
+							width="100%" height="250px" alt="">
+					</div>
 					<h2 class="d-flex justify-content-center">Decripcion</h2>
 					<hr>
 					<div class="card-text mt-2">
-						<p v-if="we.descripcion===null||we===''" class=" text-justify" >nada por aqui</p>
-						<p v-else="we.descripcion!=''" class=" text-justify" >{{we.descripcion}}</p>
+						<p v-if="infoNosotros.descripcion===null||infoNosotros===''" class=" text-justify">nada por aqui
+						</p>
+						<p v-else="infoNosotros.descripcion!=''" class=" text-justify">{{infoNosotros.descripcion}}</p>
 					</div>
 				</div>
 			</div>
@@ -35,16 +39,16 @@
 		</div>
 		<div class="card-foote-fluid pb-2">
 			<div class="container ">
-				
-				<div class="row" v-if="we===null||we===''">
+
+				<div class="row" v-if="infoNosotros===null||infoNosotros===''">
 					<div class="col-12">
 						<input href="#modalnuevo" type="button" id="modalas" class="btn btn-primary btn-lg btn-block"
 							data-toggle="modal" data-target="#nuevam" value="Nueva">
 					</div>
 				</div>
-				<div class="row" v-else="we!=''">
+				<div class="row" v-else="infoNosotros!=''">
 					<div class="col-12">
-						<input href="#modaleditar" v-on:click="editarDatos(we)" type="button" id="modala"
+						<input href="#modaleditar" v-on:click="editarDatos(infoNosotros)" type="button" id="modala"
 							class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar"
 							value="Modificar">
 
@@ -94,8 +98,8 @@
 			<div class="modal-body">
 				<form id="imgs">
 					<div class="col-12 d-flex justify-content-center card	">
-						<img  
-						 :src="bindearimagen":src="modificarDatos.imagen" width="100%" height="150px">
+						<img :src="modificarDatos.imagen" :src="bindearimagen" width="100%" height="150px">
+							{{modificarDatos.imagen}}
 						<div class="custom-file">
 							<input @change="obtenerimagen" type="file" required name="archivo" class="custom-file-input"
 								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
@@ -106,7 +110,8 @@
 					<div class="col-12 text-dark">
 						<div class="form-group">
 							<label for="desc">Descripcion</label>
-							<textarea v-model="modificarDatos.descripcion" class="form-control" id="mision" rows="3"></textarea>
+							<textarea v-model="modificarDatos.descripcion" class="form-control" id="mision"
+								rows="3"></textarea>
 						</div>
 					</div>
 
@@ -136,7 +141,7 @@
 			<div class="modal-body">
 				<form id="datos">
 					<div class="col-12 d-flex justify-content-center card	">
-						<img v-bind:src="descripciones.imagen" width="100%" height="150px" :src="bindearimagenN">
+						<img v-bind:src="descripciones.imagen" :src="bindearimagenN" width="100%" height="150px">
 						<input @change="obtenerimagenN" required name="archivo" type="file" class="form-control">
 					</div>
 					<hr>

@@ -132,7 +132,7 @@ var editfoto = new Vue({
         this.imagenvista = e.target.result;
       };
       reader.readAsDataURL(file);
-    },
+    }
   },
   computed: {
     /**

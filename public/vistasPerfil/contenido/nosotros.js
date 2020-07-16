@@ -7,18 +7,18 @@
 var appinfo = new Vue({
   el: "#nosotrosdiv",
   data: {
-    we: [],
+    infoNosotros: [],
   },
   created: function () {
-    this.datos();
+    this.informacion();
   },
   methods: {
     /**
      * 	Trae imagen y descripcion de la cooperativa o productor
      * @access public
-     * @function datos
+     * @function informacion
      */
-    datos: function () {
+    informacion: function () {
       let user = firebaseAuth.currentUser;
       let db = firebaseDB;
       let data = [];
@@ -27,15 +27,11 @@ var appinfo = new Vue({
           snap.forEach((element) => {
             if (user.uid === element.val().idU) {
               data.push(element.val());
+              console.log(data[0]);
+              
             }
           });
-          if (data != "" || data != null) {
-            appinfo.we = data[0];
-            console.log("=>", appinfo.we);
-          } else {
-            appinfo.we = "";
-            console.log("=>", appinfo.we);
-          }
+            this.infoNosotros=data[0];
         });
       } else {
         console.log("wrror");
@@ -49,7 +45,10 @@ var appinfo = new Vue({
      * @param {object} id - Representa la informacion del item seleccionado
      */
     editarDatos: function (id) {
-      appEdit.modificarDatos = id;
+      appEdit.modificarDatos.idU=id.idU
+      appEdit.modificarDatos.idDesc=id.idDesc;
+      appEdit.modificarDatos.imagen=id.imagen;
+      appEdit.modificarDatos.descripcion=id.descripcion
     },
   },
 });
@@ -60,7 +59,12 @@ var appinfo = new Vue({
 var appEdit = new Vue({
   el: "#modaleditar",
   data: {
-    modificarDatos: [],
+    modificarDatos: {
+      idDesc:'',
+      idU:'',
+      imagen:'',
+      descripcion:''
+    },
 
     imagenlittle: "",
   },
@@ -87,13 +91,13 @@ var appEdit = new Vue({
           this.modificarDatos.descripcion != "")
       ) {
         db.ref("descUsuario/" + key)
-          .update(data)
-          .then(() => {
+          .update(data,()=>{
             swal.fire({
               title: "OK!",
               text: "Datos Actualizados!!",
               icon: "success",
             });
+            appinfo.informacion();
           })
           .catch(() => {
             swal.fire({
@@ -123,7 +127,6 @@ var appEdit = new Vue({
      */
     obtenerimagen(e) {
       let file = e.target.files[0];
-      this.cargar(file);
       var respuesta = null;
       var formData = new FormData($("#imgs")[0]);
       var ruta = "Private/Modulos/about/guardarimagencoo.php";
@@ -139,6 +142,7 @@ var appEdit = new Vue({
         },
       });
       this.modificarDatos.imagen = "Private/Modulos/about/" + respuesta;
+      this.cargar(file);
     },
 
     /**
