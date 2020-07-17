@@ -26,15 +26,13 @@ var appinfo = new Vue({
         db.ref("descUsuario/").on("value", (snap) => {
           snap.forEach((element) => {
             if (user.uid === element.val().idU) {
-              data.push(element.val());
-              console.log(data[0]);
-              
+              data.push(element.val());   
             }
           });
             this.infoNosotros=data[0];
         });
       } else {
-        console.log("wrror");
+        console.log("error");
       }
     },
     /**

@@ -9,8 +9,27 @@ var appleerH = new Vue({
   data: {
     horarios: [],
   },
+  created: function () {
+    this.verHorarios();
+  },
   methods: {
-  
+    verHorarios: function () {
+      let user = firebaseAuth.currentUser;
+      let db = firebaseDB;
+      let data = [];
+      if (user) {
+        db.ref("horarioTrabajo/").on("value", (snap) => {
+          snap.forEach((element) => {
+            if (user.uid === element.val().idU) {
+              data.push(element.val());
+            }
+          });
+          this.horarios = data;
+        });
+      } else {
+        console.log("error");
+      }
+    },
     /**
      * pasa los datos del item seleccionados a apphorarios.horario para su modificacion
      * @access public
@@ -18,8 +37,8 @@ var appleerH = new Vue({
      * @param {object} Htrabajo - Representa los datos del item
      */
     modifier: function (Htrabajo) {
-      apphorarios.horario = Htrabajo;
-      apphorarios.horario.accion = "modificar";
+      appHorarios.horario = Htrabajo;
+      appHorarios.horario.accion = "modificar";
     },
 
     /**
@@ -28,7 +47,7 @@ var appleerH = new Vue({
      * @function deleteH
      * @param {Int} id_horario - Representa el identificador del item a eliminar
      */
-    deleteH: function (id_horario) {
+    del: function (id_horario) {
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¡No podrás revertir esto!",
@@ -39,14 +58,21 @@ var appleerH = new Vue({
         confirmButtonText: "Si, Eliminalo!",
       }).then((result) => {
         if (result.value) {
-          fetch(
-            `Private/Modulos/about/procesos.php?proceso=eliminarhorario&nosotros=${id_horario}`
-          )
-            .then((resp) => resp.json())
-            .then((resp) => {
-              Swal.fire("Eliminado!", resp.msg, "success");
-              this.leerhorarios();
-             
+          firebaseDB
+            .ref("horarioTrabajo/" + id_horario)
+            .remove()
+            .then(() => {
+              Swal.fire({
+                text: "Horario Eliminado",
+                icon: "success",
+              });
+              this.verHorarios();
+            })
+            .catch((error) => {
+              swal.fire({
+                text: error,
+                icon: "error",
+              });
             });
         }
       });
