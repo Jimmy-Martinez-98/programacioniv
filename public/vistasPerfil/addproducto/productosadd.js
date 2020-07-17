@@ -84,36 +84,56 @@ var publicarp = new Vue({
         this.publicP.fechaSubida
       );
 
-      //insercion
-      DB.ref("Productos/" + newKey).set(arrayData, (error) => {
-        if (error) {
-          swal.fire({
-            title: "Error ",
-            text: error,
-            icon: "error",
-          });
-        } else {
-          Swal.fire({
-            icon: "success",
-            title: "Tu Producto Se Publico",
-          });
-          this.publicP.idUsuario = "";
-          this.publicP.nombreProducto = "";
-          this.publicP.descProducto = "";
-          this.publicP.codeProducto;
-          this.publicP.categoria = "";
-          this.publicP.libra = "";
-          this.publicP.arroba = "";
-          this.publicP.quintal = "";
-          this.publicP.unidad = "";
-          this.publicP.caja = "";
-          this.publicP.imagen = "";
-          this.publicP.existencias = "";
-          this.publicP.precio = "";
-          this.publicP.precioVenta = "";
-          this.publicP.fechaSubida = "";
-        }
-      });
+      if (
+        this.publicP.idUsuario != ''||this.publicP.idUsuario!=null &&
+        this.publicP.nombreProducto != ''|| this.publicP.nombreProducto!=null &&
+        this.publicP.descProducto != ''| this.publicP.descProducto !=null &&
+        this.publicP.codeProducto != ''|| this.publicP.codeProducto !=null &&
+        this.publicP.categoria != ''|| this.publicP.categoria != null &&
+        this.publicP.imagen != ''|| this.publicP.imagen !=null &&
+        this.publicP.existencias != ''||this.publicP.existencias !=null &&
+        this.publicP.precio != '' ||this.publicP.precio !=null && 
+        this.publicP.precioVenta != ''|| this.publicP.precioVenta !=null &&
+        this.publicP.fechaSubida != ""|| this.publicP.fechaSubida !=null
+      ) {
+         //insercion
+        DB.ref("Productos/" + newKey).set(arrayData, (error) => {
+          if (error) {
+            swal.fire({
+              title: "Error ",
+              text: error,
+              icon: "error",
+            });
+          } else {
+            Swal.fire({
+              icon: "success",
+              title: "Tu Producto Se Publico",
+            });
+            this.publicP.idUsuario = "";
+            this.publicP.nombreProducto = "";
+            this.publicP.descProducto = "";
+            this.publicP.codeProducto;
+            this.publicP.categoria = "";
+            this.publicP.libra = "";
+            this.publicP.arroba = "";
+            this.publicP.quintal = "";
+            this.publicP.unidad = "";
+            this.publicP.caja = "";
+            this.publicP.imagen = "";
+            this.publicP.existencias = "";
+            this.publicP.precio = "";
+            this.publicP.precioVenta = "";
+            this.publicP.fechaSubida = "";
+          }
+        });
+      }else{
+        swal.fire({
+          title:'Error',
+          text:'no se permiten campos vacios',
+          icon:'warning'
+        })
+      }
+     
     },
 
     JsonParse: function (
@@ -134,23 +154,35 @@ var publicarp = new Vue({
       precioVenta,
       fechaSubida
     ) {
+      let nombreU,nombreCooperativa;
+
+      DB.ref('users/').on('value',(snap)=>{
+        snap.forEach(element => {
+            if(idU===element.val().uId){
+              nombreU=element.val().nombreU;
+              nombreCooperativa=element.val().nombreCooperativa;
+            }
+        });
+      })
       let Data = {
-        idProducto: idP,
-        idUsuario: idU,
-        nombreProducto: nombreProducto,
-        descProducto: descProducto,
-        codeProducto: codeProducto,
-        categoria: categoria,
-        libra: libra,
-        arroba: arroba,
-        quintal: quintal,
-        unidad: unidad,
-        caja: caja,
-        imagen: imagen,
-        existencias: existencias,
-        precio: precio,
-        precioVenta: precioVenta,
-        fechaSubida: fechaSubida,
+        'idProducto': idP,
+        'idUsuario': idU,
+        'nombreProducto': nombreProducto,
+        'descProducto': descProducto,
+        'codeProducto': codeProducto,
+        'categoria': categoria,
+        'libra': libra,
+        'arroba': arroba,
+        'quintal': quintal,
+        'unidad': unidad,
+        'caja': caja,
+        'imagen': imagen,
+        'existencias': existencias,
+        'precio': precio,
+        'precioVenta': precioVenta,
+        'fechaSubida': fechaSubida,
+        'nombreU': nombreU,
+        'nombreCooperativa':nombreCooperativa
       };
 
       return Data;

@@ -29,15 +29,15 @@ var app = new Vue({
      * @function datoss
      */
     datoss: function () {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=recibirall&miproducto=${JSON.stringify(
-          this.productos
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.productos = resp;
+      let dataP=[];
+     
+      firebaseDB.ref('Productos/').on('value',(snap)=>{
+        snap.forEach(element => {
+          dataP.push(element.val());
         });
+        this.productos=dataP
+      })
+     
     },
 
     /**
