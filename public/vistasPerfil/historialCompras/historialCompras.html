@@ -1,9 +1,7 @@
-<?php
-session_start();
-?>
+
 <form action="#" method="post" id="productoss">
 	<link rel="stylesheet" href="public/vistasPerfil/historialCompras/historial.css">
-	<ul class="list-group wow fadeIn" v-for="Mcompra in compras_M":key="Mcompra.id_compras">
+	<ul class="list-group wow fadeIn" v-for="Mcompra in productos":key="Mcompra.idComprador">
 			<li class="list-group-item bg-white"  >
 				<div class="form-row">
 					<div class="col-md-3 m-auto">
@@ -11,13 +9,13 @@ session_start();
 					</div>
 					<div class="col-md-8 mt-2">
 
-						<h2 class="mb-3 font-weight-bold ml-3"> {{Mcompra.nombre_producto}}</h2>
-						<p class="text-justify ml-3">{{Mcompra.descprod}}</p>
+						<h2 class="mb-3 font-weight-bold ml-3"> {{Mcompra.nombreProducto}}</h2>
+						<p class="text-justify ml-3">{{Mcompra.descProducto}}</p>
 
 						<div class="mt-5">
-						<span class="text-black-50 ml-3" >${{Mcompra.precio_venta}}</span>
-						<span class="text-black-50 ml-5" v-if="Mcompra.nombrecooperativa!=''" >{{Mcompra.nombrecooperativa}}</span>
-						<span class="text-black-50 mr-auto" v-else >{{Mcompra.nombreu}}</span>
+						<span class="text-black-50 ml-3" >${{Mcompra.precioVenta}}</span>
+						<span class="text-black-50 ml-5" v-if="Mcompra.nombreCooperativa!=''" >{{Mcompra.nombreCooperativa}}</span>
+						<span class="text-black-50 mr-auto" v-else >{{Mcompra.nombreU}}</span>
 						<span class="ml-2 text-black-50">Compro:</span>
 						<span class="badge badge-primary ml-1">{{Mcompra.forma_compra}}</span>
 						</div>

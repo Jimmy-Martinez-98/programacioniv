@@ -39,7 +39,7 @@ $(document).ready(function () {
    */
   $("#historial").click(() => {
     $(".contenidoP").load(
-      "public/vistasPerfil/historialCompras/historialCompras.php",
+      "public/vistasPerfil/historialCompras/historialCompras.html",
       function (data) {
         $(this).html(data);
       }

@@ -25,9 +25,7 @@ var appcooperativa = new Vue({
             snap.forEach((element) => {
               if (user.uid === element.key) {
                 appcooperativa.perfil = element.val();
-              } else {
-                console.log("no coincide");
-              }
+              } 
             });
           });
         } else {

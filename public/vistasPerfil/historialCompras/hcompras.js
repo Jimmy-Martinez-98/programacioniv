@@ -8,7 +8,6 @@ var appprod = new Vue({
   el: "#productoss",
   data: {
     productos: [],
-    compras_M: [],
   },
   created: function () {
     this.fullp();
@@ -20,13 +19,9 @@ var appprod = new Vue({
      * @function fullp
      */
     fullp: function () {
-      fetch(
-        `Private/Modulos/misproductos/proceso.php?proceso=Mis_Compras&miproducto=${this.productos}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.compras_M = resp;
-        });
+      firebaseDB.ref('compras/').on('value',snap=>{
+          this.productos=snap.val();
+      })
     },
   },
 });

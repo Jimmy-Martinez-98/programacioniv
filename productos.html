@@ -16,15 +16,6 @@
 </head>
 
 <body>
-
-
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb bg-white">
-			<li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Producto.</li>
-		</ol>
-	</nav>
-
 	<div class="container-fluid  mb-2" id="productovista">
 		<div class="row ">
 			<div class="col-sm  mt-2  imges wow fadeIn">
@@ -34,7 +25,7 @@
 			<div class="col-sm mt-5 wow fadeIn">
 				<div class="container columna form-row">
 					<div class="col-md-12 form-row">
-						<h1>{{detallesprod.info.nombre_producto}}</h1>
+						<h1>{{detallesprod.info.nombreProducto}}</h1>
 						<div class=" badge badge-danger text-wrap ml-3" style="width: 3.5rem; height:6rem"
 							v-if="detallesprod.info.isagotado==='SI'">
 							<img class="terni mt-2" src="public/img/x-circle.svg" width=30px heigth="30px">
@@ -59,7 +50,7 @@
 					</p>
 					<div class="container-sm">
 						<p class="text-justify text-black-50">
-							{{detallesprod.info.descprod}}
+							{{detallesprod.info.descProducto}}
 						</p>
 						<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i>
 							Contactar </a>
@@ -70,10 +61,10 @@
 								</div>
 								<select class="custom-select" v-model="Compra.select_Cantidad" id="inputGroupSelect01">
 									<option selected value="">Elige...</option>
-									<option value="Libra" v-if="detallesprod.info.Libra=='1'">Libra</option>
-									<option value="Arroba" v-if="detallesprod.info.Arroba=='1'">Arroba</option>
-									<option value="Quintal" v-if="detallesprod.info.Quintal=='1'">Quintal</option>
-									<option value="Caja" v-if="detallesprod.info.Caja=='1'">Caja</option>
+									<option value="Libra" v-if="detallesprod.info.libra==true">Libra</option>
+									<option value="Arroba" v-if="detallesprod.info.arroba==true">Arroba</option>
+									<option value="Quintal" v-if="detallesprod.info.quintal==true">Quintal</option>
+									<option value="Caja" v-if="detallesprod.info.caja==true">Caja</option>
 								</select>
 							</div>
 							<div class="container mt-2">
@@ -95,7 +86,7 @@
 							</div>
 							<div class="container">
 								<button class=" btn btn-outline-danger float-right"
-									@click="addlista(detallesprod)">Añadir a deseos <i class="fas fa-heart"></i>
+									@click="addlista(detallesprod.info)">Añadir a deseos <i class="fas fa-heart"></i>
 								</button>
 							</div>
 						</div>
@@ -103,19 +94,19 @@
 						<div class="container">
 							<button class="btn btn-dark form-control" v-if="detallesprod.info.isagotado==='SI'"
 								disabled>Comprar Ahora</button>
-							<button class="btn btn-dark form-control" v-else @click="passdatos(Compra)">Comprar
+							<button class="btn btn-dark form-control" v-else @click="passdatos(detallesprod.info)">Comprar
 								Ahora</button>
 						</div>
 						<br>
 						<hr>
 						<div class="row">
 							<div class="col">
-								<h4 class="float-left"> ${{detallesprod.info.precio_venta}}</h4>
+								<h4 class="float-left"> ${{detallesprod.info.precioVenta}}</h4>
 							</div>
 							<div class="col">
-								<h4 class="float-right" v-if="detallesprod.info.nombrecooperativa==''">
-									{{detallesprod.info.nombreu}}</h4>
-								<h4 class="float-right" v-else> {{detallesprod.info.nombrecooperativa}}</h4>
+								<h4 class="float-right" v-if="detallesprod.info.nombreCooperativa==''">
+									{{detallesprod.info.nombreU}}</h4>
+								<h4 class="float-right" v-else> {{detallesprod.info.nombreCooperativa}}</h4>
 							</div>
 						</div>
 					</div>
@@ -137,19 +128,19 @@
 						<img v-bind:src="relacion.imagen" width="64px" height="64px" class="mr-3" alt="...">
 						<div class="media-body">
 							<div class="col ">
-								<h5 class="mt-0 mb-1  float-left">{{relacion.nombre_producto}}</h5>
+								<h5 class="mt-0 mb-1  float-left">{{relacion.nombreProducto}}</h5>
 							</div>
 							<div class="col float-right">
 								<div class="container">
 									<p class="text-justify  text-black-50">
-										{{relacion.descprod}}
+										{{relacion.descProducto}}
 									</p>
 									<div class="row mx-md-n5 mt-3">
 										<div class="col-6 px-md-5">
-											<div class="p-2   float-right" v-if="relacion.nombrecooperativa==''">
-												{{relacion.nombreu}}</div>
-											<div class="p-2   float-right" v-else> {{relacion.nombrecooperativa}}</div>
-											<div class="p-2   float-left">${{relacion.precio_venta}}</div>
+											<div class="p-2   float-right" v-if="relacion.nombreCooperativa==''">
+												{{relacion.nombreU}}</div>
+											<div class="p-2   float-right" v-else> {{relacion.nombreCooperativa}}</div>
+											<div class="p-2   float-left">${{relacion.precioVenta}}</div>
 										</div>
 									</div>
 								</div>
@@ -202,6 +193,13 @@
 		</div>
 
 	</div>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+	<script src="public/js/configFirebase.js"></script>
 
 	<script src="public/js/jquery-3.5.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>

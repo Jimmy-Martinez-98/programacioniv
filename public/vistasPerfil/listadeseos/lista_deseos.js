@@ -16,13 +16,16 @@ var AppListaD = new Vue({
      * @function Lista_Deseos
      */
     Lista_Deseos: function () {
-      fetch(
-        `Private/Modulos/misproductos/proceso.php?proceso=lista_deseos&miproducto=${this.AllDeseos}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.AllDeseos = resp;
+      let data = [];
+      let user = firebaseAuth.currentUser;
+      firebaseDB.ref("listaDeseos/").on("value", (snap) => {
+        snap.forEach((element) => {
+          if (user.uid == element.val().idUsuarioObtubo) {
+            data.push(element.val());
+          }
         });
+        this.AllDeseos=data;
+      });
     },
 
     /**
@@ -42,21 +45,20 @@ var AppListaD = new Vue({
         confirmButtonText: "Si, Eliminalo!",
       }).then((result) => {
         if (result.value) {
-          fetch(
-            `Private/Modulos/misproductos/proceso.php?proceso=DelItemList&miproducto=${miproducto}`
-          )
-            .then((resp) => resp.json())
-            .then((resp) => {
-              if (resp.msg != "Eliminado de la Lista") {
-                Swal.fire("Ups...!", "Ocurrio un Error Inesperado!");
-              } else {
-                Swal.fire("Eliminado de la Lista!", resp.msg, "success");
-                this.Lista_Deseos();
-              }
+            firebaseDB.ref('listaDeseos/'+miproducto).remove().then(()=>{
+              swal.fire({
+                title:'Eliminado!',
+                text:'Producto eliminado de la lista',
+                icon:'success'
+              }).then(
+                this.Lista_Deseos()
+              )
             });
         }
       });
     },
+
+    
     comprara: function (info) {
       var data = {
         info,

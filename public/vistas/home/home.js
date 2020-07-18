@@ -157,15 +157,14 @@ var todoproducto = new Vue({
      * @function traer_todo
      */
     traer_todo: function () {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=recibirall&miproducto=${JSON.stringify(
-          this.all
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.all = resp;
+      let dataP=[];
+
+      firebaseDB.ref('Productos/').on('value',(snap)=>{
+        snap.forEach(element => {
+          dataP.push(element.val());
         });
+        this.all=dataP
+      })
     },
 
     /**
@@ -179,6 +178,7 @@ var todoproducto = new Vue({
         info,
       };
       sessionStorage.setItem("data", JSON.stringify(data));
+      window.open('productos.html','_blank')
     },
 
     /**
