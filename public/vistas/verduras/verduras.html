@@ -27,10 +27,10 @@
 					<img v-bind:src="clay.imagen">
 					<div class="cuerpotargeta">
 						<a class="hole text-break" href="#" @click="verProd(clay)">
-							<h4> {{clay.nombre_producto}}</h4>
+							<h4> {{clay.nombreProducto}}</h4>
 						</a>
-						<a href="#" class="info" v-if=" clay.nombrecooperativa==''"><span> {{clay.nombreu}}</span></a>
-						<a href="#" class="info" v-else> {{clay.nombrecooperativa}}</a>
+						<a href="#" class="info" v-if=" clay.nombreCooperativa==''"><span> {{clay.nombreU}}</span></a>
+						<a href="#" class="info" v-else> {{clay.nombreCooperativa}}</a>
 						<p class="clasificacion mb-0">
 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 							<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -52,7 +52,7 @@
 						<div class="row ">
 							<div class="col-12 mt-3">
 								<p class="card-text float-left  ">
-									${{clay.precio_venta}}
+									${{clay.precioVenta}}
 								</p>
 								<i class="far fa-heart fav float-right" @click="addlistaV(clay)"></i>
 							</div>

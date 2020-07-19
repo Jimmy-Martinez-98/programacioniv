@@ -9,19 +9,11 @@ var seccionfrutas = new Vue({
   el: "#frutas",
   data: {
     fruta: [],
-    valor: "",
-    ItSession: 0,
-    ItValor: "",
-    ItCuenta: "",
-    lista_deseox: {
-      id_miproducto: "",
-      id_usuario: "",
-      accion: "nuevo",
-    },
+    valor: ""
+   
   },
   created: function () {
     this.traer();
-    this.variablesession();
   },
   methods: {
     /**
@@ -30,58 +22,16 @@ var seccionfrutas = new Vue({
      * @function traer
      */
     traer() {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=recibirfrutos&miproducto=${JSON.stringify(
-          this.fruta
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.fruta = resp;
+      firebaseDB
+        .ref("Productos/")
+        .orderByChild("categoria")
+        .equalTo("Frutos")
+        .on("value", (snap) => {
+          this.fruta = snap.val();
         });
     },
 
-    /**
-     * Verifica si hay una variable de session iniciada
-     * @access public
-     * @function variablesession
-     */
-    variablesession: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg == "regrese") {
-            this.ItSession = 0;
-            console.log("nohay>", resp);
-          } else {
-            this.ItSession = 1;
-            console.log("si hay>", resp);
-          }
-        });
-      this.cuentalogueada();
-    },
 
-    /**
-     * Trae la cuenta loguea
-     * @access public
-     * @function cuentalogueada
-     *
-     */
-    cuentalogueada: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (this.ItSession != 1) {
-            console.log("no hay session");
-          } else {
-            this.lista_deseox.id_usuario = resp[0].idusuario;
-          }
-        });
-    },
 
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
@@ -89,29 +39,47 @@ var seccionfrutas = new Vue({
      * @function addlista
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
-    addlistaF: function (producto) {
-      if (this.ItSession != 0) {
-        idproducto = producto.miproducto;
-        this.lista_deseox.id_miproducto = idproducto;
-
-        fetch(
-          `Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(
-            this.lista_deseox
-          )}`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => {
-            var alerta = alertify.success(resp.msg);
-            alerta.delay(2);
+    addListaFrutos: function (producto) {
+      let user=firebaseAuth.currentUser;
+      let newKey=firebaseDB.ref().child('listaDeseos').push().key;
+      if(user){
+        firebaseDB.ref('listaDeseos/'+newKey).set({
+          'arroba': producto.arroba,
+          'caja': producto.caja,
+          'categoria': producto.categoria,
+          'descProducto': producto.descProducto,
+          'idProducto': producto.idProducto,
+          'idUsuario': producto.idUsuario,
+          'idUsuarioObtubo':user.uid,
+          'idLista':newKey,
+          'imagen': producto.imagen,
+          'libra': producto.libra,
+          'nombreCooperativa': producto.nombreCooperativa,
+          'nombreProducto': producto.nombreProducto,
+          'nombreU': producto.nombreU,
+          'precioVenta': producto.precioVenta,
+          'quintal': producto.quintal,
+          'unidad':producto.unidad
+        },error=>{
+          if(error){
+            swal.fire({
+              title:'Ups...',
+              text:'Ocurrio un error al intentar realizar la accion',
+              icon:'error'
+            });
+          }else{
+            let mensaje = alertify.success('Producto agregado a tu lista de deseos :)');
+            mensaje.delay(2);
             alertify.set("notifier", "position", "top-right");
-          });
-      } else {
-        Swal.fire(
-          "Ups...",
-          "Debes Iniciar Sesión Para Usar Esta Opción",
-          "warning"
-        );
+          }
+        })
+      }else{
+        swal.fire({
+          title:'Debes iniciar sesion para utilizar esta opcion',
+          icon:'info'
+        })
       }
+      
     },
 
     /**
@@ -131,12 +99,18 @@ var seccionfrutas = new Vue({
      * @function buscarF
      */
     buscarF: function () {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=buscarproductoss&miproducto=${this.valor}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.fruta = resp;
+      let data = [];
+      firebaseDB
+        .ref("Productos/")
+        .orderByChild("nombreProducto/")
+        .startAt(this.valor)
+        .on("value", (snap) => {
+          snap.forEach((element) => {
+            if (element.val().categoria == "Frutos") {
+              data.push(element.val());
+            }
+          });
+          this.fruta = data;
         });
     },
 
@@ -160,15 +134,11 @@ var seccionfrutas = new Vue({
      * @function descF
      */
     descF: function () {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipovFdesc&miproducto=${JSON.stringify(
-          this.fruta
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.fruta = resp;
-        });
+     /* data=[]
+     firebaseDB.ref('Productos/').orderByChild('categoria/').equalTo('Frutos').on('value',snap=>{      
+      data.push(snap.val())
+     })
+     this.fruta=data*/
     },
 
     /**
@@ -177,15 +147,7 @@ var seccionfrutas = new Vue({
      * @function ascF
      */
     ascF: function () {
-      fetch(
-        `Private/Modulos/inicio+secciones/procesos.php?proceso=recibirbusquedatipovFasc&miproducto=${JSON.stringify(
-          this.fruta
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this.fruta = resp;
-        });
+    
     },
   },
 });

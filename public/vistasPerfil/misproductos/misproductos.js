@@ -34,6 +34,34 @@ var misproductosapp = new Vue({
         // No user is signed in.
       }
     },
+    deleteproducto:function(id){
+      Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podras revertir esto",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminalo!'
+      }).then((result) => {
+        if (result.value) {
+          firebaseDB.ref('Productos/'+id).remove().then(()=>{
+            swal.fire({
+              title:'Eliminado',
+              text:'Producto Eliminado',
+              icon:'success'
+            });
+          }).catch((error)=>{
+            swal.fire({
+              title:'Ups..',
+              text:'Ocurrio un error inesperdado',
+              icon:'error'
+            })
+          })
+        }
+      })
+      
+    }
   },
   created: function () {
     this.productosmios();

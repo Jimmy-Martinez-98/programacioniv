@@ -3,7 +3,30 @@ body {
   padding: 0;
   font-family: "Balsamiq Sans", cursive;
   overflow-x: hidden;
+  
 }
+body::-webkit-scrollbar {
+  width: 8px;     /* Tamaño del scroll en vertical */
+  height: 8px;    /* Tamaño del scroll en horizontal */
+  display: block;  /* Ocultar scroll */
+}
+body::-webkit-scrollbar {
+  width: 7px;
+  background: rgb(206, 206, 206);
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #5c5c5c;
+  border-radius: 3px;
+ 
+}
+body::-webkit-scrollbar-track {
+  background: #e9e9e9;
+  border-radius: 3px;
+}
+
+
 
 .navbars {
   margin: 0;

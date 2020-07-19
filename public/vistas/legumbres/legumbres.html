@@ -23,10 +23,10 @@
 				<img v-bind:src="le.imagen">
 				<div class="cuerpotargeta">
 					<a class="hole text-break" href="#" @click="verProd(le)">
-						<h4> {{le.nombre_producto}}</h4>
+						<h4> {{le.nombreProducto}}</h4>
 					</a>
-					<a href="#" class="info" v-if=" le.nombrecooperativa==''"><span>{{le.nombreu}}</span></a>
-					<a href="#" class="info" v-else> {{le.nombrecooperativa}}</a>
+					<a href="#" class="info" v-if=" le.nombreCooperativa==''"><span>{{le.nombreU}}</span></a>
+					<a href="#" class="info" v-else> {{le.nombreCooperativa}}</a>
 					<p class="clasificacion mb-0">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -48,7 +48,7 @@
 					<div class="row px-3">
 						<div class="col-12 ">
 							<p class="card-text float-left  ">
-								${{le.precio_venta}}
+								${{le.precioVenta}}
 							</p>
 							<i class="far fa-heart fav float-right " @click="addlistaL(le)"></i>
 						</div>

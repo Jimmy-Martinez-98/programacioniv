@@ -27,7 +27,7 @@
 				<img v-bind:src="fruto.imagen">
 				<div class="cuerpotargeta">
 					<a class="hole text-break" href="#" @click="verProd(fruto)">
-						<h4> {{fruto.nombre_producto}}</h4>
+						<h4> {{fruto.nombreProducto}}</h4>
 					</a>
 					<a href="#" class="info" v-if=" fruto.nombrecooperativa==''"><span> {{fruto.nombreu}}</span></a>
 					<a href="#" class="info" v-else> {{fruto.nombrecooperativa}}</a>
@@ -53,9 +53,9 @@
 						<div class="row ">
 							<div class="col-12 mt-3">
 								<p class="card-text float-left  ">
-									${{fruto.precio_venta}}
+									${{fruto.precioVenta}}
 								</p>
-								<i class="far fa-heart fav float-right" @click="addlistaF(fruto)"></i>
+								<i class="far fa-heart fav float-right" @click="addListaFrutos(fruto)"></i>
 							</div>
 						</div>
 					</div>
@@ -64,6 +64,9 @@
 		</div>
 	</div>
 </div>
+
+ 
+
 <script src="public/js/jquery-3.5.js"></script>
 <script src="public/js/jquery-ui.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
