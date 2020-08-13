@@ -15,10 +15,10 @@ var publicarp = new Vue({
       codeProducto: "",
       categoria: "",
       libra: "",
-      quintal: "",
-      arroba: "",
-      caja: "",
-      unidad: "",
+      Quintal: "",
+      Arroba: "",
+      Caja: "",
+      Unidad: "",
       imagen: "",
       existencias: "",
       precio: "",
@@ -26,10 +26,11 @@ var publicarp = new Vue({
       fechaSubida: "",
     },
 
-    imagenlittle: "",
+  
   },
   created: function () {
     this.traerid();
+     
   },
   methods: {
     /**
@@ -46,7 +47,7 @@ var publicarp = new Vue({
               if (user.uid === element.key) {
                 publicarp.publicP.idUsuario = element.val().uId;
               } else {
-                console.log("no coincide");
+                console.log("no coincide id");
               }
             });
           });
@@ -73,10 +74,10 @@ var publicarp = new Vue({
         this.publicP.codeProducto,
         this.publicP.categoria,
         this.publicP.libra,
-        this.publicP.arroba,
-        this.publicP.quintal,
-        this.publicP.unidad,
-        this.publicP.caja,
+        this.publicP.Arroba,
+        this.publicP.Quintal,
+        this.publicP.Unidad,
+        this.publicP.Caja,
         this.publicP.imagen,
         this.publicP.existencias,
         this.publicP.precio,
@@ -85,18 +86,21 @@ var publicarp = new Vue({
       );
 
       if (
-        this.publicP.idUsuario != ''||this.publicP.idUsuario!=null &&
-        this.publicP.nombreProducto != ''|| this.publicP.nombreProducto!=null &&
-        this.publicP.descProducto != ''| this.publicP.descProducto !=null &&
-        this.publicP.codeProducto != ''|| this.publicP.codeProducto !=null &&
-        this.publicP.categoria != ''|| this.publicP.categoria != null &&
-        this.publicP.imagen != ''|| this.publicP.imagen !=null &&
-        this.publicP.existencias != ''||this.publicP.existencias !=null &&
-        this.publicP.precio != '' ||this.publicP.precio !=null && 
-        this.publicP.precioVenta != ''|| this.publicP.precioVenta !=null &&
-        this.publicP.fechaSubida != ""|| this.publicP.fechaSubida !=null
+        this.publicP.idUsuario != "" ||
+        (this.publicP.idUsuario != null && this.publicP.nombreProducto != "") ||
+        (this.publicP.nombreProducto != null &&
+          (this.publicP.descProducto != "") |
+            (this.publicP.descProducto != null) &&
+          this.publicP.codeProducto != "") ||
+        (this.publicP.codeProducto != null && this.publicP.categoria != "") ||
+        (this.publicP.categoria != null && this.publicP.imagen != "") ||
+        (this.publicP.imagen != null && this.publicP.existencias != "") ||
+        (this.publicP.existencias != null && this.publicP.precio != "") ||
+        (this.publicP.precio != null && this.publicP.precioVenta != "") ||
+        (this.publicP.precioVenta != null && this.publicP.fechaSubida != "") ||
+        this.publicP.fechaSubida != null
       ) {
-         //insercion
+        //insercion
         DB.ref("Productos/" + newKey).set(arrayData, (error) => {
           if (error) {
             swal.fire({
@@ -115,10 +119,10 @@ var publicarp = new Vue({
             this.publicP.codeProducto;
             this.publicP.categoria = "";
             this.publicP.libra = "";
-            this.publicP.arroba = "";
-            this.publicP.quintal = "";
-            this.publicP.unidad = "";
-            this.publicP.caja = "";
+            this.publicP.Arroba = "";
+            this.publicP.Quintal = "";
+            this.publicP.Unidad = "";
+            this.publicP.Caja = "";
             this.publicP.imagen = "";
             this.publicP.existencias = "";
             this.publicP.precio = "";
@@ -126,16 +130,14 @@ var publicarp = new Vue({
             this.publicP.fechaSubida = "";
           }
         });
-      }else{
+      } else {
         swal.fire({
-          title:'Error',
-          text:'no se permiten campos vacios',
-          icon:'warning'
-        })
+          title: "Error",
+          text: "no se permiten campos vacios",
+          icon: "warning",
+        });
       }
-     
     },
-
     JsonParse: function (
       idP,
       idU,
@@ -144,45 +146,44 @@ var publicarp = new Vue({
       codeProducto,
       categoria,
       libra,
-      arroba,
-      quintal,
-      unidad,
-      caja,
+      Arroba,
+      Quintal,
+      Unidad,
+      Caja,
       imagen,
       existencias,
       precio,
       precioVenta,
       fechaSubida
     ) {
-      let nombreU,nombreCooperativa;
-
-      DB.ref('users/').on('value',(snap)=>{
-        snap.forEach(element => {
-            if(idU===element.val().uId){
-              nombreU=element.val().nombreU;
-              nombreCooperativa=element.val().nombreCooperativa;
-            }
+      let nombreU, nombreCooperativa;
+      DB.ref("users/").on("value", (snap) => {
+        snap.forEach((element) => {
+          if (idU === element.val().uId) {
+            nombreU = element.val().nombreU;
+            nombreCooperativa = element.val().nombreCooperativa;
+          }
         });
-      })
+      });
       let Data = {
-        'idProducto': idP,
-        'idUsuario': idU,
-        'nombreProducto': nombreProducto,
-        'descProducto': descProducto,
-        'codeProducto': codeProducto,
-        'categoria': categoria,
-        'libra': libra,
-        'arroba': arroba,
-        'quintal': quintal,
-        'unidad': unidad,
-        'caja': caja,
-        'imagen': imagen,
-        'existencias': existencias,
-        'precio': precio,
-        'precioVenta': precioVenta,
-        'fechaSubida': fechaSubida,
-        'nombreU': nombreU,
-        'nombreCooperativa':nombreCooperativa
+        idProducto: idP,
+        idUsuario: idU,
+        nombreProducto: nombreProducto,
+        descProducto: descProducto,
+        codeProducto: codeProducto,
+        categoria: categoria,
+        libra: libra,
+        Arroba: Arroba,
+        Quintal: Quintal,
+        Unidad: Unidad,
+        Caja: Caja,
+        imagen: imagen,
+        existencias: existencias,
+        precio: precio,
+        precioVenta: precioVenta,
+        fechaSubida: fechaSubida,
+        nombreU: nombreU,
+        nombreCooperativa: nombreCooperativa,
       };
 
       return Data;
@@ -195,57 +196,59 @@ var publicarp = new Vue({
      * @function obtenerimagen
      * @param {object} e - Representa el cambio que sucede en el tag img
      */
-    obtenerimagen(e) {
-      let respuesta = null;
+    obtenerimagen(e) {    
       let file = e.target.files[0];
-      let formdata = new FormData($("#frm-productoN")[0]);
-      let ruta = "Private/Modulos/guardarruta.php";
+      let upload = storage
+        .ref()
+        .child("productos/" + file.name)
+        .put(file);
 
-      $.ajax({
-        type: "POST",
-        url: ruta,
-        data: formdata,
-        contentType: false,
-        processData: false,
-        async: false,
-        success: function (response) {
-          respuesta = response;
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress =Math.round((snapshot.bytesTransferred * 100)/ snapshot.totalBytes);
+            let img=document.getElementById("barra")
+            img.innerHTML = `
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: ${progress}%;"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    ${progress}%
+                  </div>
+                </div>`;
         },
-      });
-      this.publicP.imagen = "Private/Modulos/" + respuesta;
-      this.cargar(file);
-    },
+        (error) => {
+          //muestra error
+          swal.fire({
+            title:'Ups..',
+            text:"Ocurrio un error al cargar Imagen",
+            icon:"error"
+          })
+        },
+        () => {
+          //cuando la imagen ya esta subida 
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) { 
+            publicarp.publicP.imagen=downloadURL
+             document.getElementById("barra").style.display = "none";
+          });
+         
+        }
+      );
+    }
+  
+  },
 
-    /**
-     * Carga la imagen que se selecciono desde los archivos de la computadora
-     * @access public
-     * @function cargar
-     * @param {object} file - Representa la imagen en si
-     */
-    cargar(file) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.imagenlittle = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-  },
-  computed: {
-    /**
-     * Retorna la imagen en el tag img
-     * @access public
-     * @function imagen
-     * @returns imagenlittle - Representa la imagen a retornar
-     */
-    imagen() {
-      return this.imagenlittle;
-    },
-  },
 });
 
 /**
  * Asigna la mascara de dinero a los inputs
  */
 $(function () {
-  $(".money").mask("000.00");
+ // $(".money").mask("000.00");
 });

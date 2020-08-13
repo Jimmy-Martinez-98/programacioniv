@@ -2,10 +2,10 @@
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/misproductos/misproduc.css">
 
-	<div class="mt-2 wow fadeIn p-1 mb-2 rounded" style="background-color: #5fb677;" >
-		<div class="card mb-2 " v-for="productos in myproductos" >
+	<div v-if="myproductos!=''" class="mt-2 wow fadeIn p-1 mb-2 rounded" style="background-color: #5fb677;" >
+		<div class="card mb-2 " v-for="productos in myproductos">
 			<div class="form-row card-body bg-ligth">
-				<div class="col-md-4 m-auto " >
+				<div class="col-md-4 m-auto ">
 					<img :src="productos.imagen" class="rounded" width="100%" height="100%">
 				</div>
 				<div class="col-md-6 mt-2">
@@ -28,9 +28,12 @@
 				</div>
 
 			</div>
-		</li>
-		
-	</ul>
+			</li>
+		</div>
+	</div>
+	<div class="container" v-else >
+			<h1 class="text-black d-flex justify-content-center ">Aun No Tienes Productos...</h1>
+	</div>
 
 
 

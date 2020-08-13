@@ -20,7 +20,7 @@ var app = new Vue({
   },
   created: function () {
     this.datoss();
-    this.variablesession();
+   
   },
   methods: {
     /**
@@ -40,61 +40,6 @@ var app = new Vue({
      
     },
 
-    /**
-     * Trae la cuenta loguea
-     * @access public
-     * @function cuentalogueada
-     *
-     */
-    cuentalogueada: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.ItCuenta}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (this.ItSession != 1) {
-            console.log("no hay session");
-          } else {
-            this.lista_deseox.id_usuario = resp[0].idusuario;
-            console.log("Hay session");
-          }
-        });
-    },
-
-    /**
-     * Trae los datos de un producto
-     * @access public
-     * @function verProd
-     * @param {object} info - Representa los datos de  un producto
-     */
-    verProd(info) {
-      var data = {
-        info,
-      };
-      sessionStorage.setItem("data", JSON.stringify(data));
-    },
-
-    /**
-     * Verifica si hay una variable de session iniciada
-     * @access public
-     * @function variablesession
-     */
-    variablesession: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.ItValor}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg == "regrese") {
-            this.ItSession = 0;
-            console.log("nohay>", resp);
-          } else {
-            this.ItSession = 1;
-            console.log("si hay>", resp);
-            this.cuentalogueada();
-          }
-        });
-    },
 
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
@@ -108,17 +53,7 @@ var app = new Vue({
         this.lista_deseox.id_miproducto = idproducto;
 
         if (this.lista_deseox != "") {
-          fetch(
-            `Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(
-              this.lista_deseox
-            )}`
-          )
-            .then((resp) => resp.json())
-            .then((resp) => {
-              var mensaje = alertify.success(resp.msg);
-              mensaje.delay(2);
-              alertify.set("notifier", "position", "top-right");
-            });
+         
         }
       } else {
         Swal.fire(
@@ -147,8 +82,7 @@ var todoproducto = new Vue({
   },
   created: function () {
     this.traer_todo();
-    this.traersession();
-    this.traercuenta();
+  
   },
   methods: {
     /**
@@ -181,74 +115,7 @@ var todoproducto = new Vue({
       window.open('productos.html','_blank')
     },
 
-    /**
-     * Verifica si hay una variable de session iniciada
-     * @access public
-     * @function traersession
-     */
-    traersession: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg == "regrese") {
-            this.session = 0;
-            console.log(resp);
-          } else {
-            this.session = 1;
-            console.log(resp);
-          }
-        });
-    },
-
-    /**
-     * Verifica si hay session iniciada si lo hay trae la cuenta del usuario logueado
-     * @access public
-     * @function traercuenta
-     */
-    traercuenta: function () {
-      fetch(
-        `Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (this.session != 1) {
-            console.log("no hay session");
-          } else {
-            this.lista_deseo.id_usuario = resp[0].idusuario;
-          }
-        });
-    },
-
-    /**
-     * Guarda el item seleccionado en la lista de deseos del usuario logueado
-     * @access public
-     * @function addlista
-     * @param {object} producto - Representa la informacion de un producto seleccionado
-     */
-    addlista: function (producto) {
-      if (this.session == 1) {
-        this.lista_deseo.id_miproducto = producto.miproducto;
-
-        fetch(
-          `Private/Modulos/inicio+secciones/procesos.php?proceso=guardarlista&miproducto=${JSON.stringify(
-            this.lista_deseo
-          )}`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => {
-            var alerta = alertify.success(resp.msg);
-            alerta.delay(2);
-            alertify.set("notifier", "position", "top-right");
-          });
-      } else {
-        Swal.fire(
-          "Ups...",
-          "Debes Iniciar Sesión Para Usar Esta Opción",
-          "warning"
-        );
-      }
-    },
+  
+    
   },
 });

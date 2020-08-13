@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 	<link rel="stylesheet" href="public/vistasPerfil/addproducto/adproducto.css">
@@ -15,11 +16,14 @@
 		<hr class="hrs">
 		<div class="d-flex justify-content-center">
 			<div class="card mb-2 px-3" style="width: 18rem;">
-				<img width="200" height="200" v-if="imagen!=''" id="img-preview" :src='imagen'
-					v-bind:src="publicP.imagen" class="card-img-top" alt="la imagen va aquí">
+				<img width="200" height="200" v-if="publicP.imagen!=''" id="img-preview" 
+					:src="publicP.imagen" class="card-img-top" alt="la imagen va aquí">
+
 				<img width="200" height="200" v-else src="public/img/ico.png" class="card-img-top">
 				<input @change="obtenerimagen" required name="archivo" type="file" class="form-control">
+				<div class="card-footer py-2" id="barra"></div>
 			</div>
+			
 		</div>
 		<div class="form-group ">
 			<label for="nameproduct">Nombre Producto</label>
@@ -30,7 +34,7 @@
 			<div class="col-md-6 mb-3">
 				<div class="form-group">
 					<label for="desc">Descripcion Producto</label>
-					<textarea v-model.trim="publicP.descProd" type="text" class="form-control" id="descproducto"
+					<textarea v-model.trim="publicP.descProducto" type="text" class="form-control" id="descproducto"
 						placeholder="Ingresa Descripcion"></textarea>
 				</div>
 			</div>
@@ -89,24 +93,24 @@
 							<label class="form-check-label" for="libra">Libra</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" v-model="publicP.arroba" type="checkbox" id="arroba"
+							<input class="form-check-input" v-model="publicP.Arroba" type="checkbox" id="arroba"
 								value="Arroba">
 							<label class="form-check-label" for="arroba">Arroba</label>
 						</div>
 						<div class="form-check form-check-inline ">
-							<input class="form-check-input" v-model="publicP.quintal" type="checkbox" id="quintal"
+							<input class="form-check-input" v-model="publicP.Quintal" type="checkbox" id="quintal"
 								value="Quintal">
 							<label class="form-check-label" for="quintal">Quintal</label>
 						</div>
 						<div class="form-check form-check-inline ">
-							<input class="form-check-input" v-model="publicP.caja" type="checkbox" id="caja"
-								value="caja">
-							<label class="form-check-label" for="caja">Caja</label>
+							<input class="form-check-input" v-model="publicP.Caja" type="checkbox" id="Caja"
+								value="Caja">
+							<label class="form-check-label" for="Caja">Caja</label>
 						</div>
 						<div class="form-check form-check-inline ">
-							<input class="form-check-input" v-model="publicP.unidad" type="checkbox" id="caja"
+							<input class="form-check-input" v-model="publicP.Unidad" type="checkbox" id="Caja"
 								value="Unidad">
-							<label class="form-check-label" for="unidad">Unidad</label>
+							<label class="form-check-label" for="Unidad">Unidad</label>
 						</div>
 					</div>
 				</div>
@@ -124,7 +128,7 @@
 
 	<script src="public/js/jquery.mask.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-
+	<script src="alertifyjs/alertify.js"></script>
 	<script src="public/vistasPerfil/addproducto/productosadd.js"></script>
 	<script src="public/vistas/blog/dist/wow.js"></script>
 	<script>

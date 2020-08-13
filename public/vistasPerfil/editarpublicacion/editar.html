@@ -15,22 +15,23 @@
 	<div class="form-row">
 		<div class="col-md-12 wow fadeIn">
 			<div class="container-fluid rounded">
-				<form enctype="multipart/form-data" class="form-row p-2 bg rounded" id="frm-edit">
+				<form enctype="multipart/form-data" class="form-row p-2 bg rounded"
+					id="frm-edit">
 					<div class="col-md-12 mt-2">
 						<h1 class=" h1s">Edicion de Producto</h1>
 						<hr class="text-dark">
 						<div class="form-group ">
 							<div class="d-flex justify-content-center">
 								<div class="card mb-2" style="width: 18rem;">
-									<img width="200" height="200" v-if="imagen!=''||mod.imagen!=''" id="img-preview"
-										:src="imagen" class="card-img-top" v-bind:src="mod.imagen"
+									<img width="200" height="200" v-if="mod.imagen!=''" id="img-preview"
+										:src="mod.imagen" class="card-img-top"
 										alt="la imagen va aquí">
 									<img width="200" height="200" v-else src="public/img/ico.png"
 										class="card-img-top p-2">
-									<input @change="obtenerimagen" required name="archivo" type="file"
-										class="form-control">
-
+									<input @change="obtenerimagen" name="archivo" type="file" class="form-control">
+									<div class="card-footer py-2" id="barra"></div>
 								</div>
+
 							</div>
 							<label for="nameproduct">Nombre Producto</label>
 							<input v-model="mod.nombreProducto" type="text" class="form-control" id="addproducto"
@@ -48,7 +49,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="desc">Codigo Producto</label>
-							<input v-model="mod.codeProducto" type="text" pattern="[0-9]{8}" maxlength="8" minlength="4"
+							<input v-model="mod.codeProducto" type="text" maxlength="8" minlength="4"
 								class="form-control codigo" id="codigoproducto"
 								placeholder="Ingresa codigo del Producto">
 						</div>
@@ -75,14 +76,14 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Precio</label>
-							<input v-model="mod.precio" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
-								class="form-control" id="precio" placeholder="Ingresa Precio">
+							<input v-model="mod.precio" maxlength="6" minlength="2" type="text" class="form-control"
+								id="precio" placeholder="Ingresa Precio">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="cantidad">Precio De Venta</label>
-							<input v-model="mod.precioVenta" pattern="[0-9]{6}" maxlength="6" minlength="2" type="text"
+							<input v-model="mod.precioVenta" maxlength="6" minlength="2" type="text"
 								class="form-control" id="precioventa" placeholder="Ingresa Precio de Venta">
 						</div>
 					</div>
@@ -97,30 +98,30 @@
 						<div class="form-group d-flex justify-content-center">
 							<div class="form-check-inline " id="validationCustom04">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" v-model="mod.libra" required type="checkbox"
-										id="libra" value="Libra">
+									<input class="form-check-input" v-model="mod.libra" type="checkbox" id="libra"
+										value="Libra">
 									<label class="form-check-label" for="libra">Libra</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" required v-model="mod.arroba" type="checkbox"
-										id="arroba" value="Arroba">
-									<label class="form-check-label" for="arroba">Arroba</label>
+									<input class="form-check-input" v-model="mod.Arroba" type="checkbox" id="Arroba"
+										value="Arroba">
+									<label class="form-check-label" for="Arroba">Arroba</label>
 								</div>
 								<div class="form-check form-check-inline ">
-									<input class="form-check-input" required v-model="mod.quintal" type="checkbox"
-										id="quintal" value="Quintal">
-									<label class="form-check-label" for="quintal">Quintal</label>
+									<input class="form-check-input" v-model="mod.Quintal" type="checkbox" id="Quintal"
+										value="Quintal">
+									<label class="form-check-label" for="Quintal">Quintal</label>
 								</div>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" required v-model="mod.caja" type="checkbox" id="caja"
+								<input class="form-check-input" v-model="mod.Caja" type="checkbox" id="Caja"
 									value="Arroba">
-								<label class="form-check-label" for="caja">Caja</label>
+								<label class="form-check-label" for="Caja">Caja</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" required v-model="mod.unidad" type="checkbox"
-									id="unidad" value="Arroba">
-								<label class="form-check-label" for="unidad">Unidad</label>
+								<input class="form-check-input" v-model="mod.Unidad" type="checkbox" id="Unidad"
+									value="Arroba">
+								<label class="form-check-label" for="Unidad">Unidad</label>
 							</div>
 						</div>
 
@@ -129,8 +130,9 @@
 						<div class="form-row">
 							<div class="col-md-12">
 								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-									<button @click="editar" type="button"
-										class="btn btn-primary btn-lg btn-small text-white">Guardar Cambios</button>
+									<input  @click="ModificarPublicacion" type="button" class="btn btn-primary btn-lg btn-small text-white"
+										value="Guardar Cambios">
+
 								</div>
 							</div>
 
@@ -157,7 +159,7 @@
 					<tr v-for="productos in todo_prod" :key="productos.idUsuario" v-on:click="modi(productos)">
 						<th scope="row">{{productos.codeProducto }}</th>
 						<td>
-							<img v-bind:src="productos.imagen" width="100px" height="50px">
+							<img :src="productos.imagen" width="100px" height="50px">
 						</td>
 						<td>{{productos.nombreProducto }}</td>
 						<td class="text-justify">{{productos.descProducto}}</td>
@@ -175,7 +177,7 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="public/vistasPerfil/editarpublicacion/editar.js"></script>
 	<script src="public/vistas/blog/dist/wow.js"></script>
 	<script>

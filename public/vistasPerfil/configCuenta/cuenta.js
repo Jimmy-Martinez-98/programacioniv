@@ -5,8 +5,6 @@
  * @instance objeto de instancia de Vue.js
  */
 
-var db = firebase.database();
-var dbAuth = firebase.auth();
 var datosCuenta = new Vue({
   el: "#cuenta",
   data: {
@@ -19,10 +17,10 @@ var datosCuenta = new Vue({
      * @function traerdatosusuario
      */
     traerdatosusuario: function () {
-      let user = dbAuth.currentUser;
+      let user = firebaseAuth.currentUser;
       let datos = [];
       if (user) {
-        db.ref("users/").on("value", (snap) => {
+        firebaseDB.ref("users/").on("value", (snap) => {
           snap.forEach((element) => {
             if (user.uid === element.key) {
               datos.push(element.val());
@@ -40,7 +38,7 @@ var datosCuenta = new Vue({
      * @param {object} update - Representa los datos a modificar
      */
     modfoto: function (update) {
-      editfoto.updatefoto = update;
+      editfoto.updatefoto.imagen = update;
     },
 
     /**
@@ -65,7 +63,6 @@ var editfoto = new Vue({
     updatefoto: {
       imagen: "",
     },
-    imagenvista: "",
   },
   created: function () {},
   methods: {
@@ -75,9 +72,12 @@ var editfoto = new Vue({
      * @function Guardarimg
      */
     Guardarimg: function () {
-      let id = dbAuth.currentUser.uid;
-      db.ref("users/" + id)
-        .update(this.updatefoto)
+      let id = firebaseAuth.currentUser.uid;
+      firebaseDB
+        .ref("users/" + id)
+        .update({
+          imagen: editfoto.updatefoto.imagen,
+        })
         .then(() => {
           swal.fire({
             title: "ok",
@@ -99,50 +99,50 @@ var editfoto = new Vue({
      */
     obtenerimagen(e) {
       let file = e.target.files[0];
+      let upload = storage
+        .ref()
+        .child("Perfil/" + file.name)
+        .put(file);
 
-      var respuesta = null;
-      var formdata = new FormData($("#editfotoo")[0]);
-      var ruta = "Private/Modulos/usuarios/imgperfil.php";
-
-      $.ajax({
-        type: "POST",
-        url: ruta,
-        data: formdata,
-        contentType: false,
-        processData: false,
-        async: false,
-        success: function (response) {
-          respuesta = response;
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
+          let img = document.getElementById("barra");
+          img.innerHTML = `
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: ${progress}%;"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    ${progress}%
+                  </div>
+                </div>`;
         },
-      });
-
-      this.updatefoto.imagen = "Private/Modulos/usuarios/" + respuesta;
-      this.cargarimagen(file);
-    },
-
-    /**
-     * Carga la imagen en el tag img
-     * @access public
-     * @function cargarimagen
-     * @param {object} file -Reprecenta el archivo de imagen
-     */
-    cargarimagen(file) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.imagenvista = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  },
-  computed: {
-    /**
-     * Retorna la imagen en el tag img
-     * @access public
-     * @function imagenes
-     * @returns imagenvista - Representa la imagen en si
-     */
-    imagenes() {
-      return this.imagenvista;
+        (error) => {
+          //muestra error
+          swal.fire({
+            title: "Ups..",
+            text: "Ocurrio al cargar Imagen",
+            icon: "error",
+          });
+        },
+        () => {
+          //cuando la imagen ya esta subida
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            editfoto.updatefoto.imagen = downloadURL;
+            document.getElementById("barra").style.display = "none";
+            document.getElementById("imgSin").style.display = "none";
+          });
+        }
+      );
     },
   },
 });
@@ -153,8 +153,8 @@ var editfoto = new Vue({
 var editpass = new Vue({
   el: "#edicontra",
   data: {
-    changePassword:{
-      correo:''
+    changePassword: {
+      correo: "",
     },
     cambiopass: {
       contra: "",
@@ -168,30 +168,32 @@ var editpass = new Vue({
      * @function updatepass
      */
     updatepass: function () {
-      
-     emailPerfil= dbAuth.currentUser.email
-     if(this.changePassword.correo==emailPerfil){
-      dbAuth.languageCode='es'
-      email=this.changePassword.correo;
-      dbAuth.sendPasswordResetEmail(email).then(()=>{
+      emailPerfil = firebaseAuth.currentUser.email;
+      if (this.changePassword.correo == emailPerfil) {
+        firebaseAuth.languageCode = "es";
+        email = this.changePassword.correo;
+        firebaseAuth
+          .sendPasswordResetEmail(email)
+          .then(() => {
+            swal.fire({
+              title: "Enviando Correo..",
+              icon: "info",
+            });
+          })
+          .catch(() => {
+            swal.fire({
+              title: "Ups...",
+              text:
+                "Ocurrio un error al intentar enviar correo para cambiar contrase",
+            });
+          });
+      } else {
         swal.fire({
-          title:'Enviando Correo..',
-          icon:'info'
-        })
-      }).catch(()=>{
-        swal.fire({
-          title:'Ups...',
-          text:'Ocurrio un error al intentar enviar correo para cambiar contrase'
-        })
-      });
-     }else{
-       swal.fire({
-         title:'Ups',
-         text:'El correo no pertenece a esta cuenta',
-         icon:'error'
-       })
-     }
-    
-    }
-  }
+          title: "Ups",
+          text: "El correo no pertenece a esta cuenta",
+          icon: "error",
+        });
+      }
+    },
+  },
 });

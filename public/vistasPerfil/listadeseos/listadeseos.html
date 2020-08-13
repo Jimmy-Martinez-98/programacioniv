@@ -1,8 +1,7 @@
 <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-<form id="list_deseos">
+<form  id="list_deseos">
 	<link rel="stylesheet" href="public/vistasPerfil/listadeseos/list.css">
-
-	<ul class="list-group card p-1 wow fadeIn fondoListaDeseos" v-for="Deseos in AllDeseos" :key="Deseos.idLista">
+	<ul  v-if="AllDeseos"  class="list-group card p-1 wow fadeIn fondoListaDeseos" v-for="Deseos in AllDeseos" :key="Deseos.idLista" >
 		<li class="card bg-white">
 			<div class="badge badge-danger text-wrap position-absolute" v-if="Deseos.isagotado==='SI'"
 				style="width: 3.5rem; height:6rem">
@@ -23,7 +22,7 @@
 
 
 					<div class="mt-5">
-						<span class="text-black-50 ">${{Deseos.precioVenta}}</span>
+						<span class="text-black-50 mr-4">${{Deseos.precioVenta}}</span>
 						<span class="text-black-50 ml-5"
 							v-if="Deseos.nombreCooperativa!=''">{{Deseos.nombreCooperativa}}</span>
 						<span class="text-black-50 mr-auto" v-else>{{Deseos.nombreU}}</span>
@@ -45,11 +44,13 @@
 			</div>
 		</li>
 	</ul>
-
-
-
-
+		
 	<script src="public/vistasPerfil/listadeseos/lista_deseos.js"></script>
+
+
+	<div class="container" v-else>
+		<h1 class="text-black d-flex justify-content-center ">Aun No Tienes Productos...</h1>
+	</div>
 </form>
 
 <script src="public/vistas/blog/dist/wow.js"></script>

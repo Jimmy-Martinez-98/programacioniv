@@ -1,16 +1,20 @@
 // Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyDPsWKoc7J7rpdYuTd_QXy-r8lHWEKZPf8",
-  authDomain: "agro-producers.firebaseapp.com",
-  databaseURL: "https://agro-producers.firebaseio.com",
-  projectId: "agro-producers",
-  storageBucket: "agro-producers.appspot.com",
-  messagingSenderId: "823982854167",
-  appId: "1:823982854167:web:986da2c4f34d8073718c52",
-};
+ var firebaseConfig = {
+    apiKey: "AIzaSyCOpMphkivQnqwQiTrvRKahLfpdYPkjWpc",
+    authDomain: "agroproducers-2020.firebaseapp.com",
+    databaseURL: "https://agroproducers-2020.firebaseio.com",
+    projectId: "agroproducers-2020",
+    storageBucket: "agroproducers-2020.appspot.com",
+    messagingSenderId: "995878168941",
+    appId: "1:995878168941:web:8370a64da975f44aa01264",
+    measurementId: "G-1H74HPVE7F"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var storage = firebase.storage();
 var firebaseAuth = firebase.auth();
 var firebaseDB = firebase.database();
+
+
+
 

@@ -50,3 +50,7 @@ div.botones {
   background-color: rgba(66, 62, 62, 0.527);
   font-size: 11px;
 }
+
+.progress-bar{
+  width: 0%;
+}

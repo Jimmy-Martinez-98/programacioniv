@@ -23,7 +23,8 @@ var appeditP = new Vue({
       precio: "",
       precio_venta: "",
       fecha_subida: "",
-      msg: "",
+      Caja: "",
+      Unidad:''
     },
     imagenlittle: "",
   },
@@ -33,59 +34,38 @@ var appeditP = new Vue({
      * @access public
      * @function editar
      */
-    editar: function () {
+    ModificarPublicacion: function () {
       if (
-        this.mod.idProducto === "" &&
-        this.mod.idUsuario === "" &&
-        this.mod.nombreProducto === "" &&
-        this.mod.descProducto === "" &&
-        this.mod.codeProducto === "" &&
-        this.mod.categoria === "" &&
-        this.mod.existencias === "" &&
-        this.mod.precio === "" &&
-        this.mod.caja === "" &&
-        this.mod.unidad === "" &&
-        this.mod.precioVenta === "" &&
-        this.mod.fechaSubida === "" &&
-        this.mod.libra === "" &&
-        this.mod.arroba === "" &&
-        this.mod.quintal === ""
+        appeditP.mod.miproducto != "" &&
+        appeditP.mod.fk_idusuario != "" &&
+        appeditP.mod.nombreProducto != "" &&
+        appeditP.mod.descProducto != "" &&
+        appeditP.mod.codeProducto != "" &&
+        appeditP.mod.categoria != "" &&
+        appeditP.mod.existencias != "" &&
+        appeditP.mod.precio != "" &&
+        appeditP.mod.precioVenta != "" &&
+        appeditP.mod.fechaSubida != ""
+        
       ) {
-        swal.fire({
-          title: "Error",
-          text: "Los campos estan vacios",
-          icon: "warning",
-        });
-      } else if (
-        this.mod.idProducto != "" &&
-        this.mod.idUsuario != "" &&
-        this.mod.nombreProducto != "" &&
-        this.mod.descProducto != "" &&
-        this.mod.codeProducto != "" &&
-        this.mod.categoria != "" &&
-        this.mod.existencias != "" &&
-        this.mod.precio != "" &&
-        this.mod.precioVenta != "" &&
-        this.mod.fechaSubida != ""
-      ) {
-        let dbChild = firebaseDB.ref("Productos/" + this.mod.idProducto);
-
-        let data = this.jsonParse(
-          this.mod.idProducto,
-          this.mod.idUsuario,
-          this.mod.nombreProducto,
-          this.mod.descProducto,
-          this.mod.codeProducto,
-          this.mod.categoria,
-          this.mod.existencias,
-          this.mod.precio,
-          this.mod.precioVenta,
-          this.mod.fechaSubida,
-          this.mod.libra,
-          this.mod.arroba,
-          this.mod.quintal,
-          this.mod.caja,
-          this.mod.unidad
+       
+        let dbChild = firebaseDB.ref("Productos/" + appeditP.mod.miproducto);
+        let data = appeditP.jsonParse(
+          appeditP.mod.miproducto,
+          appeditP.mod.fk_idusuario,
+          appeditP.mod.nombreProducto,
+          appeditP.mod.descProducto,
+          appeditP.mod.codeProducto,
+          appeditP.mod.categoria,
+          appeditP.mod.existencias,
+          appeditP.mod.precio,
+          appeditP.mod.precioVenta,
+          appeditP.mod.fechaSubida,
+          appeditP.mod.libra,
+          appeditP.mod.Arroba,
+          appeditP.mod.Quintal,
+          appeditP.mod.Caja,
+          appeditP.mod.Unidad
         );
 
         dbChild
@@ -101,9 +81,17 @@ var appeditP = new Vue({
           .catch((error) => {
             console.log(error);
           });
-
         apptodoP.buscar();
+      } else {
+        swal.fire({
+          title: "Error",
+          text: "Los campos estan vacios",
+          icon: "error",
+        });
+        
       }
+     
+      
     },
     jsonParse: function (
       id,
@@ -117,10 +105,10 @@ var appeditP = new Vue({
       preciov,
       fecha,
       libra,
-      arroba,
-      quintal,
-      caja,
-      unidad
+      Arroba,
+      Quintal,
+      Caja,
+      Unidad
     ) {
       let data = {
         idProducto: id,
@@ -134,25 +122,25 @@ var appeditP = new Vue({
         precioVenta: preciov,
         fechaSubida: fecha,
         libra: libra,
-        arroba: arroba,
-        quintal: quintal,
-        caja: caja,
-        unidad: unidad,
+        Arroba: Arroba,
+        Quintal: Quintal,
+        Caja: Caja,
+        Unidad: Unidad,
       };
       return data;
     },
     limpiar: function () {
-      this.mod.idProducto = "";
+      this.mod.miproducto = "";
       this.mod.idUsuario = "";
       this.mod.descProducto = "";
       this.mod.codeProducto = "";
       this.mod.categoria = "";
       this.mod.imagen = "public/img/ico.png";
       this.mod.libra = "";
-      this.mod.arroba = "";
-      this.mod.quintal = "";
-      this.mod.caja = "";
-      this.mod.unidad = "";
+      this.mod.Arroba = "";
+      this.mod.Quintal = "";
+      this.mod.Caja = "";
+      this.mod.Unidad = "";
       this.mod.existencias = "";
       this.mod.precio = "";
       this.mod.precioVenta = "";
@@ -168,49 +156,50 @@ var appeditP = new Vue({
      * @param {objec} e - Representa el cambio en el tag img
      */
     obtenerimagen: function (e) {
-      var respuesta = null;
       let file = e.target.files[0];
-      var formdata = new FormData($("#frm-edit")[0]);
-      var ruta = "Private/Modulos/guardarruta.php";
+      let upload = storage
+        .ref()
+        .child("productos/" + file.name)
+        .put(file);
 
-      $.ajax({
-        type: "POST",
-        url: ruta,
-        data: formdata,
-        contentType: false,
-        processData: false,
-        async: false,
-        success: function (response) {
-          respuesta = response;
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
+          let img = document.getElementById("barra");
+          img.innerHTML = `
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: ${progress}%;"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    ${progress}%
+                  </div>
+                </div>`;
         },
-      });
-      this.mod.imagen = "Private/Modulos/" + respuesta;
-      this.cargar(file);
-    },
-
-    /**
-     * Carga la imagen en el tag img
-     * @access public
-     * @function cargarimagen
-     * @param {object} file -Reprecenta el archivo de imagen
-     */
-    cargar(file) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.imagenlittle = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-  },
-  computed: {
-    /**
-     * Retorna la imagen en el tag img
-     * @access public
-     * @function imagenes
-     * @returns imagenlittle - Representa la imagen en si
-     */
-    imagen() {
-      return this.imagenlittle;
+        (error) => {
+          //muestra error
+          swal.fire({
+            title: "Ups..",
+            text: "Ocurrio al cargar Imagen",
+            icon: "error",
+          });
+        },
+        () => {
+          //cuando la imagen ya esta subida
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            appeditP.mod.imagen = downloadURL;
+            document.getElementById("barra").style.display = "none";
+          });
+        }
+      );
     },
   },
 });
@@ -266,7 +255,22 @@ var apptodoP = new Vue({
      * @param {object} id - Representa los datos del item seleciconado
      */
     modi: function (id) {
-      appeditP.mod = id;
+      appeditP.mod.miproducto=id.idProducto
+        appeditP.mod.fk_idusuario=id.idUsuario
+        appeditP.mod.nombreProducto=id.nombreProducto
+        appeditP.mod.descProducto=id.descProducto
+        appeditP.mod.codeProducto=id.codeProducto
+        appeditP.mod.categoria=id.categoria
+        appeditP.mod.existencias=id.existencias
+        appeditP.mod.precio=id.precio
+        appeditP.mod.precioVenta=id.precioVenta
+        appeditP.mod.fechaSubida=id.fechaSubida
+        appeditP.mod.libra=id.libra
+        appeditP.mod.Arroba=id.Arroba
+        appeditP.mod.Quintal=id.Quintal
+        appeditP.mod.Caja=id.Caja
+        appeditP.mod.Unidad=id.Unidad
+        appeditP.mod.imagen=id.imagen
     },
     autoSearch: function () {
       var user = firebase.auth().currentUser;

@@ -83,7 +83,10 @@ var appusuario = new Vue({
                   this.enviarEmail();
                 })
                 .catch((error) => {
-                  alertify.error(error);
+                 swal.fire({
+                   title:error,
+                   icon:'error'
+                 })
                 });
             })
             .catch(function (error) {
@@ -111,6 +114,7 @@ var appusuario = new Vue({
       user.sendEmailVerification().then(() => {
         swal.fire(
           "Se le envio  un mensaje a su correo para verificar su cuenta",
+          "",
           "success"
         );
       });

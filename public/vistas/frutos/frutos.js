@@ -44,8 +44,8 @@ var seccionfrutas = new Vue({
       let newKey=firebaseDB.ref().child('listaDeseos').push().key;
       if(user){
         firebaseDB.ref('listaDeseos/'+newKey).set({
-          'arroba': producto.arroba,
-          'caja': producto.caja,
+          'Arroba': producto.Arroba,
+          'Caja': producto.Caja,
           'categoria': producto.categoria,
           'descProducto': producto.descProducto,
           'idProducto': producto.idProducto,
@@ -58,8 +58,8 @@ var seccionfrutas = new Vue({
           'nombreProducto': producto.nombreProducto,
           'nombreU': producto.nombreU,
           'precioVenta': producto.precioVenta,
-          'quintal': producto.quintal,
-          'unidad':producto.unidad
+          'Quintal': producto.Quintal,
+          'Unidad':producto.Unidad
         },error=>{
           if(error){
             swal.fire({
