@@ -27,7 +27,6 @@ var mostrardetalle = new Vue({
   },
   created: function () {
     this.todo();
-   
   },
   methods: {
     /**
@@ -140,7 +139,7 @@ var mostrardetalle = new Vue({
     passdatos: function (id) {
       let user = firebaseAuth.currentUser;
       appcomprar.contador = this.contador;
-      appcomprar.formaCompra=this.Compra.select_Cantidad;
+      appcomprar.formaCompra = this.Compra.select_Cantidad;
       if (user) {
         if (this.Compra.select_Cantidad != "") {
           appcomprar.Comprax = id;
@@ -178,10 +177,10 @@ var appcomprar = new Vue({
       email: "",
       nombre: "",
     },
-    Comprax:[],
+    Comprax: [],
     producto: [],
     contador: 0,
-    formaCompra:''
+    formaCompra: "",
   },
   methods: {
     /**
@@ -190,10 +189,19 @@ var appcomprar = new Vue({
      * @function enviarcorreo
      */
     enviarcorreo: function () {
+      var misCabeceras = new Headers();
+
+      var miInit = {
+        method: "POST",
+        headers: misCabeceras,
+        mode: "cors",
+        cache: "default",
+      };
       fetch(
         `Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(
           this.Correo
-        )}`
+        )}`,
+        miInit
       )
         .then((resp) => resp.json())
         .then((resp) => {
@@ -214,23 +222,23 @@ var appcomprar = new Vue({
 
       firebaseDB.ref("compras/" + key).set(
         {
-          'idComprador': idComprador,
-          'arroba': this.Comprax.arroba,
-          'caja': this.Comprax.caja,
-          'categoria': this.Comprax.categoria,
-          'descProducto': this.Comprax.descProducto,
-          'idProducto': this.Comprax.idProducto,
-          'idUsuario': this.Comprax.idUsuario,
-          'imagen': this.Comprax.imagen,
-          'libra': this.Comprax.libra,
-          'nombreCooperativa': this.Comprax.nombreCooperativa,
-          'nombreProducto': this.Comprax.nombreProducto,
-          'nombreU': this.Comprax.nombreU,
-          'precioVenta': this.Comprax.precioVenta,
-          'quintal': this.Comprax.quintal,
-          'unidad': this.Comprax.unidad,
-          'contador':this.contador,
-          'formaCompra':this.formaCompra
+          idComprador: idComprador,
+          arroba: this.Comprax.arroba,
+          caja: this.Comprax.caja,
+          categoria: this.Comprax.categoria,
+          descProducto: this.Comprax.descProducto,
+          idProducto: this.Comprax.idProducto,
+          idUsuario: this.Comprax.idUsuario,
+          imagen: this.Comprax.imagen,
+          libra: this.Comprax.libra,
+          nombreCooperativa: this.Comprax.nombreCooperativa,
+          nombreProducto: this.Comprax.nombreProducto,
+          nombreU: this.Comprax.nombreU,
+          precioVenta: this.Comprax.precioVenta,
+          quintal: this.Comprax.quintal,
+          unidad: this.Comprax.unidad,
+          contador: this.contador,
+          formaCompra: this.formaCompra,
         },
         (error) => {
           if (error) {

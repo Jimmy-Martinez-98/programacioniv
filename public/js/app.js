@@ -89,7 +89,7 @@ var validarsession = new Vue({
     },
 
     /**
-     * Carga un archivo html en contenedor
+     * Carga un archivo html en contenedo/r
      * @access public
      * @function verdura
      */

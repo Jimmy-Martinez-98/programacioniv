@@ -20,12 +20,8 @@ require '../../phpMailer/SMTP.php';
 /** Iniciar una nueva sesión o reanudar la existente */
 session_start();
 
-/**
- *  Incluye implementacion de la configuracion de conexion a la Base de Datos
- */
-include '../../config/config.php';
 
-$producto = new producto_nuevo($Conexion);
+$producto ="";
 
 $proceso = '';
 
