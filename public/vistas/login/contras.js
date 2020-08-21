@@ -23,13 +23,16 @@ var appcontras = new Vue({
     Recuperar: function () {
      firebaseAuth.languageCode='es'
      email=this.resetPassword.correo;
-     firebaseAuth.sendPasswordResetEmail(email,()=>{
-       swal.fire({
-         title:'Restablecimiento de Contraseña',
-         text:'Se ha enviado un mensaje a su correo para que actualize su contraseña',
-         icon:'info'
-       })
-     });
+     firebaseAuth.sendPasswordResetEmail(email).then(()=>{
+         swal.fire({
+           title: "Restablecimiento de Contraseña",
+           text:
+             "Se ha enviado un mensaje a su correo para que actualize su contraseña",
+           icon: "info",
+         }).then(()=>{
+           location.href="login.html"
+         })
+     })
     },
 
     /**

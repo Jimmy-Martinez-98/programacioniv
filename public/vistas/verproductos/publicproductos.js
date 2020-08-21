@@ -189,19 +189,11 @@ var appcomprar = new Vue({
      * @function enviarcorreo
      */
     enviarcorreo: function () {
-      var misCabeceras = new Headers();
-
-      var miInit = {
-        method: "POST",
-        headers: misCabeceras,
-        mode: "cors",
-        cache: "default",
-      };
+      
       fetch(
         `Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(
           this.Correo
-        )}`,
-        miInit
+        )}`
       )
         .then((resp) => resp.json())
         .then((resp) => {
