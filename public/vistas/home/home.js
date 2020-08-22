@@ -20,7 +20,6 @@ var app = new Vue({
   },
   created: function () {
     this.datoss();
-   
   },
   methods: {
     /**
@@ -29,18 +28,15 @@ var app = new Vue({
      * @function datoss
      */
     datoss: function () {
-      let dataP=[];
-     
-      firebaseDB.ref('Productos/').on('value',(snap)=>{
-        snap.forEach(element => {
+      let dataP = [];
+
+      firebaseDB.ref("Productos/").on("value", (snap) => {
+        snap.forEach((element) => {
           dataP.push(element.val());
         });
-        this.productos=dataP
-      })
-     
+        this.productos = dataP;
+      });
     },
-
-
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
      * @access public
@@ -48,12 +44,12 @@ var app = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaC: function (producto) {
-      if (this.ItSession != 0) {
+      /*    let user= firebaseAuth.currentUser
+      if (user) {
         var idproducto = producto.miproducto;
         this.lista_deseox.id_miproducto = idproducto;
 
-        if (this.lista_deseox != "") {
-         
+        if () {
         }
       } else {
         Swal.fire(
@@ -61,7 +57,7 @@ var app = new Vue({
           "Debes Iniciar Sesión Para Usar Esta Opción",
           "warning"
         );
-      }
+      }*/
     },
   },
 });
@@ -82,7 +78,6 @@ var todoproducto = new Vue({
   },
   created: function () {
     this.traer_todo();
-  
   },
   methods: {
     /**
@@ -91,14 +86,14 @@ var todoproducto = new Vue({
      * @function traer_todo
      */
     traer_todo: function () {
-      let dataP=[];
+      let dataP = [];
 
-      firebaseDB.ref('Productos/').on('value',(snap)=>{
-        snap.forEach(element => {
+      firebaseDB.ref("Productos/").on("value", (snap) => {
+        snap.forEach((element) => {
           dataP.push(element.val());
         });
-        this.all=dataP
-      })
+        this.all = dataP;
+      });
     },
 
     /**
@@ -112,10 +107,7 @@ var todoproducto = new Vue({
         info,
       };
       sessionStorage.setItem("data", JSON.stringify(data));
-      window.open('productos.html','_blank')
+      window.open("productos.html", "_blank");
     },
-
-  
-    
   },
 });

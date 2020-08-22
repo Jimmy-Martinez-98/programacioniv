@@ -15,8 +15,7 @@
 	<div class="form-row">
 		<div class="col-md-12 wow fadeIn">
 			<div class="container-fluid rounded">
-				<form enctype="multipart/form-data" class="form-row p-2 bg rounded"
-					id="frm-edit">
+				<form enctype="multipart/form-data" class="form-row p-2 bg rounded" id="frm-edit">
 					<div class="col-md-12 mt-2">
 						<h1 class=" h1s">Edicion de Producto</h1>
 						<hr class="text-dark">
@@ -24,8 +23,7 @@
 							<div class="d-flex justify-content-center">
 								<div class="card mb-2" style="width: 18rem;">
 									<img width="200" height="200" v-if="mod.imagen!=''" id="img-preview"
-										:src="mod.imagen" class="card-img-top"
-										alt="la imagen va aquí">
+										:src="mod.imagen" class="card-img-top" alt="la imagen va aquí">
 									<img width="200" height="200" v-else src="public/img/ico.png"
 										class="card-img-top p-2">
 									<input @change="obtenerimagen" name="archivo" type="file" class="form-control">
@@ -130,8 +128,8 @@
 						<div class="form-row">
 							<div class="col-md-12">
 								<div class="btn-group botones mt-3 mb-2" role="group" aria-label="Basic example">
-									<input  @click="ModificarPublicacion" type="button" class="btn btn-primary btn-lg btn-small text-white"
-										value="Guardar Cambios">
+									<input @click="ModificarPublicacion" type="button"
+										class="btn btn-primary btn-lg btn-small text-white" value="Guardar Cambios">
 
 								</div>
 							</div>
@@ -177,7 +175,7 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="public/vistasPerfil/editarpublicacion/editar.js"></script>
 	<script src="public/vistas/blog/dist/wow.js"></script>
 	<script>

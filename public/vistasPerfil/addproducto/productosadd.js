@@ -25,12 +25,9 @@ var publicarp = new Vue({
       precioVenta: "",
       fechaSubida: "",
     },
-
-  
   },
   created: function () {
     this.traerid();
-     
   },
   methods: {
     /**
@@ -56,6 +53,7 @@ var publicarp = new Vue({
         }
       });
     },
+      
 
     /**
      * Publica el producto del usuario en la base de datos
@@ -65,7 +63,6 @@ var publicarp = new Vue({
     guardar: function () {
       //Crea nueva key para el json del producto
       var newKey = DB.ref().child("Productos/").push().key;
-
       var arrayData = this.JsonParse(
         newKey,
         this.publicP.idUsuario,
@@ -101,6 +98,10 @@ var publicarp = new Vue({
         this.publicP.fechaSubida != null
       ) {
         //insercion
+         DB.ref("Productos/" + newKey).set(arrayData).then(()=>{
+           
+           alert('')
+         })
         DB.ref("Productos/" + newKey).set(arrayData, (error) => {
           if (error) {
             swal.fire({
@@ -113,7 +114,19 @@ var publicarp = new Vue({
               icon: "success",
               title: "Tu Producto Se Publico",
             });
-            this.publicP.idUsuario = "";
+           this.limpiarDatos();
+          }
+        });
+      } else {
+        swal.fire({
+          title: "Error",
+          text: "no se permiten campos vacios",
+          icon: "warning",
+        });
+      }
+    },
+    limpiarDatos:function(){
+       this.publicP.idUsuario = "";
             this.publicP.nombreProducto = "";
             this.publicP.descProducto = "";
             this.publicP.codeProducto;
@@ -128,15 +141,6 @@ var publicarp = new Vue({
             this.publicP.precio = "";
             this.publicP.precioVenta = "";
             this.publicP.fechaSubida = "";
-          }
-        });
-      } else {
-        swal.fire({
-          title: "Error",
-          text: "no se permiten campos vacios",
-          icon: "warning",
-        });
-      }
     },
     JsonParse: function (
       idP,
@@ -196,7 +200,7 @@ var publicarp = new Vue({
      * @function obtenerimagen
      * @param {object} e - Representa el cambio que sucede en el tag img
      */
-    obtenerimagen(e) {    
+    obtenerimagen(e) {
       let file = e.target.files[0];
       let upload = storage
         .ref()
@@ -207,9 +211,11 @@ var publicarp = new Vue({
         "state_changed",
         (snapshot) => {
           //muestra el progreso
-          let progress =Math.round((snapshot.bytesTransferred * 100)/ snapshot.totalBytes);
-            let img=document.getElementById("barra")
-            img.innerHTML = `
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
+          let img = document.getElementById("barra");
+          img.innerHTML = `
                 <div class="progress">
                   <div
                     class="progress-bar"
@@ -226,29 +232,26 @@ var publicarp = new Vue({
         (error) => {
           //muestra error
           swal.fire({
-            title:'Ups..',
-            text:"Ocurrio un error al cargar Imagen",
-            icon:"error"
-          })
+            title: "Ups..",
+            text: "Ocurrio un error al cargar Imagen",
+            icon: "error",
+          });
         },
         () => {
-          //cuando la imagen ya esta subida 
-          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) { 
-            publicarp.publicP.imagen=downloadURL
-             document.getElementById("barra").style.display = "none";
+          //cuando la imagen ya esta subida
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            publicarp.publicP.imagen = downloadURL;
+            document.getElementById("barra").style.display = "none";
           });
-         
         }
       );
-    }
-  
+    },
   },
-
 });
 
 /**
  * Asigna la mascara de dinero a los inputs
  */
 $(function () {
- // $(".money").mask("000.00");
+  // $(".money").mask("000.00");
 });
