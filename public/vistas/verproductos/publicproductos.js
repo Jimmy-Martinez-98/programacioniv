@@ -125,8 +125,12 @@ var mostrardetalle = new Vue({
      * @access public
      * @function contactar
      */
-    contactar: function () {
-      location.href = "public/vistas/chat/chat.html";
+    contactar: function (id) {
+       var userPara = {
+         id,
+       };
+       sessionStorage.setItem("data", JSON.stringify(userPara));
+      location.href="public/vistas/chat/chat.html"
     },
 
     /**

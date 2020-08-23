@@ -52,7 +52,7 @@
 						<p class="text-justify text-black-50">
 							{{detallesprod.info.descProducto}}
 						</p>
-						<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i>
+						<a href="#" class="contactar" v-on:click="contactar(detallesprod.info.idUsuario)"><i class="far fa-comment-dots"></i>
 							Contactar </a>
 						<div class="container mb-5 columna">
 							<div class="input-group mb-3">
@@ -208,7 +208,7 @@
 	
 	<script src="public/vistas/blog/dist/wow.js"></script>
 	<script src="public/vistas/verproductos/publicproductos.js"></script>
-	<script src="public/vistas/verproductos/chat.js"></script>
+	
 
 	<script>
 		var wow = new WOW(
