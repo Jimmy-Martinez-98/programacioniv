@@ -18,8 +18,11 @@
 	<div class="contenedor">
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-sidebar">
-				<img width="30px" height="30px" src="../../../public/img/chat.png" alt="">
-				<h4 class="ml-3"> {{}} </h4>
+				<h4 class="ml-3">
+					<img
+					v-if="imagen" 
+					class="rounded-circle" :src="usuarioChat.imagen" width="30px" height="30px">
+					{{usuarioChat.nombre}} </h4>
 
 			</div>
 			<div class="contener-msgs" id="tope">

@@ -18,6 +18,10 @@ appChat = new Vue({
       msg: "",
     },
     allMessages: [],
+    usuarioChat: {
+      perfil: "",
+      nombre: "",
+    },
   },
   created() {
     this.estado();
@@ -29,6 +33,9 @@ appChat = new Vue({
 
       this.chatHistory();
     },
+    imagen:function(){
+     return this.usuarioChat.imagen != "";
+    }
   },
   watch: {
     allMessages: function (val) {
@@ -50,10 +57,21 @@ appChat = new Vue({
           console.log("Bienvenido");
           var dataFromStorage = JSON.parse(sessionStorage.getItem("data"));
           this.mensajes.para = dataFromStorage.id;
+          this.datosUser(dataFromStorage.id);
           this.mensajes.de = user.uid;
         } else {
           location.href = "login.html";
         }
+      });
+    },
+    datosUser: function (user) {
+      firebaseDB.ref("users/").on("value", (snap) => {
+        snap.forEach((element) => {
+          if (user === element.val().uId) {
+            appChat.usuarioChat.imagen = element.val().imagen;
+            appChat.usuarioChat.nombre = element.val().nombreU;
+          }
+        });
       });
     },
     chatHistory: function () {
@@ -112,10 +130,12 @@ appChat = new Vue({
           let progress = Math.round(
             (snapshot.bytesTransferred * 100) / snapshot.totalBytes
           );
-         
+
           document.getElementById("target").innerHTML = `
           <div class="progress">
-             <div class="progress-bar bg-dark" role="progressbar" style="width:${progress}%;" aria-valuenow="25" aria-valuemin="25" aria-valuemax="100">${progress}%</div>
+             <div class="progress-bar bg-dark" role="progressbar"
+              style="width:${progress}%;" aria-valuenow="25
+              " aria-valuemin="25" aria-valuemax="100">${progress}%</div>
           </div>`;
         },
 
@@ -139,17 +159,12 @@ appChat = new Vue({
                 Mensaje: "",
                 imagenMensaje: downloadURL,
               })
-              .then(
-                ()=>{
-                  document.getElementById("target").style.display = "none"
-                 
-                }
-               
-              );
+              .then(() => {
+                document.getElementById("target").style.display = "none";
+              });
           });
         }
       );
     },
-    
   },
 });
