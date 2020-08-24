@@ -44,20 +44,8 @@ var app = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaC: function (producto) {
-      /*    let user= firebaseAuth.currentUser
-      if (user) {
-        var idproducto = producto.miproducto;
-        this.lista_deseox.id_miproducto = idproducto;
-
-        if () {
-        }
-      } else {
-        Swal.fire(
-          "Ups...",
-          "Debes Iniciar Sesión Para Usar Esta Opción",
-          "warning"
-        );
-      }*/
+      /* let user= firebaseAuth.currentUser
+       */
     },
   },
 });
@@ -87,7 +75,6 @@ var todoproducto = new Vue({
      */
     traer_todo: function () {
       let dataP = [];
-
       firebaseDB.ref("Productos/").on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
@@ -96,6 +83,11 @@ var todoproducto = new Vue({
       });
     },
 
+    /*
+    ======================
+          LISTENER
+    ======================  
+    */
     /**
      * Guarda datos del producto en localStorage para su posterior llamada en otra pantalla
      * @access public
@@ -108,6 +100,61 @@ var todoproducto = new Vue({
       };
       sessionStorage.setItem("data", JSON.stringify(data));
       window.open("productos.html", "_blank");
+    },
+
+    addlista: function (datos) {
+      let user = firebaseAuth.currentUser;
+      if (user) {
+        let key = firebaseDB.ref().child("listaDeseos/").push().key;
+        let data = {
+          Arroba: datos.Arroba,
+          Caja: datos.Caja,
+          Quintal: datos.Quintal,
+          Unidad: datos.Unidad,
+          categoria: datos.categoria,
+          descProducto: datos.descProducto,
+          idLista: key,
+          idProducto: datos.idProducto,
+          idUsuario: datos.idUsuario,
+          idUsuarioObtubo: user.uid,
+          imagen: datos.imagen,
+          libra: datos.libra,
+          nombreCooperativa: datos.nombreCooperativa,
+          nombreProducto: datos.nombreProducto,
+          nombreU: datos.nombreU,
+          precioVenta: datos.precioVenta,
+        };
+
+        firebaseDB
+          .ref("listaDeseos/" + key)
+          .set(data)
+          .then((e) => {
+            if (e) {
+              let mensaje='Ups Ocurrio un error al guardar el producto en tu lista de deseos'
+              this.openNotification(mensaje,'danger','Error!!!');
+            } else {
+              let msg = "Guardado Exitosamente :)";
+              this.openNotification(msg,'success','Listoo!!');
+            }
+          });
+      } else{
+         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+         this.openNotification(msg,'primary','Alerta!!!');
+      }
+
+    },
+    openNotification(msg,notiColor,titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        width:'50%',
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
     },
   },
 });

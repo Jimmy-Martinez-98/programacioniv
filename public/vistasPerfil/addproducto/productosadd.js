@@ -98,10 +98,7 @@ var publicarp = new Vue({
         this.publicP.fechaSubida != null
       ) {
         //insercion
-         DB.ref("Productos/" + newKey).set(arrayData).then(()=>{
-           
-           alert('')
-         })
+      
         DB.ref("Productos/" + newKey).set(arrayData, (error) => {
           if (error) {
             swal.fire({
