@@ -9,8 +9,7 @@ var seccionfrutas = new Vue({
   el: "#frutas",
   data: {
     fruta: [],
-    valor: ""
-   
+    valor: "",
   },
   created: function () {
     this.traer();
@@ -31,8 +30,6 @@ var seccionfrutas = new Vue({
         });
     },
 
-
-
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
      * @access public
@@ -40,46 +37,50 @@ var seccionfrutas = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addListaFrutos: function (producto) {
-      let user=firebaseAuth.currentUser;
-      let newKey=firebaseDB.ref().child('listaDeseos').push().key;
-      if(user){
-        firebaseDB.ref('listaDeseos/'+newKey).set({
-          'Arroba': producto.Arroba,
-          'Caja': producto.Caja,
-          'categoria': producto.categoria,
-          'descProducto': producto.descProducto,
-          'idProducto': producto.idProducto,
-          'idUsuario': producto.idUsuario,
-          'idUsuarioObtubo':user.uid,
-          'idLista':newKey,
-          'imagen': producto.imagen,
-          'libra': producto.libra,
-          'nombreCooperativa': producto.nombreCooperativa,
-          'nombreProducto': producto.nombreProducto,
-          'nombreU': producto.nombreU,
-          'precioVenta': producto.precioVenta,
-          'Quintal': producto.Quintal,
-          'Unidad':producto.Unidad
-        },error=>{
-          if(error){
-            swal.fire({
-              title:'Ups...',
-              text:'Ocurrio un error al intentar realizar la accion',
-              icon:'error'
-            });
-          }else{
-            let mensaje = alertify.success('Producto agregado a tu lista de deseos :)');
-            mensaje.delay(2);
-            alertify.set("notifier", "position", "top-right");
+      let user = firebaseAuth.currentUser;
+      let newKey = firebaseDB.ref().child("listaDeseos").push().key;
+      if (user) {
+        firebaseDB.ref("listaDeseos/" + newKey).set(
+          {
+            Arroba: producto.Arroba,
+            Caja: producto.Caja,
+            categoria: producto.categoria,
+            descProducto: producto.descProducto,
+            idProducto: producto.idProducto,
+            idUsuario: producto.idUsuario,
+            idUsuarioObtubo: user.uid,
+            idLista: newKey,
+            imagen: producto.imagen,
+            libra: producto.libra,
+            nombreCooperativa: producto.nombreCooperativa,
+            nombreProducto: producto.nombreProducto,
+            nombreU: producto.nombreU,
+            precioVenta: producto.precioVenta,
+            Quintal: producto.Quintal,
+            Unidad: producto.Unidad,
+          },
+          (error) => {
+            if (error) {
+              swal.fire({
+                title: "Ups...",
+                text: "Ocurrio un error al intentar realizar la accion",
+                icon: "error",
+              });
+            } else {
+              let mensaje = alertify.success(
+                "Producto agregado a tu lista de deseos :)"
+              );
+              mensaje.delay(2);
+              alertify.set("notifier", "position", "top-right");
+            }
           }
-        })
-      }else{
+        );
+      } else {
         swal.fire({
-          title:'Debes iniciar sesion para utilizar esta opcion',
-          icon:'info'
-        })
+          title: "Debes iniciar sesion para utilizar esta opcion",
+          icon: "info",
+        });
       }
-      
     },
 
     /**
@@ -134,7 +135,7 @@ var seccionfrutas = new Vue({
      * @function descF
      */
     descF: function () {
-     /* data=[]
+      /* data=[]
      firebaseDB.ref('Productos/').orderByChild('categoria/').equalTo('Frutos').on('value',snap=>{      
       data.push(snap.val())
      })
@@ -146,8 +147,6 @@ var seccionfrutas = new Vue({
      * @access public
      * @function ascF
      */
-    ascF: function () {
-    
-    },
+    ascF: function () {},
   },
 });

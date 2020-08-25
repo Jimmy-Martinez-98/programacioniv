@@ -20,7 +20,7 @@
 			<div class="targeta ">
 				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
-					<a class="hole text-break" href="productos.html" target="_blank" v-on:click="verProd(datos)">
+					<a class="hole text-break" href="#"  v-on:click="verProd(datos)">
 						<h5> {{datos.nombreProducto}}</h5>
 					</a>
 					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
@@ -79,7 +79,7 @@
 					</a>
 					<a href="#" class="info text-break" v-if="todo.nombreCooperativa==''"> {{todo.nombreU}}</a>
 					<a href="#" class="info" v-else> {{todo.nombreCooperativa}}</a>
-					<p class="clasificacion mb-0" v-model="todo.Libra">
+					<p class="clasificacion mb-0" >
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -116,7 +116,7 @@
 <script src="public/js/jquery-3.5.js"></script>
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 <script src="public/js/jquery-ui.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
