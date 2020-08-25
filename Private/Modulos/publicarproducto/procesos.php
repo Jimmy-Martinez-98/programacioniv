@@ -17,11 +17,7 @@ require '../../phpMailer/PHPMailer.php';
 /** @uses SMTP.php  */
 require '../../phpMailer/SMTP.php';
 
-/** Iniciar una nueva sesión o reanudar la existente */
-session_start();
-
-
-$producto ="";
+$producto = new producto_nuevo();
 
 $proceso = '';
 
@@ -38,30 +34,8 @@ print_r(json_encode($producto->respuesta));
  */
 class producto_nuevo
 {
-    private $datos = array(), $db;
+    private $datos = array();
     public $respuesta = ['msg' => "correcto"];
-
-    /**
-     * constructor
-     * @access public
-     * @function __construct
-     * @param String $db contiene el nombre de la base de datos
-     */
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
-
-    /**
-     * @access public
-     * @function recibirDatos recibe los datos del producto desde el formulario
-     * @param object  $producto representa los datos en si
-     */
-    public function recibirDatos($producto)
-    {
-        $this->datos = json_decode($producto, true);
-        $this->validardatos();
-    }
 
     /**
      * @access public
@@ -106,13 +80,13 @@ class producto_nuevo
         try {
             //Server settings
             $mail->SMTPDebug = 0; // Enable verbose debug output
-            $mail->isSMTP(); // Send using SMTP
             $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+            $mail->isSMTP(); // Send using SMTP
             $mail->SMTPAuth = true; // Enable SMTP authentication
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMT
+            $mail->Port = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             $mail->Username = 'agroproducers2020@gmail.com'; // SMTP username
             $mail->Password = 'Slayer.2020'; // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $mail->Port = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
             //Recipients
             $mail->setFrom('agroproducers2020@gmail.com');
@@ -138,8 +112,13 @@ class producto_nuevo
 				<p>"' . rand() . '"</p>
             ';
 
-            $mail->send();
-            $this->respuesta['msg'] = 'Mensaje Enviado';
+            if (!$mail->send()) {
+                $this->respuesta['msg'] = "No se pudo mandar el correo";
+            } else {
+                $this->respuesta['msg'] = 'Mensaje Enviado';
+
+            }
+
         } catch (Exception $e) {
             $this->respuesta['msg'] = "    error: {$mail->ErrorInfo} ";
         }

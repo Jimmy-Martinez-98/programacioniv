@@ -126,11 +126,11 @@ var mostrardetalle = new Vue({
      * @function contactar
      */
     contactar: function (id) {
-       var userPara = {
-         id,
-       };
-       sessionStorage.setItem("data", JSON.stringify(userPara));
-      location.href="public/vistas/chat/chat.html"
+      var userPara = {
+        id,
+      };
+      sessionStorage.setItem("data", JSON.stringify(userPara));
+      location.href = "public/vistas/chat/chat.html";
     },
 
     /**
@@ -193,7 +193,6 @@ var appcomprar = new Vue({
      * @function enviarcorreo
      */
     enviarcorreo: function () {
-      
       fetch(
         `Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(
           this.Correo
