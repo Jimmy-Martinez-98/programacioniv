@@ -34,7 +34,10 @@ a.text:hover {
   padding-bottom: 30px;
   border-radius: 5px;
 }
-
+button:focus {
+  border: none;
+  outline: none;
+}
 .container {
   background: #5fb677;
   width: 90%;

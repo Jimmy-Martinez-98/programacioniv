@@ -9,7 +9,6 @@ body {
   position: relative;
 }
 
-
 /* contenedor */
 .contenedor {
   width: 100%;
@@ -30,20 +29,16 @@ body {
 .list-msg {
   height: 259px;
   overflow-y: scroll;
-  
-
 }
 .list-msg::-webkit-scrollbar {
   width: 7px;
   background: rgba(206, 206, 206, 0.295);
   border-radius: 3px;
-    
 }
 
 .list-msg::-webkit-scrollbar-thumb {
   background: rgb(148, 148, 147);
   border-radius: 3px;
- 
 }
 
 /* header */
@@ -142,6 +137,10 @@ body {
   font-size: 14px;
   font-style: oblique;
 }
-.puntero{
+.puntero {
   cursor: pointer;
+}
+button:focus {
+  border: none;
+  outline: none;
 }

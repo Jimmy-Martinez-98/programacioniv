@@ -60,7 +60,7 @@ appChat = new Vue({
           this.datosUser(dataFromStorage.id);
           this.mensajes.de = user.uid;
         } else {
-          location.href = "login.html";
+          location.href = "../../../login.html";
         }
       });
     },

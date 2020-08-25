@@ -146,7 +146,6 @@ var todoproducto = new Vue({
     openNotification(msg,notiColor,titulo) {
       const noti = this.$vs.notification({
         square: true,
-        width:'50%',
         color: notiColor,
         position: "top-rigth",
         title: titulo,

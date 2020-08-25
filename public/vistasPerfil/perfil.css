@@ -23,3 +23,7 @@ h3 {
   transition: border 0.5s;
 }
 
+button:focus {
+  border: none;
+  outline: none;
+}

@@ -1,12 +1,15 @@
 h1 {
-  font-size:     72px;
-  line-height:   1.5;
+  font-size: 72px;
+  line-height: 1.5;
   color: #2c3e50;
-  font-weight:   100;
+  font-weight: 100;
 }
-
+button:focus {
+  border: none;
+  outline: none;
+}
 #container {
-  width:  980px;
+  width: 980px;
   margin: 0 auto;
 }
 
