@@ -9,7 +9,6 @@
 .terni {
   color: white;
 }
-.button:focus {
-  border: none;
-  outline: none;
+.bordes:{
+  border-radius: 0;
 }

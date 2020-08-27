@@ -76,19 +76,7 @@ $(document).ready(function () {
     });
   });
 
-  /**
-   * carga formulario en el contenedor
-   * @event #addProductos
-   *
-   */
-  $("#addProductos").click(() => {
-    $("#contenedorP").load(
-      "public/vistasPerfil/addproducto/addproducto.html",
-      function (data) {
-        $(this).html(data);
-      }
-    );
-  });
+ 
 
   /**
    * carga formulario en el contenedor
@@ -132,20 +120,6 @@ $(document).ready(function () {
     );
   });
 
-  /**
-   * carga formulario en el contenedor
-   * @event #modP
-   *
-   */
-  $("#modP").click(() => {
-    $("#contenedorP").load(
-      "public/vistasPerfil/editarpublicacion/editar.html",
-      function (data) {
-        $(this).html(data);
-      }
-    );
-  });
-});
 
 /**
  * Animacion en la barra de navegacion responsive

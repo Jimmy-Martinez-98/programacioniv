@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <!-- css of vuesax -->
   <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
   <link rel="stylesheet" href="public/vistas/perfiles/cooperativa.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
@@ -58,16 +58,7 @@
               <h6>Informacion de Perfil</h6> <span class="sr-only"></span>
             </a>
           </li>
-          <li class=" lis activa">
-            <a class="nav-link  " id="addProductos" href="#">
-              <h6>Añadir producto en venta</h6>
-            </a>
-          </li>
-          <li class=" lis activa">
-            <a class="nav-link " id="modP" href="#">
-              <h6>Editar Publicaciones</h6>
-            </a>
-          </li>
+
           <li class=" lis activa">
             <a class="nav-link " id="listdeseos" href="#">
               <h6>Lista de deseos</h6>
@@ -100,17 +91,29 @@
   <script src="public/js/configFirebase.js"></script>
 
   <!-- jquery -->
-  <script src="public/js/jquery-3.5.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
   <script src="public/js/jquery-ui.js"></script>
   <script src="public/js/jquery.mask.js"></script>
   <!-- boostrap -->
   <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
   <!-- vuejs -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
   <!-- alertas -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+  <!-- animate -->
+  <script src="public/vistas/blog/dist/wow.js"></script>
+  <script>
+    var wow = new WOW(
+      {
+        boxClass: 'wow',      // animated element css class (default is wow)
+        animateClass: 'animated', // animation css class (default is animated)
+        offset: 0,          // distance to the element when triggering the animation (default is 0)
+      }
+    );
+    wow.init();
+  </script>
   <!-- mis scripts -->
   <script src="public/vistas/perfiles/cooperativa.js"></script>
 </body>

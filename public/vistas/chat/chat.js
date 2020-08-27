@@ -29,7 +29,7 @@ appChat = new Vue({
   },
   computed: {
     update: function () {
-      console.log(this.allMessages);
+     
 
       this.chatHistory();
     },
