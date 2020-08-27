@@ -1,0 +1,148 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+
+<!-- css of vuesax -->
+<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+<link rel="stylesheet" href="public/vistasPerfil/inventario/misproduc.css">
+<form id="misprod">
+	<div class="container-fluid">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="myTable">
+				<thead>
+					<tr class="table-success">
+						<th scope="col">Código</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Tipo de Venta</th>
+						<th scope="col">Stock</th>
+						<th scope="col">Categoria</th>
+						<th scope="col">imagen</th>
+						<th scope="col">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table-secondary" v-for="dateProducts in myproductos">
+						<th scope="row">
+							{{dateProducts.codeProducto}}
+
+							<div id="code" class="center mt-3" hidden>
+
+								<vs-input state='dark' success type="text" v-model="modificacion.codeProducto"
+									placeholder="Codigo" />
+							</div>
+						</th>
+
+						<td>{{dateProducts.nombreProducto}}
+
+							<div id="name" class="center mt-3" hidden>
+								<vs-input state='dark' success type="text" v-model="modificacion.nombreProducto"
+									placeholder="Nombre" />
+							</div>
+						</td>
+						<br>
+						<td>{{dateProducts.descProducto}}
+
+							<div id="desc" class="center mt-3" hidden>
+								<vs-input v-model="modificacion.descProducto" state='dark' success type="text"
+									placeholder="Descripción" />
+							</div>
+						</td>
+						<td>
+							<div id="ventasT">
+								<label v-if="dateProducts.Unidad===true">Unidad,</label>
+								<label v-if="dateProducts.libra===true">Libra,</label>
+								<label v-if="dateProducts.Arroba===true">Arroba,</label>
+								<label v-if="dateProducts.Quintal===true">Quintal,</label>
+								<label v-if="dateProducts.Caja===true">Caja,</label>
+							</div>
+							<div id="selectVentas" class="center" hidden>
+								<vs-checkbox success v-model="modificacion.unidad">
+									Unidad
+								</vs-checkbox>
+								<vs-checkbox success v-model="modificacion.libra">
+									Libra
+								</vs-checkbox>
+								<vs-checkbox success v-model="modificacion.arroba">
+									Arroba
+								</vs-checkbox>
+								<vs-checkbox success v-model="modificacion.quintal">
+									Quintal
+								</vs-checkbox>
+								<vs-checkbox success v-model="modificacion.caja">
+									Caja
+								</vs-checkbox>
+							</div>
+
+						</td>
+						<td style="width: 30px;">
+							{{dateProducts.existencias}}
+
+							<div id="stock" class="center mt-3" hidden>
+								<vs-input state='dark' success type="number" v-model="modificacion.existencias"
+									placeholder="stock" />
+							</div>
+						</td>
+						<td>{{dateProducts.categoria}}
+
+							<div id="categoria" class="center" hidden>
+								<br>
+								<vs-select state='dark' success placeholder="Select" v-model="modificacion.categoria">
+									<vs-option label="Verduras" value="Verduras">
+										Verduras
+									</vs-option>
+									<vs-option label="Frutos" value="Frutos">
+										Frutos
+									</vs-option>
+									<vs-option label="Legumbres" value="Legumbres">
+										Legumbres
+									</vs-option>
+
+								</vs-select>
+							</div>
+						</td>
+						<td>
+							<div class="d-flex justify-content-center">
+								<img :src="dateProducts.imagen" width="50" height="50">
+							</div>
+						</td>
+						<td>
+							<div class="center form-inline">
+
+								<vs-button class="button" square icon primary @click.prevent="editar(dateProducts)">
+									<i class="bx bx-edit"></i>
+								</vs-button>
+
+
+
+								<vs-button class="button" square icon danger>
+									<i class="bx bx-trash"></i>
+								</vs-button>
+
+							</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="public/js/jquery-3.5.js"></script>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<!-- vuejs -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+	<script src="public/vistasPerfil/inventario/misproductos.js"></script>
+	<script src="public/vistas/blog/dist/wow.js"></script>
+	<script>
+		var wow = new WOW(
+			{
+				boxClass: 'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset: 0,          // distance to the element when triggering the animation (default is 0)
+			}
+		);
+		wow.init();
+	</script	
+</form>

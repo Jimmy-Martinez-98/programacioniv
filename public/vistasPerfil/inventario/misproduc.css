@@ -1,0 +1,15 @@
+* {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.badge {
+  z-index: 1;
+}
+
+.terni {
+  color: white;
+}
+.button:focus {
+  border: none;
+  outline: none;
+}
