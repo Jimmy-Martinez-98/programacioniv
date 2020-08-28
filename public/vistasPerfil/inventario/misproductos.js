@@ -9,26 +9,6 @@ var misproductosapp = new Vue({
   el: "#misprod",
   data: {
     myproductos: [],
-    modificacion: {
-      arroba: false,
-      caja: false,
-      quintal: false,
-      unidad: false,
-      categoria: false,
-      codeProducto: "",
-      descProducto: "",
-      existencias: "",
-      fechaSubida: "",
-      idProducto: "",
-      idUsuario: "",
-      imagen: "",
-      libra: false,
-      nombreCooperativa: "",
-      nombreProducto: "",
-      nombreU: "",
-      precio: "",
-      precioVenta: "",
-    },
   },
   created: function () {
     this.myproductos = [];
@@ -75,59 +55,30 @@ var misproductosapp = new Vue({
       this.modificacion.precioVenta = "";
     },
     editar: function (id) {
-      this.modificacion.codeProducto = id.codeProducto;
-      this.modificacion.nombreProducto = id.nombreProducto;
-      this.modificacion.descProducto = id.descProducto;
-      this.modificacion.existencias = id.existencias;
-      this.modificacion.categoria = id.categoria;
-      this.modificacion.unidad = id.Unidad;
-      this.modificacion.libra = id.libra;
-      this.modificacion.arroba = id.Arroba;
-      this.modificacion.quintal = id.Quintal;
-      this.modificacion.caja = id.Caja;
-      this.modificacion.fechaSubida = id.fechaSubida;
-      this.modificacion.idProducto = id.idProducto;
-      this.modificacion.idUsuario = firebaseAuth.currentUser.uid;
-      this.modificacion.imagen = id.imagen;
-      this.modificacion.nombreCooperativa = id.nombreCooperativa;
-      this.modificacion.nombreProducto = id.nombreProducto;
-      this.modificacion.nombreU = id.nombreU;
-      this.modificacion.precio = id.precio;
-      this.modificacion.precioVenta = id.precioVenta;
+      confirmModificacion.modificacion.codeProducto = id.codeProducto;
+      confirmModificacion.modificacion.nombreProducto = id.nombreProducto;
+      confirmModificacion.modificacion.descProducto = id.descProducto;
+      confirmModificacion.modificacion.existencias = id.existencias;
+      confirmModificacion.modificacion.categoria = id.categoria;
+      confirmModificacion.modificacion.unidad = id.Unidad;
+      confirmModificacion.modificacion.libra = id.libra;
+      confirmModificacion.modificacion.arroba = id.Arroba;
+      confirmModificacion.modificacion.quintal = id.Quintal;
+      confirmModificacion.modificacion.caja = id.Caja;
+      confirmModificacion.modificacion.fechaSubida = id.fechaSubida;
+      confirmModificacion.modificacion.idProducto = id.idProducto;
+      confirmModificacion.modificacion.idUsuario = firebaseAuth.currentUser.uid;
+      confirmModificacion.modificacion.imagen = id.imagen;
+      confirmModificacion.modificacion.nombreCooperativa = id.nombreCooperativa;
+      confirmModificacion.modificacion.nombreProducto = id.nombreProducto;
+      confirmModificacion.modificacion.nombreU = id.nombreU;
+      confirmModificacion.modificacion.pU = id.precioUnidad;
+      confirmModificacion.modificacion.pL = id.precioLibra;
+      confirmModificacion.modificacion.pA = id.precioArroba;
+      confirmModificacion.modificacion.pQ = id.precioQuintal;
+      confirmModificacion.modificacion.pC = id.precioCaja;
     },
-    confirmarMod: function () {
-      firebaseDB
-        .ref("/Productos/" + misproductosapp.modificacion.idProducto)
-        .update({
-          codeProducto: misproductosapp.modificacion.codeProducto,
-          nombreProducto: misproductosapp.modificacion.nombreProducto,
-          descProducto: misproductosapp.modificacion.descProducto,
-          existencias: misproductosapp.modificacion.existencias,
-          categoria: misproductosapp.modificacion.categoria,
-          Unidad: misproductosapp.modificacion.unidad,
-          libra: misproductosapp.modificacion.libra,
-          Arroba: misproductosapp.modificacion.arroba,
-          Quintal: misproductosapp.modificacion.quintal,
-          Caja: misproductosapp.modificacion.caja,
-        })
-        .then(() => {
-          misproductosapp.openNotificacion(
-            "success",
-            "Listo!!",
-            "Tu Producto Se Modifico Exitosamente :)"
-          );
-          misproductosapp.limpiar();
-          this.updateTable;
-        })
 
-        .catch(() => {
-          misproductosapp.openNotificacion(
-            "danger",
-            "Error!!!",
-            "Tu Producto No Se Ha Podido Modificar :("
-          );
-        });
-    },
     /**
      * Mustra los productos del usuario
      * @access public
@@ -291,7 +242,7 @@ var guardarProducto = new Vue({
             "Por Favor Espere A Que La Imagen Se Carge O Completa Los Campos Faltantes"
           );
         } else {
-          if (this.agregar.imagen!='') {
+          if (this.agregar.imagen != "") {
             firebaseDB
               .ref("Productos/" + this.agregar.idProducto)
               .set({
@@ -323,8 +274,12 @@ var guardarProducto = new Vue({
                   "El Producto Fue Agregado Exitosamente"
                 );
               });
-          }else{
-            this.openNotificacion('danger','Ups...','Espera a que se carge la imagen')
+          } else {
+            this.openNotificacion(
+              "danger",
+              "Ups...",
+              "Espera a que se carge la imagen"
+            );
           }
         }
       }
@@ -345,7 +300,6 @@ var guardarProducto = new Vue({
 
       var nueva = firebaseDB.ref().child("Productos/").push().key;
       this.agregar.idProducto = nueva;
-     
     },
     subirImagen: function (e) {
       let file = e.target.files[0];
@@ -390,7 +344,6 @@ var guardarProducto = new Vue({
           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             guardarProducto.agregar.imagen = downloadURL;
             document.getElementById("barra").style.display = "none";
-         
           });
         }
       );

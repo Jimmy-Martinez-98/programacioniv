@@ -2167,7 +2167,7 @@ input[type="password"] {
   border: none;
   left: 0;
   border-bottom: 2px solid rgb(145, 145, 145);
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6297,16 +6297,36 @@ a.close.disabled {
 }
 
 .toast-body {
-  padding: 0.75rem;
+  padding: 0.0rem;
 }
 
 .modal-open {
   overflow: hidden;
+  padding: 0;
+  
+}
+.modal-open .topnavbar-wrapper {
+    padding-right:17px; /* Noticed that right aligned navbar content got overlapped by the .modal scrollbar */
+}
+.modal-open .modal::-webkit-scrollbar{
+  width: 2px; /* Tamaño del scroll en vertical */
+  height: 4px; /* Tamaño del scroll en horizontal */
+  display: none; /* Ocultar scroll */
+}
+.modal-open .modal::-webkit-scrollbar-thumb {
+  display: block;
+  width: 3px;
+  background: gray;
+}
+.modal-open .modal::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 3px;
 }
 
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 0 !important; 
 }
 
 .modal {
