@@ -2149,7 +2149,11 @@ pre code {
   border: 0;
 }
 
-.form-control, input[type="text"], input[type="email"],input[type="number"],input[type="password"]{
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -2159,11 +2163,11 @@ pre code {
   line-height: 1.5;
   color: #5b6064;
   outline: none;
-  background:none;
+  background: rgba(128, 128, 128, 0.37);
   border: none;
-    left: 0;
+  left: 0;
   border-bottom: 2px solid rgb(145, 145, 145);
-   transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2182,23 +2186,26 @@ pre code {
   text-shadow: 0 0 0 #495057;
 }
 
-.form-control:focus, input[type="text"]:focus, input[type="email"]:focus,input[type="number"]:focus,input[type="password"]:focus {
-  color: #ffffff;
-  background:495057;
-  border:none;
+.form-control:focus,
+input:focus {
+  color: rgb(107, 107, 107);
+  background: 495057;
+  border: none;
   outline: 0;
-  border-bottom: 2px solid rgb(145, 145, 145);
-  
+  border-bottom: 2.5px solid rgb(206, 206, 206);
+
   /* box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.719); */
 }
 
-.form-control:focus, input[type="text"]:focus, input[type="email"]:focus,input[type="number"]:focus,input[type="password"]:focus::before{
+.form-control:focus,
+input::before {
   color: #495057;
-  background:none;
-  border:none;
+  background: none;
+  border: none;
   outline: 0;
-   left: 50%;
-  border-bottom: 2px solid rgb(0, 0, 0);
+  left: 100%;
+  border-bottom: 3px solid rgb(4, 255, 67);
+  box-shadow: 0px 3px 5px -1px rgba(58, 56, 56, 0.719);
 }
 .form-control::-webkit-input-placeholder {
   color: #8d9092;
@@ -2232,8 +2239,8 @@ pre code {
 }
 
 select.form-control:focus::-ms-value {
-  color: #495057;
-  background-color: #fff;
+  color: #3c3d3f;
+  background-color: #cacaca;
 }
 
 .form-control-file,
@@ -3861,6 +3868,7 @@ input[type="button"].btn-block {
 .input-group > .custom-file + .custom-select,
 .input-group > .custom-file + .custom-file {
   margin-left: -1px;
+
   box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.719);
 }
 
@@ -4215,19 +4223,23 @@ input[type="button"].btn-block {
   line-height: 1.5;
   color: #495057;
   vertical-align: middle;
-  background: #fff
+  background: rgba(165, 165, 165, 0.521)
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
     no-repeat right 0.75rem center/8px 10px;
-  border: 1px solid #ced4da;
-  border-radius: 0.1rem;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #14d85f;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  transition: all 0.5s;
 }
 
-.custom-select:focus {
+.custom-select:focus::before {
   outline: 0;
-  box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.719);
+  color: rgb(43, 42, 42);
+  left: 100%;
+  box-shadow: 0px 3px 4px -1px rgba(58, 56, 56, 0.719);
 }
 
 .custom-select:focus::-ms-value {

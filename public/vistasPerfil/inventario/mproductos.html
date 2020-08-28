@@ -12,7 +12,11 @@
 						<th scope="col">Código</th>
 						<th scope="col">Nombre</th>
 						<th scope="col">Descripción</th>
-						<th scope="col">Tipo de Venta</th>
+						<th scope="col" >Precio Unidad</th>
+						<th scope="col" >Precio Libra</th>
+						<th scope="col" >Precio Arroba</th>
+						<th scope="col" >Precio Quintal</th>
+						<th scope="col" >Precio Caja</th>
 						<th scope="col">Stock</th>
 						<th scope="col">Categoria</th>
 						<th scope="col">imagen</th>
@@ -21,27 +25,16 @@
 				</thead>
 				<tbody>
 					<tr class="table-secondary" v-for="dateProducts in myproductos">
-						<th scope="row">
-							{{dateProducts.codeProducto}}
+						<th scope="row">{{dateProducts.codeProducto}}</th>
 
-						</th>
-
-						<td>{{dateProducts.nombreProducto}}
-
-
-						</td>
+						<td>{{dateProducts.nombreProducto}}</td>
 						<br>
-						<td>{{dateProducts.descProducto}}
-
-
-						</td>
-						<td>
-							<label v-if="dateProducts.Unidad===true">Unidad,</label>
-							<label v-if="dateProducts.libra===true">Libra,</label>
-							<label v-if="dateProducts.Arroba===true">Arroba,</label>
-							<label v-if="dateProducts.Quintal===true">Quintal,</label>
-							<label v-if="dateProducts.Caja===true">Caja,</label>
-						</td>
+						<td>{{dateProducts.descProducto}}</td>
+						<td >{{dateProducts.precioUnidad}}</td>
+						<td >{{dateProducts.precioLibra}}</td>
+						<td >{{dateProducts.precioArroba}}</td>
+						<td>{{dateProducts.precioQuintal}}</td>
+						<td >{{dateProducts.precioCaja}}</td>
 						<td style="width: 30px;">
 							{{dateProducts.existencias}}
 						</td>
@@ -171,127 +164,123 @@
 <!-- Modal Agregar -->
 
 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-		<div class="modal fade" id="addP" tabindex="-1" aria-labelledby="addp" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header bg-success">
-						<h5 class="modal-title" id="addp">Agregar Producto</h5>
-						<button type="button" class="close" @click="cerrar" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
+	<div class="modal fade" id="addP" tabindex="-1" aria-labelledby="addp" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-success">
+					<h5 class="modal-title" id="addp">Agregar Producto</h5>
+					<button type="button" class="close" @click="cerrar" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
 
-						<form>
-							<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
-								<div class="card">
-									<div class="card-body">
-										<img :src="agregar.imagen" width="100%" height="90">
-									</div>
-									<div class="card-footer">
-										<input @change="subirImagen" required name="archivo" type="file"
-											class="form-control">
+					<form>
+						<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
+							<div class="card">
+								<div class="card-body">
+									<img :src="agregar.imagen" width="100%" height="90">
+								</div>
+								<div class="card-footer">
+									<input @change="subirImagen" required name="archivo" type="file"
+										class="form-control">
 
-										<div class=" py-2" id="barra"></div>
-									</div>
-
+									<div class=" py-2" id="barra"></div>
 								</div>
 
 							</div>
-							<div class="form-group row m-auto">
 
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Codigo</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2"
-										v-model="agregar.codeProducto" />
+						</div>
+						<div class="form-group row m-auto">
+
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Codigo</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.codeProducto" />
+							</div>
+							<label for="inputnombre" class="col-sm-2 col-form-label mr-auto">Nombre</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control w-75 mb-2" v-model="agregar.nombreProducto" />
+							</div>
+							<label for="inputnombre" class="col-sm-2 col-form-label mr-auto">Stock</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.existencias" />
+							</div>
+							<label for="inputdesc" class="col-sm-12 col-form-label mr-3">Descripción</label>
+							<div class="col-sm-12">
+								<textarea type="text" class="form-control w-75 mb-2"
+									v-model="agregar.descProducto"></textarea>
+							</div>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Fecha</label>
+							<div class="col-sm-10">
+								<input type="date" class="form-control w-75 mb-2" v-model="agregar.fechaSubida" />
+							</div>
+							<div class="form-group container">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="unidad"
+										v-model="agregar.unidad">
+									<label class="form-check-label" for="unidad">Unidad</label>
 								</div>
-								<label for="inputnombre" class="col-sm-2 col-form-label mr-auto">Nombre</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control w-75 mb-2"
-										v-model="agregar.nombreProducto" />
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="libra" v-model="agregar.libra">
+									<label class="form-check-label" for="libra">Libra</label>
 								</div>
-								<label for="inputnombre" class="col-sm-2 col-form-label mr-auto">Stock</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.existencias" />
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="arroba"
+										v-model="agregar.arroba">
+									<label class="form-check-label" for="arroba">Arroba</label>
 								</div>
-								<label for="inputdesc" class="col-sm-12 col-form-label mr-3">Descripción</label>
-								<div class="col-sm-12">
-									<textarea type="text" class="form-control w-75 mb-2"
-										v-model="agregar.descProducto"></textarea>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="quintal"
+										v-model="agregar.quintal">
+									<label class="form-check-label" for="quintal">Quintal</label>
 								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Fecha</label>
-								<div class="col-sm-10">
-									<input type="date" class="form-control w-75 mb-2" v-model="agregar.fechaSubida" />
-								</div>
-								<div class="form-group container">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="unidad"
-											v-model="agregar.unidad">
-										<label class="form-check-label" for="unidad">Unidad</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="libra"
-											v-model="agregar.libra">
-										<label class="form-check-label" for="libra">Libra</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="arroba"
-											v-model="agregar.arroba">
-										<label class="form-check-label" for="arroba">Arroba</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="quintal"
-											v-model="agregar.quintal">
-										<label class="form-check-label" for="quintal">Quintal</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="Caja"
-											v-model="agregar.caja">
-										<label class="form-check-label" for="Caja">Caja</label>
-									</div>
-								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
-									Unidad</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pU" />
-								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
-									Libra</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pL" />
-								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
-									Arroba</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pA" />
-								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
-									Quintal</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pQ" />
-								</div>
-								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio Caja</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pC" />
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="Caja" v-model="agregar.caja">
+									<label class="form-check-label" for="Caja">Caja</label>
 								</div>
 							</div>
-							<select class="custom-select" id="inputGroupSelect01" v-model="agregar.categoria">
-								<option selected>seleccione...</option>
-								<option value="Verduras">Verduras</option>
-								<option value="Frutos">Frutos</option>
-								<option value="Legumbres">Legumbres</option>
-							</select>
-						</form>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+								Unidad</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.pU" />
+							</div>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+								Libra</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.pL" />
+							</div>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+								Arroba</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.pA" />
+							</div>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+								Quintal</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.pQ" />
+							</div>
+							<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio Caja</label>
+							<div class="col-sm-10">
+								<input type="number" class="form-control w-75 mb-2" v-model="agregar.pC" />
+							</div>
+						</div>
+						<select class="custom-select" id="inputGroupSelect01" v-model="agregar.categoria">
+							<option selected>seleccione...</option>
+							<option value="Verduras">Verduras</option>
+							<option value="Frutos">Frutos</option>
+							<option value="Legumbres">Legumbres</option>
+						</select>
+					</form>
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-danger button" @click="limpieza"
-							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-success button" @click="Guardar">Confirmar</button>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-danger button" @click="limpieza"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-success button" @click="Guardar">Confirmar</button>
 				</div>
 			</div>
 		</div>
+	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>

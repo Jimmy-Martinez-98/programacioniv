@@ -345,7 +345,7 @@ var guardarProducto = new Vue({
 
       var nueva = firebaseDB.ref().child("Productos/").push().key;
       this.agregar.idProducto = nueva;
-      console.log(nueva);
+     
     },
     subirImagen: function (e) {
       let file = e.target.files[0];
@@ -390,7 +390,7 @@ var guardarProducto = new Vue({
           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             guardarProducto.agregar.imagen = downloadURL;
             document.getElementById("barra").style.display = "none";
-            console.log(guardarProducto.agregar.imagen);
+         
           });
         }
       );
