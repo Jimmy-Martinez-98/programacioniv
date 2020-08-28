@@ -62,7 +62,7 @@ $(document).ready(function () {
    * ejecuta funcion de animacion
    */
   toggle();
-
+});
   /**
    * carga formulario en el contenedor
    * @event #info
