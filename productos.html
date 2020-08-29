@@ -52,6 +52,11 @@
 						<p class="text-justify text-black-50">
 							{{detallesprod.info.descProducto}}
 						</p>
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Existencias:</label>
+							<input type="text" disabled class="form-control p-2" v-model="detallesprod.info.existencias" 
+											style="width: 50px;">
+						</div>
 						<a href="#" class="contactar" v-on:click="contactar"><i class="far fa-comment-dots"></i>
 							Contactar </a>
 						<div class="container mb-5 columna">

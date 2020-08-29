@@ -23,6 +23,7 @@
 				<div class="cuerpotargeta" style="height: 155px;">
 					<a class="hole text-break" href="productos.html" target="_blank" v-on:click="verProd(datos)">
 						<h5> {{datos.nombreProducto}}</h5>
+						<h5>Existencias: {{datos.existencias}} libras</h5>
 					</a>
 					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
 					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
@@ -77,6 +78,7 @@
 				<div class="cuerpotargeta" style="height: 155px;">
 					<a class="hole " href="#" v-on:click="verdetalle(todo)">
 						<h5> {{todo.nombreProducto}}</h5>
+						<h5> Existencias: {{todo.existencias}} libras</h5>
 					</a>
 					<a href="#" class="info text-break" v-if="todo.nombreCooperativa==''"> {{todo.nombreU}}</a>
 					<a href="#" class="info" v-else> {{todo.nombreCooperativa}}</a>
