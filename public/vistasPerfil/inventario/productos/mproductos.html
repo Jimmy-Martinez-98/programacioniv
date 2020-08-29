@@ -1,10 +1,17 @@
+<link rel="stylesheet" href="public/css/waves.css">
 <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="public/vistasPerfil/inventario/misproduc.css">
+<link rel="stylesheet" href="public/vistasPerfil/inventario/productos/misproduc.css">
 <form id="misprod">
 	<div class="container-fluid">
-		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addP">Agregar Producto</button>
-
+		<div class="row mb-3 justify-content-sm-between">
+			<div class="col-6">
+				<button class="btn btn-primary"  type="button" data-toggle="modal" data-target="#addP">Agregar Producto</button>
+			</div>
+			<div class="col-6">
+				<input v-model="valor" @keyup="busquedaProducto" type="text" placeholder="Buscar Producto" class="form-control" style="width: 100%;"/>
+			</div>
+		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered" id="myTable">
 				<thead>
@@ -26,9 +33,7 @@
 				<tbody>
 					<tr class="table-secondary" v-for="dateProducts in myproductos">
 						<th scope="row">{{dateProducts.codeProducto}}</th>
-
 						<td>{{dateProducts.nombreProducto}}</td>
-						<br>
 						<td>{{dateProducts.descProducto}}</td>
 						<td>{{dateProducts.precioUnidad}}</td>
 						<td>{{dateProducts.precioLibra}}</td>
@@ -75,10 +80,9 @@
 
 </form>
 <!-- Modal Modificar-->
-
 <div class="modal fade" id="modificar" tabindex="-1" aria-labelledby="modificar" aria-hidden="true"
 	data-backdrop="static" data-keyboard="false">
-	<div class="modal-dialog  modal-dialog-centered">
+	<div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header bg-primary">
 				<h5 class="modal-title" id="modificar">Modificación de Producto</h5>
@@ -140,8 +144,7 @@
 								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
 									Unidad</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control w-75 mb-2"
-										v-model="modificacion.pU" />
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pU" />
 								</div>
 							</div>
 						</div>
@@ -335,8 +338,16 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
+<script src="public/js/waves.js"></script>
+<script>
+	Waves.init();
+
+	 Waves.attach('button', ['waves-light']);
+	
+	
+</script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
 
-<script src="public/vistasPerfil/inventario/misproductos.js"></script>
-<script src="public/vistasPerfil/inventario/modificarProducto.js"></script>
+<script src="public/vistasPerfil/inventario/productos/misproductos.js"></script>
+<script src="public/vistasPerfil/inventario/productos//modificarProducto.js"></script>

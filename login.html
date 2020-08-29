@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
-	
+	<link rel="stylesheet" href="public/css/waves.css">
 	<!-- css of vuesax -->
 	<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 	<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
@@ -84,7 +84,12 @@
 	<!-- vuejs -->
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+	<script src="public/js/waves.js"></script>
+	<script>
+		Waves.init();
+		Waves.attach('.button', ['waves-button', 'waves-float']);
 
+	</script>
 	<!-- mis scrips -->
 	<script src="public/vistas/login/login.js"></script>
 

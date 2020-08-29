@@ -53,7 +53,7 @@ $(document).ready(function () {
    */
   $("#inventario").click(() => {
     $(".contenidoP").load(
-      "public/vistasPerfil/inventario/mproductos.html",
+      "public/vistasPerfil/inventario/navFacturaProductos.html",
       function (data) {
         $(this).html(data);
       }

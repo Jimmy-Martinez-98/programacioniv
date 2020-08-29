@@ -6,6 +6,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <!-- css of vuesax -->
+  <link rel="stylesheet" href="public/css/waves.css">
   <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
   <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -115,7 +116,14 @@
     wow.init();
   </script>
   <!-- mis scripts -->
+  <script src="public/js/waves.js"></script>
+  <script>
+    Waves.init();
+     Waves.attach('.float-button-light', ['waves-button', 'waves-float', 'waves-light']);
+    Waves.attach('.button', ['waves-button', 'waves-float']);
+  </script>
   <script src="public/vistas/perfiles/cooperativa.js"></script>
+
 </body>
 
 </html>

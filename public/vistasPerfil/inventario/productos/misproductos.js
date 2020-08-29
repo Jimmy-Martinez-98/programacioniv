@@ -9,6 +9,7 @@ var misproductosapp = new Vue({
   el: "#misprod",
   data: {
     myproductos: [],
+    valor: "",
   },
   created: function () {
     this.myproductos = [];
@@ -24,6 +25,23 @@ var misproductosapp = new Vue({
     updateTable() {},
   },
   methods: {
+    busquedaProducto: function () {
+      let user = firebase.auth().currentUser;
+      let allProducts = [];
+      firebaseDB
+        .ref("Productos/")
+        .orderByChild("nombreProducto")
+        .startAt(misproductosapp.valor)
+        .on("value", (snap) => {
+          allProducts = [];
+          snap.forEach((items) => {
+            if (user.uid === items.val().idUsuario) {
+              allProducts.push(items.val());
+            }
+          });
+        });
+      this.myproductos = allProducts;
+    },
     openNotificacion: function (color, title, text) {
       this.$vs.notification({
         square: true,
