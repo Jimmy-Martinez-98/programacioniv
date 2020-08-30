@@ -5,6 +5,10 @@
 h3 {
   font-weight: 900;
 }
+.button:focus {
+  border: none;
+  outline: none;
+}
 
 .list-group .list-group-item {
   background-color: rgba(202, 201, 201, 0.966);

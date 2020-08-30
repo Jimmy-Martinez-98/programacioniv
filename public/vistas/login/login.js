@@ -13,6 +13,7 @@ var applogin = new Vue({
       correo: "",
       pass: "",
     },
+
   },
   methods: {
     /**

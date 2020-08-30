@@ -4,7 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-var firebaseAuth=firebase.auth();
+var firebaseAuth = firebase.auth();
 var appcontras = new Vue({
   el: "#frm-Recuperar",
   data: {
@@ -13,23 +13,32 @@ var appcontras = new Vue({
     },
   },
   methods: {
-  
-
     /**
      * redirige al usuario a la pantalla de login si se actualizo la contraseña
      * @access public
      * @function Recuperar
      */
     Recuperar: function () {
-     firebaseAuth.languageCode='es'
-     email=this.resetPassword.correo;
-     firebaseAuth.sendPasswordResetEmail(email,()=>{
-       swal.fire({
-         title:'Restablecimiento de Contraseña',
-         text:'Se ha enviado un mensaje a su correo para que actualize su contraseña',
-         icon:'info'
-       })
-     });
+      firebaseAuth.languageCode = "es";
+      email = this.resetPassword.correo;
+      firebaseAuth.sendPasswordResetEmail(email).then(() => {
+        swal
+          .fire({
+            title: "Restablecimiento de Contraseña",
+            text:
+              "Se ha enviado un mensaje a su correo para que actualize su contraseña",
+            icon: "info",
+            buttonStyling: true,
+            showCloseButton: true,
+            closeButtonArialLabel: "cerrar alerta",
+            position: "top",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+          })
+          .then(() => {
+            location.href = "login.html";
+          });
+      });
     },
 
     /**

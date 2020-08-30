@@ -10,3 +10,7 @@
 .form-check-input:checked ~ label {
   color: orange;
 }
+button:focus {
+  border: none;
+  outline: none;
+}

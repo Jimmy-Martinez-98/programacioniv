@@ -51,9 +51,9 @@ $(document).ready(function () {
    * @access public
    * @event click#productos
    */
-  $("#productos").click(() => {
+  $("#inventario").click(() => {
     $(".contenidoP").load(
-      "public/vistasPerfil/misproductos/mproductos.html",
+      "public/vistasPerfil/inventario/navFacturaProductos.html",
       function (data) {
         $(this).html(data);
       }

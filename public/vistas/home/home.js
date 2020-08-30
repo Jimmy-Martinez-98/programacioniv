@@ -9,18 +9,9 @@ var app = new Vue({
   el: "#slider",
   data: {
     productos: [],
-    lista_deseox: {
-      id_miproducto: "",
-      id_usuario: "",
-      accion: "nuevo",
-    },
-    ItSession: 0,
-    ItValor: "",
-    ItCuenta: "",
   },
   created: function () {
     this.datoss();
-   
   },
   methods: {
     /**
@@ -29,18 +20,19 @@ var app = new Vue({
      * @function datoss
      */
     datoss: function () {
-      let dataP=[];
-     
-      firebaseDB.ref('Productos/').on('value',(snap)=>{
-        snap.forEach(element => {
+      let dataP = [];
+      firebaseDB.ref("Productos/").on("value", (snap) => {
+        snap.forEach((element) => {
           dataP.push(element.val());
         });
-        this.productos=dataP
-      })
-     
+        this.productos = dataP;
+      });
     },
 
-
+    /*==========================
+              LISTENERS
+      ===========================
+    */
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
      * @access public
@@ -48,20 +40,63 @@ var app = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaC: function (producto) {
-      if (this.ItSession != 0) {
-        var idproducto = producto.miproducto;
-        this.lista_deseox.id_miproducto = idproducto;
-
-        if (this.lista_deseox != "") {
-         
-        }
+      let user = firebaseAuth.currentUser;
+      if (user) {
+        let key = firebaseDB.ref().child("listaDeseos/").push().key;
+        let data = {
+          Arroba: producto.Arroba,
+          Caja: producto.Caja,
+          Quintal: producto.Quintal,
+          Unidad: producto.Unidad,
+          categoria: producto.categoria,
+          descProducto: producto.descProducto,
+          idLista: key,
+          idProducto: producto.idProducto,
+          idUsuario: producto.idUsuario,
+          idUsuarioObtubo: user.uid,
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreU: producto.nombreU,
+          precioVenta: producto.precioVenta,
+        };
+        firebaseDB
+          .ref("listaDeseos/" + key)
+          .set(data)
+          .then((e) => {
+            if (e) {
+              let mensaje =
+                "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
+              this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
+            } else {
+              let msg = "Guardado Exitosamente :)";
+              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+            }
+          });
       } else {
-        Swal.fire(
-          "Ups...",
-          "Debes Iniciar Sesión Para Usar Esta Opción",
-          "warning"
-        );
+        let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
       }
+    },
+    openNotificationCarrousel(msg, notiColor, titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
+    },
+    verProd: function (info) {
+      var data = {
+        info
+      };
+      sessionStorage.setItem("data", JSON.stringify(data));
+      window.open("productos.html", "_blank");
     },
   },
 });
@@ -73,16 +108,9 @@ var todoproducto = new Vue({
   el: "#todoproducto",
   data: {
     all: [],
-    lista_deseo: {
-      id_miproducto: "",
-      id_usuario: "",
-      accion: "nuevo",
-    },
-    session: "",
   },
   created: function () {
     this.traer_todo();
-  
   },
   methods: {
     /**
@@ -91,16 +119,20 @@ var todoproducto = new Vue({
      * @function traer_todo
      */
     traer_todo: function () {
-      let dataP=[];
-
-      firebaseDB.ref('Productos/').on('value',(snap)=>{
-        snap.forEach(element => {
+      let dataP = [];
+      firebaseDB.ref("Productos/").on("value", (snap) => {
+        snap.forEach((element) => {
           dataP.push(element.val());
         });
-        this.all=dataP
-      })
+        this.all = dataP;
+      });
     },
 
+    /*
+    ======================
+          LISTENER
+    ======================  
+    */
     /**
      * Guarda datos del producto en localStorage para su posterior llamada en otra pantalla
      * @access public
@@ -112,10 +144,61 @@ var todoproducto = new Vue({
         info,
       };
       sessionStorage.setItem("data", JSON.stringify(data));
-      window.open('productos.html','_blank')
+      window.open("productos.html", "_blank");
     },
 
-  
-    
+    addlista: function (datos) {
+      let user = firebaseAuth.currentUser;
+      if (user) {
+        let key = firebaseDB.ref().child("listaDeseos/").push().key;
+        let data = {
+          Arroba: datos.Arroba,
+          Caja: datos.Caja,
+          Quintal: datos.Quintal,
+          Unidad: datos.Unidad,
+          categoria: datos.categoria,
+          descProducto: datos.descProducto,
+          idLista: key,
+          idProducto: datos.idProducto,
+          idUsuario: datos.idUsuario,
+          idUsuarioObtubo: user.uid,
+          imagen: datos.imagen,
+          libra: datos.libra,
+          nombreCooperativa: datos.nombreCooperativa,
+          nombreProducto: datos.nombreProducto,
+          nombreU: datos.nombreU,
+          precioVenta: datos.precioVenta,
+        };
+
+        firebaseDB
+          .ref("listaDeseos/" + key)
+          .set(data)
+          .then((e) => {
+            if (e) {
+              let mensaje =
+                "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
+              this.openNotification(mensaje, "danger", "Error!!!");
+            } else {
+              let msg = "Guardado Exitosamente :)";
+              this.openNotification(msg, "success", "Listoo!!");
+            }
+          });
+      } else {
+        let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+        this.openNotification(msg, "primary", "Alerta!!!");
+      }
+    },
+    openNotification(msg, notiColor, titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
+    },
   },
 });

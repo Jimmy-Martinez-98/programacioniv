@@ -71,47 +71,55 @@ var seccionverduras = new Vue({
       let user = firebaseAuth.currentUser;
       let newKey = firebaseDB.ref().child("listaDeseos").push().key;
       if (user) {
-        firebaseDB.ref("listaDeseos/" + newKey).set(
-          {
-            'arroba': producto.arroba,
-            'caja': producto.caja,
-            'categoria': producto.categoria,
-            'descProducto': producto.descProducto,
-            'idProducto': producto.idProducto,
-            'idUsuario': producto.idUsuario,
-            'idUsuarioObtubo': user.uid,
-            'idLista': newKey,
-            'imagen': producto.imagen,
-            'libra': producto.libra,
-            'nombreCooperativa': producto.nombreCooperativa,
-            'nombreProducto': producto.nombreProducto,
-            'nombreU': producto.nombreU,
-            'precioVenta': producto.precioVenta,
-            'quintal': producto.quintal,
-            'unidad': producto.unidad,
-          },
-          (error) => {
-            if (error) {
-              swal.fire({
-                title: "Ups...",
-                text: "Ocurrio un error al intentar realizar la accion",
-                icon: "error",
-              });
+        let key = firebaseDB.ref().child("listaDeseos/").push().key;
+        let data = {
+          Arroba: producto.Arroba,
+          Caja: producto.Caja,
+          Quintal: producto.Quintal,
+          Unidad: producto.Unidad,
+          categoria: producto.categoria,
+          descProducto: producto.descProducto,
+          idLista: newKey,
+          idProducto: producto.idProducto,
+          idUsuario: producto.idUsuario,
+          idUsuarioObtubo: user.uid,
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreU: producto.nombreU,
+          precioVenta: producto.precioVenta,
+        };
+        firebaseDB
+          .ref("listaDeseos/" + key)
+          .set(data)
+          .then((e) => {
+            if (e) {
+              let mensaje =
+                "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
+              this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
             } else {
-              let mensaje = alertify.success(
-                "Producto agregado a tu lista de deseos :)"
-              );
-              mensaje.delay(2);
-              alertify.set("notifier", "position", "top-right");
+              let msg = "Guardado Exitosamente :)";
+              this.openNotificationCarrousel(msg, "success", "Listoo!!");
             }
-          }
-        );
+          });
       } else {
-        swal.fire({
-          title: "Debes iniciar sesion para utilizar esta opcion",
-          icon: "info",
-        });
+        let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
       }
+    },
+
+    openNotificationCarrousel(msg, notiColor, titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
     },
 
     /**
