@@ -1,6 +1,14 @@
 *{
 	font-family: 'Balsamiq Sans', cursive;
 }
+input[type="text"]:focus{
+  position: static;
+  transition: all 0,5s;
+  box-shadow: none;
+}
+input[type="text"]::before{
+  left: 0px;
+}
 .card-footer{
 	border: none;
 	background-color: #ffffff;

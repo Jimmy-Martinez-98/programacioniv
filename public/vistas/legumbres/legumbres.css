@@ -1,3 +1,11 @@
+input[type="text"]:focus{
+  position: static;
+  transition: all 0,5s;
+  box-shadow: none;
+}
+input[type="text"]::before{
+  left: 0px;
+}
 .form-check-input {
   display: none;
   color: gray;
