@@ -239,9 +239,9 @@ var guardarProducto = new Vue({
         this.agregar.idProducto != "" &&
         this.agregar.idUsuario != "" &&
         this.agregar.imagen != "" &&
-        this.agregar.nombreProducto != "" &&
         this.agregar.nombreU != ""
       ) {
+      
         if (
           this.agregar.pU == "" &&
           this.agregar.pL == "" &&
@@ -254,6 +254,7 @@ var guardarProducto = new Vue({
           this.agregar.unidad == "" &&
           this.agregar.categoria == ""
         ) {
+          
           guardarProducto.openNotificacion(
             "danger",
             "Espera!",
@@ -300,6 +301,8 @@ var guardarProducto = new Vue({
             );
           }
         }
+      }else{
+        this.openNotificacion('dark','Por favor complete los campos :)','')
       }
     },
     datosUser: function () {
