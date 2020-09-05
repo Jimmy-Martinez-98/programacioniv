@@ -55,11 +55,12 @@
 
 						<div class="input-group-prepend">
 							<label class="input-group-text" for="inputGroupSelect01">Existencias:</label>
-							<input type="text" disabled class="form-control p-2" v-model="detallesprod.info.existencias" 
-											style="width: 50px;">
+							<input type="text" disabled class="form-control p-2" v-model="detallesprod.info.existencias"
+								style="width: 50px;">
 						</div>
 
-						<a href="#" class="contactar" v-on:click="contactar(detallesprod.info.idUsuario)"><i class="far fa-comment-dots"></i>
+						<a href="#" class="contactar" v-on:click="contactar(detallesprod.info.idUsuario)"><i
+								class="far fa-comment-dots"></i>
 							Contactar </a>
 						<div class="container mb-5 columna">
 							<div class="input-group mb-3">
@@ -69,9 +70,9 @@
 								<select class="custom-select" v-model="Compra.select_Cantidad" id="inputGroupSelect01">
 									<option selected value="">Elige...</option>
 									<option value="Libra" v-if="detallesprod.info.libra==true">Libra</option>
-									<option value="Arroba" v-if="detallesprod.info.arroba==true">Arroba</option>
-									<option value="Quintal" v-if="detallesprod.info.quintal==true">Quintal</option>
-									<option value="Caja" v-if="detallesprod.info.caja==true">Caja</option>
+									<option value="Arroba" v-if="detallesprod.info.Arroba==true">Arroba</option>
+									<option value="Quintal" v-if="detallesprod.info.Quintal==true">Quintal</option>
+									<option value="Caja" v-if="detallesprod.info.Caja==true">Caja</option>
 								</select>
 							</div>
 							<div class="container mt-2">
@@ -101,14 +102,21 @@
 						<div class="container">
 							<button class="btn btn-dark form-control" v-if="detallesprod.info.isagotado==='SI'"
 								disabled>Comprar Ahora</button>
-							<button class="btn btn-dark form-control" v-else @click="passdatos(detallesprod.info)">Comprar
+							<button class="btn btn-dark form-control" v-else
+								@click="passdatos(detallesprod.info)">Comprar
 								Ahora</button>
 						</div>
 						<br>
 						<hr>
 						<div class="row">
 							<div class="col">
-								<h4 class="float-left"> ${{detallesprod.info.precioVenta}}</h4>
+								<h4 class="float-left" v-if="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''"> ${{detallesprod.info.precioLibra}}</h4>
+								<h4 class="float-left" v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''"> ${{detallesprod.info.precioArroba}}</h4>
+								<h4 class="float-left" v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja==''"> ${{detallesprod.info.precioQuintal}}</h4>
+								<h4 class="float-left" v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja!=''"> ${{detallesprod.info.precioCaja}}</h4>
+								<h4 class="float-left"
+									v-else="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja!=''">
+									${{detallesprod.info.precioLibra}}</h4>
 							</div>
 							<div class="col">
 								<h4 class="float-right" v-if="detallesprod.info.nombreCooperativa==''">
@@ -208,15 +216,15 @@
 	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
 	<script src="public/js/configFirebase.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/js/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	
+
 	<script src="public/vistas/blog/dist/wow.js"></script>
 	<script src="public/vistas/verproductos/publicproductos.js"></script>
-	
+
 
 	<script>
 		var wow = new WOW(
