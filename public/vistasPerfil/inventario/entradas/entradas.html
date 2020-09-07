@@ -1,23 +1,75 @@
-<form>
-    <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Codigo</th>
-                <th scope="col">Nombre Producto</th>
-                <th scope="col">Fecha de Entrada</th>
-                <th scope="col">Cantidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Chile</td>
-                <td>24/08/2019</td>
-                <td>650</td>
-            </tr>
-          
-        </tbody>
-    </table>
+<form id="Entradas">
+    <div class="row">
+        <div class="col-6 mb-2">
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addEntrada">Agregar
+                Entrada</button>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nombre Producto</th>
+                            <th scope="col">Fecha de Entrada</th>
+                            <th scope="col">Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-secondary" v-for="datos in entradas">
+                            <th scope="row">{{datos.codigoProducto}}</th>
+                            <td>{{datos.nombreProducto}}</td>
+                            <td>{{datos.fechaEntrada}}</td>
+                            <td>{{datos.cantidadEntradas}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <div class="modal fade" id="addEntrada" tabindex="-1" aria-labelledby="addEntrada" aria-hidden="true"
+        data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="addEntrada">Nueva Entrada</h5>
+                    <button type="button" class="close" @click="borrar" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="text" required placeholder="Codigo Producto"
+                                    v-model="seleccion.codeProducto" class="form-control">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <select class="custom-select" required v-model="seleccion">
+                                    <option selected disabled>Choose...</option>
+                                    <option v-for="nombre in productos" :value="nombre">{{nombre.nombreProducto}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="date" required v-model="historialEntradas.fecha" class="form-control">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="number" required placeholder="Cantidad de Entradas"
+                                    v-model="historialEntradas.cantidad" class="form-control">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger button" @click="cerrar" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary button" @click="guardarEntrada">Confirmar
+                        Entrada</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="public/vistasPerfil/inventario/entradas/entradas.js"></script>
 </form>
