@@ -29,8 +29,6 @@ appChat = new Vue({
   },
   computed: {
     update: function () {
-     
-
       this.chatHistory();
     },
     imagen:function(){

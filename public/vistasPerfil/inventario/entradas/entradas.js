@@ -11,10 +11,12 @@ var entradas = new Vue({
     },
     entradas: [],
   },
+
   created: function () {
     this.obtenerProductos();
     this.traerEntradas();
   },
+
   methods: {
     obtenerProductos: function () {
       let user = firebaseAuth.currentUser.uid;
@@ -28,18 +30,17 @@ var entradas = new Vue({
       });
       this.productos = productos;
     },
-
     traerEntradas: function () {
       let user = firebaseAuth.currentUser.uid;
-      let myEntradas = [];
+      this.entradas = [];
       firebaseDB.ref("historialEntradas/").on("value", (snapshot) => {
+        entradas.entradas = [];
         snapshot.forEach((element) => {
           if (user == element.val().idUsuario) {
-            myEntradas.push(element.val());
+            this.entradas.push(element.val());
           }
         });
       });
-      this.entradas = myEntradas;
     },
 
     /**
@@ -67,6 +68,7 @@ var entradas = new Vue({
             key: newkey,
           })
           .then(() => {
+            this.aumentarStock();
             this.openNotification(
               "success",
               "Guardado de Entrada",
@@ -82,6 +84,15 @@ var entradas = new Vue({
           ""
         );
       }
+    },
+    aumentarStock: function () {
+      let sumaStock =
+        parseInt(this.seleccion.existencias) +
+        parseInt(this.historialEntradas.cantidad);
+
+      firebaseDB.ref("Productos/" + entradas.seleccion.idProducto).update({
+        existencias: sumaStock,
+      });
     },
     openNotification: function (color, title, text, width) {
       this.$vs.notification({
