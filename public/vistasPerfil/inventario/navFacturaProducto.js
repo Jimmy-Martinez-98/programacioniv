@@ -4,7 +4,7 @@ var contenido = new Vue({
   methods: {
     productos: function () {
       $("#contenedor").load(
-        "public/vistasPerfil/inventario/productos/mproductos.html",
+        "public/vistasPerfil/paginacion/paginacionInventario.html",
         function (data) {
           $(this).html(data);
         }
