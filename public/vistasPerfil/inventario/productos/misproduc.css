@@ -13,3 +13,8 @@
   border-radius: 0;
 }
 
+
+.form-control:focus::placeholder{
+  transition: all 0.3s;
+  display: none;
+}
