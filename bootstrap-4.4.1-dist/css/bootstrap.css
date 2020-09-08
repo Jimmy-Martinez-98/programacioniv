@@ -2163,11 +2163,11 @@ input[type="password"] {
   line-height: 1.5;
   color: #5b6064;
   outline: none;
-  background: rgba(128, 128, 128, 0.37);
+  background: rgba(211, 210, 210, 0);
   border: none;
   left: 0;
-  border-bottom: 2px solid rgb(145, 145, 145);
-  transition: border 0.3s;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.459);
+  transition: all 0.3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2199,21 +2199,21 @@ input:focus {
 
 .form-control:focus,
 input::before {
-  color: #495057;
+  color: #070707;
   background: none;
   border: none;
   outline: 0;
    left: 100%; 
-  border-bottom: 3.7px solid rgb(4, 255, 67);
+  border-bottom: 3.5px solid rgb(4, 255, 67);
 
 }
 .form-control::-webkit-input-placeholder {
-  color: #8d9092;
+  color: #6c7275;
   opacity: 1;
 }
 
 .form-control::-moz-placeholder {
-  color: #6c757d;
+  color: #5e666d;
   opacity: 1;
 }
 
@@ -2769,7 +2769,6 @@ fieldset:disabled a.btn {
 .btn-primary.focus {
   color: #fff;
   background-color: #0069d9;
-  box-shadow: 4px 4px 4px -1px rgba(58, 56, 56, 0.582);
 }
 
 .btn-primary.disabled,
@@ -3259,7 +3258,8 @@ fieldset:disabled a.btn {
 .btn-outline-danger {
   color: #dc3545;
   border-color: #dc3545;
-  border-radius: 0;
+  
+  outline: 1px solid #dc3545;
 }
 
 .btn-outline-danger:hover {
@@ -3270,7 +3270,8 @@ fieldset:disabled a.btn {
 
 .btn-outline-danger:focus,
 .btn-outline-danger.focus {
-  box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.582);
+  box-shadow:none;
+  outline: 1px solid #dc3545;
 }
 
 .btn-outline-danger.disabled,
@@ -6495,6 +6496,7 @@ a.close.disabled {
 }
 
 .modal-body {
+  background-color: rgba(0, 0, 0, 0.274);
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -6514,6 +6516,8 @@ a.close.disabled {
   border-top: 1px solid #dee2e6;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
+  background-color: rgba(0, 0, 0, 0.158);
+  background-color: rgba(0, 0, 0, 0.274);
 }
 
 .modal-footer > * {
