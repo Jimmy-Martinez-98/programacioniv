@@ -2163,13 +2163,13 @@ input[type="password"] {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #28292b;
+  color: #000000;
   outline: none;
-  background: rgba(211, 210, 210, 0);
+  background: rgba(223, 222, 222, 0);
   border: none;
   left: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.459);
-  transition: border 0.3s;
+  transition: all 0.2s;
   box-shadow: none;
 }
 
@@ -2203,11 +2203,11 @@ input:focus {
 .form-control:focus,
 input::before {
   color: #070707;
-  background: none;
+  background: white;
   border: none;
   outline: 0;
    left: 100%; 
-  border-bottom: 2px solid rgb(4, 50, 255);
+  border-bottom: 1.5px solid rgb(4, 50, 255);
 
 }
 .form-control::-webkit-input-placeholder {
@@ -2434,7 +2434,7 @@ textarea.form-control.is-valid {
 
 .was-validated .custom-select:valid,
 .custom-select.is-valid {
-  border-color: #28a745;
+  border-color: #0c25ff;
   padding-right: calc(0.75em + 2.3125rem);
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
       no-repeat right 0.75rem center/8px 10px,
@@ -2445,13 +2445,13 @@ textarea.form-control.is-valid {
 
 .was-validated .custom-select:valid:focus,
 .custom-select.is-valid:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  border-color: #2846a7;
+ 
 }
 
 .was-validated .form-check-input:valid ~ .form-check-label,
 .form-check-input.is-valid ~ .form-check-label {
-  color: #28a745;
+  color: #285fa7;
 }
 
 .was-validated .form-check-input:valid ~ .valid-feedback,
@@ -3875,7 +3875,7 @@ input[type="button"].btn-block {
 .input-group > .custom-file + .custom-file {
   margin-left: -1px;
 
-  box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.719);
+
 }
 
 .input-group > .form-control:focus,
@@ -4227,29 +4227,24 @@ input[type="button"].btn-block {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #000000;
   vertical-align: middle;
-  background: rgba(165, 165, 165, 0.521)
+  background: rgba(245, 245, 245, 0.815)
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
     no-repeat right 0.75rem center/8px 10px;
   border: none;
   outline: none;
-  border-bottom: 3px solid #14d85f;
+  border-bottom: 1.5px solid #0a1aff;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  transition: all 0.5s;
-}
-
-.custom-select:focus::before {
-  outline: 0;
-  color: rgb(43, 42, 42);
-  left: 100%;
   
 }
 
+
+
 .custom-select:focus::-ms-value {
-  color: #495057;
+  color: #141516;
   background-color: #fff;
 }
 
