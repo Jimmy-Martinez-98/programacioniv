@@ -54,10 +54,10 @@ var seccionfrutas = new Vue({
             libra: producto.libra,
             nombreCooperativa: producto.nombreCooperativa,
             nombreProducto: producto.nombreProducto,
-            nombreU: producto.nombreU,
+            nombreUsuario: producto.nombreUsuario,
             precioVenta: producto.precioVenta,
             Quintal: producto.Quintal,
-            Unidad: producto.Unidad,
+            
           },
           (error) => {
             if (error) {

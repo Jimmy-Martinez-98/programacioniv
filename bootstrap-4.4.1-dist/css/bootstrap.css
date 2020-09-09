@@ -313,6 +313,7 @@ input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
   -webkit-appearance: listbox;
+  box-shadow: none;
 }
 
 textarea {
@@ -2153,6 +2154,7 @@ pre code {
 input[type="text"],
 input[type="email"],
 input[type="number"],
+input[type="time"]
 input[type="password"] {
   display: block;
   width: 100%;
@@ -2161,13 +2163,14 @@ input[type="password"] {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #5b6064;
+  color: #28292b;
   outline: none;
   background: rgba(211, 210, 210, 0);
   border: none;
   left: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.459);
-  transition: all 0.3s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.459);
+  transition: border 0.3s;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2188,11 +2191,11 @@ input[type="password"] {
 
 .form-control:focus,
 input:focus {
-  color: rgb(107, 107, 107);
+  color: rgb(39, 39, 39);
   background: 495057;
   border: none;
   outline: 0;
-  border-bottom: 2.5px solid rgb(206, 206, 206);
+  border-bottom: 1px solid rgb(206, 206, 206);
 
   /* box-shadow: 4px 4px 5px -1px rgba(58, 56, 56, 0.719); */
 }
@@ -2204,11 +2207,11 @@ input::before {
   border: none;
   outline: 0;
    left: 100%; 
-  border-bottom: 3.5px solid rgb(4, 50, 255);
+  border-bottom: 2px solid rgb(4, 50, 255);
 
 }
 .form-control::-webkit-input-placeholder {
-  color: #6c7275;
+  color: #51596d;
   opacity: 1;
 }
 

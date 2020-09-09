@@ -1,16 +1,16 @@
-b{
+b {
   color: rgb(250, 182, 119);
 }
 
 .grupo .listaitems {
   background-color: white;
-  color:  rgb(148, 144, 144);;
+  color: rgb(148, 144, 144);
 }
 .grupo .listaitems:hover {
   cursor: pointer;
   background-color: #686868b7;
   color: #ffff;
- transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .scrolle {
@@ -37,3 +37,21 @@ b{
   margin-left: 40%;
 }
 
+.timer {
+  position: static;
+  transition: none;
+
+  background-color: white;
+  box-shadow: none;
+}
+.timer:focus {
+  position: static;
+  transition: none;
+  background-color: white;
+  box-shadow: none;
+}
+.timer:focus::before {
+  position: static;
+  transition: none;
+  background-color: white;
+}

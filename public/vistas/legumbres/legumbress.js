@@ -18,12 +18,12 @@ var seccionlegumbre = new Vue({
      */
     traerlegumbres: function () {
       firebaseDB
-      .ref("Productos/")
-      .orderByChild("categoria")
-      .equalTo("Legumbres")
-      .on("value", (snap) => {
-        this.legumbressss = snap.val();
-      });
+        .ref("Productos/")
+        .orderByChild("categoria")
+        .equalTo("Legumbres")
+        .on("value", (snap) => {
+          this.legumbressss = snap.val();
+        });
     },
 
     /**
@@ -47,7 +47,6 @@ var seccionlegumbre = new Vue({
         });
     },
 
-
     /**
      * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
      * @access public
@@ -55,44 +54,48 @@ var seccionlegumbre = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaL: function (producto) {
-      let user=firebaseAuth.currentUser;
-      let newKey=firebaseDB.ref().child('listaDeseos').push().key;
-      if(user){
-        firebaseDB.ref('listaDeseos/'+newKey).set({
-          'arroba': producto.arroba,
-          'caja': producto.caja,
-          'categoria': producto.categoria,
-          'descProducto': producto.descProducto,
-          'idProducto': producto.idProducto,
-          'idUsuario': producto.idUsuario,
-          'idUsuarioObtubo':user.uid,
-          'idLista':newKey,
-          'imagen': producto.imagen,
-          'libra': producto.libra,
-          'nombreCooperativa': producto.nombreCooperativa,
-          'nombreProducto': producto.nombreProducto,
-          'nombreU': producto.nombreU,
-          'precioVenta': producto.precioVenta,
-          'quintal': producto.quintal,
-          'unidad':producto.unidad
-        },error=>{
-          if(error){
-            swal.fire({
-              title:'Ups...',
-              text:'Ocurrio un error al intentar realizar la accion',
-              icon:'error'
-            });
-          }else{
-            let mensaje = alertify.success('Producto agregado a tu lista de deseos :)');
-            mensaje.delay(2);
-            alertify.set("notifier", "position", "top-right");
+      let user = firebaseAuth.currentUser;
+      let newKey = firebaseDB.ref().child("listaDeseos").push().key;
+      if (user) {
+        firebaseDB.ref("listaDeseos/" + newKey).set(
+          {
+            arroba: producto.arroba,
+            caja: producto.caja,
+            categoria: producto.categoria,
+            descProducto: producto.descProducto,
+            idProducto: producto.idProducto,
+            idUsuario: producto.idUsuario,
+            idUsuarioObtubo: user.uid,
+            idLista: newKey,
+            imagen: producto.imagen,
+            libra: producto.libra,
+            nombreCooperativa: producto.nombreCooperativa,
+            nombreProducto: producto.nombreProducto,
+            nombreUsuario: producto.nombreUusuario,
+            precioVenta: producto.precioVenta,
+            quintal: producto.quintal,
+          },
+          (error) => {
+            if (error) {
+              swal.fire({
+                title: "Ups...",
+                text: "Ocurrio un error al intentar realizar la accion",
+                icon: "error",
+              });
+            } else {
+              let mensaje = alertify.success(
+                "Producto agregado a tu lista de deseos :)"
+              );
+              mensaje.delay(2);
+              alertify.set("notifier", "position", "top-right");
+            }
           }
-        })
-      }else{
+        );
+      } else {
         swal.fire({
-          title:'Debes iniciar sesion para utilizar esta opcion',
-          icon:'info'
-        })
+          title: "Debes iniciar sesion para utilizar esta opcion",
+          icon: "info",
+        });
       }
     },
 
@@ -126,18 +129,14 @@ var seccionlegumbre = new Vue({
      * @access public
      * @function descL
      */
-    descL: function () {
-     
-    },
+    descL: function () {},
 
     /**
      * Ordena los items de forma ascendente en base al precio
      * @access public
      * @function ascL
      */
-    ascL: function () {
-      
-    },
+    ascL: function () {},
   },
   created: function () {
     this.traerlegumbres();

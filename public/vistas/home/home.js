@@ -47,7 +47,7 @@ var app = new Vue({
           Arroba: producto.Arroba,
           Caja: producto.Caja,
           Quintal: producto.Quintal,
-          Unidad: producto.Unidad,
+         
           categoria: producto.categoria,
           descProducto: producto.descProducto,
           idLista: key,
@@ -58,8 +58,11 @@ var app = new Vue({
           libra: producto.libra,
           nombreCooperativa: producto.nombreCooperativa,
           nombreProducto: producto.nombreProducto,
-          nombreU: producto.nombreU,
-          precioVenta: producto.precioVenta,
+          nombreUsuario: producto.nombreUsuario,
+          pL:producto.pL,
+          pA:producto.pA,
+          pQ:producto.pQ,
+          pC:producto.pC
         };
         firebaseDB
           .ref("listaDeseos/" + key)
@@ -148,6 +151,8 @@ var todoproducto = new Vue({
     },
 
     addlista: function (datos) {
+      console.log(datos);
+      
       let user = firebaseAuth.currentUser;
       if (user) {
         let key = firebaseDB.ref().child("listaDeseos/").push().key;
@@ -155,7 +160,7 @@ var todoproducto = new Vue({
           Arroba: datos.Arroba,
           Caja: datos.Caja,
           Quintal: datos.Quintal,
-          Unidad: datos.Unidad,
+         
           categoria: datos.categoria,
           descProducto: datos.descProducto,
           idLista: key,
@@ -166,8 +171,11 @@ var todoproducto = new Vue({
           libra: datos.libra,
           nombreCooperativa: datos.nombreCooperativa,
           nombreProducto: datos.nombreProducto,
-          nombreU: datos.nombreU,
-          precioVenta: datos.precioVenta,
+          nombreUsuario: datos.nombreUsuario,
+          pL:datos.precioLibra,
+          pA:datos.precioArroba,
+          pQ:datos.precioQuintal,
+          pC:datos.precioCaja
         };
 
         firebaseDB
