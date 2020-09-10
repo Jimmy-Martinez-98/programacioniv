@@ -159,8 +159,7 @@ var todoproducto = new Vue({
         let data = {
           Arroba: datos.Arroba,
           Caja: datos.Caja,
-          Quintal: datos.Quintal,
-         
+          Quintal: datos.Quintal,    
           categoria: datos.categoria,
           descProducto: datos.descProducto,
           idLista: key,
@@ -172,10 +171,10 @@ var todoproducto = new Vue({
           nombreCooperativa: datos.nombreCooperativa,
           nombreProducto: datos.nombreProducto,
           nombreUsuario: datos.nombreUsuario,
-          pL:datos.precioLibra,
-          pA:datos.precioArroba,
-          pQ:datos.precioQuintal,
-          pC:datos.precioCaja
+          precioLibra:datos.precioLibra,
+          precioArroba:datos.precioArroba,
+          precioQuintal:datos.precioQuintal,
+          precioCaja:datos.precioCaja
         };
 
         firebaseDB

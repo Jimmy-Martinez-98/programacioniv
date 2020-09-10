@@ -68,7 +68,7 @@ var seccionverduras = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaV: function (producto) {
-      console.log(producto);
+      
       
       let user = firebaseAuth.currentUser;
       let newKey = firebaseDB.ref().child("listaDeseos").push().key;
@@ -89,7 +89,10 @@ var seccionverduras = new Vue({
           nombreCooperativa: producto.nombreCooperativa,
           nombreProducto: producto.nombreProducto,
           nombreUsuario: producto.nombreUsuario,
-          precioVenta: producto.precioVenta,
+          precioLibra: producto.precioLibra,
+          precioQuintal:precioQuintal,
+          precioArroba:precioArroba,
+          precioCaja:precioCaja
         };
         firebaseDB
           .ref("listaDeseos/" + key)
@@ -114,7 +117,7 @@ var seccionverduras = new Vue({
       const noti = this.$vs.notification({
         square: true,
         color: notiColor,
-        position: "top-rigth",
+        position: "bottom-rigth",
         title: titulo,
         text: msg,
         progress: "auto",
