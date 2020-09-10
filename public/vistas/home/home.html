@@ -16,7 +16,7 @@
 	<p> <b> Lo Mas Destacado</b></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
-			v-for="(datos,index) in productos" :key="datos.idUsuario">
+			v-for="(datos,index) in productos" >
 			<div class="targeta ">
 				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
@@ -87,7 +87,7 @@
 <!-- todos los productos -->
 <div class=" container mt-2  d-flex justify-content-center" id="todoproducto">
 	<div class="row ">
-		<div class="col-sm-4  wow fadeIn" v-for="todo in all" :key="todo.miproducto">
+		<div class="col-sm-4  wow fadeIn" v-for="todo in all" >
 			<div class="targeta">
 				<img v-bind:src="todo.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
@@ -148,15 +148,7 @@
 	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
-<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-<script src="public/js/jquery-ui.js"></script>
 
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
 <script src="public/vistas/home/carousel.js"></script>
 <script src="public/vistas/home/home.js"></script>

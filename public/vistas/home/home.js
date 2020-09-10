@@ -59,10 +59,10 @@ var app = new Vue({
           nombreCooperativa: producto.nombreCooperativa,
           nombreProducto: producto.nombreProducto,
           nombreUsuario: producto.nombreUsuario,
-          pL:producto.pL,
-          pA:producto.pA,
-          pQ:producto.pQ,
-          pC:producto.pC
+          precioLibra:producto.precioLibra,
+          precioArroba:producto.precioArroba,
+          precioQuintal:producto.precioQuintal,
+          precioCaja:producto.precioCaja
         };
         firebaseDB
           .ref("listaDeseos/" + key)

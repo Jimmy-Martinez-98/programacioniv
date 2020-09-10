@@ -1,19 +1,21 @@
 * {
   font-family: "Balsamiq Sans", cursive;
 }
-input[type="text"]{
+input[type="search"]{
   position: static;
   transition: none;
 }
-input[type="text"]:focus {
+input[type="search"]:focus {
   position: static;
   transition: none;
   box-shadow: none;
+   border-bottom: 1.5px solid blue;
 }
-input[type="text"]::before {
+input[type="search"]::before {
   left: 0px;
   position: static;
   transition: none;
+  border-bottom: 1.5px solid blue;
 }
 .card-footer {
   border: none;

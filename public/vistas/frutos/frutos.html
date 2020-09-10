@@ -13,11 +13,12 @@
 <div class="container" id="frutas">
 	<div class="container mt-3 mb-3  ">
 		<div class="input-group input-group-lg wow fadeIn">
-			<input type="text" class="form-control" v-model="valor" @keyup="autobusquda">
+			<input type="search" class="form-control" v-model="valor" @keyup="autobusquda">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="inputGroup-sizing-lg" v-on:click="buscarF"><i
 						class="fas fa-search"></i></span>
 			</div>
+
 		</div>
 
 	</div>
@@ -72,16 +73,7 @@
 </div>
 
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
-<script src="public/js/jquery-ui.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="public/vistas/frutos/frutos.js"></script>
 <script>
 	var wow = new WOW(
