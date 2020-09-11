@@ -1,14 +1,6 @@
-<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-<link rel="stylesheet" href="public/css/estilos.css">
 <link rel="stylesheet" href="public/vistas/frutos/frutos.css">
-<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+<link rel="stylesheet" href="public/css/estilos.css">
+
 
 <div class="container" id="frutas">
 	<div class="container mt-3 mb-3  ">
@@ -18,15 +10,20 @@
 				<span class="input-group-text" id="inputGroup-sizing-lg" v-on:click="buscarF"><i
 						class="fas fa-search"></i></span>
 			</div>
-
 		</div>
 
 	</div>
-	<div class="container bg-light forma wow fadeIn">
-		<label for=""> Ordenar Por Precio: <button @click="descF" class=" btn btn-outline-dark"><img
+
+	<div class="container bg-light forma wow fadeIn mb-5">
+		<label for="">
+			<hr class="bg-dark">
+			Ordenar Por Precio: <button @click="descF" class=" btn btn-outline-dark"><img
 					src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente"> </button>
 			<button @click="ascF" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg" alt="" width="32"
-					height="32" title="Precio Ascendente"></button> </label>
+					height="32" title="Precio Ascendente"></button>
+			<hr class="bg-dark">
+		</label>
+
 	</div>
 	<div class="row py-2">
 		<div class="col-sm-4 wow fadeIn" v-for="fruto in fruta">
@@ -60,7 +57,7 @@
 						<div class="row ">
 							<div class="col-12 mt-3">
 								<p class="card-text float-left  ">
-									${{fruto.precioVenta}}
+									${{fruto.precioLibra}}
 								</p>
 								<i class="far fa-heart fav float-right" @click="addListaFrutos(fruto)"></i>
 							</div>

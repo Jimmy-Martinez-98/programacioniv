@@ -69,11 +69,11 @@
           <div class="dropdown ml-auto " v-else>
             <a class="btn btn-lg  dropdown-toggle" @click="slide" href="#" role="button" id="dropdownMenuLink"
               data-toggle="dropdown" data-hover="dropdown">
-              <span v-if="datoscuenta.nombreCooperativa==''">{{datoscuenta.nombreU}}</span>
+              <span v-if="datoscuenta.nombreUsuario!=''">{{datoscuenta.nombreUsuario}}</span>
               <span v-else>{{datoscuenta.nombreCooperativa}}</span>
             </a>
             <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item " href="cooperativa.html">Perfil <i class="fas fa-user-tie"></i></a>
+              <a class="dropdown-item " href="#" @click="observarUsuario">Perfil <i class="fas fa-user-tie"></i></a>
               <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox<i class="fas fa-inbox"></i></a>
               <a @click="singOut" class="dropdown-item " href="#SignOut">Cerrar Sesión <i
                   class="fas fa-sign-in-alt"></i></a>
@@ -109,24 +109,11 @@
   <!-- vuejs -->
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-  <!-- sweetalert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  
   <!-- wow.js -->
   <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
 
-  <!-- inicializacion de wow.js -->
-  <script>
-    /*var wow = new WOW(
-       {
-         boxClass: 'wow',      // animated element css class (default is wow)
-         animateClass: 'animated', // animation css class (default is animated)
-         offset: 0,          // distance to the element when triggering the animation (default is 0)
-       }
-     );
-     wow.init();*/
-  </script>
-  <!-- soccket.io -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
   <!-- js propio -->
   <script src="public/js/app.js"></script>
   <!-- API Notifications -->

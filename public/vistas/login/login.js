@@ -13,8 +13,8 @@ var applogin = new Vue({
       correo: "",
       pass: "",
     },
-
   },
+
   methods: {
     /**
      * Llama la funcion Session y le pasa los parametros
@@ -24,7 +24,10 @@ var applogin = new Vue({
     inicioSesion: function () {
       let email = this.name.correo;
       let password = this.name.pass;
+     
       this.Session(email, password);
+      document.getElementById("login").setAttribute("hidden", true);
+      document.getElementById("btnCarga").removeAttribute("hidden");
     },
     /**
      * @access public
@@ -34,6 +37,7 @@ var applogin = new Vue({
      * @param {String} password - Representa la contraseña introducida en el formulario
      */
     Session: function (email, password) {
+      
       firebase
         .auth()
         .setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -42,34 +46,52 @@ var applogin = new Vue({
 					solo sesión. Cerrar la ventana eliminaría cualquier estado existente incluso
 					si un usuario olvida cerrar sesión.
 					...
-					El nuevo inicio de sesión se mantendrá con la persistencia de la sesión.*/
-          return firebase
+          El nuevo inicio de sesión se mantendrá con la persistencia de la sesión.*/
+          return  firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => {
-              let user = firebase.auth().currentUser;
-              if (user.emailVerified) {
-                location.href = "index.html";
-              } else if (user.emailVerified && !user) {
-                swal.fire({
-                  title: "Error",
-                  text: "Correo o Contraseña invalidos",
-                  icon: "error",
-                });
-              } else if (!user.emailVerified) {
-                swal.fire({
-                  title: "Error",
-                  text: "Esta cuenta aun no esta verificada",
-                  icon: "info",
-                });
+               let user = firebaseAuth.currentUser;
+              
+              if (user.emailVerified){
+                location.href="index.html"
+              }else{
+                 document.getElementById(
+                   "alerta"
+                 ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      Debe Verificar su cuenta para poder iniciar sesion
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>`;
+                 document
+                   .getElementById("btnCarga")
+                   .setAttribute("hidden", true);
+                 document.getElementById("login").removeAttribute("hidden");
               }
+              
             })
             .catch(function (error) {
               // Handle Errors here.
               var errorCode = error.code;
               var errorMessage = error.message;
               console.log(errorCode, "=>", errorMessage);
-              swal.fire(errorMessage);
+              if (errorCode == "auth/wrong-password") {
+                document.getElementById(
+                  "alerta"
+                ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      Correo O Contraseña incorrectos
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>`;
+                    document
+                      .getElementById("btnCarga")
+                      .setAttribute("hidden", true);
+                    document
+                      .getElementById("login")
+                      .removeAttribute("hidden");
+              }
               // ...
             });
         })

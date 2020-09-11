@@ -57,10 +57,26 @@ var validarsession = new Vue({
       dbchild.on("value", (snap) => {
         snap.forEach((element) => {
           if(uid===element.key){
+           
            this.datoscuenta = element.val();
           }
         });
       });
+    },
+
+    observarUsuario:function(){
+      let role=[]
+      firebaseDB.ref('users/').on('value',snap=>{
+        snap.forEach(element => {
+          role=element.val()
+        });
+      })
+
+      if (role.role==1) {
+        location.href="public/vistasPerfilCliente/perfilCliente.html"
+      }else if(role.role==2){
+         location.href = "cooperativa.html";
+      }
     },
 
     /**

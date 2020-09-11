@@ -68,8 +68,6 @@ var seccionverduras = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaV: function (producto) {
-      
-      
       let user = firebaseAuth.currentUser;
       let newKey = firebaseDB.ref().child("listaDeseos").push().key;
       if (user) {
@@ -90,9 +88,9 @@ var seccionverduras = new Vue({
           nombreProducto: producto.nombreProducto,
           nombreUsuario: producto.nombreUsuario,
           precioLibra: producto.precioLibra,
-          precioQuintal:precioQuintal,
-          precioArroba:precioArroba,
-          precioCaja:precioCaja
+          precioQuintal: precioQuintal,
+          precioArroba: precioArroba,
+          precioCaja: precioCaja,
         };
         firebaseDB
           .ref("listaDeseos/" + key)
@@ -146,13 +144,44 @@ var seccionverduras = new Vue({
      * @access public
      * @function descP
      */
-    descP: function () {},
+    descP: function () {
+      let data = [];
+     if (this.verdes.precioLibra!='') {
+        firebaseDB
+          .ref("Productos/")
+          .orderByChild("precioLibra")
+          .on("value", (snap) => {
+            snap.forEach((element) => {
+              if (element.val().categoria == "Verduras") {
+                data.push(element.val());
+              }
+            });
+          });
+        return (this.verdes = data);
+     }
+    },
 
     /**
      * Es cuando el usuario selecciona mostrar productos en forma ascendente en base a precio
      * @access public
      * @function ascP
      */
-    ascP: function () {},
+    ascP: function () {
+      let data = [];
+      if (this.verdes.preciocaja!='') {
+          firebaseDB
+            .ref("Productos/")
+            .orderByChild("precioCaja")
+            .on("value", (snap) => {
+              snap.forEach((element) => {
+                if (element.val().categoria == "Verduras") {
+                  data.push(element.val());
+                }
+              });
+            });
+          return (this.verdes = data);
+      }
+    
+    },
   },
 });

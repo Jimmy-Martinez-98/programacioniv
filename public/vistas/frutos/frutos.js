@@ -57,7 +57,6 @@ var seccionfrutas = new Vue({
             nombreUsuario: producto.nombreUsuario,
             precioVenta: producto.precioVenta,
             Quintal: producto.Quintal,
-            
           },
           (error) => {
             if (error) {
@@ -135,11 +134,21 @@ var seccionfrutas = new Vue({
      * @function descF
      */
     descF: function () {
-      /* data=[]
-     firebaseDB.ref('Productos/').orderByChild('categoria/').equalTo('Frutos').on('value',snap=>{      
-      data.push(snap.val())
-     })
-     this.fruta=data*/
+      let data = [];
+      if (this.fruta.precioLibra != "") {
+        firebaseDB
+          .ref("Productos/")
+          .orderByChild("precioLibra/")
+
+          .on("value", (snap) => {
+            snap.forEach((element) => {
+              if (element.val().categoria == "Frutos") {
+                data.push(element.val());
+              }
+            });
+          });
+        return (this.fruta = data);
+      }
     },
 
     /**
@@ -147,6 +156,21 @@ var seccionfrutas = new Vue({
      * @access public
      * @function ascF
      */
-    ascF: function () {},
+    ascF: function () {
+      let data = [];
+      if (this.fruta.precioLibra != "") {
+        firebaseDB
+          .ref("Productos/")
+          .orderByChild("precioCaja/")
+          .on("value", (snap) => {
+            snap.forEach((element) => {
+              if (element.val().categoria == "Frutos") {
+                data.push(element.val());
+              }
+            });
+          });
+        return (this.fruta = data);
+      }
+    },
   },
 });

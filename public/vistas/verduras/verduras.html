@@ -1,5 +1,3 @@
-
-
 <link rel="stylesheet" href="public/vistas/verduras/verduras.css">
 <link rel="stylesheet" href="public/css/estilos.css">
 
@@ -13,11 +11,18 @@
 			</div>
 		</div>
 		<div class="row py-2 bg-ligth  wow fadeIn">
-			<div class="container bg-light forma">
-				<label for=""> Ordenar Por Precio: <button @click="descP" class=" btn btn-outline-dark"><img
-							src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
-					</button> <button @click="ascP" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg"
-							alt="" width="32" height="32" title="Precio Ascendente"></button> </label>
+			<div class="container bg-light forma mb-5">
+				<label for="">
+						<hr class="bg-dark">
+					Ordenar Por Precio:
+					<button @click="descP" class=" btn btn-outline-dark">
+						<img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
+					</button>
+					<button @click="ascP" class="btn btn-outline-dark">
+						<img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente">
+					</button>
+						<hr class="bg-dark">
+				</label>
 			</div>
 			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes">
 				<div class="targeta " style="height: 400;">
@@ -48,8 +53,11 @@
 						</p>
 						<div class="row ">
 							<div class="col-12 mt-3">
-								<p class="card-text float-left  ">
-									${{clay.precioVenta}}
+								<p class="card-text float-left" v-if="clay.precioLibra==''">
+									${{clay.precioCaja}}
+								</p>
+								<p class="card-text float-left" v-else>
+									${{clay.precioLibra}}
 								</p>
 								<i class="far fa-heart fav float-right" @click="addlistaV(clay)"></i>
 							</div>
@@ -59,13 +67,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-		crossorigin="anonymous"></script>
-
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="public/vistas/verduras/verdura.js"></script>
 	<script>
 		var wow = new WOW(

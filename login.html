@@ -28,16 +28,17 @@
 			</div>
 			<div class="form-row mb-3 d-flex justify-content-center">
 				<div class=" col-12 mb-3">
-					<vs-input v-model="name.correo" border icon-after color="#000000" type="email" placeholder="Correo" >
-						<template #icon >
+					<vs-input v-model="name.correo" border icon-after color="#000000" type="email" placeholder="Correo">
+						<template #icon>
 							<i class='bx bx-user icono'></i>
 						</template>
 					</vs-input>
 				</div>
 
 				<div class="col-12 mb-3">
-					<vs-input v-model="name.pass" border icon-after  type="password" color="#000000" placeholder="Password" >
-						<template #icon >
+					<vs-input v-model="name.pass" border icon-after type="password" color="#000000"
+						placeholder="Password">
+						<template #icon>
 							<i class='bx bx-lock-open-alt icono'></i>
 						</template>
 					</vs-input>
@@ -45,22 +46,30 @@
 			</div>
 			<div class="form-row">
 				<div class="col-sm-12">
-					<vs-button block square class="fondobtn">
+					<vs-button id="login" block square class="fondobtn">
 						<i class='bx bxs-log-in-circle'></i> &nbsp; Iniciar Sesión
 					</vs-button>
+					<button id="btnCarga" class="btn btn-primary btn-block" type="button" disabled hidden>
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						Loading...
+					</button>
 				</div>
 				<div class="col-sm-12 mt-5">
 					<div class="float-left">
 						<a @click="Recuperar" href="#" class="enlace1">¿Olvidaste tu contraseña?</a>
 					</div>
 					<div class="float-right">
-						<strong class="enlace1">¿Nuevo por aquí?</strong><a @click="Registrate" href="#" class="enlace1">&nbsp;
+						<strong class="enlace1">¿Nuevo por aquí?</strong><a @click="Registrate" href="#"
+							class="enlace1">&nbsp;
 							Registrarme</a>
 					</div>
 				</div>
 			</div>
 
 		</form>
+		<div class="container">
+			<div id='alerta'></div>
+		</div>
 	</div>
 
 
@@ -69,11 +78,12 @@
 	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
 	<script src="public/js/configFirebase.js"></script>
 
 	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 	<!--  Boostrap -->
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
