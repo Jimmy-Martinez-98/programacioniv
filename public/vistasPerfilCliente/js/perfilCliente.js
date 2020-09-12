@@ -28,13 +28,6 @@ var perfilCliente = new Vue({
       });
     },
     signOut: function () {
-      document.getElementById("progreso").innerHTML = `
-       <div class="d-flex justify-content-center">
-        <div class="spinner-grow" role="status" style="width: 10rem; height: 10rem;" >
-            <span class="sr-only">Loading...</span>
-        </div>
-        </div>
-       `;
       firebaseAuth.signOut();
     },
     orderTab: function () {
