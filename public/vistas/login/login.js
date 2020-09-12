@@ -52,10 +52,9 @@ var applogin = new Vue({
             .signInWithEmailAndPassword(email, password)
             .then(() => {
                let user = firebaseAuth.currentUser;
-              
               if (user.emailVerified){
                 location.href="index.html"
-              }else{
+              }else if(!user.emailVerified){
                  document.getElementById(
                    "alerta"
                  ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -72,10 +71,13 @@ var applogin = new Vue({
               
             })
             .catch(function (error) {
+              
               // Handle Errors here.
               var errorCode = error.code;
               var errorMessage = error.message;
               console.log(errorCode, "=>", errorMessage);
+            
+              
               if (errorCode == "auth/wrong-password") {
                 document.getElementById(
                   "alerta"
@@ -91,6 +93,19 @@ var applogin = new Vue({
                     document
                       .getElementById("login")
                       .removeAttribute("hidden");
+              }else if (errorCode == "auth/user-not-found") {
+                document.getElementById(
+                  "alerta"
+                ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      El Usuario con este correo no existe en nuestra base de datos 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>`;
+                document
+                  .getElementById("btnCarga")
+                  .setAttribute("hidden", true);
+                document.getElementById("login").removeAttribute("hidden");
               }
               // ...
             });
