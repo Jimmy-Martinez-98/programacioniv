@@ -12,7 +12,7 @@ var validarsession = new Vue({
    */
   el: "#hola",
   /**
-   * @property propiedades utilizadas 
+   * @property propiedades utilizadas
    */
   data: {
     valor: "",
@@ -56,29 +56,32 @@ var validarsession = new Vue({
     },
     UsuarioLogueado: function () {
       var dbchild = firebaseDB.ref("users/");
-      let uid=fireAuth.currentUser.uid;
+      let uid = fireAuth.currentUser.uid;
       dbchild.on("value", (snap) => {
         snap.forEach((element) => {
-          if(uid===element.key){
-           
-           this.datoscuenta = element.val();
+          if (uid === element.key) {
+            this.datoscuenta = element.val();
           }
         });
       });
     },
 
-    observarUsuario:function(){
-      let role=[]
-      firebaseDB.ref('users/').on('value',snap=>{
-        snap.forEach(element => {
-          role=element.val()
-        });
-      })
+    observarUsuario: function () {
+      let role = [];
+      let user = firebaseAuth.currentUser.uid;
 
-      if (role.role==1) {
-        location.href="public/vistasPerfilCliente/perfilCliente.html"
-      }else if(role.role==0){
-         location.href = "cooperativa.html";
+      firebaseDB.ref("users/").on("value", (snap) => {
+        snap.forEach((element) => {
+          if (user == element.val().uId) {
+            role = element.val();
+          }
+        });
+      });
+
+      if (role.role == 1) {
+        location.href = "cooperativa.html";
+      } else if (role.role == 0 || role.role == null) {
+        location.href = "public/vistasPerfilCliente/perfilCliente.html";
       }
     },
 
