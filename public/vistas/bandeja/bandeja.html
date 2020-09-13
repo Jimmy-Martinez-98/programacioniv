@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8">
@@ -26,7 +26,7 @@
 			<div class="list-msg">
 				<ul class="list-group lista-items" v-for="items in users" v-on:click="openchat(items.uId)">
 					<li class="list-group-item" v-if="items.idusuario!=msg.de ">
-						{{items.nombreU}}
+						{{items.nombreUsuario}}
 					</li>
 				</ul>
 			</div>
@@ -35,8 +35,8 @@
 		<div class="contenedor-msg" id="frm-chats">
 			<div class="header-msg ">
 				<h5 class="titulomsg ml-2">
-					<p v-if="displayName.nombreU!=''">{{displayName.nombreU}}</p>
-					<p v-else>{{displayName.nombreU}}</p>
+					<p v-if="displayName.nombreUsuario!=''">{{displayName.nombreUsuario}}</p>
+					<p v-else>{{displayName.nombreUsuario}}</p>
 				</h5>
 
 			</div>
@@ -110,11 +110,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 	<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
 	<script src="bandeja.js"></script>
 	<script src="../../js/notificaciones.js"></script>
 

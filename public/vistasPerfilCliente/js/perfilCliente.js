@@ -35,7 +35,11 @@ var perfilCliente = new Vue({
         $(this).html(data);
       });
     },
-    inboxTab: function () {},
+    inboxTab: function () {
+      $("#contendedor").load("viewChat/chat.html", function (data) {
+        $(this).html(data);
+      });
+    },
     accountSettings: function () {},
   },
 });

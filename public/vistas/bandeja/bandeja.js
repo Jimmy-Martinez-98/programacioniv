@@ -63,7 +63,6 @@ appbandeja = new Vue({
       });
     },
     TraerUsersChats: function (user) {
-      let data = [];
       firebaseDB.ref("/users").on("value", (snap) => {
         snap.forEach((element) => {
           if (user != element.val().uId) {
@@ -96,7 +95,7 @@ appbandeja = new Vue({
       let unicos = new Set(arr);
 
       unicos.forEach((element) => {
-        this.users.push(element);
+       return this.users.push(element);
       });
      
       

@@ -116,10 +116,11 @@ appChat = new Vue({
       }
     },
     obtenerImagen(e) {
+      let random = Math.random();
       let file = e.target.files[0];
       let upload = storage
         .ref()
-        .child("imageChat/" + file.name)
+        .child("imageChat/" + file.name+random)
         .put(file);
       upload.on(
         "state_changed",
