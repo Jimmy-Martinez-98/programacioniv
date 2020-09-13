@@ -1,3 +1,9 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file chat.js.js-> Sirve para el envio de mensas en tiempo real
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var inbox = new Vue({
     el: "#inbox",
     data: {
@@ -10,16 +16,29 @@ var inbox = new Vue({
         },
         users: [],
         refChats: [],
-        userLogin: '',
+        userLogin: "",
         allmsg: [],
         msgs: [],
         displayName: []
     },
+    /**
+     * llama las functiones para ejecutarlas 
+     * @instance Propiedad de instancias 
+     */
     created: function () {
         this.estadoUser();
         this.referenceChat();
         this.chatHistory();
+
     },
+    /**
+     * Proiedades computadas
+     * @property {updateChat} - Vacia la propiedad refChat
+     * @property {returnNewArray}- Retorna los mensajes nuevos para la vista del chat 
+     * y estos actualize la vista automaticamente
+     * @property {retornarImagen}- retorna la validacion de propiedad displayName
+     * @property {returnUsers}- retorna los usuarios traidos de la basededados 
+     */
     computed: {
         updateChat: function () {
             this.refChats = [];
@@ -35,33 +54,56 @@ var inbox = new Vue({
             return (
                 this.displayName.imagen != "" ||
                 (this.displayName.imagen != null));
+        },
+        returnUsers: function () {
+             this.getUserForChat();
         }
     },
+    /**
+     * observador de cambios reactivo llama las propiedades para que estas 
+     * reaccionen al cambio en datos automaticamente
+     */
     watch: {
         returnNewArray() { },
+        returnUsers(){}
 
     },
     methods: {
+        /**
+         * observa el estado del usuario logueado para asignar el dato en la propiedades llamadas
+         * @access public
+         * @function estadoUser
+         */
         estadoUser: function () {
             firebaseAuth.onAuthStateChanged(user => {
                 if (user) {
-                    this.getUserForChat(user.uid)
+
                     this.content.de = user.uid;
                     this.userLogin = user.uid
                 }
             })
         },
-        getUserForChat: function (user) {
+        /**
+         * obtiene los usuarios de la base de datos firebase('users')
+         * valida si el usuario logeado no esta en los datos devueltos por la DB y llama la funcion evaluateUsers
+         * @access public
+         * @function getUserForChat
+         */
+        getUserForChat: function () {
+            let user = firebaseAuth.currentUser.uid
             firebaseDB.ref('users/').on('value', snap => {
                 snap.forEach(element => {
                     if (user != element.val().uId) {
-
-
                         this.evaluateUsers(element.val())
                     }
                 });
             })
         },
+        /**
+         * obtiene los datos del nodo de chat y asignar los necesarios en la propiedad refChats
+         * @access public
+         * @function referenceChat
+         */
         referenceChat: function () {
             firebaseDB.ref('/chat').on('value', snap => {
                 snap.forEach(element => {
@@ -72,33 +114,36 @@ var inbox = new Vue({
                 });
             })
         },
+        /**Evalua los datos de el parametro  
+         * @access public
+         * @function evaluateUsers
+         * @param {object} item - los usuarios que pasan el filtro de la funcion que llama a esta
+         */
         evaluateUsers: function (item) {
             let usuario = firebaseAuth.currentUser.uid
             let arr;
             this.refChats.forEach((element) => {
-
                 if ((item.uId == element.De && usuario == element.Para) ||
                     (item.uId == element.Para && usuario == element.De)) {
                     arr = [item];
-
                 }
             })
-
-
             let unicos = new Set(arr);
             unicos.forEach((items) => {
                 this.users.push(items);
             })
 
         },
+        /**
+         * Trae los datos del nodo de chat de la DB
+         * @access public
+         * @function chatHistory
+         */
         chatHistory: function () {
-
             let historial = [];
             historial = [];
             firebaseDB.ref("/chat").on("value", (snap) => {
-
                 snap.forEach((element) => {
-
                     historial.push(element.val());
                 });
             });
@@ -118,24 +163,43 @@ var inbox = new Vue({
             this.allmsg.forEach((item) => {
                 this.evaluarItem(item);
             });
-            this.headerChat(id)
+            return this.headerChat(id)
 
         },
+        /**
+         * evalua cada mensaje para verificar si el usuario que loguea esta dentro de esos datos y los asigna
+         * a la propiedad msgs
+         * @access public
+         * @function evaluarItem
+         * @param {object} item - todos los mensajes
+         */
         evaluarItem: function (item) {
             if (
                 (item.De === this.content.de && item.Para === this.content.para) ||
                 (item.De === this.content.para && item.Para === this.content.de)
             ) {
-                this.msgs.push(item);
+                return this.msgs.push(item);
             }
         },
+        /**
+         * evalua si el chat clickeado es igual a uno de la propiedad users, retorna los datos del usuario que pasa el filtro
+         * @access public
+         * @function headerChat
+         * @param {String} id 
+         */
         headerChat: function (id) {
             this.users.forEach(element => {
                 if (id == element.uId) {
-                    this.displayName = element
+                    return this.displayName = element
                 }
             });
         },
+        /**
+         * Es cuando el usuario envia el mensaje
+         * @access public 
+         * @function sendMessage
+         * 
+         */
         sendMessage: function () {
             if (
                 this.content.msg.trim() != "" &&
@@ -152,11 +216,18 @@ var inbox = new Vue({
                     .then((this.content.msg = ""));
             }
         },
+        /**
+         * Es cuando el usuario selecciona una imagen para enviar en el chat.
+         * Esta se guarda en el storage de firebase.
+         * @access public
+         * @function obtenerImagen
+         * @param {object} e 
+         */
         obtenerImagen(e) {
             let file = e.target.files[0];
             let upload = storage
                 .ref()
-                .child("imageChat/" + file.name+Math.random())
+                .child("imageChat/" + file.name + Math.random())
                 .put(file);
             upload.on(
                 "state_changed",
@@ -199,10 +270,6 @@ var inbox = new Vue({
                     });
                 }
             );
-        },
-        hola:function(){
-            console.log('hola');
-            
         }
 
     }

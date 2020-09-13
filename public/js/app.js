@@ -11,6 +11,9 @@ var validarsession = new Vue({
    * @property el elemento del DOM a enlazar
    */
   el: "#hola",
+  /**
+   * @property propiedades utilizadas 
+   */
   data: {
     valor: "",
     session: "",
@@ -74,7 +77,7 @@ var validarsession = new Vue({
 
       if (role.role==1) {
         location.href="public/vistasPerfilCliente/perfilCliente.html"
-      }else if(role.role==2){
+      }else if(role.role==0){
          location.href = "cooperativa.html";
       }
     },
