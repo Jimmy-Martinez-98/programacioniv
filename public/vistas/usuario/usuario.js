@@ -93,6 +93,7 @@ var appusuario = new Vue({
                     nombreUsuario: appusuario.usuario.nombreUsuario,
                     correo: appusuario.usuario.correo,
                     fechaRegistro: appusuario.usuario.fechaRegistro,
+                    role:0
                   })
                   .then(() => {
                     this.enviarEmail();
