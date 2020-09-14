@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="stylesheet" href="public/vistas/verproductos/productosv.css">
-
 		<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-
 		<title>Agro Producers</title>
 	</head>
 
@@ -102,11 +99,9 @@
 							</div>
 							<br>
 							<div class="container">
-								<button class="btn btn-dark form-control" v-if="detallesprod.info.isagotado==='SI'"
-									disabled>Comprar Ahora</button>
-								<button class="btn btn-dark form-control" v-else
-									@click="passdatos(detallesprod.info)">Comprar
-									Ahora</button>
+								<button class="btn btn-dark form-control" @click="passdatos(detallesprod.info)">
+									Generar Factura
+								</button>
 							</div>
 							<br>
 							<hr>
@@ -166,7 +161,7 @@
 													{{relacion.nombreU}}</div>
 												<div class="p-2   float-right" v-else> {{relacion.nombreCooperativa}}
 												</div>
-												<div class="p-2   float-left">${{relacion.precioVenta}}</div>
+												<div class="p-2   float-left">${{relacion.precioLibra}}</div>
 											</div>
 										</div>
 									</div>
@@ -177,6 +172,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="content"></div>
 		<div class="card-footer bg-dark">
 			<p>© 2020 AgroProducer,Todos los derechos reservados.</p>
 		</div>
@@ -185,67 +181,87 @@
 
 
 		<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+		<div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
 			role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Metodo de Pago</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form class="border">
-								<div class="form-row m-auto">
-									<div class="col-md-12 mb-1">
-										<div class=" d-flex justify-content-between">
-											<h6 class="align-middle mt-2">Fecha: 30 septiembre 2020 </h6>
-											<h5 class="align-middle mt-2">ID Pedido: 21312123</h5>
-										</div>
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-success">
+						<h5 class="modal-title" id="staticBackdropLabel">Generacion de Factura</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="body">
+						<form id="factura" class="border border-dark "
+							style="width: 100%; background-color: rgb(192, 192, 192);">
+							<div class="form-row m-auto">
+								<div class="col-md-12 ">
+									<div>
+										<img src="public/img/logo2,0.png" width="20%" alt="">
 									</div>
-									
-									<div class="col-md-12 mb-1">
-										<div class="form-inline d-flex justify-content-between">
-											<p class="text-dark ">Facturado a:&nbsp; scott@gmail.com</p>
-											<p class="text-dark float-right">Fuente:&nbsp;AgroProducers</p>
-											<p class="text-dark">Distribuidora:&nbsp;cooperativa/productor</p>
-										</div>
-										
+									<div class=" d-flex justify-content-between mt-1">
+										<h6 class="align-middle">Fecha:{{fecha}} </h6>
+										<h5 class="align-middle">ID Pedido:{{facturar.idPedido}}</h5>
 									</div>
-									<div class="col-md-12">
-										<table class="table  table-bordered">
-											<thead>
-												<tr>
-													<th scope="col">Cant.</th>
-													<th scope="col">T. Compra</th>
-													<th scope="col">Descripción</th>
-													<th scope="col">Precio U.</th>
-													<th scope="col">Total</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td>Libra</td>
-													<td>Chile</td>
-													<td>1.50</td>
-													<td>3.00</td>
-												</tr>
-
-											</tbody>
-										</table>
+								</div>
+								<div class="col-md-12 ">
+									<div class="form-inline d-flex justify-content-between">
+										<p class="text-dark ">Facturado a:&nbsp; {{facturar.correo}}</p>
+										<p class="text-dark float-right">Fuente:&nbsp;AgroProducers</p>
+										<p class="text-dark">Distribuidora:&nbsp; {{facturar.distribuidora}}</p>
 									</div>
 
 								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">cancelar</button>
-							<input type="button" class="btn btn-primary" value="Enviar" v-on:click="enviarcorreo">
-						</div>
+								<div class="col-md-12">
+									<table class="table table-bordered bg-light">
+										<thead>
+											<tr>
+												<th scope="col">Cant.</th>
+												<th scope="col">T. Compra</th>
+												<th scope="col">Descripción</th>
+												<th scope="col">Precio U.</th>
+												<th scope="col">Total</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td scope="row">{{facturar.contador}}</td>
+												<td>{{facturar.tCompra}}</td>
+												<td>{{facturar.nombreProducto}}</td>
+												<td>${{facturar.precioUnitario}}</td>
+												<td>${{total}}</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</form>
+						<form id="datosCuenta">
+							<div class="container">
+								<h3>Datos Bancarios del Vendedor:</h3>
+								<strong>Cuenta de banco1:</strong><br>
+								<strong>Cuenta de banco2:</strong><br>
+								<strong>Cuenta de banco3:</strong><br>
+								<strong>Cuenta de banco4:</strong>
+							</div>
+						</form>
 					</div>
+					<div class="modal-footer">
+						
+							<button type="button" class="btn btn-secondary" v-on:click="descargaDatosCuenta">
+								<i class="fa fa-download" aria-hidden="true"></i>
+								Descargar Datos de Cuenta
+							</button>
+						<button type="button" class="btn btn-primary"
+							v-on:click="generarFactura">
+							<i class="fa fa-download" aria-hidden="true"></i>
+							Descargar PDF de Factura
+						</button>
+						
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -262,12 +278,14 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.js"
 			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+
 		<script src="public/js/vue.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+		<script src="public/js/html2pdf.bundle.min.js"></script>
 		<script src="public/vistas/blog/dist/wow.js"></script>
 		<script src="public/vistas/verproductos/genrarFactura.js"></script>
 		<script src="public/vistas/verproductos/publicproductos.js"></script>
+
 
 
 		<script>

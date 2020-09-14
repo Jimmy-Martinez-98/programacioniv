@@ -17,7 +17,6 @@ var mostrardetalle = new Vue({
     },
     session: "",
     valor: "",
-    cuentalogueada: [],
 
     Compra: {
       select_Cantidad: "",
@@ -142,11 +141,22 @@ var mostrardetalle = new Vue({
      */
     passdatos: function (id) {
       let user = firebaseAuth.currentUser;
-      appcomprar.contador = this.contador;
-      appcomprar.formaCompra = this.Compra.select_Cantidad;
+
       if (user) {
         if (this.Compra.select_Cantidad != "") {
-          appcomprar.Comprax = id;
+          factura.facturar.contador = this.contador;
+          factura.facturar.tCompra = this.Compra.select_Cantidad;
+          factura.facturar.nombreProducto = id.nombreProducto;
+          factura.precios.pLibra = id.precioLibra;
+          factura.precios.pArroba = id.precioArroba;
+          factura.precios.pQuintal = id.precioQuintal;
+          factura.precios.pCaja = id.precioCaja;
+          factura.facturar.correo = user.email;
+          if (id.nombreCooperativa != "") {
+            factura.facturar.distribuidora = id.nombreCooperativa;
+          } else {
+            factura.facturar.distribuidora = id.nombreUsuario;
+          }
 
           $("#staticBackdrop").modal("show");
         } else {
@@ -167,95 +177,6 @@ var mostrardetalle = new Vue({
             location.href = "login.html";
           });
       }
-    },
-  },
-});
-
-/**
- * @instance objeto de instancia de Vue.js
- */
-var appcomprar = new Vue({
-  el: "#staticBackdrop",
-  data: {
-    Correo: {
-      email: "",
-      nombre: "",
-    },
-    Comprax: [],
-    producto: [],
-    contador: 0,
-    formaCompra: "",
-  },
-  methods: {
-    /**
-     * Es cuando el usuario manda los datos de su nombre y correo para generar una factura
-     * @access public
-     * @function enviarcorreo
-     */
-    enviarcorreo: function () {
-      fetch(
-        `Private/Modulos/publicarproducto/procesos.php?proceso=recibirCorreo&nuevoP=${JSON.stringify(
-          this.Correo
-        )}`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          if (resp.msg == "Mensaje Enviado") {
-            this.comprar();
-          }
-        });
-    },
-
-    /**
-     * es cuando se muestra la alerta de que se envio correo al usuario
-     * @access public
-     * @function comprar
-     */
-    comprar: function () {
-      let idComprador = firebaseAuth.currentUser.uid;
-      let key = firebaseDB.ref().child("compras/").push().key;
-
-      firebaseDB.ref("compras/" + key).set(
-        {
-          idComprador: idComprador,
-          arroba: this.Comprax.arroba,
-          caja: this.Comprax.caja,
-          categoria: this.Comprax.categoria,
-          descProducto: this.Comprax.descProducto,
-          idProducto: this.Comprax.idProducto,
-          idUsuario: this.Comprax.idUsuario,
-          imagen: this.Comprax.imagen,
-          libra: this.Comprax.libra,
-          nombreCooperativa: this.Comprax.nombreCooperativa,
-          nombreProducto: this.Comprax.nombreProducto,
-          nombreU: this.Comprax.nombreU,
-          precioVenta: this.Comprax.precioVenta,
-          quintal: this.Comprax.quintal,
-          unidad: this.Comprax.unidad,
-          contador: this.contador,
-          formaCompra: this.formaCompra,
-        },
-        (error) => {
-          if (error) {
-            swal.fire({
-              title: "Ups..",
-              text: "Ocurrio un error al intentar realizar la accion",
-              icon: "error",
-            });
-          } else {
-            swal
-              .fire({
-                title: "Compra Realizada!",
-                text:
-                  "Se ha Enviado un E-mail a su Correo Electronico con la Factura Junto con Nuestra Información",
-                icon: "success",
-              })
-              .then(() => {
-                $("#staticBackdrop").modal("hide");
-              });
-          }
-        }
-      );
     },
   },
 });

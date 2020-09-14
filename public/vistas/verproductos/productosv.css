@@ -1,16 +1,26 @@
 * {
-   font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 p {
   color: white;
 }
-.text-dark{
+.text-dark {
   font-size: 12px;
 }
 .card-footer {
   align-self: flex-end;
   width: 100%;
   background-color: rgba(51, 51, 51, 0.815);
+}
+table.table-bordered{
+    border:1px solid black;
+    margin-top:20px;
+  }
+table.table-bordered > thead > tr > th  {
+  border: 1px solid black;
+}
+.table.table-bordered > tbody > tr > td{
+    border:1px solid black;
 }
 
 #nave {
@@ -97,7 +107,6 @@ label {
   cursor: pointer;
 }
 
-
 .subtitulo {
   color: white;
 }
@@ -110,11 +119,14 @@ label {
   color: rgb(0, 255, 64);
 }
 
-.btn-outline-danger{
+.btn-outline-danger {
   border-radius: 0px;
 }
-.btn-outline-danger:hover{
+.btn-outline-danger:hover {
   border-radius: 0px;
+}
+.modal-content>.modal-body{
+  background-color: #ffffff;
 }
 
 @media (max-width: 700px) {
