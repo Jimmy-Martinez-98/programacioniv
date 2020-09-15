@@ -207,10 +207,4 @@ var appusuario = new Vue({
   },
 });
 
-/**
- * Sirve para mostrar los mensajitos de popovers
- * @function
- */
-$(function () {
-  $('[data-toggle="popover"]').popover();
-});
+

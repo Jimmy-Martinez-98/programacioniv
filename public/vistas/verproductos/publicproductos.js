@@ -152,6 +152,7 @@ var mostrardetalle = new Vue({
           factura.precios.pQuintal = id.precioQuintal;
           factura.precios.pCaja = id.precioCaja;
           factura.facturar.correo = user.email;
+          factura.ownerName = id.idUsuario;
           if (id.nombreCooperativa != "") {
             factura.facturar.distribuidora = id.nombreCooperativa;
           } else {
