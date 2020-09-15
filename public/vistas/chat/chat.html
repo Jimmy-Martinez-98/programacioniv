@@ -1,99 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8">
 
-	<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist//css/bootstrap.css">
+		<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="../../../bootstrap-4.4.1-dist//css/bootstrap.css">
 
-	<link rel="stylesheet" href="chats.css">
-	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="chats.css">
+		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 
-	<title>chat</title>
-</head>
+		<title>chat</title>
+	</head>
 
-<body>
-	<div class="contenedor">
-		<div class="contenedor-msg" id="frm-chats">
-			<div class="header-sidebar">
-				<h4 class="ml-3">
-					<img v-if="imagen" class="rounded-circle" :src="usuarioChat.imagen" width="30px" height="30px">
-					{{usuarioChat.nombre}} </h4>
-
-			</div>
-			<div class="contener-msgs" id="tope">
-				<div class="lista-mensajes">
-					<ul class="listamsgs" v-for="message in allMessages">
-						<div v-if="message.imagenMensaje!='' && message.Mensaje==='' ||message.imagenMensaje!=null">
-							<li class="listamsgs-item text-break mr-auto" v-if="message.De!=mensajes.de">
-								<img :src="message.imagenMensaje" width="100%" height="100px">
-							</li>
-							<li class="listamsgs-iteml text-break ml-auto mr-2" v-else>
-								<img :src="message.imagenMensaje" width="100%" height="100px">
-							</li>
-						</div>
-						<div v-else>
-							<li class="listamsgs-item text-break mr-auto" v-if="message.De!=mensajes.de">
-								{{message.Mensaje}}
-							</li>
-							<li class="listamsgs-iteml text-break ml-auto mr-2" v-else>
-								{{message.Mensaje}}
-							</li>
-						</div>
-
-					</ul>
+	<body>
+		<div class="contenedor">
+			<div class="contenedor-msg" id="frm-chats">
+				<div class="header-sidebar">
+					<h4 class="ml-3">
+						<img v-if="imagen" class="rounded-circle" :src="usuarioChat.imagen" width="30px" height="30px">
+						{{usuarioChat.nombre}} </h4>
 
 				</div>
-
-			</div>
-			<div class="footer ">
-				<div class="form-row ">
-					<div class="col-sm-12">
-						<div id="target" class="center "></div>
-					</div>
-					<div class="col-sm-12 form-inline">
-						<form>
-							<label>
-								<input type="file" id="imagenChat" hidden @change="obtenerImagen">
-								<img class="puntero" src="../../img/iconImage.png" width="50px" height="40px">
-							</label>
-						</form>
-						<input type="text" v-model="mensajes.msg" class="form-control" placeholder="Escribe un Mensaje">
-						<div class="center">
-							<vs-button success animation-type="vertical" @click="enviarMensaje">
-								Enviar
-								<template #animate>
-									<img src="../../img/send-24px.svg" width="18px" height="18px">
-								</template>
-							</vs-button>
-						</div>
+				<div class="contener-msgs" id="tope">
+					<div class="lista-mensajes">
+						<ul class="listamsgs" v-for="message in allMessages">
+							<div v-if="message.imagenMensaje!='' && message.Mensaje==='' ||message.imagenMensaje!=null">
+								<li class="listamsgs-item text-break mr-auto" v-if="message.De!=mensajes.de">
+									<img :src="message.imagenMensaje" width="100%" height="100px">
+								</li>
+								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else>
+									<img :src="message.imagenMensaje" width="100%" height="100px">
+								</li>
+							</div>
+							<div v-else>
+								<li class="listamsgs-item text-break mr-auto" v-if="message.De!=mensajes.de">
+									{{message.Mensaje}}
+								</li>
+								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else>
+									{{message.Mensaje}}
+								</li>
+							</div>
+						</ul>
 					</div>
 				</div>
+				<div class="footer ">
+					<div class="form-row ">
+						<div class="col-sm-12">
+							<div id="target" class="center "></div>
+						</div>
+						<div class="col-sm-12 form-inline">
+							<form>
+								<label>
+									<input type="file" id="imagenChat" hidden @change="obtenerImagen">
+									<img class="puntero" src="../../img/iconImage.png" width="50px" height="40px">
+								</label>
+							</form>
+							<input type="text" v-model="mensajes.msg" class="form-control"
+								placeholder="Escribe un Mensaje">
+							<div class="center">
+								<vs-button success animation-type="vertical" @click="enviarMensaje">
+									Enviar
+									<template #animate>
+										<img src="../../img/send-24px.svg" width="18px" height="18px">
+									</template>
+								</vs-button>
+							</div>
+						</div>
+					</div>
 
 
+				</div>
 			</div>
 		</div>
-	</div>
 
-	</div>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
-	<script src="../../js/configFirebase.js"></script>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+		<script src="../../js/configFirebase.js"></script>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
-		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-	<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="../../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
 
-	<script src="chat.js"></script>
-	<script src="../../js/notificaciones.js"></script>
-</body>
+		<script src="chat.js"></script>
+		<script src="../../js/notificaciones.js"></script>
+	</body>
 
 </html>
