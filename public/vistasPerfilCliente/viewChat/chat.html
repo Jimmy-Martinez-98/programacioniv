@@ -1,9 +1,7 @@
 <link rel="stylesheet" href="viewChat/css/stilos.css">
-
-<body>
-    <div class="mt-3">
+<body class="container">
+    <div class=" mt-3">
         <div class="row m-auto container-fluid bg-white" id="inbox">
-
             <div class="col-4 ">
                 <ul class="list-group">
                     <li class="list-group-item" v-for="items in users" v-on:click="openchat(items.uId)">
@@ -55,7 +53,7 @@
                                 </label>
                                 <input v-model="content.msg" type="text" class="form-control form-control-lg"
                                     placeholder="Escribie un Mensaje" style="width:70%">
-
+            
                                 <button type="submit" @click.prevent="sendMessage" class="btn btn-success">
                                     <img src="../img/send-24px.svg" alt="">
                                 </button>
