@@ -4,6 +4,9 @@
 p {
   color: white;
 }
+.formulario{
+  overflow-y: auto;
+}
 .text-dark {
   font-size: 12px;
 }
