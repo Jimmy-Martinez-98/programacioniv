@@ -19,11 +19,13 @@ var factura = new Vue({
     ownerName: "",
     total: 0,
     fecha: "",
+    idClient: "",
+    ProductDesc: "",
+    image:''
   },
   computed: {
     update: function () {
       this.verificarPUnitario();
-     
     },
   },
   watch: {
@@ -119,7 +121,7 @@ var factura = new Vue({
           idFacura: key,
           idOwner: this.ownerName,
           idPedido: factura.facturar.idPedido,
-          cliente: factura.facturar.correo,
+          idOwnerOfOrder: factura.idClient,
           fecha: factura.fecha,
           fVence: fechaFinal,
           cant: factura.facturar.contador,
@@ -137,6 +139,28 @@ var factura = new Vue({
     generarFactura: function () {
       this.saveDataFactura();
       this.datosFactura();
+      this.saveOrderclient();
+    },
+    saveOrderclient: function () {
+      let key = firebaseDB.ref().child("OrdersClient/").push().key;
+      firebaseDB
+        .ref("ordersClient/" + key)
+        .set({
+          idOrdder: key,
+          idOwner: this.ownerName,
+          idPedido: factura.facturar.idPedido,
+          idClient: this.idClient,
+          fecha: factura.fecha,
+          cant: factura.facturar.contador,
+          tCompra: factura.facturar.tCompra,
+          descripcion: this.ProductDesc,
+          total: factura.total,
+          producName: factura.facturar.nombreProducto,
+          producImage:factura.image
+        })
+        .then(() => {
+          console.log("ok!");
+        });
     },
   },
 });

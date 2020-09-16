@@ -143,6 +143,7 @@ var mostrardetalle = new Vue({
       let user = firebaseAuth.currentUser;
 
       if (user) {
+        let idcliente = user.uid;
         if (this.Compra.select_Cantidad != "") {
           factura.facturar.contador = this.contador;
           factura.facturar.tCompra = this.Compra.select_Cantidad;
@@ -153,6 +154,10 @@ var mostrardetalle = new Vue({
           factura.precios.pCaja = id.precioCaja;
           factura.facturar.correo = user.email;
           factura.ownerName = id.idUsuario;
+          factura.idClient = idcliente;
+          factura.ProductDesc = id.descProducto;
+          factura.image = id.imagen;
+
           if (id.nombreCooperativa != "") {
             factura.facturar.distribuidora = id.nombreCooperativa;
           } else {
