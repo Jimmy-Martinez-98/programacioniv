@@ -40,6 +40,10 @@ var perfilCliente = new Vue({
         $(this).html(data);
       });
     },
-    accountSettings: function () {},
+    accountSettings: function () {
+       $("#contendedor").load("viewSettings/settings.html", function (data) {
+         $(this).html(data);
+       });
+    },
   },
 });
