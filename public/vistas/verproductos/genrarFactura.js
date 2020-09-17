@@ -21,7 +21,8 @@ var factura = new Vue({
     fecha: "",
     idClient: "",
     ProductDesc: "",
-    image:''
+    image: "",
+    limitDate: "",
   },
   computed: {
     update: function () {
@@ -114,6 +115,8 @@ var factura = new Vue({
         "/" +
         fechaEnDosDias.getDate();
 
+      this.limitDate = fechaFinal;
+
       let key = firebaseDB.ref().child("dataFacturas/").push().key;
       firebaseDB
         .ref("dataFacturas/" + key)
@@ -156,7 +159,7 @@ var factura = new Vue({
           descripcion: this.ProductDesc,
           total: factura.total,
           producName: factura.facturar.nombreProducto,
-          producImage:factura.image
+          producImage: factura.image,
         })
         .then(() => {
           console.log("ok!");

@@ -108,15 +108,14 @@ var settings = new Vue({
             ""
           );
         })
-          .catch((e) => {
-            this.openNotificacion(
-              "danger",
-              " Ha Ocurrido Un Error Al Intentar Enviar Un Correo Para Restablecer Su Contraseña",
-              ""
-            );
+        .catch((e) => {
+          this.openNotificacion(
+            "danger",
+            " Ha Ocurrido Un Error Al Intentar Enviar Un Correo Para Restablecer Su Contraseña",
+            ""
+          );
         });
     },
-
     openNotificacion: function (color, title, text) {
       this.$vs.notification({
         square: true,

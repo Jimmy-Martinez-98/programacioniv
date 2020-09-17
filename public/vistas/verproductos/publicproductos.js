@@ -140,6 +140,19 @@ var mostrardetalle = new Vue({
      * @param {object} id - Representa los datos del producto
      */
     passdatos: function (id) {
+      let hoy = new Date();
+      let dosDias = 1000 * 60 * 60 * 24 * 2; //multiplicamos 1000 milisegundos por sesenta segundos, por sesenta minutos, por 24 horas y finalmente por 2 días.
+      let suma = hoy.getTime() + dosDias; //getTime devuelve milisegundos de esa fecha
+      let fechaEnDosDias = new Date(suma);
+      let fechaFinal =
+        fechaEnDosDias.getFullYear() +
+        "/" +
+        fechaEnDosDias.getMonth() +
+        "/" +
+        fechaEnDosDias.getDate();
+
+      factura.limitDate = fechaFinal;
+
       let user = firebaseAuth.currentUser;
 
       if (user) {

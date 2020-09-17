@@ -51,16 +51,17 @@
 							</p>
 
 							<div class="input-group-prepend">
-								<label class="input-group-text" for="inputGroupSelect01">Existencias:</label>
-								<input type="text" disabled class="form-control p-2"
-									v-model="detallesprod.info.existencias" style="width: 50px;">
+								<label class="input-group-text" for="inputGroupSelect01">Existencias: </label>
+								<input type="text" disabled class="form-control p-2 w-25"
+									v-model="detallesprod.info.existencias">
 							</div>
 
-							<a href="#" class="contactar" v-on:click="contactar(detallesprod.info.idUsuario)"><i
-									class="far fa-comment-dots"></i>
-								Contactar </a>
+							<a href="#" class="contactar" v-on:click="contactar(detallesprod.info.idUsuario)">
+								<i class="far fa-comment-dots"> </i>
+								Contactar
+							</a>
 							<div class="container mb-5 columna">
-								<div class="input-group mb-3">
+								<div class="input-group mb-5">
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="inputGroupSelect01">Cantidad:</label>
 									</div>
@@ -73,28 +74,23 @@
 										<option value="Caja" v-if="detallesprod.info.Caja==true">Caja</option>
 									</select>
 								</div>
-								<div class="container mt-2">
-
-									<div class="row float-left d-flex justify-content-center" style="width: 100px;">
-										<div class="col mb-2 d-flex justify-content-center">
-											<button class="btn btn-secondary" v-on:click="resta"><i
-													class="fas fa-minus"></i></button>
+								<div class="container ">
+									<div class="d-flex justify-content-between">
+										<div class="w-50 form-inline">
+											<button class="btn btn-dark" v-on:click="resta">
+												<i class="fas fa-minus"></i>
+											</button>
+											<input type="text" disabled class="form-control p-2 m-auto w-50"
+												v-model="contador" min="1">
+											<button class="btn btn-success" v-on:click="suma">
+												<i class="fas fa-plus"></i>
+											</button>
 										</div>
-										<div class="col columna text-center d-flex justify-content-center">
-											<input type="text" disabled class="form-control p-2" v-model="contador"
-												min="1" style="width: 50px;">
-										</div>
-										<div class="col columna mt-2 mb-2 d-flex justify-content-center">
-											<button class="btn btn-success" v-on:click="suma"> <i
-													class="fas fa-plus"></i></button>
-										</div>
+										<button class=" btn btn-outline-danger float-right"
+											@click="addlista(detallesprod.info)">Añadir a deseos <i
+												class="fas fa-heart"></i>
+										</button>
 									</div>
-								</div>
-								<div class="container">
-									<button class=" btn btn-outline-danger float-right"
-										@click="addlista(detallesprod.info)">Añadir a deseos <i
-											class="fas fa-heart"></i>
-									</button>
 								</div>
 							</div>
 							<br>
@@ -106,28 +102,69 @@
 							<br>
 							<hr>
 							<div class="row">
-								<div class="col">
-									<h4 class="float-left"
-										v-if="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''">
-										${{detallesprod.info.precioLibra}}</h4>
-									<h4 class="float-left"
-										v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''">
-										${{detallesprod.info.precioArroba}}</h4>
-									<h4 class="float-left"
-										v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja==''">
-										${{detallesprod.info.precioQuintal}}</h4>
-									<h4 class="float-left"
-										v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja!=''">
-										${{detallesprod.info.precioCaja}}</h4>
-									<h4 class="float-left"
-										v-else="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja!=''">
-										${{detallesprod.info.precioLibra}}</h4>
+
+								<div class="col-12 ">
+									<div v-if="Compra.select_Cantidad==''" class="d-flex justify-content-between w-100">
+										<h4
+											v-if="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''">
+											${{detallesprod.info.precioLibra}}</h4>
+										<h4
+											v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''">
+											${{detallesprod.info.precioArroba}}</h4>
+										<h4
+											v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja==''">
+											${{detallesprod.info.precioQuintal}}</h4>
+										<h4
+											v-if="detallesprod.info.precioLibra=='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja!=''">
+											${{detallesprod.info.precioCaja}}</h4>
+										<h4
+											v-else="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja!=''">
+											${{detallesprod.info.precioLibra}}</h4>
+
+										<h4 v-if="detallesprod.info.nombreCooperativa==''">
+											{{detallesprod.info.nombreUsuario}}</h4>
+										<h4 v-else>{{detallesprod.info.nombreCooperativa}}</h4>
+									</div>
+									<div v-if="Compra.select_Cantidad=='Libra'"
+										class="d-flex justify-content-between w-100">
+
+										<h4>
+											${{detallesprod.info.precioLibra}}</h4>
+										<h4>
+											<h4 v-if="detallesprod.info.nombreCooperativa==''">
+												{{detallesprod.info.nombreUsuario}}</h4>
+											<h4 v-else>{{detallesprod.info.nombreCooperativa}}</h4>
+									</div>
+									<div v-if="Compra.select_Cantidad=='Arroba'" class="d-flex justify-content-between w-100">
+									
+										<h4>
+											${{detallesprod.info.precioArroba}}</h4>
+										<h4>
+											<h4 v-if="detallesprod.info.nombreCooperativa==''">
+												{{detallesprod.info.nombreUsuario}}</h4>
+											<h4 v-else>{{detallesprod.info.nombreCooperativa}}</h4>
+									</div>
+									<div v-if="Compra.select_Cantidad=='Quintal'" class="d-flex justify-content-between w-100">
+									
+										<h4>
+											${{detallesprod.info.precioQuintal}}</h4>
+										<h4>
+											<h4 v-if="detallesprod.info.nombreCooperativa==''">
+												{{detallesprod.info.nombreUsuario}}</h4>
+											<h4 v-else>{{detallesprod.info.nombreCooperativa}}</h4>
+									</div>
+									<div v-if="Compra.select_Cantidad=='Caja'" class="d-flex justify-content-between w-100">
+									
+										<h4>
+											${{detallesprod.info.precioCaja}}</h4>
+										<h4>
+											<h4 v-if="detallesprod.info.nombreCooperativa==''">
+												{{detallesprod.info.nombreUsuario}}</h4>
+											<h4 v-else>{{detallesprod.info.nombreCooperativa}}</h4>
+									</div>
+
 								</div>
-								<div class="col">
-									<h4 class="float-right" v-if="detallesprod.info.nombreCooperativa==''">
-										{{detallesprod.info.nombreU}}</h4>
-									<h4 class="float-right" v-else> {{detallesprod.info.nombreCooperativa}}</h4>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -192,8 +229,14 @@
 						</button>
 					</div>
 					<div class="modal-body" id="body">
+						<div class="container">
+							<h4>
+								Tiempo Limite Para Que Realize La Transferencia: &nbsp; {{limitDate}}
+							</h4>
+						</div>
 						<form id="factura" class="border border-dark formulario"
 							style="width: 100%; background-color: rgb(192, 192, 192);">
+							
 							<div class="form-row m-auto">
 								<div class="col-md-12 ">
 									<div>
@@ -249,17 +292,16 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						
-							<button type="button" class="btn btn-secondary" v-on:click="descargaDatosCuenta">
-								<i class="fa fa-download" aria-hidden="true"></i>
-								Descargar Datos de Cuenta
-							</button>
-						<button type="button" class="btn btn-primary"
-							v-on:click="generarFactura">
+
+						<button type="button" class="btn btn-secondary" v-on:click="descargaDatosCuenta">
+							<i class="fa fa-download" aria-hidden="true"></i>
+							Descargar Datos de Cuenta
+						</button>
+						<button type="button" class="btn btn-primary" v-on:click="generarFactura">
 							<i class="fa fa-download" aria-hidden="true"></i>
 							Descargar PDF de Factura
 						</button>
-						
+
 					</div>
 
 				</div>
