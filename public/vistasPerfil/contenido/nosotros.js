@@ -47,6 +47,8 @@ var appinfo = new Vue({
       appEdit.modificarDatos.idDesc = id.idDesc;
       appEdit.modificarDatos.imagen = id.imagen;
       appEdit.modificarDatos.descripcion = id.descripcion;
+      appEdit.modificarDatos.telefono = id.telefono;
+      appEdit.modificarDatos.correo = id.correo;
     },
   },
 });
@@ -62,6 +64,8 @@ var appEdit = new Vue({
       idU: "",
       imagen: "",
       descripcion: "",
+      telefono: "",
+      correo: "",
     },
 
    
@@ -78,15 +82,21 @@ var appEdit = new Vue({
         key,
         this.modificarDatos.idU,
         this.modificarDatos.imagen,
-        this.modificarDatos.descripcion
+        this.modificarDatos.descripcion,
+        this.modificarDatos.telefono,
+        this.modificarDatos.correo
       );
 
       let db = firebaseDB;
       if (
         (this.modificarDatos.imagen != "" &&
-          this.modificarDatos.descripcion != "") ||
+          this.modificarDatos.descripcion != "" &&
+          this.modificarDatos.telefono != "" &&
+          this.modificarDatos.correo != "") ||
         (this.modificarDatos.imagen != "" &&
-          this.modificarDatos.descripcion != "")
+          this.modificarDatos.descripcion != "" &&
+          this.modificarDatos.telefono != "" &&
+          this.modificarDatos.correo != "")
       ) {
         db.ref("descUsuario/" + key)
           .update(data, () => {
@@ -97,7 +107,9 @@ var appEdit = new Vue({
             });
             appinfo.informacion();
             appEdit.modificarDatos.imagen = "public/img/ico.png";
-            appEdit.modificarDatos.descripcion=''
+            appEdit.modificarDatos.descripcion = ''
+            appEdit.modificarDatos.telefono = ''
+            appEdit.modificarDatos.correo = ''
           })
           .catch(() => {
             swal.fire({
@@ -108,12 +120,14 @@ var appEdit = new Vue({
           });
       }
     },
-    jsonParse(key, id, imagen, descripcion) {
+    jsonParse(key, id, imagen, descripcion,telefono, correo) {
       let data = {
         idDesc: key,
         idU: id,
         imagen: imagen,
         descripcion: descripcion,
+        telefono: telefono,
+        correo: correo,
       };
       return data;
     },
@@ -184,6 +198,8 @@ var appNueva = new Vue({
     Information: {
       imageInfo: "",
       description: "",
+      telefono: "",
+      correo: "",
     },
   },
   methods: {
@@ -202,7 +218,9 @@ var appNueva = new Vue({
       if (user) {
         if (
           (this.Information.imageInfo != "",
-          this.Information.description != "")
+            this.Information.description != "",
+            this.Information.telefono != "",
+            this.Information.correo != "")
         ) {
           let uId = user.uid;
           let key = db.ref().child("descUsuario/").push().key;
@@ -210,7 +228,9 @@ var appNueva = new Vue({
             uId,
             key,
             this.Information.imageInfo,
-            this.Information.description
+            this.Information.description,
+            this.Information.telefono,
+            this.Information.correo,
           );
           db.ref("descUsuario/" + key)
             .set(data)
@@ -221,7 +241,9 @@ var appNueva = new Vue({
                 icon: "success",
               });
               appNueva.Information.imageInfo='public/img/ico.png'
-              appNueva.Information.description=''
+              appNueva.Information.description = ''
+              appNueva.Information.telefono = ''
+              appNueva.Information.correo = ''
               document.getElementById("filein").disabled
             })
             .catch(() => {
@@ -242,12 +264,14 @@ var appNueva = new Vue({
         console.log("no Hay");
       }
     },
-    jsonParse(idU, id, imagen, descripcion) {
+    jsonParse(idU, id, imagen, descripcion, telefono, correo) {
       let data = {
         idU: idU,
         idDesc: id,
         imagen: imagen,
         descripcion: descripcion,
+        telefono: telefono,
+        correo: correo,
       };
       return data;
     },
