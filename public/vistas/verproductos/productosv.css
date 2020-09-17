@@ -132,6 +132,12 @@ label {
   background-color: #ffffff;
 }
 
+.ancla:hover{
+  cursor: pointer;
+  color: rgb(0, 255, 64);
+
+}
+
 @media (max-width: 700px) {
   .btn {
     font-size: 12px;

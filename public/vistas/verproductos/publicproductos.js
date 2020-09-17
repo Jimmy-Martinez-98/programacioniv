@@ -4,6 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
+
 var mostrardetalle = new Vue({
   el: "#productovista",
   data: {
@@ -197,5 +198,13 @@ var mostrardetalle = new Vue({
           });
       }
     },
+    viewOwner: function (id) {
+      
+       var ownerId = {
+         id,
+       };
+       sessionStorage.setItem("owner", JSON.stringify(ownerId));
+      location.href="public/vistas/verproductos/viewProductOwner.html"
+    }
   },
 });
