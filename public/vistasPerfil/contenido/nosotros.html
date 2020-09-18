@@ -25,6 +25,22 @@
 						<p class=" text-justify">{{infoNosotros.descripcion}}</p>
 					</div>
 				</div>
+				<div class="col-12 card-text">
+					
+					<h2 class="d-flex justify-content-center">Telefono</h2>
+					<hr>
+					<div class="card-text mt-2">
+						<p class=" text-justify">{{infoNosotros.telefono}}</p>
+					</div>
+				</div>
+				<div class="col-12 card-text">
+					
+					<h2 class="d-flex justify-content-center">Correo</h2>
+					<hr>
+					<div class="card-text mt-2">
+						<p class=" text-justify">{{infoNosotros.correo}}</p>
+					</div>
+				</div>
 			</div>
 			<div class="row card" v-else>
 				<div class="col-12 card-text">
@@ -113,6 +129,22 @@
 						</div>
 					</div>
 
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Telefono</label>
+							<textarea v-model="modificarDatos.telefono" class="form-control" id="mision"
+								rows="3"></textarea>
+						</div>
+					</div>
+
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Correo</label>
+							<textarea v-model="modificarDatos.correo" class="form-control" id="mision"
+								rows="3"></textarea>
+						</div>
+					</div>
+
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -150,6 +182,20 @@
 							<label for="desc">Descripcion</label>
 							<textarea class="form-control" id="mision" rows="3"
 								v-model="Information.description"></textarea>
+						</div>
+					</div>
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Telefono</label>
+							<textarea class="form-control" id="mision" rows="3"
+								v-model="Information.telefono"></textarea>
+						</div>
+					</div>
+					<div class="col-12 text-dark">
+						<div class="form-group">
+							<label for="desc">Correo</label>
+							<textarea class="form-control" id="mision" rows="3"
+								v-model="Information.correo"></textarea>
 						</div>
 					</div>
 				</form>
