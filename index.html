@@ -73,7 +73,7 @@
             </a>
             <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item " href="#" @click="observarUsuario">Perfil <i class="fas fa-user-tie"></i></a>
-              <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox<i class="fas fa-inbox"></i></a>
+              <a v-if="datoscuenta.role==1" class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox<i class="fas fa-inbox"></i></a>
               <a @click="singOut" class="dropdown-item " href="#SignOut">Cerrar Sesión <i
                   class="fas fa-sign-in-alt"></i></a>
             </div>

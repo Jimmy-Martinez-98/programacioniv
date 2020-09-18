@@ -50,9 +50,7 @@ var validarsession = new Vue({
       });
     },
     singOut: function () {
-      fireAuth.signOut().catch(function (error) {
-        alertify.warning("Ocurrio un error", error);
-      });
+      fireAuth.signOut()
     },
     UsuarioLogueado: function () {
       var dbchild = firebaseDB.ref("users/");

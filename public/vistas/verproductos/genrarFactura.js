@@ -47,11 +47,10 @@ var factura = new Vue({
       if (this.facturar.tCompra == "Caja") {
         this.facturar.precioUnitario = this.precios.pCaja;
       }
-      this.total =
-        parseFloat(this.facturar.precioUnitario) *
-        parseFloat(this.facturar.contador);
+      let multi = this.facturar.contador * this.facturar.precioUnitario;
+      console.log();
 
-      this.total = Math.round(this.total);
+      this.total=  parseFloat(multi).toFixed(2)
       let date = new Date();
       this.fecha = date.toLocaleDateString();
     },
