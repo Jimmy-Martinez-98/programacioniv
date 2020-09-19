@@ -4,19 +4,12 @@
 
 
 
-.form-row{
-  width: 100%;
-  display: flex;
-  overflow-y: auto;
-}
-.container-fluid {
-  height: 500px;
-  border-radius: 0px;
-}
+
+
 
 .list-group {
   height: 480px;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 0px;
 }
 .list-group::-webkit-scrollbar {
@@ -47,7 +40,6 @@
   height: 478px;
 }
 #scroll {
-  width: 100%;
   height: 378px;
   overflow-y: scroll;
   overflow-x: auto;
