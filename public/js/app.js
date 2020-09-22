@@ -18,12 +18,13 @@ var validarsession = new Vue({
     valor: "",
     session: "",
     datoscuenta: [],
+
   },
 
   created: function () {
     this.traercuenta();
-    $("#contenedor").load("public/vistas/home/home.html", function (data) {
-      $(this).html(data);
+    $.get("public/vistas/home/home.html", (data) => {
+      $('#contenedor').html(data);
     });
   },
   methods: {
@@ -80,6 +81,8 @@ var validarsession = new Vue({
         location.href = "cooperativa.html";
       } else if (role.role == 0 || role.role == null) {
         location.href = "public/vistasPerfilCliente/perfilCliente.html";
+      } else if (role.role == 2) {
+        location.href="public/vistasPerfilAdmin/admin.html"
       }
     },
 
@@ -103,8 +106,8 @@ var validarsession = new Vue({
      * @function inicio
      */
     inicio() {
-      $("#contenedor").load("public/vistas/home/home.html", function (data) {
-        $(this).html(data);
+      $.get("public/vistas/home/home.html", (data) => {
+        $('#contenedor').html(data);
       });
     },
 
@@ -114,10 +117,8 @@ var validarsession = new Vue({
      * @function verdura
      */
     verdura() {
-      $("#contenedor").load("public/vistas/verduras/verduras.html", function (
-        data
-      ) {
-        $(this).html(data);
+      $.get("public/vistas/verduras/verduras.html", (data) => {
+        $('#contenedor').html(data);
       });
     },
 
@@ -127,10 +128,8 @@ var validarsession = new Vue({
      * @function legumbre
      */
     legumbre() {
-      $("#contenedor").load("public/vistas/legumbres/legumbres.html", function (
-        data
-      ) {
-        $(this).html(data);
+      $.get("public/vistas/legumbres/legumbres.html",(data)=> {
+        $('#contenedor').html(data);
       });
     },
 
@@ -140,10 +139,8 @@ var validarsession = new Vue({
      * @function fruto
      */
     fruto() {
-      $("#contenedor").load("public/vistas/frutos/frutos.html", function (
-        data
-      ) {
-        $(this).html(data);
+      $.get("public/vistas/frutos/frutos.html",  (data)=> {
+        $('#contenedor').html(data);
       });
     },
 
@@ -153,8 +150,8 @@ var validarsession = new Vue({
      * @function blog
      */
     blog: function () {
-      $("#contenedor").load("public/vistas/blog/blog.html", function (data) {
-        $(this).html(data);
+      $.get("public/vistas/blog/blog.html", (data)=> {
+        $('#contenedor').html(data);
       });
     },
 

@@ -9,13 +9,13 @@ input[type="search"]:focus {
   position: static;
   transition: none;
   box-shadow: none;
-   border-bottom: 1.5px solid blue;
+   border-bottom: 2.5px solid blue;
 }
 input[type="search"]::before {
   left: 0px;
   position: static;
   transition: none;
-  border-bottom: 1.5px solid blue;
+  border-bottom: 2.5px solid blue;
 }
 .card-footer {
   border: none;
