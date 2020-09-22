@@ -12,7 +12,7 @@ var newAccount = new Vue({
         cooperativa: ''
     },
     created: function () {
-        this.getUserLog();  
+        this.getUserLog();
     },
 
     methods: {
@@ -20,8 +20,8 @@ var newAccount = new Vue({
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     // User is signed in.
-                    console.log(user);
-                    
+                    console.log('ook');
+
                 } else {
                     // No user is signed in.
                     location.href = "../../login.html";
@@ -46,12 +46,11 @@ var newAccount = new Vue({
                 let email = this.account.correo;
                 let password = this.account.password;
                 firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => {
-                    this.sendEmail()
+                    this.openNotification('Usuario Creado', 'primary');
+                    this.limpiar()
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorCode, '=>', errorMessage);
                     if (errorCode == "auth/email-already-in-use") {
                         document.getElementById("alerta").innerHTML = `
                             <div class="alert alert-danger" role="alert">
@@ -83,33 +82,12 @@ var newAccount = new Vue({
             }
 
         },
-        sendEmail: function () {
-            let user = firebaseAuth.currentUser;
-            user.sendEmailVerification().then(() => {
-                this.saveUser(user.uid)
-            }).catch((e) => {
-                console.log(e);
-            })
-        },
-        saveUser: function (user) {
-            firebaseDB.ref('users/' + user).set({
-                nombreUsuario: newAccount.account.name,
-                correo: newAccount.account.correo,
-                role: 0,
-                fechaRegistro: newAccount.account.fecha,
-                uId: user
-            }).then(() => {
-                this.openNotification('Usuario Creado', 'primary')
-                this.limpiar()
 
-            }).catch((e) => {
-                this.openNotification('Ocurrio Un Error Al Intentar Crear el Usuario', 'danger')
-            })
-        },
         openNotification: function (msg, color) {
             const noti = this.$vs.notification({
+                icon: '<i class="fa fa-user-plus" aria-hidden="true fa-2x"></i>',
                 position: 'bottom-center',
-                progress:'auto',
+                progress: 'auto',
                 square: true,
                 width: '100%',
                 color: color,

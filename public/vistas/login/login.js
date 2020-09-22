@@ -83,7 +83,7 @@ var applogin = new Vue({
                 document.getElementById(
                   "alerta"
                 ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                      Correo O Contraseña incorrectos
+                      Contraseña es incorrecta
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
