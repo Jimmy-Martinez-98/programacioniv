@@ -5,6 +5,8 @@
  * @instance objeto de instancia de Vue.js
  */
 
+ //Carrucel Legumbres
+ 
 var app = new Vue({
   el: "#slider",
   data: {
@@ -21,7 +23,7 @@ var app = new Vue({
      */
     datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Legumbres").on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });
@@ -104,79 +106,67 @@ var app = new Vue({
   },
 });
 
-/**
- * @instance objeto de instancia de Vue.js
- */
-var todoproducto = new Vue({
-  el: "#todoproducto",
+//Carrucel Verduras
+
+var app = new Vue({
+  el: "#sliderverduras",
   data: {
-    all: [],
+    productos: [],
   },
   created: function () {
-    this.traer_todo();
+    this.datoss();
   },
   methods: {
     /**
-     * Representa todos los productos mostrados despues del carousel
+     * Trae todos  los productos
      * @access public
-     * @function traer_todo
+     * @function datoss
      */
-    traer_todo: function () {
+    datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Verduras").on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });
-        this.all = dataP;
+        this.productos = dataP;
       });
     },
 
-    /*
-    ======================
-          LISTENER
-    ======================  
+    /*==========================
+              LISTENERS
+      ===========================
     */
     /**
-     * Guarda datos del producto en localStorage para su posterior llamada en otra pantalla
+     * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
      * @access public
-     * @function verdetalle
-     * @param {object} info - Representa los datos del producto
+     * @function addlista
+     * @param {Int} producto Representa el identificador del producto seleccionado
      */
-    verdetalle: function (info) {
-      var data = {
-        info,
-      };
-      sessionStorage.setItem("data", JSON.stringify(data));
-      window.open("productos.html", "_blank");
-    },
-
-    addlista: function (datos) {
-      console.log(datos);
-      
+    addlistaC: function (producto) {
       let user = firebaseAuth.currentUser;
       if (user) {
         let key = firebaseDB.ref().child("listaDeseos/").push().key;
         let data = {
-          Arroba: datos.Arroba,
-          Caja: datos.Caja,
-          Quintal: datos.Quintal,    
-          categoria: datos.categoria,
-          descProducto: datos.descProducto,
+          Arroba: producto.Arroba,
+          Caja: producto.Caja,
+          Quintal: producto.Quintal,
+         
+          categoria: producto.categoria,
+          descProducto: producto.descProducto,
           idLista: key,
-          idProducto: datos.idProducto,
-          idUsuario: datos.idUsuario,
+          idProducto: producto.idProducto,
+          idUsuario: producto.idUsuario,
           idUsuarioObtubo: user.uid,
-          imagen: datos.imagen,
-          libra: datos.libra,
-          nombreCooperativa: datos.nombreCooperativa,
-          nombreProducto: datos.nombreProducto,
-          nombreUsuario: datos.nombreUsuario,
-          precioLibra:datos.precioLibra,
-          precioArroba:datos.precioArroba,
-          precioQuintal:datos.precioQuintal,
-          precioCaja:datos.precioCaja
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreUsuario: producto.nombreUsuario,
+          precioLibra:producto.precioLibra,
+          precioArroba:producto.precioArroba,
+          precioQuintal:producto.precioQuintal,
+          precioCaja:producto.precioCaja
         };
-
         firebaseDB
           .ref("listaDeseos/" + key)
           .set(data)
@@ -184,18 +174,18 @@ var todoproducto = new Vue({
             if (e) {
               let mensaje =
                 "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
-              this.openNotification(mensaje, "danger", "Error!!!");
+              this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
             } else {
               let msg = "Guardado Exitosamente :)";
-              this.openNotification(msg, "success", "Listoo!!");
+              this.openNotificationCarrousel(msg, "success", "Listoo!!");
             }
           });
       } else {
         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
-        this.openNotification(msg, "primary", "Alerta!!!");
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
       }
     },
-    openNotification(msg, notiColor, titulo) {
+    openNotificationCarrousel(msg, notiColor, titulo) {
       const noti = this.$vs.notification({
         square: true,
         color: notiColor,
@@ -207,5 +197,114 @@ var todoproducto = new Vue({
 
       return noti;
     },
+    verProd: function (info) {
+      var data = {
+        info
+      };
+      sessionStorage.setItem("data", JSON.stringify(data));
+      window.open("productos.html", "_blank");
+    },
   },
 });
+
+//Carrucel Frutos
+
+var app = new Vue({
+  el: "#sliderfrutos",
+  data: {
+    productos: [],
+  },
+  created: function () {
+    this.datoss();
+  },
+  methods: {
+    /**
+     * Trae todos  los productos
+     * @access public
+     * @function datoss
+     */
+    datoss: function () {
+      let dataP = [];
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Frutos").on("value", (snap) => {
+        snap.forEach((element) => {
+          dataP.push(element.val());
+        });
+        this.productos = dataP;
+      });
+    },
+
+    /*==========================
+              LISTENERS
+      ===========================
+    */
+    /**
+     * Verifica si hay session iniciada si lo hay agrega el producto a la lista de deseos del usuario logueado
+     * @access public
+     * @function addlista
+     * @param {Int} producto Representa el identificador del producto seleccionado
+     */
+    addlistaC: function (producto) {
+      let user = firebaseAuth.currentUser;
+      if (user) {
+        let key = firebaseDB.ref().child("listaDeseos/").push().key;
+        let data = {
+          Arroba: producto.Arroba,
+          Caja: producto.Caja,
+          Quintal: producto.Quintal,
+         
+          categoria: producto.categoria,
+          descProducto: producto.descProducto,
+          idLista: key,
+          idProducto: producto.idProducto,
+          idUsuario: producto.idUsuario,
+          idUsuarioObtubo: user.uid,
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreUsuario: producto.nombreUsuario,
+          precioLibra:producto.precioLibra,
+          precioArroba:producto.precioArroba,
+          precioQuintal:producto.precioQuintal,
+          precioCaja:producto.precioCaja
+        };
+        firebaseDB
+          .ref("listaDeseos/" + key)
+          .set(data)
+          .then((e) => {
+            if (e) {
+              let mensaje =
+                "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
+              this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
+            } else {
+              let msg = "Guardado Exitosamente :)";
+              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+            }
+          });
+      } else {
+        let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
+      }
+    },
+    openNotificationCarrousel(msg, notiColor, titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
+    },
+    verProd: function (info) {
+      var data = {
+        info
+      };
+      sessionStorage.setItem("data", JSON.stringify(data));
+      window.open("productos.html", "_blank");
+    },
+  },
+});
+

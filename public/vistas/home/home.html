@@ -12,8 +12,9 @@
 
 <link rel="stylesheet" href="public/vistas/home/carousel.css">
 
+<!-- carrusel legumbres-->
 <div id="slider" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <b> Lo Mas Destacado</b></p>
+	<p> <b> Top 10 de legumbres</b></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos" >
@@ -84,19 +85,21 @@
 </div>
 
 
-<!-- todos los productos -->
-<div class=" container mt-2  d-flex justify-content-center" id="todoproducto">
-	<div class="row ">
-		<div class="col-sm-4  wow fadeIn" v-for="todo in all" >
-			<div class="targeta">
-				<img v-bind:src="todo.imagen">
+<!-- carrusel Verduras -->
+<div id="sliderverduras" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
+	<p> <b> Top 10 de Verduras</b></p>
+	<div class="carousel-inner row w-100 mx-auto" role="listbox">
+		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
+			v-for="(datos,index) in productos" >
+			<div class="targeta ">
+				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
-					<a class="hole " href="#" v-on:click="verdetalle(todo)">
-						<h5> {{todo.nombreProducto}}</h5>
+					<a class="hole text-break" href="#" v-on:click="verProd(datos)">
+						<h5> {{datos.nombreProducto}}</h5>
 
 					</a>
-					<a href="#" class="info text-break" v-if="todo.nombreCooperativa==''"> {{todo.nombreU}}</a>
-					<a href="#" class="info" v-else> {{todo.nombreCooperativa}}</a>
+					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
+					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
 					<p class="clasificacion mb-0">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -107,46 +110,126 @@
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
 						<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
 
-
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
 						<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
 
-
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
 						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+
+
 					</p>
 
 					<div class="row card-footer ">
 						<div class="col-12">
-							<p class="card-text float-left"
-								v-if="todo.precioLibra!='' && todo.precioArroba=='' && todo.precioQuintal=='' && todo.precioCaja==''">
-								${{todo.precioLibra}}
+							<p class="card-text float-left" v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
+								${{datos.precioLibra}}
 							</p>
 							<p class="card-text float-left"
-								v-if="todo.precioLibra=='' && todo.precioArroba!='' && todo.precioQuintal=='' && todo.precioCaja==''">
-								${{todo.precioArroba}}
+								v-if="datos.precioLibra=='' && datos.precioArroba!='' && datos.precioQuintal=='' && datos.precioCaja==''">
+								${{datos.precioArroba}}
 							</p>
 							<p class="card-text float-left"
-								v-if="todo.precioLibra=='' && todo.precioArroba=='' && todo.precioQuintal!='' && todo.precioCaja==''">
-								${{todo.precioQuintal}}
+								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal!='' && datos.precioCaja==''">
+								${{datos.precioQuintal}}
 							</p>
 							<p class="card-text float-left"
-								v-if="todo.precioLibra=='' && todo.precioArroba=='' && todo.precioQuintal=='' && todo.precioCaja!=''">
-								${{todo.precioCaja}}
+								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja!=''">
+								${{datos.precioCaja}}
 							</p>
 							<p class="card-text float-left"
-								v-else="todo.precioLibra!='' && todo.precioArroba!='' && todo.precioQuintal!='' && todo.precioCaja!=''">
-								${{todo.precioLibra}}
+								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
+								${{datos.precioLibra}}
 							</p>
-							<i class=" far fa-heart fav float-right" @click="addlista(todo)"></i>
-
+							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon " aria-hidden="true"></span>
+		<span class="sr-only ">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
 </div>
+
+
+<!-- carrusel Frutas -->
+<div id="sliderfrutos" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
+	<p> <b> Top 10 de Frutas</b></p>
+	<div class="carousel-inner row w-100 mx-auto" role="listbox">
+		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
+			v-for="(datos,index) in productos" >
+			<div class="targeta ">
+				<img v-bind:src="datos.imagen">
+				<div class="cuerpotargeta" style="height: 155px;">
+					<a class="hole text-break" href="#" v-on:click="verProd(datos)">
+						<h5> {{datos.nombreProducto}}</h5>
+
+					</a>
+					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
+					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
+					<p class="clasificacion mb-0">
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+						<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+						<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+						<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+
+						<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+
+
+					</p>
+
+					<div class="row card-footer ">
+						<div class="col-12">
+							<p class="card-text float-left" v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
+								${{datos.precioLibra}}
+							</p>
+							<p class="card-text float-left"
+								v-if="datos.precioLibra=='' && datos.precioArroba!='' && datos.precioQuintal=='' && datos.precioCaja==''">
+								${{datos.precioArroba}}
+							</p>
+							<p class="card-text float-left"
+								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal!='' && datos.precioCaja==''">
+								${{datos.precioQuintal}}
+							</p>
+							<p class="card-text float-left"
+								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja!=''">
+								${{datos.precioCaja}}
+							</p>
+							<p class="card-text float-left"
+								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
+								${{datos.precioLibra}}
+							</p>
+							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon " aria-hidden="true"></span>
+		<span class="sr-only ">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+
 
 
 <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
