@@ -1,0 +1,55 @@
+<!-- css of vuesax -->
+<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<div class="container-fluid mt-3" id="settings">
+    <div class="form-row bg-white m-auto">
+        <div class="col-md-12 d-flex justify-content-center mb-3">
+            <div class="card" style="width: 18rem;">
+                <img v-if="validateImage" :src="dataUser.imagen" class="card-img-top">
+                <img v-else src="../img/avatars.png" class="card-img-top" alt="Imagen de Perfil">
+                <div class="card-body">
+
+                    <label class="btn btn-primary">
+                        Modificar Imagen
+                    <input type="file" @change="getImage" hidden>
+                    </label>
+
+                    <div id="barra"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-center mb-3">
+            <div class="d-flex w-75 justify-content-md-between">
+                <h6 class="mr-2">
+                    {{dataUser.nombreUsuario}}
+                </h6>
+                <button class="btn btn-primary" data-toggle="collapse" href="#collapseName" role="button"
+                    aria-expanded="false" aria-controls="collapseName" @click="passName">Modificar Nombre</button>
+
+            </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="collapse" id="collapseName">
+                <div class="form-inline ">
+                    <input type="text" class="form-control mr-3" placeholder="nombre" v-model="name">
+                    <button class="btn btn-primary" @click.prevent="saveName">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-center mb-3">
+            <div class="d-flex w-75 justify-content-md-between">
+                <h6 class="mr-2">
+                    {{dataUser.correo}}
+                </h6>
+                <button class="btn btn-primary" @click="sendPasswordReset(dataUser.correo)">Restablecer Contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="viewSettings/js/settings.js"></script>

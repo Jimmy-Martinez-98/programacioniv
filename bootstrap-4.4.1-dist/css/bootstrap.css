@@ -2207,7 +2207,7 @@ input::before {
   border: none;
   outline: 0;
    left: 100%; 
-  border-bottom: 1.5px solid rgb(4, 50, 255);
+  border-bottom: 2px solid rgb(4, 50, 255);
 
 }
 .form-control::-webkit-input-placeholder {

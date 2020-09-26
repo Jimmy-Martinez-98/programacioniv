@@ -93,6 +93,7 @@ var appusuario = new Vue({
                     nombreUsuario: appusuario.usuario.nombreUsuario,
                     correo: appusuario.usuario.correo,
                     fechaRegistro: appusuario.usuario.fechaRegistro,
+                    role:0
                   })
                   .then(() => {
                     this.enviarEmail();
@@ -206,10 +207,4 @@ var appusuario = new Vue({
   },
 });
 
-/**
- * Sirve para mostrar los mensajitos de popovers
- * @function
- */
-$(function () {
-  $('[data-toggle="popover"]').popover();
-});
+

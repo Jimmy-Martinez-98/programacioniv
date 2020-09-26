@@ -21,12 +21,12 @@ var appcontras = new Vue({
     Recuperar: function () {
       firebaseAuth.languageCode = "es";
       email = this.resetPassword.correo;
-      firebaseAuth.sendPasswordResetEmail(email).then(() => {
+      firebaseAuth.sendPasswordResetEmail(email)
+        .then(() => {
         swal
           .fire({
             title: "Restablecimiento de Contraseña",
-            text:
-              "Se ha enviado un mensaje a su correo para que actualize su contraseña",
+            text: "Se ha enviado un mensaje a su correo para que actualize su contraseña",
             icon: "info",
             buttonStyling: true,
             showCloseButton: true,
@@ -38,6 +38,21 @@ var appcontras = new Vue({
           .then(() => {
             location.href = "login.html";
           });
+      }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, "=>", errorMessage);
+        if (errorCode == "auth/user-not-found") {
+          document.getElementById(
+            "alerta"
+          ).innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      El Usuario con este correo no existe en nuestra base de datos 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>`;
+        }
+
       });
     },
 

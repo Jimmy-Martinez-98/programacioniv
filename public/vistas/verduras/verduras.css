@@ -1,28 +1,36 @@
-input[type="search"]{
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+input[type="search"] {
   position: static;
   transition: none;
 }
-input[type="search"]:focus{
+
+input[type="search"]:focus {
   position: static;
-  transition:none;
+  transition: none;
   box-shadow: none;
+  border-bottom: 2.5px solid blue;
 }
-input[type="search"]::before{
+
+input[type="search"]::before {
   left: 0px;
   transition: none;
   position: static;
-
+  border-bottom: 2.5px solid blue;
 }
+
 .form-check-input {
   display: none;
   color: gray;
 }
+
 .form-check-label {
   color: gray;
   font-size: 20px;
 }
 
-.form-check-input:checked ~ label {
+.form-check-input:checked~label {
   color: orange;
 }
-
