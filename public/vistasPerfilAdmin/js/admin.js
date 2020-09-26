@@ -12,7 +12,7 @@ var Admin = new Vue({
                 if (user) {
                     // User is signed in.
                     Admin.getDataFromDataBase(user.uid);
-                    console.log(user.uid);
+                   
 
                 } else {
                     // No user is signed in.
@@ -21,8 +21,7 @@ var Admin = new Vue({
             });
         },
         getDataFromDataBase: function (key) {
-            console.log(key);
-
+          
             firebaseDB.ref("users/").on("value", (snap) => {
                 snap.forEach((element) => {
                     if (key === element.val().uId) {
@@ -40,15 +39,11 @@ var Admin = new Vue({
                 $('#contendedor').html(data);
             });
         },
-        /* inboxTab: function () {
-             $("#contendedor").load("viewChat/chat.html", function (data) {
-                 $(this).html(data);
-             });
+         chat: function () {
+            $.get("chatAdmin/chatAdmin.html", function (data) {
+                $('#contendedor').html(data);
+            });
          },
-         accountSettings: function () {
-             $("#contendedor").load("viewSettings/settings.html", function (data) {
-                 $(this).html(data);
-             });
-         },*/
+        
     },
 });

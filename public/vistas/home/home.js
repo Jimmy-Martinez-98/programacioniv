@@ -49,8 +49,7 @@ var app = new Vue({
           Arroba: producto.Arroba,
           Caja: producto.Caja,
           Quintal: producto.Quintal,
-         
-          categoria: producto.categoria,
+           categoria: producto.categoria,
           descProducto: producto.descProducto,
           idLista: key,
           idProducto: producto.idProducto,
@@ -124,7 +123,7 @@ var app = new Vue({
      */
     datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Verduras").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Verduras").limitToFirst(10).on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });
@@ -225,7 +224,7 @@ var app = new Vue({
      */
     datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Frutos").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Frutos").limitToFirst(10).on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });

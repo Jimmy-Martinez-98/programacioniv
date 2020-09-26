@@ -56,7 +56,8 @@
 									v-model="detallesprod.info.existencias">
 							</div>
 
-							<a href="#" class="contactar mt-3 mb-3 form-inline" v-on:click="contactar(detallesprod.info.idUsuario)">
+							<a href="#" class="contactar mt-3 mb-3 form-inline"
+								v-on:click="contactar(detallesprod.info.idUsuario)">
 								<i class="far fa-comment-dots fa-lg"> </i>
 								<h4>Contactar</h4>
 							</a>
@@ -105,8 +106,7 @@
 
 								<div class="col-12 ">
 									<div class="d-flex justify-content-between w-100">
-										<div v-if="Compra.select_Cantidad==''"
-											class="d-flex justify-content-between ">
+										<div v-if="Compra.select_Cantidad==''" class="d-flex justify-content-between ">
 											<h4
 												v-if="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba=='' && detallesprod.info.precioQuintal=='' && detallesprod.info.precioCaja==''">
 												${{detallesprod.info.precioLibra}}</h4>
@@ -123,7 +123,7 @@
 												v-else="detallesprod.info.precioLibra!='' && detallesprod.info.precioArroba!='' && detallesprod.info.precioQuintal!='' && detallesprod.info.precioCaja!=''">
 												${{detallesprod.info.precioLibra}}</h4>
 
-											
+
 										</div>
 										<div v-if="Compra.select_Cantidad=='Libra'"
 											class="d-flex justify-content-between 0">
@@ -131,7 +131,7 @@
 											<h4>
 												${{detallesprod.info.precioLibra}}</h4>
 											<h4>
-											
+
 										</div>
 										<div v-if="Compra.select_Cantidad=='Arroba'"
 											class="d-flex justify-content-between 0">
@@ -139,7 +139,7 @@
 											<h4>
 												${{detallesprod.info.precioArroba}}</h4>
 											<h4>
-												
+
 										</div>
 										<div v-if="Compra.select_Cantidad=='Quintal'"
 											class="d-flex justify-content-between ">
@@ -147,7 +147,7 @@
 											<h4>
 												${{detallesprod.info.precioQuintal}}</h4>
 											<h4>
-											
+
 										</div>
 										<div v-if="Compra.select_Cantidad=='Caja'"
 											class="d-flex justify-content-between ">
@@ -155,11 +155,13 @@
 											<h4>
 												${{detallesprod.info.precioCaja}}</h4>
 											<h4>
-											
+
 										</div>
-										<h4 class="ancla" v-if="detallesprod.info.nombreCooperativa==''" @click="viewOwner(detallesprod.info.idUsuario)">
+										<h4 class="ancla" v-if="detallesprod.info.nombreCooperativa==''"
+											@click="viewOwner(detallesprod.info.idUsuario)">
 											{{detallesprod.info.nombreUsuario}}</h4>
-										<h4 v-else @click="viewOwner(detallesprod.info.idUsuario)">{{detallesprod.info.nombreCooperativa}}</h4>
+										<h4 v-else @click="viewOwner(detallesprod.info.idUsuario)">
+											{{detallesprod.info.nombreCooperativa}}</h4>
 									</div>
 
 
@@ -292,7 +294,6 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-
 						<button type="button" class="btn btn-secondary" v-on:click="descargaDatosCuenta">
 							<i class="fa fa-download" aria-hidden="true"></i>
 							Descargar Datos de Cuenta
