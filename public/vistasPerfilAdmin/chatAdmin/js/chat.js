@@ -35,7 +35,7 @@ var inbox = new Vue({
      */
     computed: {
         updateChat: function () {
-            this.finalChat();
+           
             this.refChats = [];
         },
         returnNewArray: function () {
@@ -269,12 +269,6 @@ var inbox = new Vue({
                 }
             );
         },
-        finalChat: function () {
-            var scroll = document.getElementById("scroll");
-            scroll.scrollTop = scroll.scrollHeight;
-            scroll.animate({
-                scrollTop: scroll.scrollHeight
-            });
-        },
+       
     },
 });
