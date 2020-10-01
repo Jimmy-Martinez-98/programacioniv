@@ -1,18 +1,21 @@
 <link rel="stylesheet" href="css/stilo.css">
 
 <div class="row mt-3 container-fluid mb-2" id="pedidos">
-    <div class="col-12" >
+    <div class="col-12">
         <form class="inline">
             <div class="input-group mb-3">
                 <div class="input-group-prepend" style="width: 250  px;">
-                    <select v-model="forSearch" style="font-family: 'FontAwesome', Helvetica;" class="custom-select" >
-                        <option selected disabled  style="font-family: 'FontAwesome', Helvetica;">&#xf002; &nbsp; Buscar Por..</option>
-                        <option value="fecha"  style="font-family: 'FontAwesome', Helvetica;" >&#xf073; Fecha</option>
-                        <option value="nombre" style="font-family: 'FontAwesome', Helvetica;">&#xf288; Nombre Producto</option>
+                    <select v-model="forSearch" style="font-family: 'FontAwesome', Helvetica;" class="custom-select">
+                        <option selected disabled style="font-family: 'FontAwesome', Helvetica;">&#xf002; &nbsp; Buscar
+                            Por..</option>
+                        <option value="fecha" style="font-family: 'FontAwesome', Helvetica;">&#xf073; Fecha</option>
+                        <option value="nombre" style="font-family: 'FontAwesome', Helvetica;">&#xf288; Nombre Producto
+                        </option>
                     </select>
 
                 </div>
-                <input type="text" v-model="valor" @keyup="busqueda" class="form-control" placeholder="Buscar" aria-label="Text input with dropdown button">
+                <input type="text" v-model="valor" @keyup="busqueda" class="form-control" placeholder="Buscar"
+                    aria-label="Text input with dropdown button">
             </div>
         </form>
     </div>

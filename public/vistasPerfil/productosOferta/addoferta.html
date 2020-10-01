@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 
-</head>
+	</head>
+	<title></title>
+	<body>
+		<form action="#" method="post" id="frm-ofertas">
 
-<body>
-	<form action="#" method="post" id="frm-ofertas">
-
-		<div class="bg-white">
-			<ul class="list-group wow fadeIn" v-for="datos in productos" :key="datos.miproducto">
-				<li class="list-group-item">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="container">
-								<img width="250" height="200" id="img-preview" v-bind:src="datos.imagen" alt=" image">
-							</div>
-						</div>
-
-						<div class="col-md-8 mt-3">
-							<h4>{{datos.nombre_producto}}</h4>
-
-							<div class="col-md-8 ">
+			<div class="bg-white">
+				<ul class="list-group wow fadeIn" v-for="datos in productos" :key="datos.miproducto">
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-3">
 								<div class="container">
-									<P class="text-justify ">{{datos.descprod}} </P>
+									<img width="250" height="200" id="img-preview" v-bind:src="datos.imagen"
+										alt=" image">
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-12  mt-5">
-									<label class="float-left" for="#">Precio: ${{datos.precio_venta}}</label>
-									<label class=" ml-5" for="#">Precio de Oferta: ${{datos.precio_venta}}</label>
-									<button type="button" v-on:click="modoferta(datos)"
-										class="btn btn-primary float-right" data-toggle="modal"
-										data-target="#frmoferta">
-										Añadir a Oferta
-									</button>
+
+							<div class="col-md-8 mt-3">
+								<h4>{{datos.nombre_producto}}</h4>
+
+								<div class="col-md-8 ">
+									<div class="container">
+										<P class="text-justify ">{{datos.descprod}} </P>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12  mt-5">
+										<label class="float-left" for="#">Precio: ${{datos.precio_venta}}</label>
+										<label class=" ml-5" for="#">Precio de Oferta: ${{datos.precio_venta}}</label>
+										<button type="button" v-on:click="modoferta(datos)"
+											class="btn btn-primary float-right" data-toggle="modal"
+											data-target="#frmoferta">
+											Añadir a Oferta
+										</button>
+									</div>
+
+
 								</div>
 
-
 							</div>
+					</li>
+				</ul>
+			</div>
 
-						</div>
-				</li>
-			</ul>
-		</div>
-
-	</form>
-	<script src="public/js/jquery-3.5.js"></script>
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="public/vistasPerfil/productosOferta/ofert.js"></script>
-	<script src="public/vistas/blog/dist/wow.js"></script>
-	<script>
-		var wow = new WOW(
-			{
-				boxClass: 'wow',      // animated element css class (default is wow)
-				animateClass: 'animated', // animation css class (default is animated)
-				offset: 0,          // distance to the element when triggering the animation (default is 0)
-			}
-		);
-		wow.init();
-	</script>
-</body>
+		</form>
+		<script src="public/js/jquery-3.5.js"></script>
+		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+		<script src="public/vistasPerfil/productosOferta/ofert.js"></script>
+		<script src="public/vistas/blog/dist/wow.js"></script>
+		<script>
+			var wow = new WOW(
+				{
+					boxClass: 'wow',      // animated element css class (default is wow)
+					animateClass: 'animated', // animation css class (default is animated)
+					offset: 0,          // distance to the element when triggering the animation (default is 0)
+				}
+			);
+			wow.init();
+		</script>
+	</body>
 
 </html>
 
