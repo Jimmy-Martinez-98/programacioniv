@@ -1,13 +1,28 @@
+/**
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file gestionF.js-> Es la vista de gestion de facturas
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var factura = new Vue({
     el: '#factura',
     data: {
         datos: [],
         OwnerOfOrder: ''
     },
+    /**
+     * Esta funcion llama a metodos para ejecutarlos al cargar el DOM
+     * @access public 
+     * @function created 
+     */
     created: function () {
         this.observador()
     },
     methods: {
+        /**
+         * 
+         * 
+         */
         observador: function () {
             firebaseAuth.onAuthStateChanged((user) => {
                 if (user) {
@@ -35,7 +50,6 @@ var factura = new Vue({
             })
         },
         verificar: function (id) {
-
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Verificada"
             }).then(() => {
