@@ -75,17 +75,18 @@ var app = new Vue({
               this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
             } else {
               let msg = "Guardado Exitosamente :)";
-              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+              this.openNotificationCarrousel(msg, "success", "Listoo!!", "<i class='bx bx-select-multiple' ></i>");
             }
           });
       } else {
         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
-        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo) {
+    openNotificationCarrousel(msg, notiColor, titulo,icono) {
       const noti = this.$vs.notification({
         square: true,
+        icon:icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,
@@ -176,17 +177,18 @@ var app = new Vue({
               this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
             } else {
               let msg = "Guardado Exitosamente :)";
-              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+              this.openNotificationCarrousel(msg, "success", "Listoo!!", "<i class='bx bx-select-multiple' ></i>");
             }
           });
       } else {
         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
-        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo) {
+    openNotificationCarrousel(msg, notiColor, titulo,icono) {
       const noti = this.$vs.notification({
         square: true,
+        icon:icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,
@@ -277,17 +279,18 @@ var app = new Vue({
               this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
             } else {
               let msg = "Guardado Exitosamente :)";
-              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+              this.openNotificationCarrousel(msg, "success", "Listoo!!", "<i class='bx bx-select-multiple ></i>`");
             }
           });
       } else {
         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
-        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo) {
+    openNotificationCarrousel(msg, notiColor, titulo,icono) {
       const noti = this.$vs.notification({
         square: true,
+        icon:icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../vistas/blog/css/libs/animate.css">
     <!-- Bootstrap css-->
     <link rel="stylesheet" href="../../../bootstrap-4.4.1-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/estilos.css">
+
     <!-- Font Awesome iconos -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -16,32 +16,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Informacion de Vendedor</title>
+        <title>Información Perfil | AgroProducers</title>
     </head>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
 
-    <body class="bg-dark">
-        <div class=" bg-light" id="view">
-            <div class="card">
-                <div class="container w-75">
-                    <img :src="descripcion.imagen" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body ">
+        }
 
-                    <div class="container ">
-                        <h1 class="card-title  text-center" v-if="name">{{owner.nombreUsuario}}</h1>
-                        <h1 class="card-title" v-else>{{owner.nombreCooperativa}}</h1>
-                        <h3 class="card-text text-center">{{owner.correo}}</h3>
-                        <h4 class="card-text text-center">{{descripcion.telefono}}</h4>
-                        <h5 class="card-text text-justify text-center">{{descripcion.descripcion}}</h5>
-                        
-                    </div>
 
+
+        .container {
+            width: 500px;
+            padding: 17px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 3px 3px  15px 4px rgba(12, 156, 12, 0.527);
+        }
+
+    </style>
+
+    <body>
+
+        <div class="container" id="view">
+            <div class="card shadow-lg">
+                <img :src="descripcion.imagen" class="card-img-top shadow-lg" alt="...">
+                <div class="card-body  ">
+                    <h5 class="card-title text-center">{{owner.nombreUsuario}}</h5>
+                    <p class="card-text text-center">{{owner.selectU}}</p>
+                    <p class="card-text text-center">{{owner.correo}}</p>
+                    <p class="card-text text-center">{{owner.telefono}}</p>
+                    <p class="card-text text-center">{{descripcion.descripcion}}</p>
                 </div>
             </div>
         </div>
-
         <!--js librerias-->
-
         <!-- Firebase -->
 
         <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
@@ -63,8 +76,8 @@
 
         <!-- wow.js -->
         <script type="text/javascripts" src="../vistas/blog/dist/wow.js"></script>
-
         <script src="js/viewOwner.js"></script>
+
     </body>
 
 </html>

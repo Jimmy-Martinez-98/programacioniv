@@ -1,6 +1,9 @@
 var contenido = new Vue({
   el: "#navegacion",
-  data: {},
+  
+  created: function () {
+    this.productos()
+  },
   methods: {
     productos: function () {
       $("#contenedor").load(

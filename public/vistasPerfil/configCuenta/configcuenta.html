@@ -1,208 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-	<link rel="stylesheet" href="public/vistasPerfil/configCuenta/configcuenta.css">
-</head>
-<title></title>
-<body>
-	<form method="POST" id="cuenta" class="rounded p-2 container-fluid colores mb-3">
-		<div class="form-row wow fadeIn">
-			<div class="d-flex justify-content-center col-md-12 mb-3">
-				<div class="col-md-6 d-flex justify-content-center">
-					<div style="width: 250px;">
-						<img v-if="datosPerfil.imagen" :src="datosPerfil.imagen" height="200px" width="230" height="200"
-							class=" rounded " alt="imagen de perfil">
-						<img v-else height="200px" src="public/img/mle.jpg" width="230" height="200"
-							class=" rounded-circle " alt="">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="public/vistasPerfil/configCuenta/configcuenta.css">
+	</head>
+	<title></title>
+	<style>
+		#cuenta {
+			box-shadow: 6px 6px 1px #aaaaaa;
+		}
+
+	</style>
+
+	<body>
+		<form method="POST" id="cuenta" class=" p-2 container-fluid colores mb-3 p-2" style="border-radius: 0px;">
+			<div class="form-row wow fadeIn">
+				<div class=" col-md-12 mb-3">
+					<div class=" d-flex justify-content-center w-100">
+						<div class="">
+							<img v-if="datosPerfil.imagen" :src="datosPerfil.imagen" height="200px" width="230"
+								height="210" class=" rounded " alt="imagen de perfil">
+							<img class="w-100" v-else height="200px" src="public/img/mle.jpg" width="230" height="200"
+								class=" rounded-circle " alt="">
+							<label class="btn btn-primary btn-block mt-1">
+								Editar
+								<input type="file" @change="obtenerImagen" hidden>
+							</label>
+							<div id="barra"></div>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="col-md-12 mb-3">
+					<div class="form-group mb-3">
+						<span>Nombre de Usuario</span>
+						<input type="text" class="form-control" aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-default" disabled v-model="datosPerfil.nombreUsuario">
 					</div>
 				</div>
-				<div class="col-md-6">
-					<button type="button" class="btn btn-secondary text-white btn-lg float-left mt-5"
-						data-toggle="modal" v-on:click="modfoto(datosPerfil.imagen)"
-						data-target="#fotoperfiledit">Editar Foto de
-						Perfil</button>
-				</div>
-			</div>
-			<div class="col-md-6 mb-3">
-				<div class="form-group ">
-					<label for="nombre">Nombre de Usuario</label>
-					<input type="text" v-model="datosPerfil.nombreU" disabled class="bg-white form-control" id="nombre">
-
-				</div>
-			</div>
-			<div class="col-md-6 mb-3">
-				<div class="form-group " v-if="datosPerfil.nombreCooperativa!=''">
-					<label for="nombreC">Nombre Cooperativa</label>
-					<input type="text" v-model="datosPerfil.nombreCooperativa" disabled class="bg-white form-control"
-						id="nombrec">
-				</div>
-				<div class="form-group" v-else="datosPerfil.nombreCooperativa==''"></div>
-			</div>
-			<div class="col-md-12 mt-3">
-				<div class="form-group ">
-					<label for="correo">Correo ELectronico</label>
-					<input type="email" v-model="datosPerfil.correo" disabled class=" bg-white form-control"
-						id="correoU">
-				</div>
-			</div>
-			<div class="col-md-12">
-				<label for="tel">Telefono</label>
-				<div class="input-group ">
-					<input type="tel" disabled v-model="datosPerfil.telefono" disabled class="bg-white form-control">
-					<div class="input-group-append ">
-						<button class="btn btn-secondary text-white " type="button" data-toggle="modal"
-							data-target="#editelefono">Editar Telefono</button>
+				<div class="col-md-12 mb-3">
+					<div class="form-group " v-if="datosPerfil.nombreCooperativa!=''">
+						<label for="nombreC">Nombre Cooperativa</label>
+						<input type="text" v-model="datosPerfil.nombreCooperativa" disabled
+							class="bg-white form-control" id="nombrec">
 					</div>
+					<div class="form-group" v-else="datosPerfil.nombreCooperativa==''"></div>
 				</div>
-			</div>
-			<div class="col-md-12 mt-1">
-				<label for="contra">Contraseña</label>
-				<div class="input-group ">
-					<input type="password" disabled v-model="datosPerfil.password" class="bg-white form-control">
-					<div class="input-group-append ">
-						<button class="btn btn-secondary text-white "
-							v-on:click="modificacionpass(datosPerfil.password)" type="button" data-toggle="modal"
-							data-target="#edicontra">Editar Contraseña</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 mt-1 mb-2">
-				<label for="fecha">Fecha de Registro</label>
-				<div class="input-group ">
-					<input type="datetime" disabled v-model="datosPerfil.fechaRegistro" class="form-control bg-white">
-				</div>
-			</div>
-		</div>
-	</form>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
-		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-	<script src="public/js/jquery-ui.js"></script>
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="public/vistas/blog/dist/wow.js"></script>
-	<script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
-
-	<script>
-		var wow = new WOW(
-			{
-				boxClass: 'wow',      // animated element css class (default is wow)
-				animateClass: 'animated', // animation css class (default is animated)
-				offset: 0,          // distance to the element when triggering the animation (default is 0)
-			}
-		);
-		wow.init();
-	</script>
-</body>
-
-</html>
-
-<!-- Modal1 -->
-
-<div class="modal fade" id="fotoperfiledit" tabindex="-1" role="dialog" aria-labelledby="foto" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="foto">Foto de Perfil</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body ">
-				<form id="editfotoo" method="POST">
-					<div class="container d-flex justify-content-center">
-						<div class="card mb-2" style="width: 18rem;">
-							<img v-if="updatefoto.imagen" width="200" height="200" id="img-preview"
-								:src="updatefoto.imagen" class="card-img-top" alt="la imagen va aquí">
-
-							<img else width="200" height="200" id="imgSin" src="public/img/avatars.gif"
-								class="card-img-top" alt="la imagen va aquí">
-							<div class="custom-file">
-								<input type="file" @change="obtenerimagen " required name="archivo"
-									class="custom-file-input" id="inputGroupFile01"
-									aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-							</div>
-							<div class="card-footer py-2" id="barra"></div>
+				<div class="col-md-12 mt-3">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-default" disabled v-model="datosPerfil.correo">
+						<div class="input-group-prepend">
+							<button class="btn btn-primary" @click.prevent="resetPass(datosPerfil.correo)">restablecer
+								contraseña</button>
 						</div>
 					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
-				<button type="button" v-on:click="Guardarimg" class="btn btn-primary btn-lg" data-dismiss="modal"
-					data-backdrop="false">Cargar foto</button>
-			</div>
-		</div>
-	</div>
-</div>
+				</div>
 
-
-
-<!-- Modal telefono -->
-<div class="modal fade" id="editelefono" tabindex="-1" role="dialog" aria-labelledby="editelefono" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="editelefono">Edicion de telefono</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p>Para mayor seguridad, debemos enviarle un código de verificación de un único uso que nos permitirá
-					verificar si existe.</p>
-				<div class="input-group ">
-					<input type="password" class="form-control  bg-white" placeholder="Ingresa tu numero de telefono">
-					<div class="input-group-append ">
-						<button class="btn btn-outline-secondary " type="button">Enviar Codigo</button>
+				<div class="col-md-12 mt-1 mb-2">
+					<div class="form-group mb-3">
+						<span>Fecha Registro</span>
+						<input type="date" class="form-control" aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-default" disabled v-model="datosPerfil.fechaRegistro">
 					</div>
 				</div>
-				<div class="form-group mt-3">
-					<label for="codigo">Codigo de verificación</label>
-					<input type="email" class="form-control bg-white" id="codigov" aria-describedby="codigov"
-						placeholder="Ingresa codigo">
-				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal" data-backdrop="false">Guardar
-					Cambios</button>
-			</div>
-		</div>
-	</div>
-</div>
+		</form>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+		<script src="public/vistasPerfil/configCuenta/cuenta.js"></script>
 
+		<script>
+			var wow = new WOW(
+				{
+					boxClass: 'wow',      // animated element css class (default is wow)
+					animateClass: 'animated', // animation css class (default is animated)
+					offset: 0,          // distance to the element when triggering the animation (default is 0)
+				}
+			);
+			wow.init();
+		</script>
+	</body>
 
-<!-- Modal3 -->
-<div class="modal fade" id="edicontra" tabindex="-1" role="dialog" aria-labelledby="edicontraLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="edicontraLabel">Cambio de Contraseña</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form action="#" method="post">
-					<div class="form-group ">
-						<label for="contraA">Contraseña</label>
-						<input type="password" disabled v-model="cambiopass" class="form-control" id="contraA">
-					</div>
-					<div class="form-group ">
-						<label for="exampleInputPassword1">Email</label>
-						<input type="email" class="form-control" v-model="changePassword.correo" id="nuevap">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Cerrar</button>
-				<button type="button" v-on:click="updatepass" class="btn btn-primary">Enviar</button>
-			</div>
-		</div>
-	</div>
-</div>
+</html>

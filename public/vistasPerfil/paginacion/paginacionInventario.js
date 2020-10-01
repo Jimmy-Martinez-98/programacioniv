@@ -1,6 +1,8 @@
 var paginations = new Vue({
   el: "#paginacion",
-  data: {},
+  created: function () {
+    this.tablaProducto()
+  },
   methods: {
     tablaProducto: function () {
       $("#v-pills-inicio").load(

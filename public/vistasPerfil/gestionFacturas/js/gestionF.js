@@ -20,8 +20,9 @@ var factura = new Vue({
     },
     methods: {
         /**
-         * 
-         * 
+         * observa el estado de la session en la web
+         * @access public 
+         * @function observador
          */
         observador: function () {
             firebaseAuth.onAuthStateChanged((user) => {
@@ -39,6 +40,12 @@ var factura = new Vue({
                 }
             })
         },
+        /**
+         * obtiene los datos del usuario de la BD para mostrar nombre en la vista
+         * @access public   
+         * @function traerUserOrder
+         * @param {String} user 
+         */
         traerUserOrder: function (user) {
             firebaseDB.ref('users/').orderByChild('uId').equalTo(user).on('value', snap => {
                 snap.forEach(element => {
@@ -49,6 +56,12 @@ var factura = new Vue({
                 });
             })
         },
+        /**
+         * es cuando el usuario clickea el item verificar del menu de opciones en la tabla 
+         * @access public
+         * @function verificar
+         * @param {String} id 
+         */
         verificar: function (id) {
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Verificada"
@@ -62,6 +75,12 @@ var factura = new Vue({
                 });
             })
         },
+         /**
+          * es cuando el usuario clickea el item anular del menu de opciones en la tabla 
+          * @access public
+          * @function anular
+          * @param {String} id 
+          */
         anular: function (id) {
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Anulada"

@@ -63,13 +63,6 @@ a.btn-lg:hover {
 .activa:hover::before {
   width: 100%;
 }
-.dropdown {
-  position: relative;
-  font-size: 11px;
-}
-.dropdown-item {
-  font-size: 11px;
-}
 
 
 @media (max-width: 992px) {

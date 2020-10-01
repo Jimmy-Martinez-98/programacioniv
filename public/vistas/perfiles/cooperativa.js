@@ -52,15 +52,6 @@ var appcooperativa = new Vue({
   },
 });
 
-/**
- * cuando la pagina este lista los eventos podran ser ejecutados
- */
-$(document).ready(function () {
-  /**
-   * ejecuta funcion de animacion
-   */
-  toggle();
-});
   /**
    * carga formulario en el contenedor
    * @event #info
@@ -119,15 +110,3 @@ $(document).ready(function () {
   });
 
 
-/**
- * Animacion en la barra de navegacion responsive
- * @access public
- * @function toggle
- */
-function toggle() {
-  $("#colapsar").click(function () {
-    $(".collapse").animate({
-      height: "toggle",
-    });
-  });
-}

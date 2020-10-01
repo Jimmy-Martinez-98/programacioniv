@@ -39,10 +39,10 @@
                 <span v-if="perfil.nombreCooperativa==''">{{perfil.nombreUsuario}}</span>
                 <span v-else>{{perfil.nombreCooperativa}}</span>
               </a>
-              <div class="dropdown-menu" id="menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html">Inbox <i
+              <div class="dropdown-menu w-100 mt-0" id="menu" aria-labelledby="dropdownMenuLink" style="position: absolute; border-radius: 0%; ">
+                <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html" style="font-size: 18px;">Inbox <i
                     class="fas fa-inbox"></i></a>
-                <a @click="signOut" class="dropdown-item " href="#signOut">Cerrar Sesión <i
+                <a @click="signOut" class="dropdown-item " href="#signOut" style="font-size: 18px;">Cerrar Sesión <i
                     class="fas fa-sign-in-alt"></i></a>
               </div>
             </div>
@@ -58,26 +58,29 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto uls " id="nav">
+          <ul class="navbar-nav m-auto uls " id="nav">
             <li class=" lis activa">
               <a class=" nav-link  " id="info" href="#">
-                <h6>Informacion de Perfil</h6> <span class="sr-only"></span>
+                <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;
+                Informacion de Perfil
+
               </a>
             </li>
 
             <li class=" lis activa">
               <a class="nav-link " id="listdeseos" href="#">
-                <h6>Lista de deseos</h6>
+                <i class="fa fa-star" aria-hidden="true"></i>&nbsp; Lista de deseos
               </a>
             </li>
             <li class="divicio  lis activa">
               <a class="nav-link  " id="POferta" href="#">
-                <h6>Producto en oferta</h6>
+                <i class="fa fa-usd" aria-hidden="true">&#xf155</i>
+                &nbsp; Producto en oferta
               </a>
             </li>
             <li class="divicio  lis activa">
               <a class="nav-link  " id="Configc" href="#">
-                <h6>Configuración de Cuenta</h6>
+                <i class="fa fa-cog" aria-hidden="true"></i>&nbsp; Configuración de Cuenta
               </a>
             </li>
           </ul>
@@ -87,7 +90,7 @@
 
 
 
-    <div class="container-fluid " id="contenedorP" style="margin-top: 150px;"></div>
+    <div class="container-fluid" id="contenedorP" style="margin-top: 150px;"></div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>

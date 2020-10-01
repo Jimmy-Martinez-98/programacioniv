@@ -54,3 +54,18 @@ div.imgss {
   -moz-border-radius: 124px 0px 120px 0px;
   -webkit-border-radius: 124px 0px 120px 0px;
 }
+.form-control {
+  position: static;
+  transition: none;
+}
+.form-control:focus{
+  position: static;
+  transition: none;
+}
+.form-control:disabled {
+  position: static;
+  transition: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.432);
+  border-bottom: 2px solid blue;
+}

@@ -49,53 +49,51 @@ var mostrardetalle = new Vue({
      * @param {object} producto - Reprecenta la informacion del item seleccionado
      */
     addlista: function (producto) {
+      console.log(producto);
+
       let user = firebaseAuth.currentUser;
       let key = firebaseDB.ref().child("listaDeseos/").push().key;
       if (user) {
-        firebaseDB.ref("listaDeseos/" + key).set(
-          {
-            idUsuarioObtubo: user.uid,
-            idLista: key,
-            idUsuario: user.uid,
-            idProducto: producto.idProducto,
-            arroba: producto.arroba,
-            caja: producto.caja,
-            categoria: producto.categoria,
-            codeProducto: producto.codeProducto,
-            descProducto: producto.descProducto,
-            existencias: producto.existencias,
-            fechaSubida: producto.fechaSubida,
-            imagen: producto.imagen,
-            libra: producto.libra,
-            nombreCooperativa: producto.nombreCooperativa,
-            nombreProducto: producto.nombreProducto,
-            nombreU: producto.nombreU,
-            precio: producto.precio,
-            precioVenta: producto.precioVenta,
-            unidad: producto.unidad,
-            quintal: producto.quintal,
-          },
-          (error) => {
-            if (error) {
-              swal.fire({
-                title: "Error",
-                text: "Ocurrio un error inesperado",
-                icon: "error",
-              });
-            } else {
-              alertify.success("Producto añadido a tu lista de deseos");
-              alertify.set("notifier", "position", "top-right");
-            }
-          }
-        );
+        firebaseDB.ref("listaDeseos/" + key).set({
+          idUsuarioObtubo: user.uid,
+          idLista: key,
+          idUsuario: user.uid,
+          idProducto: producto.idProducto,
+          arroba: producto.Arroba,
+          caja: producto.Caja,
+          categoria: producto.categoria,
+          codeProducto: producto.codeProducto,
+          descProducto: producto.descProducto,
+          existencias: producto.existencias,
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreU: producto.nombreUsuario,
+          precioArroba: producto.precioArroba,
+          precioCaja: producto.precioCaja,
+          precioQuintal: producto.precioQuintal,
+          precioLibra: producto.precioLibra,
+          quintal: producto.Quintal,
+        }).then(() => {
+          this.openNotification(' ', 'primary', 'Producto añadido a la lista')
+        });
       } else {
-        Swal.fire(
-          "Ups...",
-          "Debes Iniciar Sesión Para Usar Esta funcion",
-          "warning"
-        );
+        this.openNotification('','danger','Debes iniciar sesión para realizar esta acción')
       }
     },
+       openNotification(msg, notiColor, titulo) {
+         const noti = this.$vs.notification({
+           square: true,
+           color: notiColor,
+           position: "bottom-center",
+           title: titulo,
+           text: msg,
+           progress: "auto",
+         });
+
+         return noti;
+       },
     /**
      * Es cuando le da click a  boton +
      * @access public
@@ -199,12 +197,12 @@ var mostrardetalle = new Vue({
       }
     },
     viewOwner: function (id) {
-      
-       var ownerId = {
-         id,
-       };
-       sessionStorage.setItem("owner", JSON.stringify(ownerId));
-      location.href="public/vistas/verproductos/viewProductOwner.html"
+
+      var ownerId = {
+        id,
+      };
+      sessionStorage.setItem("owner", JSON.stringify(ownerId));
+      location.href = "public/vistas/verproductos/viewProductOwner.html"
     }
   },
 });

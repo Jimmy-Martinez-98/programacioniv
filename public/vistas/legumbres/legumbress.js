@@ -57,46 +57,43 @@ var seccionlegumbre = new Vue({
       let user = firebaseAuth.currentUser;
       let newKey = firebaseDB.ref().child("listaDeseos").push().key;
       if (user) {
-        firebaseDB.ref("listaDeseos/" + newKey).set(
-          {
-            arroba: producto.arroba,
-            caja: producto.caja,
-            categoria: producto.categoria,
-            descProducto: producto.descProducto,
-            idProducto: producto.idProducto,
-            idUsuario: producto.idUsuario,
-            idUsuarioObtubo: user.uid,
-            idLista: newKey,
-            imagen: producto.imagen,
-            libra: producto.libra,
-            nombreCooperativa: producto.nombreCooperativa,
-            nombreProducto: producto.nombreProducto,
-            nombreUsuario: producto.nombreUusuario,
-            precioVenta: producto.precioVenta,
-            quintal: producto.quintal,
-          },
-          (error) => {
-            if (error) {
-              swal.fire({
-                title: "Ups...",
-                text: "Ocurrio un error al intentar realizar la accion",
-                icon: "error",
-              });
-            } else {
-              let mensaje = alertify.success(
-                "Producto agregado a tu lista de deseos :)"
-              );
-              mensaje.delay(2);
-              alertify.set("notifier", "position", "top-right");
-            }
-          }
-        );
+        firebaseDB.ref("listaDeseos/" + newKey).set({
+          arroba: producto.arroba,
+          caja: producto.caja,
+          categoria: producto.categoria,
+          descProducto: producto.descProducto,
+          idProducto: producto.idProducto,
+          idUsuario: producto.idUsuario,
+          idUsuarioObtubo: user.uid,
+          idLista: newKey,
+          imagen: producto.imagen,
+          libra: producto.libra,
+          nombreCooperativa: producto.nombreCooperativa,
+          nombreProducto: producto.nombreProducto,
+          nombreUsuario: producto.nombreUusuario,
+          precioVenta: producto.precioVenta,
+          quintal: producto.quintal,
+        }).then(() => {
+          let msg = "Guardado Exitosamente :)";
+          this.openNotificationCarrousel(msg, "success", "Listoo!!", "<i class='bx bx-select-multiple' ></i>");
+        })
       } else {
-        swal.fire({
-          title: "Debes iniciar sesion para utilizar esta opcion",
-          icon: "info",
-        });
+        let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
+    },
+    openNotificationCarrousel(msg, notiColor, titulo, icono) {
+      const noti = this.$vs.notification({
+        square: true,
+        icon: icono,
+        color: notiColor,
+        position: "top-rigth",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
+
+      return noti;
     },
 
     /**
