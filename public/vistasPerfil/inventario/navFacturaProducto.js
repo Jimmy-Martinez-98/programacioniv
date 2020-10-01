@@ -11,13 +11,12 @@ var contenido = new Vue({
       );
     },
     facturas: function () {
-        alert('No Hay Facturas')
-      /*$(".contenedor").load(
-        "public/vistasPerfil/inventario/facturas",
+      $("#contenedor").load(
+        "public/vistasPerfil/gestionFacturas/gestiuonF.html",
         function (data) {
           $(this).html(data);
         }
-      );*/
+      );
     },
   }
 });

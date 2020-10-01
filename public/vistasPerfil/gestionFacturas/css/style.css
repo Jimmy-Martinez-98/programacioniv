@@ -1,0 +1,28 @@
+#badge{
+    font-size: 20px;
+}
+#options:hover {
+    box-shadow: 0px;
+      transform: translateY(0);
+}
+#options:focus {
+    box-shadow: 0px;
+    border: 0px;
+}
+
+.dropdown-menu>.item {
+ font-size: 16px;
+}
+.item:hover,
+.item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+.item.active,
+.item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #19be35;
+}

@@ -45,9 +45,7 @@ var appcooperativa = new Vue({
           });
         });
     },
-    slidedropdown: function () {
-      $(".dropdown-menu").slideToggle();
-    },
+   
   },
   created: function () {
     this.traerdatosusuario();
