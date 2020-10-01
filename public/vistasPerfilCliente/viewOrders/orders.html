@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="css/stilo.css">
+
+<div class="row mt-3 container-fluid mb-2" id="pedidos">
+    <div class="col-12" >
+        <form class="inline">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" style="width: 250  px;">
+                    <select v-model="forSearch" style="font-family: 'FontAwesome', Helvetica;" class="custom-select" >
+                        <option selected disabled  style="font-family: 'FontAwesome', Helvetica;">&#xf002; &nbsp; Buscar Por..</option>
+                        <option value="fecha"  style="font-family: 'FontAwesome', Helvetica;" >&#xf073; Fecha</option>
+                        <option value="nombre" style="font-family: 'FontAwesome', Helvetica;">&#xf288; Nombre Producto</option>
+                    </select>
+
+                </div>
+                <input type="text" v-model="valor" @keyup="busqueda" class="form-control" placeholder="Buscar" aria-label="Text input with dropdown button">
+            </div>
+        </form>
+    </div>
+    <div class="col-12">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action" v-for="orders in allOrders">
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-inline">
+                            <p>N Pedido:&nbsp; {{orders.idPedido}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class=" m-auto">
+                            <img :src="orders.producImage" width="100%" height="150px" alt="producto">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="d-flex w-100 justify-content-between mt-1">
+                            <h5 class="mb-1">{{orders.producName}}</h5>
+                            <small>Fecha Compra: &nbsp; {{orders.fecha}} </small>
+                        </div>
+                        <p class="mb-1">{{orders.descripcion}}
+                        </p>
+                        <small><strong>&nbsp;$&nbsp;{{orders.total}}</strong></small>
+                        <div class="input-grop">
+                            <label for="form-control">
+                                Cantidad:&nbsp;
+                            </label>
+                            <input v-model="orders.cant" type="number" disabled placeholder="100">
+                        </div>
+                    </div>
+                </div>
+
+            </a>
+
+        </div>
+    </div>
+</div>
+<script src="viewOrders/js/viewOrder.js"></script>

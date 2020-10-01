@@ -5,226 +5,326 @@
  * @instance objeto de instancia de Vue.js
  */
 var appinfo = new Vue({
-	el: '#nosotrosdiv',
-	data: {
-		we: []
-	},
-
-	created: function () {
-		this.todo();
-
-
-	},
-	methods: {
-		/**
-		 * 	Trae imagen y descripcion de la cooperativa o productor
-		 * @access public
-		 * @function todo
-		 */
-		todo: function () {
-			fetch(`Private/Modulos/about/procesos.php?proceso=recibirinfo&nosotros=${JSON.stringify(this.we)}`).then(resp => resp.json()).then(resp => {
-				this.we = resp[0];
-			});
-		},
-		/**
-		 * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
-		 * Igualmente le asigna la informacion del item seleccionado 
-		 * @access public
-		 * @function editardatos
-		 * @param {object} id - Representa la informacion del item seleccionado 
-		 */
-		editardatos: function (id) {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
-				appedit.edidar.fk_idusuario = resp[0].idusuario;
-
-
-			});
-			appedit.edidar = id;
-			appedit.edidar.accion = 'modificar'
-		}
-
-	}
+  el: "#nosotrosdiv",
+  data: {
+    infoNosotros: [],
+  },
+  created: function () {
+    this.informacion();
+  },
+  methods: {
+    /**
+     * 	Trae imagen y descripcion de la cooperativa o productor
+     * @access public
+     * @function informacion
+     */
+    informacion: function () {
+      let user = firebaseAuth.currentUser;
+      let db = firebaseDB;
+      let data = [];
+      if (user) {
+        db.ref("descUsuario/").on("value", (snap) => {
+          snap.forEach((element) => {
+            if (user.uid === element.val().idU) {
+              data.push(element.val());
+            }
+          });
+          this.infoNosotros = data[0];
+        });
+      } else {
+        console.log("error");
+      }
+    },
+    /**
+     * Hace una peticion al archivo procesos.php para traer el id de usuario y asignarlo a appedit en su data: edidar
+     * Igualmente le asigna la informacion del item seleccionado
+     * @access public
+     * @function editardatos
+     * @param {object} id - Representa la informacion del item seleccionado
+     */
+    editarDatos: function (id) {
+      appEdit.modificarDatos.idU = id.idU;
+      appEdit.modificarDatos.idDesc = id.idDesc;
+      appEdit.modificarDatos.imagen = id.imagen;
+      appEdit.modificarDatos.descripcion = id.descripcion;
+      appEdit.modificarDatos.telefono = id.telefono;
+      appEdit.modificarDatos.correo = id.correo;
+    },
+  },
 });
 
-/** 
+/**
  * @instance objeto de instancia de Vue.js
-*/
-var appedit = new Vue({
-	el: '#modaleditar',
-	data: {
+ */
+var appEdit = new Vue({
+  el: "#modaleditar",
+  data: {
+    modificarDatos: {
+      idDesc: "",
+      idU: "",
+      imagen: "",
+      descripcion: "",
+      telefono: "",
+      correo: "",
+    },
 
-		edidar: {
-			accion: 'modificar',
-			descripcion: '',
-			imagen: '',
-			infoUsuario: '',
-			fk_idusuario: ''
+   
+  },
+  methods: {
+    /**
+     * Actualiza los datos de la informacion del usuario
+     * @access public
+     * @function guardar
+     */
+    guardar: function () {
+      let key = this.modificarDatos.idDesc;
+      let data = this.jsonParse(
+        key,
+        this.modificarDatos.idU,
+        this.modificarDatos.imagen,
+        this.modificarDatos.descripcion,
+        this.modificarDatos.telefono,
+        this.modificarDatos.correo
+      );
 
-		},
+      let db = firebaseDB;
+      if (
+        (this.modificarDatos.imagen != "" &&
+          this.modificarDatos.descripcion != "" &&
+          this.modificarDatos.telefono != "" &&
+          this.modificarDatos.correo != "") ||
+        (this.modificarDatos.imagen != "" &&
+          this.modificarDatos.descripcion != "" &&
+          this.modificarDatos.telefono != "" &&
+          this.modificarDatos.correo != "")
+      ) {
+        db.ref("descUsuario/" + key)
+          .update(data, () => {
+            swal.fire({
+              title: "OK!",
+              text: "Datos Actualizados!!",
+              icon: "success",
+            });
+            appinfo.informacion();
+            appEdit.modificarDatos.imagen = "public/img/ico.png";
+            appEdit.modificarDatos.descripcion = ''
+            appEdit.modificarDatos.telefono = ''
+            appEdit.modificarDatos.correo = ''
+          })
+          .catch(() => {
+            swal.fire({
+              title: "Ups..",
+              text: "Ocurrio un error inesperado",
+              icon: "error",
+            });
+          });
+      }
+    },
+    jsonParse(key, id, imagen, descripcion,telefono, correo) {
+      let data = {
+        idDesc: key,
+        idU: id,
+        imagen: imagen,
+        descripcion: descripcion,
+        telefono: telefono,
+        correo: correo,
+      };
+      return data;
+    },
 
-		imagenlittle: ''
-	},
-	methods: {
+    /**
+     * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
+     *  asignarlo a edidar.imagen su direccion
+     * @access public
+     * @function obtenerimagen
+     * @param {objec} e - Representa el cambio en el tag img
+     */
+    obtenerimagen(e) {
+       let file = e.target.files[0];
+       let upload = storage
+         .ref()
+         .child("datos/" + file.name)
+         .put(file);
 
-		/**
-		 * Actualiza los datos de la informacion del usuario
-		 * @access public
-		 * @function guardar
-		 */
-		guardar: function () {
-			fetch(`private/Modulos/about/procesos.php?proceso=recibirDatos&nosotros=${JSON.stringify(this.edidar)}`).then(resp => resp.json()).then(resp => {
-				if (resp.msg != 'Datos Actualizados Exitosamente') {
-					alertify.warning(resp.msg);
-				} else {
-					alertify.success(resp.msg);
-					appinfo.todo();
-
-				}
-			});
-		},
-
-		/**
-		  * Obtiene la imagen que esta en el tag img para guardarlo en carpeta y
-		  *  asignarlo a edidar.imagen su direccion
-		  * @access public
-		  * @function obtenerimagen
-		  * @param {objec} e - Representa el cambio en el tag img 
-		  */
-		obtenerimagen(e) {
-			let file = e.target.files[0];
-			this.cargar(file);
-			var respuesta = null;
-			var formData = new FormData($('#imgs')[0]);
-			var ruta = 'Private/Modulos/about/guardarimagencoo.php';
-			$.ajax({
-				type: "POST",
-				url: ruta,
-				data: formData,
-				contentType: false,
-				processData: false,
-				async: false,
-				success: function (response) {
-					respuesta = response;
-				}
-			});
-			this.edidar.imagen = "Private/Modulos/about/" + respuesta;
-		},
-
-		/**
-		 * Carga la imagen en el tag img
-		 * @access public
-		 * @function cargarimagen
-		 * @param {object} file -Reprecenta el archivo de imagen 
-		 */
-		cargar(file) {
-			let reader = new FileReader();
-			reader.onload = (e) => {
-				this.imagenlittle = e.target.result;
-			}
-			reader.readAsDataURL(file);
-		}
-
-	},
-	computed: {
-
-		/**
-		 * Retorna la imagen en el tag img
-		 * @access public
-		 * @function bindearimagen	
-		 * @returns imagenlittle - Representa la imagen en si
-		 */
-		bindearimagen() {
-			return this.imagenlittle;
-
-		}
-	}
+       upload.on(
+         "state_changed",
+         (snapshot) => {
+           //muestra el progreso
+           let progress = Math.round(
+             (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+           );
+           let img = document.getElementById("barra");
+           img.innerHTML = `
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: ${progress}%;"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    ${progress}%
+                  </div>
+                </div>`;
+         },
+         (error) => {
+           //muestra error
+           swal.fire({
+             title: "Ups..",
+             text: "Ocurrio al cargar Imagen",
+             icon: "error",
+           });
+         },
+         () => {
+           //cuando la imagen ya esta subida
+           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+             appEdit.modificarDatos.imagen = downloadURL;
+             document.getElementById("progress").style.display = "none";
+           });
+         }
+       );
+   
+    },
+  },
 });
 
+/**
+ * @instance objeto de instancia de Vue.js
+ */
+var appNueva = new Vue({
+  el: "#nuevam",
+  data: {
+    Information: {
+      imageInfo: "",
+      description: "",
+      telefono: "",
+      correo: "",
+    },
+  },
+  methods: {
+    /**
+     * Guarda la Informacion del formulario en Firebase
+     * la funcion lo que ejecuta es:
+     * 1 - Verificar el usuario logueado si lo esta entonces
+     * 2 - Verifica si los datos no estan vacios
+     * 3 - Hace la incersion en firebase database
+     * @access public
+     * @function guardarInformacion
+     */
+    guardarInformacion: function () {
+      let user = firebaseAuth.currentUser;
+      let db = firebaseDB;
+      if (user) {
+        if (
+          (this.Information.imageInfo != "",
+            this.Information.description != "",
+            this.Information.telefono != "",
+            this.Information.correo != "")
+        ) {
+          let uId = user.uid;
+          let key = db.ref().child("descUsuario/").push().key;
+          let data = this.jsonParse(
+            uId,
+            key,
+            this.Information.imageInfo,
+            this.Information.description,
+            this.Information.telefono,
+            this.Information.correo,
+          );
+          db.ref("descUsuario/" + key)
+            .set(data)
+            .then(() => {
+              swal.fire({
+                title: "OK!",
+                text: "Datos Guardados Exitosamente",
+                icon: "success",
+              });
+              appNueva.Information.imageInfo='public/img/ico.png'
+              appNueva.Information.description = ''
+              appNueva.Information.telefono = ''
+              appNueva.Information.correo = ''
+              document.getElementById("filein").disabled
+            })
+            .catch(() => {
+              swal.fire({
+                title: "Error",
+                text: "Ocurrio un error inesperado",
+                icon: "error",
+              });
+            });
+        } else {
+          swal.fire({
+            title: "Alerta!",
+            text: "Complete los campos",
+            icon: "info",
+          });
+        }
+      } else {
+        console.log("no Hay");
+      }
+    },
+    jsonParse(idU, id, imagen, descripcion, telefono, correo) {
+      let data = {
+        idU: idU,
+        idDesc: id,
+        imagen: imagen,
+        descripcion: descripcion,
+        telefono: telefono,
+        correo: correo,
+      };
+      return data;
+    },
+    obtenerimagenN(e) {
+      let file = e.target.files[0];
+      let upload = storage
+        .ref()
+        .child("datos/" + file.name)
+        .put(file);
 
-
-
-
-
-
-
-
-
-var appnueva = new Vue({
-	el: '#nuevam',
-	data: {
-		descripciones: {
-			fk_idusuario: 0,
-			imagen: '',
-			descripcion: '',
-			accion: 'nuevo'
-		},
-		imglittle: ''
-	},
-	created: function () {
-		this.traerusuario();
-
-	}
-	, methods: {
-
-		traerusuario: function () {
-			fetch(`Private/Modulos/publicarproducto/procesos.php?proceso=traerid&nuevoP=""`).then(resp => resp.json()).then(resp => {
-				this.descripciones.fk_idusuario = resp[0].idusuario;
-
-
-
-
-			});
-		},
-
-		nuevosdatos: function () {
-			fetch(`Private/Modulos/about/procesos.php?proceso=recibirdesc&nosotros=${JSON.stringify(this.descripciones)}`).then(resp => resp.json()).then(resp => {
-				if (resp.msg != "Tus datos se almacenaron exitosamente") {
-					alertify.warning(resp.msg);
-
-				} else {
-					alertify.success(resp.msg);
-					appinfo.todo();
-				}
-			});
-		}, obtenerimagenN(e) {
-			let file = e.target.files[0];
-
-			this.cargar(file);
-
-			var respuesta = null;
-
-			var formData = new FormData($('#datos')[0]);
-
-			var ruta = 'Private/Modulos/about/guardarimagencoo.php';
-
-			$.ajax({
-				type: "POST",
-				url: ruta,
-				data: formData,
-				contentType: false,
-				processData: false,
-				async: false,
-				success: function (response) {
-					respuesta = response;
-				}
-
-			});
-
-			this.descripciones.imagen = "Private/Modulos/about/" + respuesta;
-		},
-		cargar(file) {
-			let reader = new FileReader();
-			reader.onload = (e) => {
-				this.imglittle = e.target.result;
-
-
-			}
-			reader.readAsDataURL(file);
-		},
-	},
-	computed: {
-		bindearimagenN() {
-			return this.imglittle;
-		}
-	}
-});	
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
+          let img = document.getElementById("barra");
+          img.innerHTML = `
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: ${progress}%;"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    ${progress}%
+                  </div>
+                </div>`;
+        },
+        (error) => {
+          //muestra error
+          swal.fire({
+            title: "Ups..",
+            text: "Ocurrio al cargar Imagen",
+            icon: "error",
+          });
+        },
+        () => {
+          //cuando la imagen ya esta subida
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+           appNueva.Information.imageInfo = downloadURL;
+            document.getElementById("barra").style.display = "none";
+            document.getElementById("imgSinNada").style.display="none";
+            document.getElementById("imgCon").style.display = "block";
+          });
+        }
+      );
+    },
+  },
+  created:function(){
+     document.getElementById("imgCon").style.display = "none";
+  }
+});

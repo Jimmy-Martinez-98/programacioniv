@@ -1,23 +1,42 @@
-*{
-	font-family: 'Balsamiq Sans', cursive;
+* {
+  font-family: "Roboto", sans-serif;
 }
-.card-footer{
-	border: none;
-	background-color: #ffffff;
+input[type="search"]{
+  position: static;
+  transition: none;
 }
-.input-group-text{
-	cursor: pointer;
+input[type="search"]:focus {
+  position: static;
+  transition: none;
+  box-shadow: none;
+   border-bottom: 2.5px solid blue;
+}
+input[type="search"]::before {
+  left: 0px;
+  position: static;
+  transition: none;
+  border-bottom: 2.5px solid blue;
+}
+.card-footer {
+  border: none;
+  background-color: #ffffff;
+}
+.input-group-text {
+  cursor: pointer;
+}
+.form-check-input {
+  display: none;
+  color: gray;
+}
+.form-check-label {
+  color: gray;
+  font-size: 20px;
+}
 
+.form-check-input:checked ~ label {
+  color: orange;
 }
-.form-check-input{
-    display: none;
-    color: gray;
-}
-.form-check-label{
-    color: gray;
-    font-size: 20px;
-}
-
-.form-check-input:checked~label{
-    color: orange;
+button:focus {
+  border: none;
+  outline: none;
 }

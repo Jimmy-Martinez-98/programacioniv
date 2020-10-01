@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="chatAdmin/css/style.css">
+<style>
+    .container {
+        width: 400px;
+        padding: 17px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+</style>
+<div class="container-fluid bg-dark">
+    <div class="row p-3" id="inbox">
+        <ul class="list-group col-3">
+            <li class="list-group-item" v-for="items in users" v-on:click="openchat(items.uId)">
+                {{items.nombreUsuario}}
+            </li>
+        </ul>
+        <div class="card container-historial col-9 p-3" v-if="msgs!=''">
+            <div class="card-header">
+                <h5>
+                    <p v-if="displayName.nombreUsuario!=''">{{displayName.nombreUsuario}}</p>
+                    <p v-else>{{displayName.nombreCooperativa}}</p>
+                </h5>
+            </div>
+            <div class="w-100 card-body" id="scroll">
+                <div class="lista">
+                    <ul class="listamsgs" v-for="item in msgs">
+                        <div v-if="item.imagenMensaje!='' && item.Mensaje==='' ||item.imagenMensaje!=null">
+                            <li v-if="item.De!=content.de" class="listamsgs-item text-break mr-auto mt-1">
+                                <img :src="item.imagenMensaje" width="100%" height="100px">
+                            </li>
+                            <li v-else class="listamsgs-iteml text-break ml-auto mr-2">
+                                <img :src="item.imagenMensaje" width="100%" height="100px">
+                            </li>
+                        </div>
+                        <div v-else>
+                            <li v-if="item.De!=content.de" class="listamsgs-item text-break mr-auto">
+                                {{item.Mensaje}}
+                            </li>
+                            <li v-else class="listamsgs-iteml text-break ml-auto mr-2">
+                                {{item.Mensaje}}
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="row  mt-3">
+                <div class="col-12">
+                    <div id="carga" class="center"></div>
+                </div>
+                <div class="col-12">
+                    <div class=" form-inline d-flex justify-content-between">
+                        <label class="imgIcon">
+                            <img src="../img/iconImage.png" alt="Imagen" width="40px" height="40px">
+                            <input @change="obtenerImagen" type="file" hidden>
+                        </label>
+                        <input v-model="content.msg" type="text" class="form-control form-control-lg"
+                            placeholder="Escribie un Mensaje" style="width:70%">
+
+                        <button type="submit" @click.prevent="sendMessage" class="btn btn-success ">
+                            <img src="../img/send-24px.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class=" col-9 bg-dark" v-else>
+            <div class="container bg-dark">
+                <img src="../img/logo2,0.png" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="chatAdmin/js/chat.js"></script>

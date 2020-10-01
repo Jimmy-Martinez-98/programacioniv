@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+	<link rel="stylesheet" href="public/css/waves.css">
+	<!-- css of vuesax -->
+	<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+	<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="public/vistas/login/login.css">
+	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+
+
+	<title>Login</title>
+</head>
+
+<body class="bg-white">
+	<div class="contenedor">
+
+		<form action="" v-on:submit.prevent="inicioSesion" id="frm-login" method="post">
+			<div class="form-header border-bottom mb-5">
+				<h1 class="form-title">LOGIN</h1>
+			</div>
+			<div class="form-row mb-3 d-flex justify-content-center">
+				<div class=" col-12 mb-3">
+					<vs-input required v-model="name.correo" border icon-after color="#000000" type="email" placeholder="Correo">
+						<template #icon>
+							<i class='bx bx-user icono'></i>
+						</template>
+					</vs-input>
+				</div>
+
+				<div class="col-12 mb-3">
+					<vs-input required v-model="name.pass" border icon-after type="password" color="#000000"
+						placeholder="Password">
+						<template #icon>
+							<i class='bx bx-lock-open-alt icono'></i>
+						</template>
+					</vs-input>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-sm-12">
+					<vs-button id="login" block square class="fondobtn">
+						<i class='bx bxs-log-in-circle'></i> &nbsp; Iniciar Sesión
+					</vs-button>
+					<button id="btnCarga" class="btn btn-primary btn-block" type="button" disabled hidden>
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						Iniciando Sesión...
+					</button>
+				</div>
+				<div class="col-sm-12 mt-5">
+					<div class="float-left">
+						<a @click="Recuperar" href="#" class="enlace1">¿Olvidaste tu contraseña?</a>
+					</div>
+					<div class="float-right">
+						<strong class="enlace1">¿Nuevo por aquí?</strong><a @click="Registrate" href="#"
+							class="enlace1">&nbsp;
+							Registrarme</a>
+					</div>
+				</div>
+			</div>
+
+		</form>
+		<div class="container">
+			<div id='alerta'></div>
+		</div>
+	</div>
+
+
+	<!-- Firebase -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+	<script src="public/js/configFirebase.js"></script>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+	<!--  Boostrap -->
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	<!-- JQueryUi -->
+	<script src="public/js/jquery-ui.js"></script>
+	<!-- Sweetalert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- vuejs -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+	<script src="public/js/waves.js"></script>
+	<script>
+		Waves.init();
+		Waves.attach('.button', ['waves-button', 'waves-float']);
+
+	</script>
+	<!-- mis scrips -->
+	<script src="public/vistas/login/login.js"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 body {
-  font-family: "Pacifico", cursive;
+font-family: "Roboto", sans-serif;
 }
 .invalid-feedback {
   color: red;
@@ -14,4 +14,8 @@ body {
 }
 .textoo {
   font-size: 12px;
+}
+.needs-validation{
+ border-radius: 0%;
+ box-shadow: 7px 7px 5px -1px rgba(58, 56, 56, 0.582);
 }

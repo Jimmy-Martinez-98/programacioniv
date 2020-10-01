@@ -1,21 +1,29 @@
 <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 <link rel="stylesheet" href="public/css/estilos.css">
 <link rel="stylesheet" href="public/vistas/legumbres/legumbres.css">
-<link rel="stylesheet" href="alertifyjs/css/alertify.css">
-<div class="container mt-3 mb-3">
-</div>
+
+
 <div class="container" id="legum">
 	<div class="input-group input-group-lg wow fadeIn">
-		<input type="text" class="form-control" v-model="valor" @keyup="autobusquda">
+		<input type="search" class="form-control" v-model="valor" @keyup="autobusquda">
 		<div class="input-group-prepend" v-on:click="buscarL">
 			<span class="input-group-text" id="inputGroup-sizing-lg"><i class="fas fa-search"></i></span>
 		</div>
 	</div>
-	<div class="container bg-light forma wow fadeIn">
-		<label for=""> Ordenar Por Precio: <button @click="descL" class=" btn btn-outline-dark"><img
-					src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente"> </button>
-			<button @click="ascL" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg" alt="" width="32"
-					height="32" title="Precio Ascendente"></button> </label>
+	<div class="container bg-light forma wow fadeIn mb-5">
+
+		<label for="">
+			<hr class="bg-dark">
+			Ordenar Por Precio:
+			<button @click="descL" class=" btn btn-outline-dark">
+				<img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
+			</button>
+			<button @click="ascL" class="btn btn-outline-dark">
+				<img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente">
+			</button>
+			<hr class="bg-dark">
+		</label>
+
 	</div>
 	<div class="row py-2">
 		<div class="col-sm-4 wow fadeIn" v-for="le in legumbressss">
@@ -23,10 +31,10 @@
 				<img v-bind:src="le.imagen">
 				<div class="cuerpotargeta">
 					<a class="hole text-break" href="#" @click="verProd(le)">
-						<h4> {{le.nombre_producto}}</h4>
+						<h4> {{le.nombreProducto}}</h4>
 					</a>
-					<a href="#" class="info" v-if=" le.nombrecooperativa==''"><span>{{le.nombreu}}</span></a>
-					<a href="#" class="info" v-else> {{le.nombrecooperativa}}</a>
+					<a href="#" class="info" v-if=" le.nombreCooperativa==''"><span>{{le.nombreU}}</span></a>
+					<a href="#" class="info" v-else> {{le.nombreCooperativa}}</a>
 					<p class="clasificacion mb-0">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -48,7 +56,7 @@
 					<div class="row px-3">
 						<div class="col-12 ">
 							<p class="card-text float-left  ">
-								${{le.precio_venta}}
+								${{le.precioVenta}}
 							</p>
 							<i class="far fa-heart fav float-right " @click="addlistaL(le)"></i>
 						</div>
@@ -59,7 +67,7 @@
 	</div>
 </div>
 <script type="text/javascripts" src="public/vistas/blog/dist/wow.js"></script>
-<script src="alertifyjs/alertify.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="public/vistas/legumbres/legumbress.js"></script>
 <script>
 	var wow = new WOW(

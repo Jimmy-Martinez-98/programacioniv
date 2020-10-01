@@ -1,36 +1,38 @@
-<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-<link rel="stylesheet" href="alertifyjs/css/alertify.css">
 <link rel="stylesheet" href="public/vistas/verduras/verduras.css">
 <link rel="stylesheet" href="public/css/estilos.css">
 
 <div class="container mt-3 mb-3">
-	<div class="container" id="vegetales">
-		<div class="input-group input-group-lg wow fadeIn">
-			<input type="text" class="form-control " v-model="valor" @keyup="autobusquda">
+	<div class="container wow fadeIn" id="vegetales">
+		<div class="input-group input-group-lg ">
+			<input type="search" class="form-control input" v-model="valor" @keyup="autobusquda">
 			<div class="input-group-prepend" v-on:click="buscarV">
 				<span class="input-group-text" id="inputGroup-sizing-lg">
 					<i class="fas fa-search"></i></span>
 			</div>
 		</div>
 		<div class="row py-2 bg-ligth  wow fadeIn">
-			<div class="container bg-light forma">
-				<label for=""> Ordenar Por Precio: <button @click="descP" class=" btn btn-outline-dark"><img
-							src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
-					</button> <button @click="ascP" class="btn btn-outline-dark"><img src="public/img/arrow-up.svg"
-							alt="" width="32" height="32" title="Precio Ascendente"></button> </label>
+			<div class="container bg-light forma mb-5">
+				<label for="">
+						<hr class="bg-dark">
+					Ordenar Por Precio:
+					<button @click="descP" class=" btn btn-outline-dark">
+						<img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
+					</button>
+					<button @click="ascP" class="btn btn-outline-dark">
+						<img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente">
+					</button>
+						<hr class="bg-dark">
+				</label>
 			</div>
 			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes">
 				<div class="targeta " style="height: 400;">
 					<img v-bind:src="clay.imagen">
 					<div class="cuerpotargeta">
 						<a class="hole text-break" href="#" @click="verProd(clay)">
-							<h4> {{clay.nombre_producto}}</h4>
+							<h4> {{clay.nombreProducto}}</h4>
 						</a>
-						<a href="#" class="info" v-if=" clay.nombrecooperativa==''"><span> {{clay.nombreu}}</span></a>
-						<a href="#" class="info" v-else> {{clay.nombrecooperativa}}</a>
+						<a href="#" class="info" v-if=" clay.nombreCooperativa==''"><span> {{clay.nombreU}}</span></a>
+						<a href="#" class="info" v-else> {{clay.nombreCooperativa}}</a>
 						<p class="clasificacion mb-0">
 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 							<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
@@ -51,8 +53,11 @@
 						</p>
 						<div class="row ">
 							<div class="col-12 mt-3">
-								<p class="card-text float-left  ">
-									${{clay.precio_venta}}
+								<p class="card-text float-left" v-if="clay.precioLibra==''">
+									${{clay.precioCaja}}
+								</p>
+								<p class="card-text float-left" v-else>
+									${{clay.precioLibra}}
 								</p>
 								<i class="far fa-heart fav float-right" @click="addlistaV(clay)"></i>
 							</div>
@@ -62,15 +67,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="public/js/jquery-3.5.js"></script>
-	<script src="public/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-	<script src="alertifyjs/alertify.js"></script>
 	<script src="public/vistas/verduras/verdura.js"></script>
 	<script>
 		var wow = new WOW(

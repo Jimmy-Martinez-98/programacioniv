@@ -3,11 +3,9 @@
     code customized by Azmind.com
 */
 * {
-  font-family: "Balsamiq Sans", cursive;
+  font-family: "Roboto", sans-serif;
 }
-body {
-  font-family: "Pacifico", cursive;
-}
+
 
 .form-check-input {
   display: none;

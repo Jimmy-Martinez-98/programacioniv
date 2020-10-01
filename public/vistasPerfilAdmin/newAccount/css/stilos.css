@@ -1,0 +1,23 @@
+.form-control{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid blue;
+    transition: ease-in-out 0.2s;
+}
+.form-control:focus{
+     border: none;
+     outline: none;
+     box-shadow: none;
+     border-bottom: 2px solid blue;
+
+     
+}
+input:focus{
+ border: none;
+ outline: none;
+ box-shadow: none;
+}
+.card{
+    border-radius: 0px;
+    box-shadow: 5px 10px 10px  #158a3cb7;
+}

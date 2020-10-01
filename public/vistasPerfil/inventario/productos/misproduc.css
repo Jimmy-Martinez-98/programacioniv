@@ -1,0 +1,14 @@
+* {
+ font-family: "Roboto", sans-serif;
+}
+
+.badge {
+  z-index: 1;
+}
+
+.terni {
+  color: white;
+}
+.bordes {
+  border-radius: 0;
+}

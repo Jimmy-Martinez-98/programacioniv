@@ -10,49 +10,52 @@
 </head>
 
 <body>
-	<form method="POST" id="cuenta" class="rounded p-2 container colores mb-3">
+	<form method="POST" id="cuenta" class="rounded p-2 container-fluid colores mb-3">
 		<div class="form-row wow fadeIn">
-			<div class="d-flex justify-content-center col-md-12">
+			<div class="d-flex justify-content-center col-md-12 mb-3">
 				<div class="col-md-6 d-flex justify-content-center">
 					<div style="width: 250px;">
-						<img v-if="datoscuenta[0].imagen!=''" height="200px" v-bind:src="datoscuenta[0].imagen"
-							width="230" height="200" class=" rounded-circle " alt="imagen de perfil">
-						<img v-else height="200px" src="public/img/avatars.gif" width="230" height="200"
-							class=" rounded-circle " alt="imagen de perfil">
+						<img v-if="datosPerfil.imagen" :src="datosPerfil.imagen" height="200px" width="230" height="200"
+							class=" rounded " alt="imagen de perfil">
+						<img v-else height="200px" src="public/img/mle.jpg" width="230" height="200"
+							class=" rounded-circle " alt="">
 					</div>
 				</div>
 				<div class="col-md-6">
-					<button type="button" class="btn btn-secondary btn-lg float-left mt-5" data-toggle="modal"
-						v-on:click="modfoto(datoscuenta[0])" data-target="#fotoperfiledit">Editar Foto de
+					<button type="button" class="btn btn-secondary text-white btn-lg float-left mt-5"
+						data-toggle="modal" v-on:click="modfoto(datosPerfil.imagen)"
+						data-target="#fotoperfiledit">Editar Foto de
 						Perfil</button>
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
 				<div class="form-group ">
 					<label for="nombre">Nombre de Usuario</label>
-					<input type="text" v-model="datoscuenta[0].nombreu" disabled class="form-control" id="nombre">
+					<input type="text" v-model="datosPerfil.nombreU" disabled class="bg-white form-control" id="nombre">
+
 				</div>
 			</div>
 			<div class="col-md-6 mb-3">
-				<div class="form-group " v-if="datoscuenta[0].nombrecooperativa!=''">
+				<div class="form-group " v-if="datosPerfil.nombreCooperativa!=''">
 					<label for="nombreC">Nombre Cooperativa</label>
-					<input type="text" v-model="datoscuenta[0].nombrecooperativa" disabled class="form-control"
+					<input type="text" v-model="datosPerfil.nombreCooperativa" disabled class="bg-white form-control"
 						id="nombrec">
 				</div>
-				<div class="form-group" v-else="datoscuenta[0].nombrecooperativa==''"></div>
+				<div class="form-group" v-else="datosPerfil.nombreCooperativa==''"></div>
 			</div>
 			<div class="col-md-12 mt-3">
 				<div class="form-group ">
 					<label for="correo">Correo ELectronico</label>
-					<input type="email" v-model="datoscuenta[0].correo" disabled class="form-control" id="correoU">
+					<input type="email" v-model="datosPerfil.correo" disabled class=" bg-white form-control"
+						id="correoU">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<label for="tel">Telefono</label>
 				<div class="input-group ">
-					<input type="tel" disabled v-model="datoscuenta[0].telefono" disabled class="form-control">
+					<input type="tel" disabled v-model="datosPerfil.telefono" disabled class="bg-white form-control">
 					<div class="input-group-append ">
-						<button class="btn btn-secondary " type="button" data-toggle="modal"
+						<button class="btn btn-secondary text-white " type="button" data-toggle="modal"
 							data-target="#editelefono">Editar Telefono</button>
 					</div>
 				</div>
@@ -60,22 +63,24 @@
 			<div class="col-md-12 mt-1">
 				<label for="contra">Contraseña</label>
 				<div class="input-group ">
-					<input type="password" disabled v-model="datoscuenta[0].passwords" class="form-control">
+					<input type="password" disabled v-model="datosPerfil.password" class="bg-white form-control">
 					<div class="input-group-append ">
-						<button class="btn btn-secondary " v-on:click="modificacionpass(datoscuenta[0].passwords)"
-							type="button" data-toggle="modal" data-target="#edicontra">Editar Contraseña</button>
+						<button class="btn btn-secondary text-white "
+							v-on:click="modificacionpass(datosPerfil.password)" type="button" data-toggle="modal"
+							data-target="#edicontra">Editar Contraseña</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-12 mt-1 mb-2">
 				<label for="fecha">Fecha de Registro</label>
 				<div class="input-group ">
-					<input type="date" disabled v-model="datoscuenta[0].fechaR" class="form-control">
+					<input type="datetime" disabled v-model="datosPerfil.fechaRegistro" class="form-control bg-white">
 				</div>
 			</div>
 		</div>
 	</form>
-	<script src="public/js/jquery-3.5.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script src="public/js/jquery-ui.js"></script>
 	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 	<script src="public/vistas/blog/dist/wow.js"></script>
@@ -110,15 +115,18 @@
 				<form id="editfotoo" method="POST">
 					<div class="container d-flex justify-content-center">
 						<div class="card mb-2" style="width: 18rem;">
+							<img v-if="updatefoto.imagen" width="200" height="200" id="img-preview"
+								:src="updatefoto.imagen" class="card-img-top" alt="la imagen va aquí">
 
-							<img width="200" height="200" id="img-preview" :src='imagenes'
-								v-bind:src="updatefoto.imagen" class="card-img-top" alt="la imagen va aquí">
+							<img else width="200" height="200" id="imgSin" src="public/img/avatars.gif"
+								class="card-img-top" alt="la imagen va aquí">
 							<div class="custom-file">
 								<input type="file" @change="obtenerimagen " required name="archivo"
 									class="custom-file-input" id="inputGroupFile01"
 									aria-describedby="inputGroupFileAddon01">
 								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 							</div>
+							<div class="card-footer py-2" id="barra"></div>
 						</div>
 					</div>
 				</form>
@@ -148,14 +156,14 @@
 				<p>Para mayor seguridad, debemos enviarle un código de verificación de un único uso que nos permitirá
 					verificar si existe.</p>
 				<div class="input-group ">
-					<input type="password" class="form-control" placeholder="Ingresa tu numero de telefono">
+					<input type="password" class="form-control  bg-white" placeholder="Ingresa tu numero de telefono">
 					<div class="input-group-append ">
 						<button class="btn btn-outline-secondary " type="button">Enviar Codigo</button>
 					</div>
 				</div>
 				<div class="form-group mt-3">
 					<label for="codigo">Codigo de verificación</label>
-					<input type="email" class="form-control" id="codigov" aria-describedby="codigov"
+					<input type="email" class="form-control bg-white" id="codigov" aria-describedby="codigov"
 						placeholder="Ingresa codigo">
 				</div>
 			</div>
@@ -181,33 +189,19 @@
 			</div>
 			<div class="modal-body">
 				<form action="#" method="post">
-					<div class="container">
-						<p class="text-justify"><b>
-								<h6> Requisitos</h6>
-							</b>
-							Contiene entre 8 y 36 caracteres
-							Contener al menos 1 letra en mayúsculas y minúsculas
-							Contiene al menos 1 número
-							No será lo mimdo que Nombre de pantalla</p>
-					</div>
 					<div class="form-group ">
-						<label for="contraA">Contraseña Antigua</label>
+						<label for="contraA">Contraseña</label>
 						<input type="password" disabled v-model="cambiopass" class="form-control" id="contraA">
 					</div>
 					<div class="form-group ">
-						<label for="exampleInputPassword1">Contraseña</label>
-						<input type="password" v-on:keyup="alerta" class="form-control"
-							v-model="actualizarcontra.contranueva" id="nuevap">
-						<label for="exampleInputPassword1">Confirmar Contraseña</label>
-						<input type="password" v-model="actualizarcontra.confirmarcontra" class="form-control"
-							id="confirmarp">
-						<span id="msgs"></span>
+						<label for="exampleInputPassword1">Email</label>
+						<input type="email" class="form-control" v-model="changePassword.correo" id="nuevap">
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" v-on:click="updatepass" class="btn btn-primary">Guardar Cambios</button>
+				<button type="button" class="btn btn-secondary text-white" data-dismiss="modal">Cerrar</button>
+				<button type="button" v-on:click="updatepass" class="btn btn-primary">Enviar</button>
 			</div>
 		</div>
 	</div>

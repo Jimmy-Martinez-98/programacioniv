@@ -1,7 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: "Balsamiq Sans", cursive;
+ font-family: "Roboto", sans-serif;
 }
 
 .colores {
@@ -10,7 +10,7 @@
 }
 
 button.btn {
-  color: black;
+  color: white;
 }
 
 .text {

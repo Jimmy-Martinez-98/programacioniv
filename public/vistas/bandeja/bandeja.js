@@ -1,227 +1,220 @@
 /**
  * @author Michael Rodriguez <scottlovos503@gmail.com>
- * @file bandeja.js-> Sirve para comunicarse con los usuarios 
+ * @file bandeja.js-> Sirve para comunicarse con los usuarios
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
- * 
+ *
  */
-var socket = io.connect("http://localhost:3001", { 'forceNew': true })
-   ,
-   /**
-    * @property el  elemento del DOM a enlazar
-    */
-   appbandeja = new Vue({
-      el: '#bandejas',
-      data: {
-         msg: {
-            de: 0,
-            para: 0,
-            msg: ''
-         },
-
-         msgs: [],
-         users: [],
-         allmsg: [],
-         nombrechat: []
-      },
-
-
-
-      methods: {
-         /**
-          * Trae identificador del usuario logueado
-          * @access public
-          * @function traerusuario
-          */
-         traerusuario: function () {
-            fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=""`).then(resp => resp.json()).then(resp => {
-               this.msg.de = resp[0].idusuario;
-            })
-         },
-
-         /**
-          * Es cuando el usuario envia un mensaje a otro usuario.
-          * @access public
-          * @function enviarMensaje 
-         */
-         enviarMensaje() {
-            var msj = this.msg.msg;
-            this.msg.msg = msj.trim();
-            if (this.msg.msg != '' && this.msg.para != '' && this.msg.de != '') {
-               socket.emit('enviarMensaje', this.msg);
-               this.msg.msg = '';
-            }
-         },
-
-         /**
-          * Trae desde la base de datos los usuarios
-          * @access public 
-          * @function vermensajes
-          */
-         vermensajes: function () {
-            fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traerusuarios&login=""`).then(resp => resp.json()).then(resp => {
-               this.users = resp
-            });
-         },
-
-         /**
-          * Abre el historial del chat seleccionado
-          * @access public
-          * @function openchat
-          * @param {Int} id - Representa el Identificador del chat seleccionado 
-          */
-         openchat: function (id) {
-
-            socket.emit('chatHistory');
-
-            this.msg.para = id;
-
-            this.msgs = [];
-
-            this.allmsg.forEach(item => {
-               this.util(item);
-            })
-            /**
-             * Recorre los usuarios de la base de datos
-             * Y compara si el identificador es identico al del chat seleccionado
-             */
-            this.users.forEach(user => {
-               if (user.idusuario == id) {
-                  this.nombrechat = user;
-               }
-            })
-         },
-
-         /**
-          * Compara si lo que esta en el objeto es igual al de msg
-          * Si la comparacion es exitosa le hace push al msgs con todos los mensajes
-          * que conincidan con el item
-          * @access public
-          * @function util
-          * @param {object} item 
-          */
-         util: function (item) {
-            if (item.de === this.msg.de && item.para === this.msg.para ||
-               item.de === this.msg.para && item.para === this.msg.de) {
-               this.msgs.push(item);
-            }
-         }
-      },
-
-
-      created() {
-         this.vermensajes();
-         this.traerusuario();
-         socket.emit('chatHistory');
-      }
-
-   });
-
-
-
-
-/**
- * Es cuando recibe un mensaje de otro usuario y le notifica que tienen un mensaje
- * @access public
- * @event socket.on 
- */
-socket.on('recibirMensaje', msg => {
-   if (msg.de === appbandeja.msg.de && msg.para === appbandeja.msg.para ||
-      msg.para === appbandeja.msg.de && msg.de === appbandeja.msg.para) {
-      appbandeja.msgs.push(msg);
-      /**
-       * Verifica si el el usuario que envio el mensaje sea diferente para notificar
-       */
-      if (msg.de != appbandeja.msg.de) {
-         $.notification("Agro Producers Tienes Un Mensaje", msg.msg, '../../img/logo2,0.png');
-      }
-   }
-});
-
-/**
- * Carga el historial de mensajes en allmsg
- * @access public
- * @event socket.on
- */
-socket.on('chatHistory', msgs => {
-   appbandeja.allmsg = msgs;
-});
-
-
-
-
-
-
-
+//var socket = io.connect("http://localhost:3001", { forceNew: true }),
 /**
  * @property el  elemento del DOM a enlazar
  */
-var validarsession = new Vue({
-   el: "#hola",
-   data: {
-      valor: '',
-      session: '',
-      datoscuenta: []
-   },
-   created: function () {
-      this.traersession();
-      this.traercuenta();
-   },
+appbandeja = new Vue({
+  el: "#bandejas",
+  data: {
+    msg: {
+      de: "",
+      para: "",
+      msg: "",
+      imagenMensaje: "",
+    },
 
-   methods: {
+    msgs: [],
+    users: [],
+    allmsg: [],
+    refChats: [],
+    displayName:[]
+  },
+  created() {
+    this.estado();
+    this.referenciaChats();
+    this.chatHistory();
+  },
+  computed: {
+    updateChat: function () {
+      this.refChats = [];
+    },
+    returnNewArray: function () {
+      this.chatHistory();
+      this.msgs = [];
+      this.allmsg.forEach((element) => {
+        this.evaluarItem(element);
+      });
+    },
+    retornarImagen:function(){
+      return (
+        this.displayName.imagen != "" ||
+        (this.displayName.imagen != null) );
+    }
+  },
+  watch: {
+    returnNewArray() {},
+  },
+  methods: {
+    estado: function () {
+      firebaseAuth.onAuthStateChanged((user) => {
+        if (user) {
+          //cargarUsuariosBandeja
+          this.TraerUsersChats(user.uid);
+          this.msg.de = user.uid;
+        } else {
+          location.href = "../../../login.html";
+        }
+      });
+    },
+    TraerUsersChats: function (user) {
+      firebaseDB.ref("/users").on("value", (snap) => {
+        snap.forEach((element) => {
+          if (user != element.val().uId) {
+            this.evaluarUsuarios(element.val());
+          }
+        });
+      });
+    },
+    referenciaChats: function () {
+      firebaseDB.ref("/chat").on("value", (snap) => {
+        snap.forEach((element) => {
+          this.refChats.push({
+            De: element.val().De,
+            Para: element.val().Para,
+          });
+        });
+      });
+    },
+    evaluarUsuarios: function (item) {
+      let userLogueado = firebaseAuth.currentUser.uid;
+      let arr;
+      this.refChats.forEach((element) => {
+        if (
+          (item.uId == element.De && userLogueado == element.Para) ||
+          (item.uId == element.Para && userLogueado == element.De)
+        ) {
+          arr = [item];
+        }
+      });
+      let unicos = new Set(arr);
 
-      /**
-       * Verifica si hay una variable de session activa si no lo hay redirecciona a login
-       * @access public
-       * @function traersession
-       */
-      traersession: function () {
-         fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
-            if (resp.msg == "regrese") {
-               location.href = "../../../login.php"
-            }
+      unicos.forEach((element) => {
+       return this.users.push(element);
+      });
+     
+      
+    },
+    chatHistory: function () {
+      let historial = [];
+      historial = [];
+      firebaseDB.ref("/chat").on("value", (snap) => {
+        snap.forEach((element) => {
+          historial.push(element.val());
+        });
+      });
 
+      this.allmsg = historial;
+    },
 
-         })
-      },
-
-      /**
-       * Trae la cuenta del usuario logueado
-       * @access public
-       * @function traercuenta
-       */
-      traercuenta: function () {
-         fetch(`../../../Private/Modulos/usuarios/procesos.php?proceso=traercuenta&login=${this.datoscuenta}`).then(resp => resp.json()).then(resp => {
-            this.datoscuenta = resp;
-         });
-      },
-      /**
-       * Es la animacion en la barra de navegacion responsive
-       * @function colapsar
-       */
-      colapsar: function () {
-         $("#toggles").animate({
-            height: 'toggle'
-         });
-      },
-      /**
-       * Redirige a la pantalla de inicio
-       * @function inicio
-       */
-      inicio() {
-         location.href = "../../../index.html"
-      },
-
-      /**
-       * Redirige a la pantalla de login
-       * @function login
-       */
-      login() {
-         location.href = "login.php"
-      },
-      slidetoggle: function () {
-         $('.dropdown-menu').slideToggle();
+    /**
+     * Es cuando el usuario envia un mensaje a otro usuario.
+     * @access public
+     * @function enviarMensaje
+     */
+    enviarMensaje() {
+      if (
+        this.msg.msg.trim() != "" &&
+        this.msg.para != "" &&
+        this.msg.de != ""
+      ) {
+        firebaseDB
+          .ref("/chat")
+          .push({
+            De: appbandeja.msg.de,
+            Para: appbandeja.msg.para,
+            Mensaje: appbandeja.msg.msg,
+          })
+          .then((this.msg.msg = ""));
       }
-   }
+    },
+    obtenerImagen(e) {
+      let random = Math.random();
+      let file = e.target.files[0];
+      let upload = storage
+        .ref()
+        .child("imageChat/" + file.name + random)
+        .put(file);
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
 
+          document.getElementById("carga").innerHTML = `
+          <div class="progress">
+             <div class="progress-bar bg-dark" role="progressbar"
+              style="width:${progress}%;" aria-valuenow="25
+              " aria-valuemin="25" aria-valuemax="100">${progress}%</div>
+          </div>`;
+        },
+
+        (error) => {
+          //muestra error
+          swal.fire({
+            title: "Ups..",
+            text: "Ocurrio un error al cargar Imagen",
+            icon: "error",
+          });
+        },
+        () => {
+          //cuando la imagen ya document.getElementById("target").style.display='none' esta subida
+
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            firebaseDB
+              .ref("/chat")
+              .push({
+                De: appbandeja.msg.de,
+                Para: appbandeja.msg.para,
+                Mensaje: "",
+                imagenMensaje: downloadURL,
+              })
+              .then(() => {
+                document.getElementById("carga").style.display = "none";
+              });
+          });
+        }
+      );
+    },
+    /**
+     * Abre el historial del chat seleccionado
+     * @access public
+     * @function openchat
+     * @param {Int} id - Representa el Identificador del chat seleccionado
+     */
+    openchat: function (id) {
+      this.msg.para = id;
+      this.msgs = [];
+
+      this.allmsg.forEach((item) => {
+        this.evaluarItem(item);
+      });
+      this.headerChat(id)
+    
+    },
+    evaluarItem: function (item) {
+      if (
+        (item.De === this.msg.de && item.Para === this.msg.para) ||
+        (item.De === this.msg.para && item.Para === this.msg.de)
+      ) {
+        this.msgs.push(item);
+      }
+    },
+    headerChat:function(id){
+      this.users.forEach(element => {
+          if (id==element.uId) {
+            this.displayName=element
+          }
+      });
+    }
+    
+  },
 });
+

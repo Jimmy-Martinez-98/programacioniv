@@ -1,5 +1,5 @@
 * {
-  font-family: "Balsamiq Sans", cursive;
+ font-family: "Roboto", sans-serif;
 }
 body {
   margin: 0;
@@ -7,31 +7,6 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-}
-/* nav */
-#nav {
-  display: block;
-
-  background: #5fb677;
-}
-ul.uls li.lis a.as {
-  color: black;
-  display: block;
-}
-ul.uls li.lis a.as::before {
-  content: "";
-  display: block;
-  width: 0%;
-  height: 3px;
-  background: white;
-  bottom: 0;
-  transition: all 0.3s;
-}
-ul.uls li.lis a.as:hover::before {
-  width: 100%;
-}
-li.lis a.as {
-  margin: 1px;
 }
 
 /* contenedor */
@@ -57,7 +32,7 @@ li.lis a.as {
 }
 .list-msg::-webkit-scrollbar {
   width: 7px;
-  background: rgb(206, 206, 206);
+  background: rgba(206, 206, 206, 0.295);
   border-radius: 3px;
 }
 
@@ -85,7 +60,6 @@ li.lis a.as {
 .contener-msgs {
   height: 200px;
   overflow-y: scroll;
-
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
@@ -93,12 +67,12 @@ li.lis a.as {
 
 .contener-msgs::-webkit-scrollbar {
   width: 7px;
-  background: rgb(206, 206, 206);
+  background: rgba(206, 206, 206, 0.205);
   border-radius: 3px;
 }
 
 .contener-msgs::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 147);
+  background: rgba(148, 148, 147, 0.233);
   border-radius: 3px;
 }
 
@@ -145,18 +119,28 @@ li.lis a.as {
 }
 .listamsgs-item {
   padding: 10px;
+
+  margin: 5px;
   width: 200px;
   border-radius: 10px;
   background-color: rgb(190, 190, 190);
   font-size: 14px;
-  font-style: oblique;
+  font-size: oblique;
 }
 
 .listamsgs-iteml {
   padding: 10px;
+  margin: 5px;
   width: 200px;
   border-radius: 10px;
   background-color: rgba(73, 211, 38, 0.925);
   font-size: 14px;
   font-style: oblique;
+}
+.puntero {
+  cursor: pointer;
+}
+button:focus {
+  border: none;
+  outline: none;
 }

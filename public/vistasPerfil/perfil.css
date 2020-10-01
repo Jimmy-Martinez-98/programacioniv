@@ -1,9 +1,13 @@
 * {
-  font-family: "Balsamiq Sans", cursive;
+ font-family: "Roboto", sans-serif;
 }
 
 h3 {
   font-weight: 900;
+}
+.button:focus {
+  border: none;
+  outline: none;
 }
 
 .list-group .list-group-item {
@@ -22,3 +26,4 @@ h3 {
   border-left: 5px solid teal;
   transition: border 0.5s;
 }
+

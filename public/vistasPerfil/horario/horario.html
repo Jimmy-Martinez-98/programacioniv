@@ -1,95 +1,97 @@
 <link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
 <div class="container bgpp rounded wow fadeIn">
-    <link rel="stylesheet" href="public/vistasPerfil/horario/horario.css">
+  <link rel="stylesheet" href="public/vistasPerfil/horario/horario.css">
 
-    <form class="d-flex justify-content-center mb-3"  >
-      
-        <div class="mt-3 form-row "  id="leerhorario">
-          <div class="col-md-12 mb-2">  <h1 class=" d-flex justify-content-center">Horarios de Trabajo</h1></div>
-          <div class="col-md-12 scrolle" >
-            <ul class="list-group grupo wow fadeIn" v-for="Htrabajo in horarios":key="Htrabajo.id_horario" >
-              
-                <li class="list-group-item listaitems">
-                  <p class="float-left" @click="modifier(Htrabajo)">
-                    {{Htrabajo.Dias}}, De {{Htrabajo.Horas1}}{{Htrabajo.DE}} A {{Htrabajo.HORA2}}{{Htrabajo.A}}
-                  </p>
-                  <button class="btn btn-outline-danger iz" @click.prevent="deleteH(Htrabajo.id_horario)">Eliminar</button>
-                </li>
-              </ul>
-        </div>
-        </div>
-        <script src="public/vistasPerfil/horario/editarh.js"></script>
-        <script src="public/vistas/blog/dist/wow.js"></script>
-        <script>
-          var wow = new WOW(
-            {
-            boxClass:     'wow',      // animated element css class (default is wow)
-            animateClass: 'animated', // animation css class (default is animated)
-            offset:       0,          // distance to the element when triggering the animation (default is 0)
-            }
-          );
-          wow.init();
-        </script>
-    </form>
+  <form class="d-flex justify-content-center mb-3">
+    <div class="mt-3 form-row container-fluid" id="leerhorario">
+      <div class="col-md-12 mb-2">
+        <h1 class=" d-flex justify-content-center">Horarios de Trabajo</h1>
+      </div>
+      <div class="col-md-12 scrolle">
+        <ul class="list-group grupo wow fadeIn"  v-for="worktime in horarios">
+          <li class="list-group-item listaitems d-flex  justify-content-center" >
+            <h4 @click="modifier(worktime)">
+              <b>{{worktime.Dias}}&nbsp;&nbsp;</b>De:<b>&nbsp;&nbsp;{{ worktime.horaDe}}{{worktime.DE}}&nbsp;&nbsp;</b> A:<b>&nbsp;&nbsp;{{worktime.horaA}}{{worktime.A}}</b>
+            </h4>
+            <button class="btn btn-danger ml-3" @click.prevent="del(worktime.idHorario)">Eliminar</button>   
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <script src="public/vistasPerfil/horario/editarh.js"></script>
+    <script src="public/vistas/blog/dist/wow.js"></script>
+    <script>
+      var wow = new WOW(
+        {
+          boxClass: 'wow',      // animated element css class (default is wow)
+          animateClass: 'animated', // animation css class (default is animated)
+          offset: 0,          // distance to the element when triggering the animation (default is 0)
+        }
+      );
+      wow.init();
+    </script>
+  </form>
 </div>
 
 <div class="container bgpp rounded wow fadeIn">
-    <form class="wow fadeIn">
-   
-        <div class="form-row" id="horarioos">
-            <div class="col-md-12  mt-5">
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                      <label for="validationCustom03">Días</label>
-                      <input type="text" class="form-control"  v-model.trim="horario.Dias" placeholder=" ejemplo: Lunes a viernes" id="validationCustom03" required>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                      <label for="validationCustom04">DE</label>
-                      <div class="input-group">
-                        <select class="custom-select"   v-model.trim="horario.DE"  id="validationCustom04" required>
-                            <option selected disabled value="">elige...</option>
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                          </select>
-                        <input type="time" required  v-model.trim="horario.Horas1" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="validationCustom04">A</label>
-                      
-                        <div class="input-group">
-                          <select class="custom-select"   v-model.trim="horario.A" id="validationCustom04" required>
-                              <option selected disabled value="">elige...</option>
-                              <option value="AM">AM</option>
-                              <option value="PM">PM</option>
-                            </select>
-                          <input type="time" required  v-model.trim="horario.HORA2"class="form-control">
-                        </div>
-                      </div>
-                  </div>
-          
+  <form class="wow fadeIn">
+
+    <div class="form-row" id="horarioos">
+      <div class="col-md-12  mt-5">
         <div class="form-row">
-          <div class="col-md-6">
-            <button type="button"  class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-if="horario.accion!='modificar'" @click="guardar_horario">Guardar Horario</button>
-            <button type="button"  class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-else @click="editar_horario">Editar Horario</button>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">Días</label>
+            <input type="text" class="form-control" v-model.trim="horario.Dias" placeholder=" ejemplo: Lunes a viernes"
+              id="validationCustom03" required>
           </div>
-          <div class="col-md-6">
-            <button type="button"  class="btn btn-warning btn-lg btn-block mt-3 mb-3" @click="limpiar">Limpiar</button>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">DE</label>
+            <div class="input-group">
+              <select class="custom-select"   v-model.trim="horario.DE"  id="validationCustom04" required>
+                  <option selected disabled value="">elige...</option>
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              <input type="time" required  v-model.trim="horario.horaDe" class="form-control timer">
+            </div>
           </div>
+          <div class="col-md-3 mb-3">
+              <label for="validationCustom04">A</label>
+            
+              <div class="input-group">
+                <select class="custom-select"   v-model.trim="horario.A" id="validationCustom04" required>
+                    <option selected disabled value="">elige...</option>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                <input type="time" required  v-model.trim="horario.horaA"class="form-control timer">
+              </div>
             </div>
         </div>
+       
+        <div class="form-row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-if="horario.accion!='modificar'"
+              @click="guardarHorario">Guardar Horario</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block mt-3 mb-3" v-else
+              @click="modificar">Editar Horario</button>
+          </div>
+         
         </div>
+      </div>
+    </div>
 
-        <script src="public/vistasPerfil/horario/horario.js"></script>
-      </form>
+    <script src="public/vistasPerfil/horario/horario.js"></script>
+  </form>
 </div>
 <script src="public/vistas/blog/dist/wow.js"></script>
 <script>
   var wow = new WOW(
     {
-    boxClass:     'wow',      // animated element css class (default is wow)
-    animateClass: 'animated', // animation css class (default is animated)
-    offset:       0,          // distance to the element when triggering the animation (default is 0)
+      boxClass: 'wow',      // animated element css class (default is wow)
+      animateClass: 'animated', // animation css class (default is animated)
+      offset: 0,          // distance to the element when triggering the animation (default is 0)
     }
   );
   wow.init();

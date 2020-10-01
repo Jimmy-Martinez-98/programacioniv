@@ -1,10 +1,19 @@
+*{
+  font-family: "Roboto", sans-serif;
+}
+b {
+  color: rgb(250, 182, 119);
+}
+
 .grupo .listaitems {
   background-color: white;
+  color: rgb(148, 144, 144);
 }
 .grupo .listaitems:hover {
   cursor: pointer;
-  background-color: #0840da;
-  color: #ffffff;
+  background-color: #686868b7;
+  color: #ffff;
+  transition: all 0.5s;
 }
 
 .scrolle {
@@ -13,11 +22,11 @@
 }
 .scrolle::-webkit-scrollbar {
   width: 7px;
-  background: rgb(206, 206, 206);
+  background: rgba(206, 206, 206, 0);
   border-radius: 3px;
 }
 .scrolle::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 147);
+  background: rgba(148, 148, 147, 0);
   border-radius: 3px;
 }
 
@@ -29,4 +38,23 @@
 }
 .iz {
   margin-left: 40%;
+}
+
+.timer {
+  position: static;
+  transition: none;
+
+  background-color: white;
+  box-shadow: none;
+}
+.timer:focus {
+  position: static;
+  transition: none;
+  background-color: white;
+  box-shadow: none;
+}
+.timer:focus::before {
+  position: static;
+  transition: none;
+  background-color: white;
 }

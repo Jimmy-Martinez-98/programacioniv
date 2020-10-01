@@ -1,0 +1,357 @@
+<link rel="stylesheet" href="public/css/waves.css">
+<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="public/vistasPerfil/inventario/productos/misproduc.css">
+<form id="misprod">
+	<div class="container-fluid">
+		<div class="row mb-3 justify-content-sm-between">
+			<div class="col-6">
+
+				<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addP">Agregar
+					Producto</button>
+			</div>
+			<div class="col-6">
+				<input v-model="valor" @keyup="busquedaProducto" type="text" placeholder="Buscar Producto"
+					class="form-control" style="width: 100%;" />
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered" id="myTable">
+				<thead>
+					<tr class="table-success">
+						<th scope="col">Código</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Precio Unidad</th>
+						<th scope="col">Precio Libra</th>
+						<th scope="col">Precio Arroba</th>
+						<th scope="col">Precio Quintal</th>
+						<th scope="col">Precio Caja</th>
+						<th scope="col">Stock</th>
+						<th scope="col">Categoria</th>
+						<th scope="col">imagen</th>
+						<th scope="col">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table-secondary" v-for="dateProducts in myproductos">
+						<th scope="row">{{dateProducts.codeProducto}}</th>
+						<td>{{dateProducts.nombreProducto}}</td>
+						<td>{{dateProducts.descProducto}}</td>
+						<td>{{dateProducts.precioUnidad}}</td>
+						<td>{{dateProducts.precioLibra}}</td>
+						<td>{{dateProducts.precioArroba}}</td>
+						<td>{{dateProducts.precioQuintal}}</td>
+						<td>{{dateProducts.precioCaja}}</td>
+						<td>
+							{{dateProducts.existencias}}
+						</td>
+						<td>{{dateProducts.categoria}}
+						</td>
+						<td>
+							<div class="d-flex justify-content-center">
+								<img :src="dateProducts.imagen" width="50" height="50">
+							</div>
+						</td>
+						<td>
+							<div class="form-inline ">
+
+								<button type="button" class="btn btn-primary btn-sm   mt-auto mb-auto ml-auto button"
+									@click="editar(dateProducts)" data-toggle="modal" data-target="#modificar">
+									<template id="icon">
+										<i class="bx bx-edit"></i>
+									</template>
+								</button>
+								&nbsp;
+								<button type="button" class="btn btn-danger btn-sm  mt-auto mb-auto mr-auto button"
+									@click="eliminarProducto(dateProducts.idProducto)">
+									<template>
+										<i class="bx bx-trash"></i>
+									</template>
+								</button>
+
+
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+</form>
+<!-- Modal Modificar-->
+<div class="modal fade" id="modificar" tabindex="-1" aria-labelledby="modificar" aria-hidden="true"
+	data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title" id="modificar">Modificación de Producto</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
+						<div class="card">
+							<img :src="modificacion.imagen" width="100" height="90">
+						</div>
+					</div>
+					<div class="form-group row m-auto">
+
+						<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Codigo</label>
+						<div class="col-sm-10">
+							<input type="number" maxlength="8" class="form-control w-75 mb-2"
+								v-model="modificacion.codeProducto" />
+						</div>
+						<label for="inputnombre" class="col-sm-2 col-form-label mr-auto">Nombre</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-75 mb-2" v-model="modificacion.nombreProducto" />
+						</div>
+						<label for="inputdesc" class="col-sm-2 col-form-label mr-3">Descripción</label>
+						<div class="col-sm-10">
+							<textarea type="text" class="form-control w-75 mb-2" v-model="modificacion.descProducto">
+
+										</textarea>
+						</div>
+						<div class="form-group container">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="unidad"
+									v-model="modificacion.unidad">
+								<label class="form-check-label" for="unidad">Unidad</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="libra" v-model="modificacion.libra">
+								<label class="form-check-label" for="libra">Libra</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="arroba"
+									v-model="modificacion.arroba">
+								<label class="form-check-label" for="arroba">Arroba</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="quintal"
+									v-model="modificacion.quintal">
+								<label class="form-check-label" for="quintal">Quintal</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="Caja" v-model="modificacion.caja">
+								<label class="form-check-label" for="Caja">Caja</label>
+							</div>
+						</div>
+
+						<div v-if="modificacion.unidad===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Unidad</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pU" />
+								</div>
+							</div>
+						</div>
+
+						<div v-if="modificacion.libra===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Libra</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pL" />
+								</div>
+							</div>
+						</div>
+						<div v-if="modificacion.arroba===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Arroba</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pA" />
+								</div>
+							</div>
+						</div>
+						<div v-if="modificacion.quintal===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Quintal</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pQ" />
+								</div>
+							</div>
+						</div>
+						<div v-if="modificacion.caja===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio Caja</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="modificacion.pC" />
+								</div>
+							</div>
+						</div>
+						<select class="custom-select" id="inputGroupSelect01" v-model="modificacion.categoria">
+							<option selected>seleccione...</option>
+							<option value="Verduras">Verduras</option>
+							<option value="Frutos">Frutos</option>
+							<option value="Legumbres">Legumbres</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger button" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary button" @click="confirmarMod">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Agregar -->
+<div class="modal fade" id="addP" tabindex="-1" aria-labelledby="addp" aria-hidden="true" data-backdrop="static"
+	data-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header bg-success">
+				<h5 class="modal-title" id="addp">Agregar Producto</h5>
+				<button type="button" class="close" @click="cerrar" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<form>
+					<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
+						<div class="card">
+							<div class="card-body">
+								<img :src="agregar.imagen" required width="100%" height="90">
+							</div>
+							<div class="card-footer">
+								<input @change="subirImagen" required name="archivo" type="file" class="form-control">
+
+								<div class=" py-2" id="barra"></div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="form-group row m-auto">
+						<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Codigo</label>
+						<div class="col-sm-10">
+							<input type="number" id="codigo" required class="form-control w-75 mb-2"
+								v-model="agregar.codeProducto" />
+						</div>
+						<label for="inputnombre" id="nombre" class="col-sm-2 col-form-label mr-auto">Nombre</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-75 mb-2" required
+								v-model="agregar.nombreProducto" />
+						</div>
+						<label for="inputnombre" id="stock" class="col-sm-2 col-form-label mr-auto">Stock</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control w-75 mb-2" required
+								v-model="agregar.existencias" />
+						</div>
+						<label for="inputdesc" class="col-sm-2 col-form-label mr-3">Descripción</label>
+						<div class="col-sm-9">
+							<textarea type="text" id="desc" maxlength="150" class="form-control w-75 mb-2" required
+								v-model="agregar.descProducto"></textarea>
+						</div>
+						<label for="inputNumber" id="fecha" class="col-sm-2 col-form-label mr-auto">Fecha</label>
+						<div class="col-sm-10">
+							<input type="date" class="form-control w-75 mb-2" required v-model="agregar.fechaSubida" />
+						</div>
+						<div class="form-group container">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="unidad" v-model="agregar.unidad">
+								<label class="form-check-label" for="unidad">Unidad</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="libra" v-model="agregar.libra">
+								<label class="form-check-label" for="libra">Libra</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="arroba" v-model="agregar.arroba">
+								<label class="form-check-label" for="arroba">Arroba</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="quintal" v-model="agregar.quintal">
+								<label class="form-check-label" for="quital">Quintal</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="caja" v-model="agregar.caja">
+								<label class="form-check-label" for="caja">Caja</label>
+							</div>
+						</div>
+						<div class="col-sm-12" v-if="agregar.unidad===true">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Unidad</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pU" />
+								</div>
+							</div>
+						</div>
+
+						<div v-if="agregar.libra===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Libra</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pL" />
+								</div>
+							</div>
+						</div>
+						<div v-if="agregar.arroba===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Arroba</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pA" />
+								</div>
+							</div>
+						</div>
+						<div v-if="agregar.quintal===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio
+									Quintal</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pQ" />
+								</div>
+							</div>
+						</div>
+						<div v-if="agregar.caja===true" class="col-sm-12">
+							<div class="row">
+								<label for="inputNumber" class="col-sm-2 col-form-label mr-auto">Precio Caja</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control w-75 mb-2" v-model="agregar.pC" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<select class="custom-select" id="categoria" required v-model="agregar.categoria">
+						<option selected>seleccione...</option>
+						<option value="Verduras">Verduras</option>
+						<option value="Frutos">Frutos</option>
+						<option value="Legumbres">Legumbres</option>
+					</select>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger button" @click="limpieza"
+					data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-success button" @click="Guardar">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<script src="public/js/waves.js"></script>
+<script>
+	Waves.init();
+	Waves.attach('button', ['waves-light']);	
+</script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+
+<script src="public/vistasPerfil/inventario/productos/misproductos.js"></script>
+<script src="public/vistasPerfil/inventario/productos//modificarProducto.js"></script>
