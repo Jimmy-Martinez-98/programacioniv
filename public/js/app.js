@@ -56,6 +56,11 @@ var validarsession = new Vue({
     singOut: function () {
       fireAuth.signOut()
     },
+    /**
+     * trae datos del usuario logueado desde la db
+     * @access public
+     * @function UsuarioLogueado
+     */
     UsuarioLogueado: function () {
       var dbchild = firebaseDB.ref("users/");
       let uid = fireAuth.currentUser.uid;
@@ -67,7 +72,11 @@ var validarsession = new Vue({
         });
       });
     },
-
+    /**
+     * observa el role del usuario para dirigirlo al perfil respectivo
+     * @access public
+     * @function observarUsuario
+     */
     observarUsuario: function () {
       let role = [];
       let user = firebaseAuth.currentUser.uid;
