@@ -3,33 +3,45 @@
  * @file bandeja.js-> Sirve para comunicarse con los usuarios
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
- *
- */
-//var socket = io.connect("http://localhost:3001", { forceNew: true }),
-/**
  * @property el  elemento del DOM a enlazar
+ * @property msg
+ * @property msgs
+ * @property users
+ * @property allmsg
+ * @property refChats
+ * @property displayName
  */
 appbandeja = new Vue({
   el: "#bandejas",
-  data: {
-    msg: {
-      de: "",
-      para: "",
-      msg: "",
-      imagenMensaje: "",
-    },
-
-    msgs: [],
-    users: [],
-    allmsg: [],
-    refChats: [],
-    displayName:[]
+  data() {
+    return {
+      msg: {
+        de: "",
+        para: "",
+        msg: "",
+        imagenMensaje: "",
+      },
+      msgs: [],
+      users: [],
+      allmsg: [],
+      refChats: [],
+      displayName: []
+    }
   },
+  /**
+   * llama a los metodos pa ejecutarlos al cargar el DOM
+   */
   created() {
     this.estado();
     this.referenciaChats();
     this.chatHistory();
   },
+  /**
+   * propiedades computadas
+   * @property updateChat
+   * @property returnNewArray
+   * @property retornarImagen
+   */
   computed: {
     updateChat: function () {
       this.refChats = [];
@@ -41,16 +53,26 @@ appbandeja = new Vue({
         this.evaluarItem(element);
       });
     },
-    retornarImagen:function(){
+    retornarImagen: function () {
       return (
         this.displayName.imagen != "" ||
-        (this.displayName.imagen != null) );
+        (this.displayName.imagen != null));
     }
   },
+  /** 
+   * llama a la propiedades para poder observar su estado y si cambia su estado retornar el nuevo estado
+   * @access public
+   * watch
+   */
   watch: {
     returnNewArray() {},
   },
   methods: {
+    /**
+     * evalua el estado de la sesión
+     * @access public
+     * @function estado
+     */
     estado: function () {
       firebaseAuth.onAuthStateChanged((user) => {
         if (user) {
@@ -62,6 +84,12 @@ appbandeja = new Vue({
         }
       });
     },
+    /**
+     * hacer referencia al nodo de usuarios 
+     * @access public 
+     * @function TraerUsersChats
+     * @param {String} user ->String de id de usuario 
+     */
     TraerUsersChats: function (user) {
       firebaseDB.ref("/users").on("value", (snap) => {
         snap.forEach((element) => {
@@ -71,6 +99,11 @@ appbandeja = new Vue({
         });
       });
     },
+    /**
+     * hace referencia al nodo de chat
+     * @access public 
+     * @function referenciaChats
+     */
     referenciaChats: function () {
       firebaseDB.ref("/chat").on("value", (snap) => {
         snap.forEach((element) => {
@@ -81,6 +114,12 @@ appbandeja = new Vue({
         });
       });
     },
+    /**
+     * los datos pasan por nun filtro que evalua si existe dicho item en el nodo de chat para mostrarlo en el panel de chats
+     * @access public
+     * @function evaluarUsuarios
+     * @param {object} item -> objeto con los usuarios 
+     */
     evaluarUsuarios: function (item) {
       let userLogueado = firebaseAuth.currentUser.uid;
       let arr;
@@ -93,13 +132,15 @@ appbandeja = new Vue({
         }
       });
       let unicos = new Set(arr);
-
       unicos.forEach((element) => {
-       return this.users.push(element);
+        return this.users.push(element);
       });
-     
-      
     },
+    /**
+     * carga el historial de mensajes
+     * @access public 
+     * @function chatHistory
+     */
     chatHistory: function () {
       let historial = [];
       historial = [];
@@ -133,6 +174,12 @@ appbandeja = new Vue({
           .then((this.msg.msg = ""));
       }
     },
+    /**
+     * es cuando el usuario selecciona una imagen del dispositivo
+     * @access public 
+     * @function obtenerImagen
+     * @param {object} e -> objeto de imagen 
+     */
     obtenerImagen(e) {
       let random = Math.random();
       let file = e.target.files[0];
@@ -197,8 +244,14 @@ appbandeja = new Vue({
         this.evaluarItem(item);
       });
       this.headerChat(id)
-    
+
     },
+    /**
+     * pasa por un filtro todos los datos para mostrar los correctos
+     * @access public
+     * @function evaluarItem
+     * @param {object} item ->objeto que contiene los datos 
+     */
     evaluarItem: function (item) {
       if (
         (item.De === this.msg.de && item.Para === this.msg.para) ||
@@ -207,14 +260,19 @@ appbandeja = new Vue({
         this.msgs.push(item);
       }
     },
-    headerChat:function(id){
+    /**
+     * es cuando se muestra el nombre del titulo del chat
+     * @access public
+     * @function headerChat
+     * @param {String} id -> String de ID de usuario 
+     */
+    headerChat: function (id) {
       this.users.forEach(element => {
-          if (id==element.uId) {
-            this.displayName=element
-          }
+        if (id == element.uId) {
+          this.displayName = element
+        }
       });
     }
-    
+
   },
 });
-

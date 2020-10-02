@@ -14,13 +14,16 @@ var validarsession = new Vue({
   /**
    * @property propiedades utilizadas
    */
-  data: {
-    valor: "",
-    session: "",
-    datoscuenta: [],
-
+  data() {
+    return {
+      valor: "",
+      session: "",
+      datoscuenta: [],
+    }
   },
-
+  /**
+   * llama al metodo y carga el archivo html en el contenedor
+   */
   created: function () {
     this.traercuenta();
     $.get("public/vistas/home/home.html", (data) => {
@@ -82,7 +85,7 @@ var validarsession = new Vue({
       } else if (role.role == 0 || role.role == null) {
         location.href = "public/vistasPerfilCliente/perfilCliente.html";
       } else if (role.role == 2) {
-        location.href="public/vistasPerfilAdmin/admin.html"
+        location.href = "public/vistasPerfilAdmin/admin.html"
       }
     },
 
@@ -128,7 +131,7 @@ var validarsession = new Vue({
      * @function legumbre
      */
     legumbre() {
-      $.get("public/vistas/legumbres/legumbres.html",(data)=> {
+      $.get("public/vistas/legumbres/legumbres.html", (data) => {
         $('#contenedor').html(data);
       });
     },
@@ -139,7 +142,7 @@ var validarsession = new Vue({
      * @function fruto
      */
     fruto() {
-      $.get("public/vistas/frutos/frutos.html",  (data)=> {
+      $.get("public/vistas/frutos/frutos.html", (data) => {
         $('#contenedor').html(data);
       });
     },
@@ -150,7 +153,7 @@ var validarsession = new Vue({
      * @function blog
      */
     blog: function () {
-      $.get("public/vistas/blog/blog.html", (data)=> {
+      $.get("public/vistas/blog/blog.html", (data) => {
         $('#contenedor').html(data);
       });
     },

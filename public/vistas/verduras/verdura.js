@@ -6,9 +6,12 @@
  */
 var seccionverduras = new Vue({
   el: "#vegetales",
-  data: {
-    verdes: [],
-    valor: "",
+  data() {
+    return {
+      valor: "",
+      verdes: [],
+
+    }
   },
   created: function () {
     this.traer();
@@ -99,22 +102,23 @@ var seccionverduras = new Vue({
             if (e) {
               let mensaje =
                 "Ups Ocurrio un error al guardar el producto en tu lista de deseos";
-              this.openNotificationCarrousel(mensaje, "danger", "Error!!!");
+              this.openNotificationCarrousel(mensaje, "danger", "Error!!!", "< i class = 'bx bx-error-circle' > < /i>");
             } else {
               let msg = "Guardado Exitosamente :)";
-              this.openNotificationCarrousel(msg, "success", "Listoo!!");
+              this.openNotificationCarrousel(msg, "success", "Listoo!!", "<i class='bx bx-check-multiple' ></i>");
             }
           });
       } else {
         let msg = "Debes Iniciar Sesión Para Realizar Esta Función :)";
-        this.openNotificationCarrousel(msg, "primary", "Alerta!!!");
+        this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
 
-    openNotificationCarrousel(msg, notiColor, titulo) {
+    openNotificationCarrousel(msg, notiColor, titulo,icono) {
       const noti = this.$vs.notification({
         square: true,
         color: notiColor,
+        icon:icono,
         position: "bottom-rigth",
         title: titulo,
         text: msg,
@@ -146,7 +150,7 @@ var seccionverduras = new Vue({
      */
     descP: function () {
       let data = [];
-     if (this.verdes.precioLibra!='') {
+      if (this.verdes.precioLibra != '') {
         firebaseDB
           .ref("Productos/")
           .orderByChild("precioLibra")
@@ -158,7 +162,7 @@ var seccionverduras = new Vue({
             });
           });
         return (this.verdes = data);
-     }
+      }
     },
 
     /**
@@ -168,20 +172,20 @@ var seccionverduras = new Vue({
      */
     ascP: function () {
       let data = [];
-      if (this.verdes.preciocaja!='') {
-          firebaseDB
-            .ref("Productos/")
-            .orderByChild("precioCaja")
-            .on("value", (snap) => {
-              snap.forEach((element) => {
-                if (element.val().categoria == "Verduras") {
-                  data.push(element.val());
-                }
-              });
+      if (this.verdes.preciocaja != '') {
+        firebaseDB
+          .ref("Productos/")
+          .orderByChild("precioCaja")
+          .on("value", (snap) => {
+            snap.forEach((element) => {
+              if (element.val().categoria == "Verduras") {
+                data.push(element.val());
+              }
             });
-          return (this.verdes = data);
+          });
+        return (this.verdes = data);
       }
-    
+
     },
   },
 });
