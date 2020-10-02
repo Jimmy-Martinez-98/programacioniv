@@ -17,7 +17,7 @@
 	<p> <b> Top 10 de legumbres</b></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
-			v-for="(datos,index) in productos" >
+			v-for="(datos,index) in productos">
 			<div class="targeta ">
 				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
@@ -48,7 +48,8 @@
 
 					<div class="row card-footer ">
 						<div class="col-12">
-							<p class="card-text float-left" v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
+							<p class="card-text float-left"
+								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
 							<p class="card-text float-left"
@@ -90,7 +91,7 @@
 	<p> <b> Top 10 de Verduras</b></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
-			v-for="(datos,index) in productos" >
+			v-for="(datos,index) in productos">
 			<div class="targeta ">
 				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
@@ -121,7 +122,8 @@
 
 					<div class="row card-footer ">
 						<div class="col-12">
-							<p class="card-text float-left" v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
+							<p class="card-text float-left"
+								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
 							<p class="card-text float-left"
@@ -163,7 +165,7 @@
 	<p> <b> Top 10 de Frutas</b></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
-			v-for="(datos,index) in productos" >
+			v-for="(datos,index) in productos">
 			<div class="targeta ">
 				<img v-bind:src="datos.imagen">
 				<div class="cuerpotargeta" style="height: 155px;">
@@ -194,7 +196,8 @@
 
 					<div class="row card-footer ">
 						<div class="col-12">
-							<p class="card-text float-left" v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
+							<p class="card-text float-left"
+								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
 							<p class="card-text float-left"
@@ -210,7 +213,7 @@
 								${{datos.precioCaja}}
 							</p>
 							<p class="card-text float-left"
-								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
+								v-if="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
 							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>

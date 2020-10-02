@@ -89,7 +89,7 @@ var misproductosapp = new Vue({
       confirmModificacion.modificacion.imagen = id.imagen;
       confirmModificacion.modificacion.nombreCooperativa = id.nombreCooperativa;
       confirmModificacion.modificacion.nombreProducto = id.nombreProducto;
-      confirmModificacion.modificacion.nombreU = id.nombreU;
+      confirmModificacion.modificacion.nombreUsuario = id.nombreUsuario;
       confirmModificacion.modificacion.pU = id.precioUnidad;
       confirmModificacion.modificacion.pL = id.precioLibra;
       confirmModificacion.modificacion.pA = id.precioArroba;
@@ -188,7 +188,7 @@ var guardarProducto = new Vue({
       libra: false,
       nombreCooperativa: "",
       nombreProducto: "",
-      nombreU: "",
+      nombreUsuario: "",
     },
   },
   created: function () {
@@ -209,7 +209,7 @@ var guardarProducto = new Vue({
       this.agregar.libra = "";
       this.agregar.nombreCooperativa = "";
       this.agregar.nombreProducto = "";
-      this.agregar.nombreU = "";
+      this.agregar.nombreUsuario = "";
       this.agregar.precioVent = "";
       this.agregar.arroba = "";
       this.agregar.caj = "";
@@ -229,6 +229,8 @@ var guardarProducto = new Vue({
       this.limpiar();
     },
     Guardar: function () {
+
+
       if (
         this.agregar.codeProducto != "" &&
         this.agregar.nombreProducto &&
@@ -239,9 +241,9 @@ var guardarProducto = new Vue({
         this.agregar.idProducto != "" &&
         this.agregar.idUsuario != "" &&
         this.agregar.imagen != "" &&
-        this.agregar.nombreU != ""
+        this.agregar.nombreUsuario != ""
       ) {
-      
+
         if (
           this.agregar.pU == "" &&
           this.agregar.pL == "" &&
@@ -254,7 +256,7 @@ var guardarProducto = new Vue({
           this.agregar.unidad == "" &&
           this.agregar.categoria == ""
         ) {
-          
+
           guardarProducto.openNotificacion(
             "danger",
             "Espera!",
@@ -276,7 +278,7 @@ var guardarProducto = new Vue({
                 Arroba: guardarProducto.agregar.arroba,
                 Quintal: guardarProducto.agregar.quintal,
                 Caja: guardarProducto.agregar.caja,
-                nombreUsuario: guardarProducto.agregar.nombreU,
+                nombreUsuario: guardarProducto.agregar.nombreUsuario,
                 nombreCooperativa: guardarProducto.agregar.nombreCooperativa,
                 idUsuario: guardarProducto.agregar.idUsuario,
                 precioUnidad: guardarProducto.agregar.pU,
@@ -290,19 +292,21 @@ var guardarProducto = new Vue({
                 guardarProducto.openNotificacion(
                   "success",
                   "Agregado!!",
-                  "El Producto Fue Agregado Exitosamente"
+                  "El Producto Fue Agregado Exitosamente",
+                  "<i class='bx bx-select-multiple' ></i>"
                 );
               });
           } else {
-            this.openNotificacion(
+            guardarProducto.openNotificacion(
               "danger",
               "Ups...",
-              "Espera a que se carge la imagen"
+              "Espera a que se carge la imagen",
+              "<i class='bx bx-info-circle' ></i>"
             );
           }
         }
-      }else{
-        this.openNotificacion('dark','Por favor complete los campos :)','')
+      } else {
+        guardarProducto.openNotificacion('dark', 'Por favor complete los campos :)', '', "<i class='bx bx-info-circle' ></i>")
       }
     },
     datosUser: function () {
@@ -313,7 +317,7 @@ var guardarProducto = new Vue({
         .equalTo(user)
         .on("value", (snap) => {
           snap.forEach((element) => {
-            this.agregar.nombreU = element.val().nombreU;
+            this.agregar.nombreUsuario = element.val().nombreUsuario;
             this.agregar.idUsuario = element.val().uId;
             this.agregar.nombreCooperativa = element.val().nombreCooperativa;
           });
@@ -369,9 +373,10 @@ var guardarProducto = new Vue({
         }
       );
     },
-    openNotificacion: function (color, title, text) {
+    openNotificacion: function (color, title, text, icon) {
       this.$vs.notification({
         square: true,
+        icon: icon,
         progress: "auto",
         color: color,
         title: title,

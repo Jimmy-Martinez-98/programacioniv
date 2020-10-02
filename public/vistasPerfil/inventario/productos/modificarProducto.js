@@ -39,7 +39,7 @@ confirmModificacion = new Vue({
           "Ocurrio un Error",
           "Verifica la forma en la que venderas el producto"
         );
-      }  else {
+      } else {
         firebaseDB
           .ref("/Productos/" + confirmModificacion.modificacion.idProducto)
           .update({
@@ -58,6 +58,9 @@ confirmModificacion = new Vue({
             precioArroba: confirmModificacion.modificacion.pA,
             precioQuintal: confirmModificacion.modificacion.pQ,
             precioCaja: confirmModificacion.modificacion.pC,
+            idProducto: confirmModificacion.modificacion.idProducto,
+            nombreUsuario: confirmModificacion.modificacion.nombreUsuario,
+            nombreCooperativa: confirmModificacion.modificacion.nombreCooperativa
           })
           .then(() => {
             misproductosapp.openNotificacion(
@@ -78,13 +81,13 @@ confirmModificacion = new Vue({
           });
       }
     },
-    verificarCheckBox:function(){
-      if (this.modificacion.Unidad==false) {
-        this.modificacion.pU=''
-      }else if(this.modificacion.libra==false){
-        this.modificacion.pL='';
-      }else if(this.modificacion.Arroba==false){
-        this.modificacion.pA='';
+    verificarCheckBox: function () {
+      if (this.modificacion.Unidad == false) {
+        this.modificacion.pU = ''
+      } else if (this.modificacion.libra == false) {
+        this.modificacion.pL = '';
+      } else if (this.modificacion.Arroba == false) {
+        this.modificacion.pA = '';
       }
     },
     openNotificacion: function (color, title, text) {
