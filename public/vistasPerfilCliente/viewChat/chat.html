@@ -22,10 +22,10 @@
                         <ul class="listamsgs" v-for="item in msgs">
                             <div v-if="item.imagenMensaje!='' && item.Mensaje==='' ||item.imagenMensaje!=null">
                                 <li v-if="item.De!=content.de" class="listamsgs-item text-break mr-auto mt-1">
-                                    <img :src="item.imagenMensaje" width="100%" height="100px">
+                                    <img :src="item.imagenMensaje" width="100%" height="100px" alt="">
                                 </li>
                                 <li v-else class="listamsgs-iteml text-break ml-auto mr-2">
-                                    <img :src="item.imagenMensaje" width="100%" height="100px">
+                                    <img :src="item.imagenMensaje" width="100%" height="100px" alt="">
                                 </li>
                             </div>
                             <div v-else>

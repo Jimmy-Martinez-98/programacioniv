@@ -30,7 +30,7 @@
 	<div class="row py-2">
 		<div class="col-sm-4 wow fadeIn" v-for="fruto in fruta">
 			<div class="targeta " style="height: 400;">
-				<img v-bind:src="fruto.imagen">
+				<img v-bind:src="fruto.imagen" alt="">
 				<div class="cuerpotargeta">
 					<a class="hole text-break" href="#" @click="verProd(fruto)">
 						<h4> {{fruto.nombreProducto}}</h4>

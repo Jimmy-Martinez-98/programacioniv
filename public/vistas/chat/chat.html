@@ -19,7 +19,7 @@
 			<div class="contenedor-msg" id="frm-chats">
 				<div class="header-sidebar">
 					<h4 class="ml-3">
-						<img v-if="imagen" class="rounded-circle" :src="usuarioChat.imagen" width="30px" height="30px">
+						<img v-if="imagen" class="rounded-circle" :src="usuarioChat.imagen" width="30px" height="30px" alt="">
 						{{usuarioChat.nombre}} </h4>
 
 				</div>
@@ -28,10 +28,10 @@
 						<ul class="listamsgs" v-for="message in allMessages">
 							<div v-if="message.imagenMensaje!='' && message.Mensaje==='' ||message.imagenMensaje!=null">
 								<li class="listamsgs-item text-break mr-auto" v-if="message.De!=mensajes.de">
-									<img :src="message.imagenMensaje" width="100%" height="100px">
+									<img :src="message.imagenMensaje" width="100%" height="100px" alt="">
 								</li>
 								<li class="listamsgs-iteml text-break ml-auto mr-2" v-else>
-									<img :src="message.imagenMensaje" width="100%" height="100px">
+									<img :src="message.imagenMensaje" width="100%" height="100px" alt="">
 								</li>
 							</div>
 							<div v-else>
@@ -54,7 +54,7 @@
 							<form>
 								<label>
 									<input type="file" id="imagenChat" hidden @change="obtenerImagen">
-									<img class="puntero" src="../../img/iconImage.png" width="50px" height="40px">
+									<img class="puntero" src="../../img/iconImage.png" width="50px" height="40px" alt="">
 								</label>
 							</form>
 							<input type="text" v-model="mensajes.msg" class="form-control"
@@ -63,7 +63,7 @@
 								<vs-button success animation-type="vertical" @click="enviarMensaje">
 									Enviar
 									<template #animate>
-										<img src="../../img/send-24px.svg" width="18px" height="18px">
+										<img src="../../img/send-24px.svg" width="18px" height="18px" alt="">
 									</template>
 								</vs-button>
 							</div>
