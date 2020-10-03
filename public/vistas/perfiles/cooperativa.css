@@ -35,13 +35,17 @@ button:focus {
 }
 
 a.btn-lg {
-  background: #006780;
+  background: #00668000;
   color: white;
+  position: static;
 }
 a.btn-lg:hover {
-  background: #006780;
-  color: white;
+ position: static;
+ transform: translate(0px,0px);
+ color: #ffffff;
 }
+
+
 
 .nav-link {
   color: #000000;

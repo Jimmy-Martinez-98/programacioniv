@@ -1,15 +1,22 @@
 var entradas = new Vue({
   el: "#Entradas",
-  data: {
-    seleccion: "",
-    productos: [],
-    historialEntradas: {
-      fecha: "",
-      cantidad: "",
-      codigoProducto: "",
-      nombreProducto: "",
-    },
-    entradas: [],
+  data() {
+    return {
+      seleccion: "",
+      productos: [],
+      historialEntradas: {
+        fecha: "",
+        cantidad: "",
+        codigoProducto: "",
+        nombreProducto: "",
+      },
+      entradas: [],
+      paginacion: 0,
+      allProducts: 0,
+      pagPrincipal: 1,
+      numResult: 4
+
+    }
   },
 
   created: function () {
@@ -41,6 +48,9 @@ var entradas = new Vue({
           }
         });
       });
+     
+      this.paginacion = Math.round(this.entradas.length / this.numResult).toFixed(0)
+      this.allProducts = this.entradas.length
     },
 
     /**

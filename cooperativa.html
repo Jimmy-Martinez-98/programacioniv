@@ -39,11 +39,12 @@
                 <span v-if="perfil.nombreCooperativa==''">{{perfil.nombreUsuario}}</span>
                 <span v-else>{{perfil.nombreCooperativa}}</span>
               </a>
-              <div class="dropdown-menu w-100 mt-0" id="menu" aria-labelledby="dropdownMenuLink" style="position: absolute; border-radius: 0%; ">
-                <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html" style="font-size: 18px;">Inbox <i
-                    class="fas fa-inbox"></i></a>
-                <a @click="signOut" class="dropdown-item " href="#signOut" style="font-size: 18px;">Cerrar Sesión <i
-                    class="fas fa-sign-in-alt"></i></a>
+              <div class="dropdown-menu w-100 mt-0" id="menu" aria-labelledby="dropdownMenuLink"
+                style="position: absolute; border-radius: 0%; ">
+                <a class="dropdown-item " href="public/vistas/bandeja/bandeja.html" style="font-size: 18px;">
+                  Inbox &nbsp; <em class="fas fa-inbox"></em></a>
+                <a @click="signOut" class="dropdown-item " href="#signOut" style="font-size: 18px;">
+                  Cerrar Sesión &nbsp;<em class="fas fa-sign-in-alt"></em></a>
               </div>
             </div>
           </li>
@@ -61,7 +62,7 @@
           <ul class="navbar-nav m-auto uls " id="nav">
             <li class=" lis activa">
               <a class=" nav-link  " id="info" href="#">
-                <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;
+                <em class="fa fa-info-circle" aria-hidden="true"></em> &nbsp;
                 Informacion de Perfil
 
               </a>
@@ -69,18 +70,18 @@
 
             <li class=" lis activa">
               <a class="nav-link " id="listdeseos" href="#">
-                <i class="fa fa-star" aria-hidden="true"></i>&nbsp; Lista de deseos
+                <em class="fa fa-star" aria-hidden="true"></em>&nbsp; Lista de deseos
               </a>
             </li>
             <li class="divicio  lis activa">
               <a class="nav-link  " id="POferta" href="#">
-                <i class="fa fa-usd" aria-hidden="true">&#xf155</i>
+                <em class="fa fa-usd" aria-hidden="true">&#xf155</em>
                 &nbsp; Producto en oferta
               </a>
             </li>
             <li class="divicio  lis activa">
               <a class="nav-link  " id="Configc" href="#">
-                <i class="fa fa-cog" aria-hidden="true"></i>&nbsp; Configuración de Cuenta
+                <em class="fa fa-cog" aria-hidden="true"></em>&nbsp; Configuración de Cuenta
               </a>
             </li>
           </ul>

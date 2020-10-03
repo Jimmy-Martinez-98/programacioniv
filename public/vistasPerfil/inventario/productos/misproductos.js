@@ -7,17 +7,28 @@
 
 var misproductosapp = new Vue({
   el: "#misprod",
-  data: {
-    myproductos: [],
-    valor: "",
+  data() {
+    return {
+      myproductos: [],
+      valor: "",
+      paginacion: [],
+
+      allProducts: 0,
+      pagPrincipal: 1,
+      itemForPage: 4,
+      total: [],
+      page: 1,
+    }
   },
   created: function () {
     this.myproductos = [];
+    this.productsInTable()
     this.productosmios();
   },
   computed: {
     updateTable: function () {
       this.myproductos = [];
+      this.productsInTable()
       this.productosmios();
     },
   },
@@ -25,6 +36,23 @@ var misproductosapp = new Vue({
     updateTable() {},
   },
   methods: {
+    productsInTable: function () {
+      let user = firebaseAuth.currentUser.uid
+      let todo = []
+      firebaseDB.ref('Productos')
+        .limitToFirst(this.itemForPage)
+        .on('value', snap => {
+          todo = []
+          snap.forEach(element => {
+            if (user == element.val().idUsuario) {
+              todo.push(element.val())
+            }
+
+          });
+        })
+
+      this.myproductos = todo;
+    },
     busquedaProducto: function () {
       let user = firebase.auth().currentUser;
       let allProducts = [];
@@ -52,6 +80,48 @@ var misproductosapp = new Vue({
         width: "100%",
       });
     },
+    onPageChange: function (numberP) {
+
+      let user = firebaseAuth.currentUser.uid
+      let todo = [];
+      let page = this.itemForPage * (numberP - 1)
+      console.log(page);
+
+      firebaseDB.ref('Productos/')
+        .limitToLast(this.itemForPage)
+        .endAt(page)
+        .on('value', snap => {
+          todo = []
+          snap.forEach(element => {
+            if (user == element.val().idUsuario) {
+              todo.push(element.val())
+
+            }
+          });
+        })
+      this.myproductos = todo;
+    },
+    onPageChangeP: function (numberP) {
+
+      let user = firebaseAuth.currentUser.uid
+      let todo = [];
+      let page = this.itemForPage * (numberP - 1)
+      console.log(page)
+      firebaseDB.ref('Productos/')
+        .limitToFirst(this.itemForPage)
+        .endAt(page)
+        .on('value', snap => {
+          todo = []
+          snap.forEach(element => {
+            if (user == element.val().idUsuario) {
+              todo.push(element.val())
+            }
+          });
+        })
+      this.myproductos = todo;
+    },
+
+
     limpiar: function () {
       this.modificacion.arroba = false;
       this.modificacion.caja = false;
@@ -110,12 +180,16 @@ var misproductosapp = new Vue({
 
         dbchild.on("value", (snapshot) => {
           todoProducto = [];
+          this.total = []
+          let total = []
           snapshot.forEach((element) => {
             if (user.uid === element.val().idUsuario) {
               todoProducto.push(element.val());
+              total.push(element.val())
             }
           });
-          this.myproductos = todoProducto;
+          this.paginacion = Math.ceil(todoProducto.length / this.itemForPage)
+          this.total = total.length
         });
       } else {
         // No user is signed in.
@@ -295,6 +369,7 @@ var guardarProducto = new Vue({
                   "El Producto Fue Agregado Exitosamente",
                   "<i class='bx bx-select-multiple' ></i>"
                 );
+                this.limpiar();
               });
           } else {
             guardarProducto.openNotificacion(
