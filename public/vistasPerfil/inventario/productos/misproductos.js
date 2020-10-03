@@ -1,46 +1,47 @@
-/*
+/** 
  * @author Michael Rodriguez <scottlovos503@gmail.com>
  * @file misproductos.js-> Sirve para la configuracion de los productos
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-
 var misproductosapp = new Vue({
   el: "#misprod",
   data() {
     return {
-      myproductos: [],
       valor: "",
-      paginacion: [],
-
-      allProducts: 0,
-      pagPrincipal: 1,
-      itemForPage: 4,
-      total: [],
       page: 1,
+      perPage: 4,
+      articles: [],
+      pages: [],
     }
   },
   created: function () {
-    this.myproductos = [];
     this.productsInTable()
-    this.productosmios();
+    this.articles = [];
   },
   computed: {
-    updateTable: function () {
-      this.myproductos = [];
-      this.productsInTable()
-      this.productosmios();
-    },
+    displayArticles: function () {
+      return this.paginate(this.articles);
+    }
   },
   watch: {
-    updateTable() {},
+    updateTable() {
+      this.productsInTable()
+    },
+    articles() {
+      this.setArticles()
+    }
   },
   methods: {
-    productsInTable: function () {
+    /**
+     * Mustra los productos del usuario
+     * @access public
+     * @function productosmios
+     */
+    async productsInTable() {
       let user = firebaseAuth.currentUser.uid
       let todo = []
-      firebaseDB.ref('Productos')
-        .limitToFirst(this.itemForPage)
+      await firebaseDB.ref('Productos')
         .on('value', snap => {
           todo = []
           snap.forEach(element => {
@@ -50,16 +51,51 @@ var misproductosapp = new Vue({
 
           });
         })
+      this.articles = todo
 
-      this.myproductos = todo;
+      if (this.valor == null) {
+        this.articles = todo
+      }
     },
+    /**
+     * Muestra el numero de paginas 
+     * @access public
+     * @function setArticles
+     */
+    setArticles: function () {
+      let numberOfPages = Math.ceil(this.articles.length / this.perPage);
+      this.pages = []
+      for (let i = 1; i <= numberOfPages; i++) {
+        this.pages.push(i);
+      }
+
+    },
+    /**
+     * Calcula la el numero de paginas para la tabla
+     * @access public 
+     * @function paginate
+     * @param {object} articles -> representa el total de articulos de la db
+     */
+    paginate: function (articles) {
+      let page = this.page;
+      let perPage = this.perPage;
+      let from = (page * perPage) - perPage;
+      let to = (page * perPage);
+      return articles.slice(from, to)
+    },
+
+    /**
+     * Es cuando se escribe en el input
+     * @access public
+     * @function busquedaProducto
+     */
     busquedaProducto: function () {
       let user = firebase.auth().currentUser;
       let allProducts = [];
       firebaseDB
         .ref("Productos/")
         .orderByChild("nombreProducto")
-        .startAt(misproductosapp.valor)
+        .startAt(this.valor)
         .on("value", (snap) => {
           allProducts = [];
           snap.forEach((items) => {
@@ -68,57 +104,26 @@ var misproductosapp = new Vue({
             }
           });
         });
-      this.myproductos = allProducts;
+      this.articles = allProducts;
+
+
     },
-    openNotificacion: function (color, title, text) {
+    /**
+     * 
+     * @param {String} color -> representa el color de la notificacion
+     * @param {String} title -> representa el titulo de la notificaion
+     * @param {String} text -> representa el text o comentario en la notificacion
+     */
+    openNotificacion: function (color, title, text, icono) {
       this.$vs.notification({
         square: true,
+        icon: icono,
         progress: "auto",
         color: color,
         title: title,
         text: text,
         width: "100%",
       });
-    },
-    onPageChange: function (numberP) {
-
-      let user = firebaseAuth.currentUser.uid
-      let todo = [];
-      let page = this.itemForPage * (numberP - 1)
-      console.log(page);
-
-      firebaseDB.ref('Productos/')
-        .limitToLast(this.itemForPage)
-        .endAt(page)
-        .on('value', snap => {
-          todo = []
-          snap.forEach(element => {
-            if (user == element.val().idUsuario) {
-              todo.push(element.val())
-
-            }
-          });
-        })
-      this.myproductos = todo;
-    },
-    onPageChangeP: function (numberP) {
-
-      let user = firebaseAuth.currentUser.uid
-      let todo = [];
-      let page = this.itemForPage * (numberP - 1)
-      console.log(page)
-      firebaseDB.ref('Productos/')
-        .limitToFirst(this.itemForPage)
-        .endAt(page)
-        .on('value', snap => {
-          todo = []
-          snap.forEach(element => {
-            if (user == element.val().idUsuario) {
-              todo.push(element.val())
-            }
-          });
-        })
-      this.myproductos = todo;
     },
 
 
@@ -167,37 +172,7 @@ var misproductosapp = new Vue({
       confirmModificacion.modificacion.pC = id.precioCaja;
     },
 
-    /**
-     * Mustra los productos del usuario
-     * @access public
-     * @function productosmios
-     */
-    productosmios: function () {
-      var user = firebase.auth().currentUser;
-      let dbchild = firebaseDB.ref("Productos/");
-      if (user) {
-        let todoProducto = [];
 
-        dbchild.on("value", (snapshot) => {
-          todoProducto = [];
-          this.total = []
-          let total = []
-          snapshot.forEach((element) => {
-            if (user.uid === element.val().idUsuario) {
-              todoProducto.push(element.val());
-              total.push(element.val())
-            }
-          });
-          let to = todoProducto.length
-          this.paginacion = Math.ceil(to / this.itemForPage)
-          
-
-          this.total = total.length
-        });
-      } else {
-        // No user is signed in.
-      }
-    },
 
     eliminarProducto: function (id) {
       swal
@@ -225,7 +200,8 @@ var misproductosapp = new Vue({
                 misproductosapp.openNotificacion(
                   "success",
                   "Eliminado!!",
-                  "El Producto Fue Eliminado Exitosamente :)"
+                  "El Producto Fue Eliminado Exitosamente :)",
+                  "<i class='bx bx-select-multiple' ></i>"
                 );
               })
               .catch((error) => {
@@ -337,7 +313,8 @@ var guardarProducto = new Vue({
           guardarProducto.openNotificacion(
             "danger",
             "Espera!",
-            "Por Favor Espere A Que La Imagen Se Carge O Completa Los Campos Faltantes"
+            "Por Favor Espere A Que La Imagen Se Carge O Completa Los Campos Faltantes",
+            "<i class='bx bx-error-circle' ></i>"
           );
         } else if (this.agregar.pL != '' || this.agregar.pA != '' || this.agregar.pQ !== '' || this.agregar.pC != '') {
           if (this.agregar.imagen != "") {
@@ -450,6 +427,15 @@ var guardarProducto = new Vue({
         }
       );
     },
+    /**
+     * La notificacion
+     * @access public
+     * @function openNotificacion
+     * @param {String} color ->Representa el color en la notificaion 
+     * @param {String} title ->Representa el titulo
+     * @param {String} text  ->Representa el comentario
+     * @param {String} icon  ->Representa el icono
+     */
     openNotificacion: function (color, title, text, icon) {
       this.$vs.notification({
         square: true,

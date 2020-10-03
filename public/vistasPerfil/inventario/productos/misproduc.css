@@ -12,3 +12,9 @@
 .bordes {
   border-radius: 0;
 }
+
+.page-item>.page-link:hover{
+  background-color: rgb(7, 117, 243);
+  color: #ffffff;
+ 
+}

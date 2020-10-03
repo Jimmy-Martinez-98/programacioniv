@@ -1,5 +1,11 @@
+/** 
+ * @author Michael Rodriguez <scottlovos503@gmail.com>
+ * @file entradas.js-> Sirve para la configuracion de entradas de productos
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
 var entradas = new Vue({
-  el: "#Entradas",
+el: "#Entradas",
   data() {
     return {
       seleccion: "",
@@ -10,21 +16,55 @@ var entradas = new Vue({
         codigoProducto: "",
         nombreProducto: "",
       },
-      entradas: [],
+      entry: [],
       paginacion: 0,
       allProducts: 0,
-      pagPrincipal: 1,
-      numResult: 4
+      page: 1,
+      pages: [],
+      perPage: 4,
+
 
     }
   },
-
+  /**
+   * Metodo que ejecuta funciones que esten dentro de el
+   * @access public
+   * @method created
+   */
   created: function () {
     this.obtenerProductos();
-    this.traerEntradas();
+    this.traerEntry();
+  },
+  /**
+   * Propiedades computadas son como las propiedades escritas en el data pero estas llevan un poco de logica
+   * @method computed
+   */
+  computed: {
+    displayEntry: function () {
+      return this.paginate(this.entry);
+    }
+  },
+  /**
+   * metodo de vue para observar cambios en las propiedades llamadas en el metodo
+   * @access public
+   * @method watch
+   */
+  watch: {
+    update() {
+      this.traerEntry()
+    },
+    entry() {
+      this.setEntry()
+    }
+
   },
 
   methods: {
+    /**
+     * obtiene los productos de la db
+     * @access public
+     * @function obtenerProductos
+     */
     obtenerProductos: function () {
       let user = firebaseAuth.currentUser.uid;
       let productos = [];
@@ -37,21 +77,54 @@ var entradas = new Vue({
       });
       this.productos = productos;
     },
-    traerEntradas: function () {
+    /**
+     * trae las entradas de la db
+     * @access public
+     * @function traerEntry
+     */
+    traerEntry: function () {
       let user = firebaseAuth.currentUser.uid;
-      this.entradas = [];
+      let todo = []
       firebaseDB.ref("historialEntradas/").on("value", (snapshot) => {
-        entradas.entradas = [];
+        todo = []
         snapshot.forEach((element) => {
           if (user == element.val().idUsuario) {
-            this.entradas.push(element.val());
+            todo.push(element.val())
           }
         });
       });
-     
-      this.paginacion = Math.round(this.entradas.length / this.numResult).toFixed(0)
-      this.allProducts = this.entradas.length
+      this.entry = todo
     },
+    /**
+     * cuenta las paginas que se mostraran
+     * @access public
+     * @function setEntry
+     */
+    setEntry: function () {
+      let numberOfPages = Math.ceil(this.entry.length / this.perPage);
+      this.pages = []
+      for (let i = 1; i <= numberOfPages; i++) {
+        this.pages.push(i);
+      }
+    },
+
+    paginate: function (entry) {
+      let page = this.page
+      let perPage = this.perPage
+      let from = (page * perPage) - perPage;
+      let to = (page * perPage);
+      return entry.slice(from, to)
+    },
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Listener
