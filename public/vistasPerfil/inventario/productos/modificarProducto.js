@@ -17,8 +17,8 @@ confirmModificacion = new Vue({
       libra: false,
       nombreCooperativa: "",
       nombreProducto: "",
-      nombreU: "",
-      pU: "",
+      nombreUsuario: "",
+      
       pL: "",
       pA: "",
       pQ: "",
@@ -48,12 +48,12 @@ confirmModificacion = new Vue({
             descProducto: confirmModificacion.modificacion.descProducto,
             existencias: confirmModificacion.modificacion.existencias,
             categoria: confirmModificacion.modificacion.categoria,
-            Unidad: confirmModificacion.modificacion.unidad,
+           
             libra: confirmModificacion.modificacion.libra,
             Arroba: confirmModificacion.modificacion.arroba,
             Quintal: confirmModificacion.modificacion.quintal,
             Caja: confirmModificacion.modificacion.caja,
-            precioUnidad: confirmModificacion.modificacion.pU,
+          
             precioLibra: confirmModificacion.modificacion.pL,
             precioArroba: confirmModificacion.modificacion.pA,
             precioQuintal: confirmModificacion.modificacion.pQ,

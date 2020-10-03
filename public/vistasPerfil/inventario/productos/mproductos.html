@@ -24,11 +24,14 @@
 
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
-								<li class="page-item"><a class="page-link" href="#" @click.prevent="onPageChangeP(paginacion)">Previous</a></li>
+								<li class="page-item"><a class="page-link" href="#"
+										@click.prevent="onPageChangeP(paginacion)">Previous</a></li>
 
-								<li class="page-item" v-for="numberP in paginacion" ><a class="page-link"  >{{numberP}}</a></li>
-								
-								<li class="page-item"  ><a class="page-link" href="#" @click.prevent="onPageChange(paginacion)">Next</a></li>
+								<li class="page-item" v-for="numberP in paginacion"><a class="page-link">{{numberP}}</a>
+								</li>
+
+								<li class="page-item"><a class="page-link" href="#"
+										@click.prevent="onPageChange(paginacion)">Next</a></li>
 							</ul>
 						</nav>
 					</div>

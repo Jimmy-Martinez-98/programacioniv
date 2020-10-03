@@ -188,7 +188,10 @@ var misproductosapp = new Vue({
               total.push(element.val())
             }
           });
-          this.paginacion = Math.ceil(todoProducto.length / this.itemForPage)
+          let to = todoProducto.length
+          this.paginacion = Math.ceil(to / this.itemForPage)
+          
+
           this.total = total.length
         });
       } else {
@@ -319,7 +322,7 @@ var guardarProducto = new Vue({
       ) {
 
         if (
-          this.agregar.pU == "" &&
+
           this.agregar.pL == "" &&
           this.agregar.pA == "" &&
           this.agregar.pQ == "" &&
@@ -336,7 +339,7 @@ var guardarProducto = new Vue({
             "Espera!",
             "Por Favor Espere A Que La Imagen Se Carge O Completa Los Campos Faltantes"
           );
-        } else {
+        } else if (this.agregar.pL != '' || this.agregar.pA != '' || this.agregar.pQ !== '' || this.agregar.pC != '') {
           if (this.agregar.imagen != "") {
             firebaseDB
               .ref("Productos/" + this.agregar.idProducto)
@@ -347,7 +350,7 @@ var guardarProducto = new Vue({
                 descProducto: guardarProducto.agregar.descProducto,
                 existencias: guardarProducto.agregar.existencias,
                 categoria: guardarProducto.agregar.categoria,
-                Unidad: guardarProducto.agregar.unidad,
+
                 libra: guardarProducto.agregar.libra,
                 Arroba: guardarProducto.agregar.arroba,
                 Quintal: guardarProducto.agregar.quintal,
@@ -355,7 +358,6 @@ var guardarProducto = new Vue({
                 nombreUsuario: guardarProducto.agregar.nombreUsuario,
                 nombreCooperativa: guardarProducto.agregar.nombreCooperativa,
                 idUsuario: guardarProducto.agregar.idUsuario,
-                precioUnidad: guardarProducto.agregar.pU,
                 precioLibra: guardarProducto.agregar.pL,
                 precioArroba: guardarProducto.agregar.pA,
                 precioQuintal: guardarProducto.agregar.pQ,
