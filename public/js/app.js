@@ -19,6 +19,7 @@ var validarsession = new Vue({
       valor: "",
       session: "",
       datoscuenta: [],
+      active:0
     }
   },
   /**
@@ -98,20 +99,9 @@ var validarsession = new Vue({
       }
     },
 
-    /**
-     * Animacion para la barra de navegacion responsive
-     * @access public
-     * @function colapsar
-     */
-    colapsar: function () {
-      $("#toggles").animate({
-        height: "toggle",
-      });
-    },
+   
 
-    slide: function () {
-      $(".dropdown-menu").slideToggle();
-    },
+  
     /**
      * Carga un archivo html en contenedor
      * @access public

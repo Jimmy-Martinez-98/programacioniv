@@ -32,7 +32,7 @@ var factura = new Vue({
 
                             if (element.val().idOwner == user.uid) {
                                 this.traerUserOrder(element.val().idOwnerOfOrder)
-                                this.datos = element.val()
+                                this.datos.push(element.val())
                             }
                         });
                     })

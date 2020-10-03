@@ -1,8 +1,7 @@
 * {
   font-family: "Roboto", sans-serif;
+  padding: 10px;
 }
-
-
 
 
 
@@ -37,10 +36,10 @@
 }
 .card {
   border-radius: 0px;
-  height: 478px;
+  height: 470px;
 }
 #scroll {
-  height: 378px;
+  height: 370px;
   overflow-y: scroll;
   overflow-x: auto;
   display: flex;
@@ -64,21 +63,8 @@
   width: 100%;
 }
 
-.form-control {
-  display: block;
-  background-color: white;
-  color: black;
-  box-shadow: 0px;
-  outline: 0;
-  border: 0;
-  border-bottom: 2px solid green;
-}
-.form-control:focus {
-  outline: none;
-  border: 0px;
-  box-shadow: none;
-  border-bottom: 2px solid green;
-}
+
+
 /* lista */
 .listamsgs {
   list-style-type: none;

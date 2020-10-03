@@ -1,101 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="stylesheet" href="../../bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap-4.4.1-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/stilo.css">
+    <script src=" https://use.fontawesome.com/442f68d1a0.js "> </script>
 
-<script src=" https://use.fontawesome.com/442f68d1a0.js "> </script>
-<link rel="stylesheet" href="css/stilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css" rel="stylesheet">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Perfil</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css" rel="stylesheet">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Perfil</title>
-</head>
+    <body>
+        <div id="menuNavegacion">
+            <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                <div class="d-flex justify-content-between w-100">
+                    <a class="navbar-brand m-auto" href="#"><img src="../img/logo2,0.png" alt="logo" class="w-50"></a>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown dropleft ml-auto">
+                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false"><strong>{{userLog}}</strong> </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="../../index.html">
+                                    <i class="fa fa-home f-1x" aria-hidden="true"></i>&nbsp;
+                                    Inicio</a>
+                                <a class="dropdown-item" href="#" @click="signOut">
+                                    <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>&nbsp;
+                                    Cerrar Sesión
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-<body>
-    <div id="menuNavegacion">
-        <nav class="navbar navbar-expand-lg navbar-light bg-success">
-           <div class="d-flex justify-content-between w-100">
-                <a class="navbar-brand m-auto" href="#"><img src="../img/logo2,0.png" alt="logo" class="w-50"></a>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown dropleft ml-auto">
-                        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                            aria-expanded="false"><strong>{{userLog}}</strong> </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../../index.html">
-                                <i class="fa fa-home f-1x" aria-hidden="true"></i>&nbsp;
-                                Inicio</a>
-                            <a class="dropdown-item" href="#" @click="signOut">
-                                <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>&nbsp;
-                                Cerrar Sesión
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item " @click="orderTab">
+                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag fa-2x"
+                                    aria-hidden="true"></i>&nbsp;
+                                <strong>Pedidos</strong></a>
+                        </li>
+                        <li class="nav-item" @click="inboxTab">
+                            <a class="nav-link" href="#"><i class="fa fa-inbox fa-2x" aria-hidden="true"></i>&nbsp;
+                                <strong>Bandeja de Entrada</strong></a>
+                        </li>
+                        <li class="nav-item" @click="accountSettings">
+                            <a class="nav-link " href="#">
+                                <i class="fa fa-cog  fa-2x"></i>&nbsp;
+                                <strong>Configuracion de Cuenta</strong>
                             </a>
-                        </div>
-                    </li>
-                </ul>
-           </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-success">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div id="contendedor" class="contenedor mb-2">
 
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto">
-                    <li class="nav-item " @click="orderTab">
-                        <a class="nav-link" href="#"><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>&nbsp;
-                            <strong>Pedidos</strong></a>
-                    </li>
-                    <li class="nav-item" @click="inboxTab">
-                        <a class="nav-link" href="#"><i class="fa fa-inbox fa-2x" aria-hidden="true"></i>&nbsp;
-                            <strong>Bandeja de Entrada</strong></a>
-                    </li>
-                    <li class="nav-item" @click="accountSettings">
-                        <a class="nav-link " href="#">
-                            <i class="fa fa-cog  fa-2x"></i>&nbsp;
-                            <strong>Configuracion de Cuenta</strong>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div id="contendedor" class="contenedor mb-2">
-       
             <div class="text-center  text-white">
                 <img src="../img/logo2,0.png" alt="">
-           
+
+            </div>
+
+
         </div>
+        <!-- FIREBASE -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+        <!-- AUTH -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+        <!-- DATABASE -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+        <!-- STORAGE -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+        <script src="../js/configFirebase.js"></script>
+        <!-- JQUERY -->
+        <script src="../js/jquery-3.5.js"></script>
 
 
-    </div>
-    <!-- FIREBASE -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-    <!-- AUTH -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
-    <!-- DATABASE -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
-    <!-- STORAGE -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
-    <script src="../js/configFirebase.js"></script>
-    <!-- JQUERY -->
-    <script src="../js/jquery-3.5.js"></script>
-  
 
+        <!-- VUE JS -->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+        <!-- BOOTSTRAP -->
+        <script src="../../bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <!-- MY'S SCRIPTS -->
+        <script src="js/perfilCliente.js"></script>
 
-    <!-- VUE JS -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-    <!-- BOOTSTRAP -->
-    <script src="../../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <!-- MY'S SCRIPTS -->
-    <script src="js/perfilCliente.js"></script>
-
-</body>
+    </body>
 
 </html>

@@ -1,15 +1,31 @@
 <link rel="stylesheet" href="viewChat/css/stilos.css">
+<style>
+input{
+    border-bottom: 2px solid black;
+}
+.form-control:focus{
+    border-bottom: 1px solid black;
+}
+.btn{
+    position:static
+}
+.btn:hover:focus{
+    position:static
+}
 
-<div style=" margin-left: 10px; width: 100%; overflow-y: hidden; overflow-x: auto;">
-    <div class="row w-100 mt-3" id="inbox">
-        <div class="col-4 ">
+
+</style>
+
+<div class="p-3">
+    <div class="form-row mt-3 bg-light" id="inbox">
+        <div class="col-sm-2">
             <ul class="list-group">
                 <li class="list-group-item" v-for="items in users" v-on:click="openchat(items.uId)">
                     {{items.nombreUsuario}}
                 </li>
             </ul>
         </div>
-        <div class="col-8">
+        <div class="col-sm-10 w-100" style="position: static;">
             <div class="card container-historial">
                 <div class="card-header">
                     <h5>
@@ -39,20 +55,20 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row p-2">
                     <div class="col-12">
                         <div id="carga" class="center"></div>
                     </div>
                     <div class="col-12">
-                        <div class=" form-inline d-flex justify-content-between">
+                        <div class=" form-inline d-flex justify-content-between p-3">
                             <label class="imgIcon">
                                 <img src="../img/iconImage.png" alt="Imagen" width="40px" height="40px">
                                 <input @change="obtenerImagen" type="file" hidden>
                             </label>
                             <input v-model="content.msg" type="text" class="form-control form-control-lg"
                                 placeholder="Escribie un Mensaje" style="width:70%">
-
-                            <button type="submit" @click.prevent="sendMessage" class="btn btn-success ">
+    
+                            <button type="submit" @click.prevent="sendMessage" class="btn btn-success">
                                 <img src="../img/send-24px.svg" alt="">
                             </button>
                         </div>
@@ -62,6 +78,7 @@
         </div>
     </div>
 </div>
+
 
 
 

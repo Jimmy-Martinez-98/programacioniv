@@ -19,22 +19,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">{{datos.idPedido}}</th>
-                        <td>{{datos.fecha}}</td>
-                        <td>{{datos.fVence}}</td>
-                        <td>{{datos.descripcion}}</td>
+                    <tr v-for="data in datos">
+
+                        <th scope="row">{{data.idPedido}}</th>
+                        
+                        <td>{{data.fecha}}</td>
+                        <td>{{data.fVence}}</td>
+                        <td>{{data.descripcion}}</td>
                         <td>{{OwnerOfOrder}}</td>
-                        <td>{{datos.tCompra}}</td>
-                        <td>{{datos.cant}}</td>
-                        <td>{{datos.total}}</td>
-                        <td v-if="datos.estado=='Verificada'">
-                            <div id="badge"><strong class="badge badge-success w-100">{{datos.estado}}</strong></div>
+                        <td>{{data.tCompra}}</td>
+                        <td>{{data.cant}}</td>
+                        <td>{{data.total}}</td>
+                        <td v-if="data.estado=='Verificada'">
+                            <div id="badge"><strong class="badge badge-success w-100">{{data.estado}}</strong></div>
                         </td>
-                        <td v-if="datos.estado=='Anulada'">
-                            <div id="badge"><strong class="badge badge-danger w-100">{{datos.estado}}</strong></div>
+                        <td v-if="data.estado=='Anulada'">
+                            <div id="badge"><strong class="badge badge-danger w-100">{{data.estado}}</strong></div>
                         </td>
-                        <td v-if="datos.estado==null||datos.estado==''">
+                        <td v-if="data.estado==null||data.estado==''">
                             <div id="badge"><strong class="badge badge-warning w-100">pendiente</strong></div>
                         </td>
                         <td>
