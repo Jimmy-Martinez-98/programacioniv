@@ -7,7 +7,7 @@
 	<div class="input-group input-group-lg wow fadeIn">
 		<input type="search" class="form-control" v-model="valor" @keyup="autobusquda">
 		<div class="input-group-prepend" v-on:click="buscarL">
-			<span class="input-group-text" id="inputGroup-sizing-lg"><i class="fas fa-search"></i></span>
+			<span class="input-group-text" id="inputGroup-sizing-lg"><em class="fas fa-search"></em></span>
 		</div>
 	</div>
 	<div class="container bg-light forma wow fadeIn mb-5">
@@ -58,7 +58,7 @@
 							<p class="card-text float-left  ">
 								${{le.precioVenta}}
 							</p>
-							<i class="far fa-heart fav float-right " @click="addlistaL(le)"></i>
+							<em class="far fa-heart fav float-right " @click="addlistaL(le)"></em>
 						</div>
 					</div>
 				</div>

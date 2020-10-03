@@ -5,9 +5,10 @@
 	<!-- FONT AWESOME -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-		<!-- VUE.CSS -->
+	<!-- VUE.CSS -->
 	<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 	<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,7 +63,7 @@
 
 							<a href="#" class="contactar mt-3 mb-3 form-inline"
 								v-on:click="contactar(detallesprod.info.idUsuario)">
-								<i class="far fa-comment-dots fa-lg"> </i>
+								<em class="far fa-comment-dots fa-lg"> </em>
 								<h4>Contactar</h4>
 							</a>
 							<div class="container mb-5 columna">
@@ -83,17 +84,17 @@
 									<div class="d-flex justify-content-between">
 										<div class="w-50 form-inline">
 											<button class="btn btn-dark" v-on:click="resta">
-												<i class="fas fa-minus"></i>
+												<em class="fas fa-minus"></em>
 											</button>
 											<input type="text" disabled class="form-control p-2 m-auto w-50"
 												v-model="contador" min="1">
 											<button class="btn btn-success" v-on:click="suma">
-												<i class="fas fa-plus"></i>
+												<em class="fas fa-plus"></em>
 											</button>
 										</div>
 										<button class=" btn btn-outline-danger float-right"
-											@click="addlista(detallesprod.info)">Añadir a deseos <i
-												class="fas fa-heart"></i>
+											@click="addlista(detallesprod.info)">
+											Añadir a deseos <em class="fas fa-heart"></em>
 										</button>
 									</div>
 								</div>
@@ -263,6 +264,9 @@
 								</div>
 								<div class="col-md-12">
 									<table class="table table-bordered bg-light">
+										<caption>
+											Factura
+										</caption>
 										<thead>
 											<tr>
 												<th scope="col">Cant.</th>
@@ -299,11 +303,11 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" v-on:click="descargaDatosCuenta">
-							<i class="fa fa-download" aria-hidden="true"></i>
+							<em class="fa fa-download" aria-hidden="true"></em>
 							Descargar Datos de Cuenta
 						</button>
 						<button type="button" class="btn btn-primary" v-on:click="generarFactura">
-							<i class="fa fa-download" aria-hidden="true"></i>
+							<em class="fa fa-download" aria-hidden="true"></em>
 							Descargar PDF de Factura
 						</button>
 

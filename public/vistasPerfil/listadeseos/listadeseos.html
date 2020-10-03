@@ -3,7 +3,8 @@
 	<link rel="stylesheet" href="public/vistasPerfil/listadeseos/list.css">
 	<ul v-if="AllDeseos" class="list-group card p-2 wow fadeIn fondoListaDeseos"
 		style="border-radius: 0px; box-shadow: 5px 5px 5px #aaaaaa;">
-<li class="card bg-white" v-for="Deseos in AllDeseos" style="border-radius: 0%; box-shadow: 1px 1px 3px #aaaaaa;">
+		<li class="card bg-white" v-for="Deseos in AllDeseos"
+			style="border-radius: 0%; box-shadow: 1px 1px 3px #aaaaaa;">
 			<div class="form-row card-body ">
 				<div class="col-md-3 m-auto">
 					<img :src="Deseos.imagen" class="rounded" width="100%" height="200" alt="">

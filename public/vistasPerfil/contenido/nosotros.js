@@ -68,7 +68,7 @@ var appEdit = new Vue({
       correo: "",
     },
 
-   
+
   },
   methods: {
     /**
@@ -92,8 +92,8 @@ var appEdit = new Vue({
         (this.modificarDatos.imagen != "" &&
           this.modificarDatos.descripcion != "" &&
           this.modificarDatos.telefono != "" &&
-          this.modificarDatos.correo != "") ||
-        (this.modificarDatos.imagen != "" &&
+          this.modificarDatos.correo != "" ||
+          this.modificarDatos.imagen != "" &&
           this.modificarDatos.descripcion != "" &&
           this.modificarDatos.telefono != "" &&
           this.modificarDatos.correo != "")
@@ -120,7 +120,7 @@ var appEdit = new Vue({
           });
       }
     },
-    jsonParse(key, id, imagen, descripcion,telefono, correo) {
+    jsonParse(key, id, imagen, descripcion, telefono, correo) {
       let data = {
         idDesc: key,
         idU: id,
@@ -140,21 +140,21 @@ var appEdit = new Vue({
      * @param {objec} e - Representa el cambio en el tag img
      */
     obtenerimagen(e) {
-       let file = e.target.files[0];
-       let upload = storage
-         .ref()
-         .child("datos/" + file.name)
-         .put(file);
+      let file = e.target.files[0];
+      let upload = storage
+        .ref()
+        .child("datos/" + file.name)
+        .put(file);
 
-       upload.on(
-         "state_changed",
-         (snapshot) => {
-           //muestra el progreso
-           let progress = Math.round(
-             (snapshot.bytesTransferred * 100) / snapshot.totalBytes
-           );
-           let img = document.getElementById("barra");
-           img.innerHTML = `
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          //muestra el progreso
+          let progress = Math.round(
+            (snapshot.bytesTransferred * 100) / snapshot.totalBytes
+          );
+          let img = document.getElementById("barra");
+          img.innerHTML = `
                 <div class="progress">
                   <div
                     class="progress-bar"
@@ -167,24 +167,24 @@ var appEdit = new Vue({
                     ${progress}%
                   </div>
                 </div>`;
-         },
-         (error) => {
-           //muestra error
-           swal.fire({
-             title: "Ups..",
-             text: "Ocurrio al cargar Imagen",
-             icon: "error",
-           });
-         },
-         () => {
-           //cuando la imagen ya esta subida
-           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-             appEdit.modificarDatos.imagen = downloadURL;
-             document.getElementById("progress").style.display = "none";
-           });
-         }
-       );
-   
+        },
+        (error) => {
+          //muestra error
+          swal.fire({
+            title: "Ups..",
+            text: "Ocurrio al cargar Imagen",
+            icon: "error",
+          });
+        },
+        () => {
+          //cuando la imagen ya esta subida
+          upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            appEdit.modificarDatos.imagen = downloadURL;
+            document.getElementById("progress").style.display = "none";
+          });
+        }
+      );
+
     },
   },
 });
@@ -240,7 +240,7 @@ var appNueva = new Vue({
                 text: "Datos Guardados Exitosamente",
                 icon: "success",
               });
-              appNueva.Information.imageInfo='public/img/ico.png'
+              appNueva.Information.imageInfo = 'public/img/ico.png'
               appNueva.Information.description = ''
               appNueva.Information.telefono = ''
               appNueva.Information.correo = ''
@@ -315,16 +315,16 @@ var appNueva = new Vue({
         () => {
           //cuando la imagen ya esta subida
           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-           appNueva.Information.imageInfo = downloadURL;
+            appNueva.Information.imageInfo = downloadURL;
             document.getElementById("barra").style.display = "none";
-            document.getElementById("imgSinNada").style.display="none";
+            document.getElementById("imgSinNada").style.display = "none";
             document.getElementById("imgCon").style.display = "block";
           });
         }
       );
     },
   },
-  created:function(){
-     document.getElementById("imgCon").style.display = "none";
+  created: function () {
+    document.getElementById("imgCon").style.display = "none";
   }
 });

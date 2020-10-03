@@ -1,97 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-	<link rel="stylesheet" href="public/vistasPerfil/contenido/nosotros.css">
-	<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
-	<link rel="stylesheet" href="alertifyjs/css/alertify.css">
-</head>
-<title></title>
-<body>
-	<div class="container card bg mb-3 wow fadeIn" id="nosotrosdiv">
-		<div class="container py-2 ">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+		<link rel="stylesheet" href="public/vistasPerfil/contenido/nosotros.css">
+		<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+		<link rel="stylesheet" href="alertifyjs/css/alertify.css">
+		<title></title>
+	</head>
 
-			<div class="row card  " v-if="infoNosotros">
-				<div class="col-12 card-text">
-					<div class="card mt-2">
-						<img width="100%" height="250px" alt="" :src="infoNosotros.imagen">
-					</div>
-					<h2 class="d-flex justify-content-center">Decripcion</h2>
-					<hr>
-					<div class="card-text mt-2">
-						<p class=" text-justify">{{infoNosotros.descripcion}}</p>
-					</div>
-				</div>
-				<div class="col-12 card-text">
-					
-					<h2 class="d-flex justify-content-center">Telefono</h2>
-					<hr>
-					<div class="card-text mt-2">
-						<p class=" text-justify">{{infoNosotros.telefono}}</p>
-					</div>
-				</div>
-				<div class="col-12 card-text">
-					
-					<h2 class="d-flex justify-content-center">Correo</h2>
-					<hr>
-					<div class="card-text mt-2">
-						<p class=" text-justify">{{infoNosotros.correo}}</p>
-					</div>
-				</div>
-			</div>
-			<div class="row card" v-else>
-				<div class="col-12 card-text">
-					<h1 class="text-black-50">Aun No hay información</h1>
-				</div>
-			</div>
+	<body>
+		<div class="container card bg mb-3 wow fadeIn" id="nosotrosdiv">
+			<div class="container py-2 ">
 
-		</div>
-		<div class="card-foote-fluid pb-2">
-			<div class="container" v-if="!infoNosotros">
-				<div class="row" >
-					<div class="col-12">
-						<input href="#modalnuevo" type="button" id="modalas" class="btn btn-primary btn-lg btn-block"
-							data-toggle="modal" data-target="#nuevam" value="Nueva">
+				<div class="row card  " v-if="infoNosotros">
+					<div class="col-12 card-text">
+						<div class="card mt-2">
+							<img width="100%" height="250px" alt="" :src="infoNosotros.imagen">
+						</div>
+						<h2 class="d-flex justify-content-center">Decripcion</h2>
+						<hr>
+						<div class="card-text mt-2">
+							<p class=" text-justify">{{infoNosotros.descripcion}}</p>
+						</div>
+					</div>
+					<div class="col-12 card-text">
+						<h2 class="d-flex justify-content-center">Telefono</h2>
+						<hr>
+						<div class="card-text mt-2">
+							<p class=" text-justify">{{infoNosotros.telefono}}</p>
+						</div>
+					</div>
+					<div class="col-12 card-text">
+
+						<h2 class="d-flex justify-content-center">Correo</h2>
+						<hr>
+						<div class="card-text mt-2">
+							<p class=" text-justify">{{infoNosotros.correo}}</p>
+						</div>
 					</div>
 				</div>
+				<div class="row card" v-else>
+					<div class="col-12 card-text">
+						<h1 class="text-black-50">Aun No hay información</h1>
+					</div>
+				</div>
+
 			</div>
-				<div class="container"v-else>
-					<div class="row" >
+			<div class="card-foote-fluid pb-2">
+				<div class="container" v-if="!infoNosotros">
+					<div class="row">
+						<div class="col-12">
+							<input href="#modalnuevo" type="button" id="modalas"
+								class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nuevam"
+								value="Nueva">
+						</div>
+					</div>
+				</div>
+				<div class="container" v-else>
+					<div class="row">
 						<div class="col-12">
 							<input href="#modaleditar" v-on:click="editarDatos(infoNosotros)" type="button" id="modala"
 								class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modaleditar"
 								value="Modificar">
-				
+
 						</div>
 					</div>
 				</div>
+			</div>
+
+
 		</div>
 
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="public/vistas/blog/dist/wow.js"></script>
+		<script src="public/vistasPerfil/contenido/nosotros.js"></script>
 
-	</div>
-
-	</div>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="public/vistas/blog/dist/wow.js"></script>
-	<script src="public/vistasPerfil/contenido/nosotros.js"></script>
-	<script src="alertifyjs/alertify.js"></script>
-	<script>
-		var wow = new WOW(
-			{
-				boxClass: 'wow',      // animated element css class (default is wow)
-				animateClass: 'animated', // animation css class (default is animated)
-				offset: 0,          // distance to the element when triggering the animation (default is 0)
-			}
-		);
-		wow.init();
-	</script>
-</body>
+		<script>
+			var wow = new WOW(
+				{
+					boxClass: 'wow',      // animated element css class (default is wow)
+					animateClass: 'animated', // animation css class (default is animated)
+					offset: 0,          // distance to the element when triggering the animation (default is 0)
+				}
+			);
+			wow.init();
+		</script>
+	</body>
 
 </html>
 
@@ -112,7 +113,7 @@
 			<div class="modal-body">
 				<form id="imgs">
 					<div class="col-12 d-flex justify-content-center card	">
-						<img width="100%" height="150px" :src="modificarDatos.imagen">
+						<img width="100%" height="150px" :src="modificarDatos.imagen" alt="">
 						<div class="custom-file">
 							<input @change="obtenerimagen" type="file" required name="archivo" class="custom-file-input"
 								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
@@ -171,8 +172,8 @@
 			<div class="modal-body">
 				<form id="datos">
 					<div class="col-12 d-flex justify-content-center card">
-						<img  id="imgSinNada" width="100%" height="150px" src="public/img/ico.png">
-						<img width="100%" id="imgCon" height="150px" :src="Information.imageInfo">
+						<img id="imgSinNada" width="100%" height="150px" src="public/img/ico.png" alt="">
+						<img width="100%" id="imgCon" height="150px" :src="Information.imageInfo" alt="">
 						<input @change="obtenerimagenN" required id="filein" type="file" class="form-control">
 						<div class="card-footer py-2" id="barra"></div>
 					</div>
@@ -194,8 +195,7 @@
 					<div class="col-12 text-dark">
 						<div class="form-group">
 							<label for="desc">Correo</label>
-							<textarea class="form-control" id="mision" rows="3"
-								v-model="Information.correo"></textarea>
+							<textarea class="form-control" id="mision" rows="3" v-model="Information.correo"></textarea>
 						</div>
 					</div>
 				</form>

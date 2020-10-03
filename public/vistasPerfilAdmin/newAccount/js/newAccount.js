@@ -36,7 +36,7 @@ var newAccount = new Vue({
             } else if (this.productor != '' && this.cooperativa != '') {
                 if (this.typeSeller == 'cooperativa') {
                     this.name = this.cooperativa
-                    this.productor == ''
+                    this.productor == null
                 } else if (this.typeSeller == 'productor') {
                     this.account.name = this.productor
                 }

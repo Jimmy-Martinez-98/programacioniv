@@ -44,7 +44,7 @@
 				</caption>
 				<thead class="thead-dark">
 					<tr>
-						<th>Código</th>
+						<th scope="col">Código</th>
 						<th>Nombre</th>
 						<th>Descripción</th>
 						<th>P.Libra</th>
@@ -60,15 +60,15 @@
 				<tbody>
 					<tr v-for="dateProducts in displayArticles" :key="dateProducts.idProducto">
 						<th scope="row">{{dateProducts.codeProducto}}</th>
-						<td scope="row">{{dateProducts.nombreProducto}}</td>
-						<td scope="row">{{dateProducts.descProducto}}</td>
-						<td scope="row">{{dateProducts.precioLibra}}</td>
-						<td scope="row">{{dateProducts.precioArroba}}</td>
-						<td scope="row">{{dateProducts.precioQuintal}}</td>
-						<td scope="row">{{dateProducts.precioCaja}}</td>
-						<td scope="row">{{dateProducts.existencias}}</td>
-						<td scope="row">{{dateProducts.categoria}}</td>
-						<td scope="row">
+						<td >{{dateProducts.nombreProducto}}</td>
+						<td >{{dateProducts.descProducto}}</td>
+						<td >{{dateProducts.precioLibra}}</td>
+						<td >{{dateProducts.precioArroba}}</td>
+						<td >{{dateProducts.precioQuintal}}</td>
+						<td >{{dateProducts.precioCaja}}</td>
+						<td >{{dateProducts.existencias}}</td>
+						<td >{{dateProducts.categoria}}</td>
+						<td >
 							<div class="d-flex justify-content-center">
 								<img :src="dateProducts.imagen" width="50" height="50" alt="">
 							</div>

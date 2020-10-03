@@ -14,7 +14,7 @@
 
 <!-- carrusel legumbres-->
 <div id="slider" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <b> Top 10 de legumbres</b></p>
+	<p> <strong> Top 10 de legumbres</strong></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos">
@@ -68,7 +68,7 @@
 								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
-							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>
+							<em class="far fa-heart fav float-right" @click="addlistaC(datos)"></em>
 						</div>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 
 <!-- carrusel Verduras -->
 <div id="sliderverduras" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <b> Top 10 de Verduras</b></p>
+	<p> <em> Top 10 de Verduras</em></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos">
@@ -142,7 +142,7 @@
 								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
-							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>
+							<em class="far fa-heart fav float-right" @click="addlistaC(datos)"></em>
 						</div>
 					</div>
 				</div>
@@ -162,7 +162,7 @@
 
 <!-- carrusel Frutas -->
 <div id="sliderfrutos" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <b> Top 10 de Frutas</b></p>
+	<p> <em> Top 10 de Frutas</em></p>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos">
@@ -216,7 +216,7 @@
 								v-if="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
-							<i class="far fa-heart fav float-right" @click="addlistaC(datos)"></i>
+							<em class="far fa-heart fav float-right" @click="addlistaC(datos)"></em>
 						</div>
 					</div>
 				</div>
