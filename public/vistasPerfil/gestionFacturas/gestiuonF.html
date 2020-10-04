@@ -4,8 +4,33 @@
     <div class="container w-100">
         <div class="table-responsive">
             <table class="table table-striped table-secondary " id="factura">
-                <caption class="bg-light">Lista de Facturas</caption>
-                <thead  class="thead-dark">
+                <caption class="bg-light">
+                    <div class="d-flex justify-content-between">
+                        <strong>
+                            Lista de Facturas: Total: {{datos.length}}
+                        </strong>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" v-if="page!=1" @click="page--">
+                                    <a class="page-link " type="button">&laquo; Anterior</a>
+                                </li>
+
+                                <li class="page-item" :class="{'active': page==pageNumber}" v-for="pageNumber in  pages"
+                                    :key="pageNumber" @click="page=pageNumber">
+                                    <a class="page-link" type="button">{{pageNumber}}</a>
+                                </li>
+
+
+
+                                <li class="page-item " v-if="page< pages.length" @click="page++">
+                                    <a class="page-link  " type="button">Siguiente &raquo;</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </caption>
+                <thead class="thead-dark">
                     <tr>
                         <th>ID P.</th>
                         <th>Fecha</th>

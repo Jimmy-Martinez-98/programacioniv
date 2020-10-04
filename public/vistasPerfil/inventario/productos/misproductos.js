@@ -13,11 +13,12 @@ var misproductosapp = new Vue({
       perPage: 4,
       articles: [],
       pages: [],
+      InPage: ''
     }
   },
   created: function () {
     this.productsInTable()
-    this.articles = [];
+
   },
   computed: {
     displayArticles: function () {

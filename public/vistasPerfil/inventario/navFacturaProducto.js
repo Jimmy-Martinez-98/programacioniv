@@ -1,9 +1,14 @@
 var contenido = new Vue({
   el: "#navegacion",
-  
+  data() {
+    return {
+      active:3
+    }
+  },
   created: function () {
     this.productos()
   },
+ 
   methods: {
     productos: function () {
       $("#contenedor").load(

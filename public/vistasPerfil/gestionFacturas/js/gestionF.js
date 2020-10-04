@@ -7,8 +7,11 @@
 var factura = new Vue({
     el: '#factura',
     data: {
+        OwnerOfOrder: '',
         datos: [],
-        OwnerOfOrder: ''
+        forPage: 6,
+        pages: [],
+        page: 1
     },
     /**
      * Esta funcion llama a metodos para ejecutarlos al cargar el DOM
@@ -16,7 +19,19 @@ var factura = new Vue({
      * @function created 
      */
     created: function () {
-        this.observador()
+        this.observador();
+        this.datos=[]
+    },
+
+    computed: {
+        displayFacturas: function () {
+            return this.paginate(this.datos);
+        }
+    },
+    weatch: {
+        datos() {
+            this.setFacturas();
+        }
     },
     methods: {
         /**
@@ -24,8 +39,8 @@ var factura = new Vue({
          * @access public 
          * @function observador
          */
-        observador: function () {
-            firebaseAuth.onAuthStateChanged((user) => {
+        async observador() {
+            await firebaseAuth.onAuthStateChanged((user) => {
                 if (user) {
                     firebaseDB.ref('dataFacturas').on('value', snap => {
                         snap.forEach(element => {
@@ -39,7 +54,37 @@ var factura = new Vue({
 
                 }
             })
+
         },
+
+        /**
+         * Muestra el numero de paginas 
+         * @access public
+         * @function setFacturas
+         */
+        setFacturas: function () {
+            let numberOfPage = Math.ceil(this.datos.length / this.forPage);
+            this.pages = [];
+            for (let i = 1; i <= numberOfPage; i++) {
+                this.pages.push(i);
+            }
+        },
+        /**
+         * Calcula la el numero de paginas para la tabla
+         * @access public 
+         * @function paginate
+         * @param {object} facturas -> representa el total de facturas de la db
+         */
+        paginate: function (facturas) {
+            let page = this.page;
+            let forPage = this.forPage;
+            let from = (page * forPage) - forPage;
+            let to = (pages * forPage);
+            return facturas.slice(from, to);
+        },
+
+
+
         /**
          * obtiene los datos del usuario de la BD para mostrar nombre en la vista
          * @access public   
@@ -75,12 +120,12 @@ var factura = new Vue({
                 });
             })
         },
-         /**
-          * es cuando el usuario clickea el item anular del menu de opciones en la tabla 
-          * @access public
-          * @function anular
-          * @param {String} id 
-          */
+        /**
+         * es cuando el usuario clickea el item anular del menu de opciones en la tabla 
+         * @access public
+         * @function anular
+         * @param {String} id 
+         */
         anular: function (id) {
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Anulada"

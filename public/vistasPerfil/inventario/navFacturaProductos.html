@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 <link rel="stylesheet" href="public/vistasPerfil/inventario/stilos.css">
 <style>
-    .list-group-item-action:hover {
+    .list-group-item:hover {
         cursor: pointer;
     }
 
@@ -10,12 +10,12 @@
     <div class="row w-100" id="navegacion">
         <div class="col-sm-12">
             <div class="container d-flex justify-content-sm-center">
-                <ul class="list-group list-group-horizontal" id="myList" role="tablist">
-                    <li class="list-group-item list-group-item-action active" @click="productos" data-toggle="list"
-                        role="tab">Gestión Productos
+                <ul class="list-group list-group-horizontal" id="myList" >
+                    <li class="list-group-item":class="{'active':active==0}" @click="active = 0" 
+                       > <div  @click="productos">Gestión Productos</div> 
                     </li>
-                    <li class="list-group-item list-group-item-action" @click="facturas" data-toggle="list" role="tab">
-                        Gestión Facturas
+                    <li class="list-group-item ":class="{'active':active==1}" @click="active = 1"   >
+                       <div @click="facturas">Gestión Facturas</div> 
                     </li>
                 </ul>
             </div>

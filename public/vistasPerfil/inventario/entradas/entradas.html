@@ -3,7 +3,7 @@
 <!-- css of vuesax -->
 <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 <form id="Entradas">
-    <div class="row">
+    <div class="row bg-light">
         <div class="col-6 mb-2">
             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addEntrada">Agregar
                 Entrada</button>
@@ -13,7 +13,7 @@
                 <table class="table table-striped table-success">
                     <caption class="bg-light">
                         <div class="d-flex justify-content-between">
-                            <strong>Lista de Entradas: Mostrando 4 de un total de {{entry.length}}</strong>
+                            <strong>Lista de Entradas: Total de Entradas: {{entry.length}}</strong>
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item" v-if="page!=1" @click="page--">
