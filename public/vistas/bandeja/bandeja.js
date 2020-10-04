@@ -11,7 +11,7 @@
  * @property refChats
  * @property displayName
  */
-appbandeja = new Vue({
+var appbandeja = new Vue({
   el: "#bandejas",
   data() {
     return {
@@ -51,6 +51,7 @@ appbandeja = new Vue({
       this.msgs = [];
       this.allmsg.forEach((element) => {
         this.evaluarItem(element);
+
       });
     },
     retornarImagen: function () {
@@ -151,6 +152,7 @@ appbandeja = new Vue({
       });
 
       this.allmsg = historial;
+
     },
 
     /**
@@ -258,7 +260,12 @@ appbandeja = new Vue({
         (item.De === this.msg.para && item.Para === this.msg.de)
       ) {
         this.msgs.push(item);
+
       }
+    },
+
+    notificaciones: function () {
+      
     },
     /**
      * es cuando se muestra el nombre del titulo del chat

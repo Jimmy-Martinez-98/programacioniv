@@ -1,4 +1,4 @@
-confirmModificacion = new Vue({
+var confirmModificacion = new Vue({
   el: "#modificar",
   data: {
     modificacion: {

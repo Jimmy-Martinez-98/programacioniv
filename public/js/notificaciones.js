@@ -5,11 +5,11 @@
 
 
 
- /**
-  * Compruebo que el navegador soporte la API de Notificaciones
-  */
-if ( !window.Notification ) {
-    window.Notification = (()=>window.Notification || window.webkitNotication || window.mozNotification || window.oNotification || window.msNotification)()
+/**
+ * Compruebo que el navegador soporte la API de Notificaciones
+ */
+if (!window.Notification) {
+    window.Notification = (() => window.Notification || window.webkitNotication || window.mozNotification || window.oNotification || window.msNotification)()
 }
 /**
  * verificamos el permiso asignado
@@ -17,7 +17,7 @@ if ( !window.Notification ) {
  */
 switch (window.Notification.permission) {
     case 'default':
-        window.Notification.requestPermission((permission)=>{
+        window.Notification.requestPermission((permission) => {
             console.log("Permiso: ", permission);
         });
         break;
@@ -32,13 +32,13 @@ switch (window.Notification.permission) {
  * @callback crea una api de notificacion, para mostrar notificaciones.
  * @param {object} $ framework de jQuery.
  */
-(($)=>{
+(($) => {
     /**
      * comprobamos si el navegador soporta notificaciones
      */
-    if(!window.Notification){
-        alert("Por favor actualizate o pasate a chrome, Notificaciones NO soportadas");
-        return;
+    if (!window.Notification) {
+
+        return alert("Por favor actualizate o pasate a chrome, Notificaciones NO soportadas");;
     }
     /**
      * @function notificacion extiende de la APi de notificaciones, para mostrar notificaciones
@@ -47,11 +47,11 @@ switch (window.Notification.permission) {
      * @param {string} image icono a mostrar en la notificacion
      * @returns objeto de notificacion.
      */
-    $.notification = (titulo,msg,image)=>{
-        var notification = new Notification(titulo,{
+    $.notification = (titulo, msg, image) => {
+        var notification = new Notification(titulo, {
             body: msg,
             icon: image,
-            iconUrl:image
+            iconUrl: image
         });
         return notification;
     }

@@ -20,7 +20,7 @@ var appcontras = new Vue({
      */
     Recuperar: function () {
       firebaseAuth.languageCode = "es";
-      email = this.resetPassword.correo;
+      let email = this.resetPassword.correo;
       firebaseAuth.sendPasswordResetEmail(email)
         .then(() => {
           swal

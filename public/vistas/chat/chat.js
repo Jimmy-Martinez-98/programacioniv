@@ -9,7 +9,7 @@
 /**
  * @property el  elemento del DOM a enlazar
  */
-appChat = new Vue({
+var appChat = new Vue({
   el: "#frm-chats",
   data: {
     mensajes: {
@@ -31,8 +31,8 @@ appChat = new Vue({
     update: function () {
       this.chatHistory();
     },
-    imagen:function(){
-     return this.usuarioChat.imagen != "";
+    imagen: function () {
+      return this.usuarioChat.imagen != "";
     }
   },
   watch: {
@@ -42,11 +42,7 @@ appChat = new Vue({
   },
 
   methods: {
-    /*
-    ======================
-           METODOS
-    ======================
-    */
+
 
     estado: function () {
       firebaseAuth.onAuthStateChanged((user) => {
@@ -73,9 +69,6 @@ appChat = new Vue({
       });
     },
     chatHistory: function () {
-      let data = [];
-      data = [];
-
       firebaseDB.ref("/chat").on("value", (snap) => {
         this.allMessages = [];
         snap.forEach((element) => {
@@ -91,11 +84,7 @@ appChat = new Vue({
       });
     },
 
-    /*
-      =========================
-              LISTENERS
-      =========================
-      */
+
 
     /**
      *
@@ -120,7 +109,7 @@ appChat = new Vue({
       let file = e.target.files[0];
       let upload = storage
         .ref()
-        .child("imageChat/" + file.name+random)
+        .child("imageChat/" + file.name + random)
         .put(file);
       upload.on(
         "state_changed",
@@ -147,7 +136,7 @@ appChat = new Vue({
           });
         },
         () => {
-          //cuando la imagen ya document.getElementById("target").style.display='none' esta subida
+          //cuando la imagen ya  esta subida
 
           upload.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             firebaseDB

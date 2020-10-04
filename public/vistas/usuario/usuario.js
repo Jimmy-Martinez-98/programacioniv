@@ -4,7 +4,7 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-fbAuth = firebaseAuth;
+var fbAuth = firebaseAuth;
 var appusuario = new Vue({
   el: "#frm-usuarios",
   data: {
