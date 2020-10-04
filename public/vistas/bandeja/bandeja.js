@@ -25,7 +25,8 @@ var appbandeja = new Vue({
       users: [],
       allmsg: [],
       refChats: [],
-      displayName: []
+      displayName: [],
+
     }
   },
   /**
@@ -35,6 +36,7 @@ var appbandeja = new Vue({
     this.estado();
     this.referenciaChats();
     this.chatHistory();
+
   },
   /**
    * propiedades computadas
@@ -58,7 +60,10 @@ var appbandeja = new Vue({
       return (
         this.displayName.imagen != "" ||
         (this.displayName.imagen != null));
-    }
+    },
+
+
+
   },
   /** 
    * llama a la propiedades para poder observar su estado y si cambia su estado retornar el nuevo estado
@@ -67,6 +72,7 @@ var appbandeja = new Vue({
    */
   watch: {
     returnNewArray() {},
+
   },
   methods: {
     /**
@@ -264,9 +270,7 @@ var appbandeja = new Vue({
       }
     },
 
-    notificaciones: function () {
-      
-    },
+
     /**
      * es cuando se muestra el nombre del titulo del chat
      * @access public
