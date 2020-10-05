@@ -44,10 +44,7 @@ var SolicV = new Vue({
                                 ", Correo: " + correo,
                         })
                         .then(() => {
-                            this.dataSoliV.selectU = "";
-                            this.dataSoliV.nombreC = "";
-                            this.dataSoliV.correo = "";
-                            this.dataSoliV.nombreP = "";
+                            this.limpieza()
                             this.openNotificacion('success',
                                 'Solicitud Enviada!!',
                                 'En la bandeja de sus chats vera su mensaje con el chat de administrador :)')
@@ -66,10 +63,7 @@ var SolicV = new Vue({
                                 ", Correo: " + correo,
                         })
                         .then(() => {
-                            this.dataSoliV.selectU = "";
-                            this.dataSoliV.nombreC = "";
-                            this.dataSoliV.correo = "";
-                            this.dataSoliV.nombreP = "";
+                            this.limpieza()
                             this.openNotificacion('success', 'Solicitud Enviada!!', 'En la bandeja de sus chats vera su mensaje con el chat de administrador :)')
                         });
                 }
@@ -79,6 +73,18 @@ var SolicV = new Vue({
                 this.openNotificacion('danger', 'Complete los campos', '')
             }
 
+        },
+        closeX: function () {
+            this.limpieza()
+        },
+        closebtn: function () {
+            this.limpieza()
+        },
+        limpieza: function () {
+            this.dataSoliV.selectU = "";
+            this.dataSoliV.nombreC = "";
+            this.dataSoliV.correo = "";
+            this.dataSoliV.nombreP = "";
         },
         /**
          * 

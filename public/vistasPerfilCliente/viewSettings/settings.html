@@ -70,7 +70,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title justify-content-center">Solicitud de vendedor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click='closeX'>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -90,28 +90,28 @@
                     <div class="col-12 text-dark" v-if="dataSoliV.selectU==='Cooperativa'">
                         <div class="form-group">
                             <label for="name">Nombre cooperativa</label>
-                            <input type="text" v-model="dataSoliV.nombreCoo" class="form-control" required="required" 
-                                ></input>
+                            <input type="text" v-model="dataSoliV.nombreCoo" class="form-control"
+                                required="required"></input>
                         </div>
                     </div>
                     <div class="col-12 text-dark" v-show="dataSoliV.selectU==='Productor pequeño'">
                         <div class="form-group">
                             <label for="name">Nombre Productor pequeño</label>
                             <input required="required" type="text" v-model="dataSoliV.nombreP" class="form-control"
-                              required="required"  ></input>
+                                required="required"></input>
                         </div>
                     </div>
                     <div class="col-12 text-dark">
                         <div class="form-group">
                             <label for="name">Correo</label>
                             <input required="required" type="email" v-model="dataSoliV.correo" class="form-control"
-                               required="required" ></input>
+                                required="required"></input>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" @click="closebtn">Cancelar</button>
                 <button type="button" v-on:click="almacenar" class="btn btn-primary">Enviar</button>
             </div>
         </div>
