@@ -5,13 +5,13 @@
     <div class="form-row bg-white m-auto">
         <div class="col-md-12 d-flex justify-content-center mb-3">
             <div class="card" style="width: 18rem;">
-                <img v-if="validateImage" :src="dataUser.imagen" class="card-img-top" alt="">
+                <img v-if="validateImage" :src="dataUser.imagen" class="card-img-top">
                 <img v-else src="../img/avatars.png" class="card-img-top" alt="Imagen de Perfil">
                 <div class="card-body">
 
                     <label class="btn btn-primary">
                         Modificar Imagen
-                    <input type="file" @change="getImage" hidden>
+                        <input type="file" @change="getImage" hidden>
                     </label>
 
                     <div id="barra"></div>
@@ -45,7 +45,15 @@
                 <h6 class="mr-2">
                     {{dataUser.correo}}
                 </h6>
-                <button class="btn btn-primary" @click="sendPasswordReset(dataUser.correo)">Restablecer Contraseña</button>
+                <button class="btn btn-primary" @click="sendPasswordReset(dataUser.correo)">Restablecer
+                    Contraseña</button>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-center mb-3">
+            <div class="d-flex w-75 justify-content-md-between">
+                <h6 class="mr-2"></h6>
+                <button href="#ModalSoliVendedor" id="modalas" class="btn btn-primary" data-toggle="modal"
+                    data-target="#nuevaSoliV" value="Nueva">Solicitar cuenta de vendedor</button>
             </div>
         </div>
     </div>
@@ -53,3 +61,59 @@
 
 
 <script src="viewSettings/js/settings.js"></script>
+<script src="viewSettings/js/solicitud.js"></script>
+
+
+<!-- modal Solicitud dde vendedor -->
+<div class="modal fade" id="nuevaSoliV" tabindex="-1" role="dialog" aria-labelledby="nuevaSoliV" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title justify-content-center">Solicitud de vendedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="datosVendedor">
+                    <div class="col-12 text-dark">
+                        <div class="form-group">
+                            <label for="desc">¿Quien eres?</label>
+                            <select required="required" class="custom-select" v-model="dataSoliV.selectU"
+                                id="inputSelectUsuario">
+                                <option selected value="">Elige...</option>
+                                <option value="Cooperativa">Cooperativa</option>
+                                <option value="Productor pequeño">Productor pequeño</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-dark" v-if="dataSoliV.selectU==='Cooperativa'">
+                        <div class="form-group">
+                            <label for="name">Nombre cooperativa</label>
+                            <input type="text" v-model="dataSoliV.nombreCoo" class="form-control" required="required" 
+                                ></input>
+                        </div>
+                    </div>
+                    <div class="col-12 text-dark" v-show="dataSoliV.selectU==='Productor pequeño'">
+                        <div class="form-group">
+                            <label for="name">Nombre Productor pequeño</label>
+                            <input required="required" type="text" v-model="dataSoliV.nombreP" class="form-control"
+                              required="required"  ></input>
+                        </div>
+                    </div>
+                    <div class="col-12 text-dark">
+                        <div class="form-group">
+                            <label for="name">Correo</label>
+                            <input required="required" type="email" v-model="dataSoliV.correo" class="form-control"
+                               required="required" ></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" v-on:click="almacenar" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
