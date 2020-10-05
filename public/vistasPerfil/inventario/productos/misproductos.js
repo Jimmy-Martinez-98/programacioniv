@@ -383,10 +383,13 @@ var guardarProducto = new Vue({
     },
     subirImagen: function (e) {
       let file = e.target.files[0];
-      let random = Math.random();
+      // === Client side ===
+      const crypto = window.crypto || window.msCrypto;
+      var array = new Uint32Array(1);
+      crypto.getRandomValues(array); // Compliant for security-sensitive use cases
       let upload = storage
         .ref()
-        .child("productos/" + file.name + random)
+        .child("productos/" + file.name + crypto.getRandomValues(array))
         .put(file);
 
       upload.on(
@@ -395,7 +398,7 @@ var guardarProducto = new Vue({
           //muestra el progreso
           let progress = Math.round(
             (snapshot.bytesTransferred * 100) / snapshot.totalBytes
-          );
+          ).toFixed(0);
           let img = document.getElementById("barra");
           img.innerHTML = `
                 <div class="progress">

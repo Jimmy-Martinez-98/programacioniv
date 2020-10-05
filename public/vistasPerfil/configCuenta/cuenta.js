@@ -77,10 +77,12 @@ var datosCuenta = new Vue({
     },
     obtenerImagen(e) {
       let file = e.target.files[0];
-      let ramdon = Math.random()
+     const crypto = window.crypto || window.msCrypto;
+     var array = new Uint32Array(1);
+     crypto.getRandomValues(array); // Compliant for security-sensitive use cases
       let upload = storage
         .ref()
-        .child("Perfil/" + file.name + ramdon)
+        .child("Perfil/" + file.name + crypto.getRandomValues(array))
         .put(file);
 
       upload.on(

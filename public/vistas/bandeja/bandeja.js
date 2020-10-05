@@ -189,11 +189,14 @@ var appbandeja = new Vue({
      * @param {object} e -> objeto de imagen 
      */
     obtenerImagen(e) {
-      let random = Math.random();
+      // === Client side ===
+      const crypto = window.crypto || window.msCrypto;
+      var array = new Uint32Array(1);
+      crypto.getRandomValues(array); // Compliant for security-sensitive use cases
       let file = e.target.files[0];
       let upload = storage
         .ref()
-        .child("imageChat/" + file.name + random)
+        .child("imageChat/" + file.name + crypto.getRandomValues(array))
         .put(file);
       upload.on(
         "state_changed",

@@ -105,11 +105,14 @@ var appChat = new Vue({
       }
     },
     obtenerImagen(e) {
-      let random = Math.random();
+      // === Client side ===
+      const crypto = window.crypto || window.msCrypto;
+      var array = new Uint32Array(1);
+      crypto.getRandomValues(array); // Compliant for security-sensitive use cases
       let file = e.target.files[0];
       let upload = storage
         .ref()
-        .child("imageChat/" + file.name + random)
+        .child("imageChat/" + file.name + crypto.getRandomValues(array))
         .put(file);
       upload.on(
         "state_changed",
@@ -117,7 +120,7 @@ var appChat = new Vue({
           //muestra el progreso
           let progress = Math.round(
             (snapshot.bytesTransferred * 100) / snapshot.totalBytes
-          );
+          ).toFixed(0);
 
           document.getElementById("target").innerHTML = `
           <div class="progress">

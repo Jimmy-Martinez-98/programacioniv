@@ -20,7 +20,7 @@ var factura = new Vue({
      */
     created: function () {
         this.observador();
-        this.datos=[]
+        this.datos = []
     },
 
     computed: {
@@ -43,8 +43,8 @@ var factura = new Vue({
             await firebaseAuth.onAuthStateChanged((user) => {
                 if (user) {
                     firebaseDB.ref('dataFacturas').on('value', snap => {
+                        this.datos = []
                         snap.forEach(element => {
-
                             if (element.val().idOwner == user.uid) {
                                 this.traerUserOrder(element.val().idOwnerOfOrder)
                                 this.datos.push(element.val())
@@ -110,13 +110,14 @@ var factura = new Vue({
         verificar: function (id) {
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Verificada"
-            }).then(() => {
+            }).catch(() => {
                 this.$vs.notification({
                     square: true,
                     progress: "auto",
-                    color: 'success',
-                    title: "Factura Verificada :)",
+                    color: 'danger',
+                    title: "Ocurrio un error al intentar realizar la acción",
                     position: 'bottom-center',
+                    icon: "<i class='bx error-circle'></i>"
                 });
             })
         },
@@ -129,14 +130,15 @@ var factura = new Vue({
         anular: function (id) {
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Anulada"
-            }).then(() => {
-                this.$vs.notification({
-                    square: true,
-                    progress: "auto",
-                    color: 'success',
-                    title: "Factura Anulada :)",
-                    position: 'bottom-center',
-                });
+            }).catch(() => {
+                 this.$vs.notification({
+                     square: true,
+                     progress: "auto",
+                     color: 'danger',
+                     title: "Ocurrio un error al intentar realizar la acción",
+                     position: 'bottom-center',
+                     icon: "<i class='bx error-circle'></i>"
+                 });
             })
         }
     }

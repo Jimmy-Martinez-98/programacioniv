@@ -34,7 +34,11 @@ var factura = new Vue({
   },
   methods: {
     verificarPUnitario: function () {
-      this.facturar.idPedido = Math.floor(Math.random() * 100);
+      // === Client side ===
+      const crypto = window.crypto || window.msCrypto;
+      var array = new Uint32Array(1);
+      crypto.getRandomValues(array); // Compliant for security-sensitive use cases
+      this.facturar.idPedido = Math.floor(crypto.getRandomValues(array) * 100);
       if (this.facturar.tCompra == "Libra") {
         this.facturar.precioUnitario = this.precios.pLibra;
       }
