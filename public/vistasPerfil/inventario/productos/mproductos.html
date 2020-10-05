@@ -77,14 +77,14 @@
 								<button type="button" class="btn btn-primary btn-sm   mt-auto mb-auto ml-auto button"
 									@click="editar(dateProducts)" data-toggle="modal" data-target="#modificar">
 									<template id="icon">
-										<i class="bx bx-edit"></i>
+										<em class="bx bx-edit"></em>
 									</template>
 								</button>
 								&nbsp;
 								<button type="button" class="btn btn-danger btn-sm  mt-auto mb-auto mr-auto button"
 									@click="eliminarProducto(dateProducts.idProducto)">
 									<template>
-										<i class="bx bx-trash"></i>
+										<em class="bx bx-trash"></em>
 									</template>
 								</button>
 
@@ -240,7 +240,7 @@
 					<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
 						<div class="card">
 							<div class="card-body">
-								<img :src="agregar.imagen" required width="100%" height="90">
+								<img :src="agregar.imagen" required width="100%" height="90" alt="">
 							</div>
 							<div class="card-footer">
 								<input @change="subirImagen" required name="archivo" type="file" class="form-control">
