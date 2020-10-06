@@ -4,13 +4,14 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
- font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 h1 {
   display: flex;
   justify-content: center;
 }
+
 p {
   color: #000000;
 }
@@ -24,6 +25,7 @@ a.text {
 a.text:hover {
   color: #ffffff;
 }
+
 .needs-validation {
   background: #5fb677;
   width: 90%;
@@ -34,14 +36,16 @@ a.text:hover {
   padding-bottom: 30px;
   border-radius: 5px;
 }
+
 button:focus {
   border: none;
   outline: none;
 }
+
 .contenedor {
   background: #75c48a;
-  width: 400px;
-  max-width: 500px;
+  width: 340px;
+  max-width: 400px;
   margin: auto;
   padding: 5px 35px;
   margin-top: 100px;
@@ -50,24 +54,30 @@ button:focus {
   border-radius: 0px;
   box-shadow: 7px 7px 5px -1px rgba(58, 56, 56, 0.582);
 }
+
 .bi-info-circle {
   color: #ffffff;
 }
+
 .bi-info-circle:hover {
   color: #000000;
   cursor: pointer;
 }
+
 .enlace2 {
   font-size: 12px;
 }
+
 .enlace1 {
-  font-size: 12px;
+  font-size: 10px;
   color: #000000;
 }
+
 .enlace1:hover {
-  font-size: 12px;
+  font-size: 10px;
   color: #ffffff;
 }
+
 #ter {
   color: black;
   font-size: 12px;
@@ -75,9 +85,28 @@ button:focus {
 
 #ter:hover {
   color: white;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .sizeP {
   font-size: 12px;
+}
+
+input[type="text"]::placeholder {
+  color: white;
+}
+input[type="email"]::placeholder {
+  color: white;
+}
+input[type="password"]::placeholder {
+  color: white;
+}
+input[type="date"]::placeholder {
+  color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]::placeholder:focus {
+  color: rgb(0, 0, 0);
 }

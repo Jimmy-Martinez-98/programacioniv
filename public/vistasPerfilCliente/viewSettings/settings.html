@@ -41,12 +41,17 @@
         </div>
 
         <div class="col-md-12 d-flex justify-content-center mb-3">
-            <div class="d-flex w-75 justify-content-md-between">
-                <h6 class="mr-2">
-                    {{dataUser.correo}}
-                </h6>
-                <button class="btn btn-primary" @click="sendPasswordReset(dataUser.correo)">Restablecer
-                    Contraseña</button>
+            <div class="form-row w-75 d-flex justify-content-lg-between">
+                <div class="col-sm-6 ">
+                    <h6 class="mr-2 float-sm-left">
+                        {{dataUser.correo}}
+                    </h6>
+                </div>
+                <div class="col-sm-6 ">
+                    <button class="btn btn-primary float-sm-right" @click="sendPasswordReset(dataUser.correo)">
+                        Restablecer Contraseña
+                    </button>
+                </div>
             </div>
         </div>
         <div class="col-md-12 d-flex justify-content-center mb-3">

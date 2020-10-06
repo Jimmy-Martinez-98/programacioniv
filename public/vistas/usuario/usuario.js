@@ -60,86 +60,19 @@ var appusuario = new Vue({
      * @function guardarusuario
      */
     guardarUsuario: function () {
-      if (this.check == 5) {
-        document.getElementById("alert").setAttribute("hidden", true);
-        if (
-          this.usuario.nombreUsuario != "" &&
-          this.usuario.fechaRegistro != "" &&
-          this.usuario.pass != "" &&
-          this.usuario.correo != ""
-        ) {
-          document.getElementById("usernameRojo").setAttribute("hidden", true);
-          document.getElementById("fechaRojo").setAttribute("hidden", true);
-          document.getElementById("emailRojo").setAttribute("hidden", true);
-          document.getElementById("passRojo").setAttribute("hidden", true);
+      if (
+        this.usuario.nombreUsuario != "" &&
+        this.usuario.fechaRegistro != "" &&
+        this.usuario.pass != "" &&
+        this.usuario.correo != ""
+      ) {
+        if (this.check == 5) {
+          this.alerts();
           if (this.verificarchek != false || this.verificarchek != "") {
-            document
-              .getElementById("politicaRojo")
-              .setAttribute("hidden", true);
-            document.getElementById("registrar").setAttribute("hidden", true);
-            document.getElementById("login").removeAttribute("hidden");
-
-            let correo = this.usuario.correo;
-            let password = this.usuario.pass;
-
-            fbAuth
-              .createUserWithEmailAndPassword(correo, password)
-              .then(() => {
-                //Registra el usuario en la Base de Datos...
-                firebaseDB
-                  .ref("users/" + firebaseAuth.currentUser.uid)
-                  .set({
-                    uId: firebaseAuth.currentUser.uid,
-                    nombreUsuario: appusuario.usuario.nombreUsuario,
-                    correo: appusuario.usuario.correo,
-                    fechaRegistro: appusuario.usuario.fechaRegistro,
-                    role:0
-                  })
-                  .then(() => {
-                    this.enviarEmail();
-                  })
-                  .catch((error) => {
-                    this.$vs.notification({
-                      square: true,
-                      color: notiColor,
-                      position: "bottom-center",
-                      title: error,
-                      text: "",
-                      progress: "auto",
-                    });
-                  });
-              })
-              .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-                if (errorCode == "auth/email-already-in-use") {
-                  document.getElementById("notificacion").innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>  
-                       Dirección de Correo Electronico Ya Existe
-                  </div>`;
-                  document.getElementById("login").setAttribute("hidden", true);
-                  document
-                    .getElementById("registrar")
-                    .removeAttribute("hidden");
-                } else if (errorCode == "auth / invalid-email") {
-                  document.getElementById("notificacion").innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      Direccion de Correo Electronico Invalido
-                  </div>`;
-                  document.getElementById("login").setAttribute("hidden", true);
-                  document
-                    .getElementById("registrar")
-                    .removeAttribute("hidden");
-                }
-              });
+            this.alertsCheck();
+            let correo = this.usuario.correo,
+              password = this.usuario.pass;
+            this.saveUser(correo, password)
           } else {
             document.getElementById("politicaRojo").removeAttribute("hidden");
           }
@@ -165,27 +98,96 @@ var appusuario = new Vue({
         ) {
           document.getElementById("emailRojo").removeAttribute("hidden");
         } else if (
-          this.usuario.nombreUsuario != "" &&
-          this.usuario.fechaRegistro != "" &&
-          this.usuario.correo != "" &&
-          this.usuario.pass == ""
+          this.usuario.nombreUsuario !== "" &&
+          this.usuario.fechaRegistro !== "" &&
+          this.usuario.correo !== "" &&
+          this.usuario.pass === ""
         ) {
           document.getElementById("passRojo").removeAttribute("hidden");
         } else if (
-          this.usuario.nombreUsuario == "" &&
-          this.usuario.fechaRegistro == "" &&
-          this.usuario.correo == "" &&
-          this.usuario.pass == ""
+          this.usuario.nombreUsuario === "" &&
+          this.usuario.fechaRegistro === "" &&
+          this.usuario.correo === "" &&
+          this.usuario.pass === ""
         ) {
-          document.getElementById("usernameRojo").removeAttribute("hidden");
-          document.getElementById("fechaRojo").removeAttribute("hidden");
-          document.getElementById("emailRojo").removeAttribute("hidden");
-          document.getElementById("passRojo").removeAttribute("hidden");
+          this.alertsNull();
         }
       } else {
         document.getElementById("alert").removeAttribute("hidden");
       }
     },
+    saveUser: function () {
+      fbAuth
+        .createUserWithEmailAndPassword(correo, password)
+        .then(() => {
+          //Registra el usuario en la Base de Datos...
+          firebaseDB
+            .ref("users/" + firebaseAuth.currentUser.uid)
+            .set({
+              uId: firebaseAuth.currentUser.uid,
+              nombreUsuario: appusuario.usuario.nombreUsuario,
+              correo: appusuario.usuario.correo,
+              fechaRegistro: appusuario.usuario.fechaRegistro,
+              role: 0
+            })
+            .then(() => {
+              this.enviarEmail();
+            })
+            .catch((error) => {
+              this.$vs.notification({
+                square: true,
+                color: notiColor,
+                position: "bottom-center",
+                title: error,
+                text: "",
+                progress: "auto",
+              });
+            });
+        })
+        .catch(function (error) {
+          // Handle Errors here.
+          let errorCode = error.code;
+          this.errorsCatch(errorCode)
+        });
+    },
+
+    /**
+     * capturacion de errores posibles al intentar iniciar sesion
+     * @access public
+     * @function errorsCatch
+     */
+    errorsCatch: function (errorCode) {
+      if (errorCode == "auth/email-already-in-use") {
+        document.getElementById("notificacion").innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>  
+                       Dirección de Correo Electronico Ya Existe
+                  </div>`;
+        document.getElementById("login").setAttribute("hidden", true);
+        document
+          .getElementById("registrar")
+          .removeAttribute("hidden");
+      } else if (errorCode == "auth / invalid-email") {
+        document.getElementById("notificacion").innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      Direccion de Correo Electronico Invalido
+                  </div>`;
+        document.getElementById("login").setAttribute("hidden", true);
+        document
+          .getElementById("registrar")
+          .removeAttribute("hidden");
+      }
+    },
+    /**
+     * Envia un correo a la direccion proporcionada en el formulario para poder verificarla
+     * @access public
+     * @function enviarEmail
+     */
     enviarEmail() {
       let user = firebaseAuth.currentUser;
       user.sendEmailVerification().then(() => {
@@ -197,14 +199,49 @@ var appusuario = new Vue({
           text: "Se le a Enviado un Email a su Correo Electronico",
           progress: "auto",
         });
-        location.href="login.html"
+        location.href = "login.html"
       });
     },
+    /**
+     * Es cuando no cumple la contraseña con los requisitos previos
+     * @access public
+     * @function alerts
+     */
+    alerts: function () {
+      document.getElementById("alert").setAttribute("hidden", true);
+      document.getElementById("usernameRojo").setAttribute("hidden", true);
+      document.getElementById("fechaRojo").setAttribute("hidden", true);
+      document.getElementById("emailRojo").setAttribute("hidden", true);
+      document.getElementById("passRojo").setAttribute("hidden", true);
+    },
+    /**
+     * es cuando no acepta los terminos
+     * @access public
+     * @function alertsCheck
+     */
+    alertsCheck: function () {
+      document
+        .getElementById("politicaRojo")
+        .setAttribute("hidden", true);
+      document.getElementById("registrar")
+        .setAttribute("hidden", true);
+      document.getElementById("login")
+        .removeAttribute("hidden");
+    },
+    /**
+     * Es  cuando se envia el formulario y los campos estan vacios
+     * @access public
+     * @function alertsNull
+     */
 
+    alertsNull: function () {
+      document.getElementById("usernameRojo").removeAttribute("hidden");
+      document.getElementById("fechaRojo").removeAttribute("hidden");
+      document.getElementById("emailRojo").removeAttribute("hidden");
+      document.getElementById("passRojo").removeAttribute("hidden");
+    },
     IniciarSesion: function () {
       location.href = "login.html";
     },
   },
 });
-
-
