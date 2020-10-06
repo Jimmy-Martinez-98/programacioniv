@@ -11,11 +11,12 @@ font-family: "Roboto", sans-serif;
 
 #ter:hover {
   color: white;
+  font-size: 12px;
 }
 .textoo {
   font-size: 12px;
 }
-.needs-validation{
+.needs{
  border-radius: 0%;
  box-shadow: 7px 7px 5px -1px rgba(58, 56, 56, 0.582);
 }

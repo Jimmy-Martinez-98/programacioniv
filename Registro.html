@@ -1,137 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- css of vuesax -->
-	<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- Bootstrap theme -->
-	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- css of vuesax -->
+		<link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- Bootstrap theme -->
+		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="public/vistas/login/login.css">
-	<link rel="stylesheet" href="public/vistas/usuario/stilos.css">
-	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="public/vistas/login/login.css">
+		<link rel="stylesheet" href="public/vistas/usuario/stilos.css">
+		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 
-	<title>Login</title>
-</head>
+		<title>Login</title>
+	</head>
 
-<body>
+	<body>
 
-	<form class="needs-validation mb-2" v-on:submit.prevent="guardarUsuario" id="frm-usuarios" novalidate>
-		<div class="form-header border-bottom mb-4">
-			<h1 class="form-title ">REGISTRO</h1>
-		</div>
-		<div class="container">
-			<div class=" alert alert-primary alert-dismissible fade show" role="alert">
-				<div class="container ">
-					<strong>Requisitos de Contraseña:</strong>
-					Minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula
-					y caracteres especiales como punto, guion bajo.
-				</div>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+		<form class="needs mb-2" v-on:submit.prevent="guardarUsuario" id="frm-usuarios" novalidate>
+			<div class="form-header border-bottom mb-4">
+				<h1 class="form-title ">REGISTRO</h1>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-6 mb-3">
-				<input type="text" class="form-control" required placeholder="Nombre de Usuario"
-					v-model="usuario.nombreUsuario">
-				<div id="usernameRojo" class="alert alert-danger" role="alert" hidden>
-					Campo Obligatorio
+			<div class="container">
+				<div class=" alert alert-primary alert-dismissible fade show" role="alert">
+					<div class="container ">
+						<strong class="text-justify">Requisitos de Contraseña:</strong>
+						Minimo 8 caracteres, al menos un numero, al menos una minúscula, al menos una mayúscula
+						y caracteres especiales como punto, guion bajo.
+					</div>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				
 			</div>
-
-			<div class="col-md-6 mb-3">
-				<input type="date" class="form-control" v-model="usuario.fechaRegistro">
-				<div id="fechaRojo" class="alert alert-danger" role="alert" hidden>
-					Campo Obligatorio
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<input type="text" class="form-control" required="required" placeholder="Nombre de Usuario"
+						v-model="usuario.nombreUsuario">
 				</div>
-				
-			</div>
-			<div class="col-md-6 mb-3">
-				<input type="email" required class="form-control" placeholder="Correo Electronico"
-					v-model="usuario.correo">
-				<div id="emailRojo" class="alert alert-danger" role="alert" hidden>
-					Campo Obligatorio
+
+				<div class="col-md-6 mb-3">
+					<input type="date" class="form-control" required="required" v-model="usuario.fechaRegistro">
 				</div>
-				
-			</div>
-
-			<div class="col-md-6 mb-3">
-				<input placeholder="Contraseña" v-on:keyup="alerta" id="contra" type="password" minlength="8" required
-					class="form-control" v-model="usuario.pass">
-				<div id="msgs" class="alert alert-light" role="alert" hidden></div>
-				<div id="passRojo" class="alert alert-danger " role="alert" hidden>
-					Campo Obligatorio
+				<div class="col-md-6 mb-3">
+					<input type="email" required="required" class="form-control" placeholder="Correo Electronico"
+						v-model="usuario.correo">
 				</div>
-				
-			</div>
 
-			<div class="col-md-6">
-				<div class="form-check form-check-inline">
-					<input class="form-check-input pol" v-model="verificarchek" type="checkbox" id="inlineCheckbox1"
-						value="option1">
+				<div class="col-md-6 mb-3">
+					<input placeholder="Contraseña" v-on:keyup="alerta" id="contra" type="password" minlength="8"
+						required="required" class="form-control" v-model="usuario.pass">
+					<div id="msgs" class="alert alert-light" role="alert" hidden></div>
 
-					<label class="form-check-label pol" for="inlineCheckbox1"> <a id="ter" target="_bank"
-							href="public/vistas/terminos_condiciones/terminos.html">Política de Privacidad</a></label>
-					<div id="politicaRojo" class="alert alert-danger" role="alert" hidden>
-						Campo Obligatorio
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input pol" v-model="verificarchek" type="checkbox" id="inlineCheckbox1"
+							value="option1">
+
+						<label class="form-check-label pol" for="inlineCheckbox1"> <a id="ter" target="_bank"
+								href="public/vistas/terminos_condiciones/terminos.html">Política de
+								Privacidad</a></label>
+						<div id="politicaRojo" class="alert alert-danger" role="alert" hidden>
+							Campo Obligatorio
+						</div>
 					</div>
 				</div>
-			</div>
 
 
-			<div class="col-12">
-				<button id="registrar" type="submit" id="iniciarsesions" class="btn btn-primary btn-block">Registrarme</button>
-				 <button id="login" class="btn btn-primary btn-block" type="submit" disabled hidden>
-					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-					Creando Cuenta...
-				</button>
+				<div class="col-12">
+					<button id="registrar" type="submit" id="iniciarsesions"
+						class="btn btn-primary btn-block">Registrarme</button>
+					<button id="login" class="btn btn-primary btn-block" type="submit" disabled hidden>
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						Creando Cuenta...
+					</button>
+				</div>
+				<div class="col-6 mt-5">
+					<a class="text  " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>
+				</div>
+				<div class="col-12">
+					<div id="alert" class="alert alert-danger" role="alert" hidden>
+						La Contraseña no Cumple los Requisitos
+					</div>
+				</div>
+
 			</div>
-			<div class="col-6 mt-5">
-				<a class="text  " v-on:click="IniciarSesion" href="#">Iniciar Sesión</a>
-			</div>
-			<div class="col-12">
-				<div id="alert" class="alert alert-danger" role="alert" hidden>
-					La Contraseña no Cumple los Requisitos
+			<div class="row p-3 mb-1">
+				<div class="col-12">
+					<div id="notificacion"></div>
 				</div>
 			</div>
-			<div id="notificacion"></div>
-		</div>
 
-	</form>
+		</form>
 
 
 
 
 
-	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
-	<script src="public/js/configFirebase.js"></script>
+		<!-- Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+		<script src="public/js/configFirebase.js"></script>
 
-	<!-- JQuery and Boostrap -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
-		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-	<script src="public/js/jquery-ui.js"></script>
-	<!-- vuejs -->
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-	<!-- mis scripts -->
-	<script src="public/vistas/usuario/usuario.js"></script>
+		<!-- JQuery and Boostrap -->
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+		<script src="public/js/jquery-ui.js"></script>
+		<!-- vuejs -->
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+		<!-- mis scripts -->
+		<script src="public/vistas/usuario/usuario.js"></script>
 
-</body>
+	</body>
 
 </html>
