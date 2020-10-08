@@ -23,7 +23,7 @@ var inbox = new Vue({
         this.referenceChat();
         this.returnUsers;
         this.chatHistory();
-        this.finalChat();
+       
     },
     /**
      * Proiedades computadas

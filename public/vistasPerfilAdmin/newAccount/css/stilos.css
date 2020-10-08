@@ -17,7 +17,13 @@ input:focus{
  outline: none;
  box-shadow: none;
 }
-.card{
-    border-radius: 0px;
-    box-shadow: 5px 10px 10px  #158a3cb7;
+#contenedor{
+    border-radius: 0;
+      box-shadow: 5px 10px 10px  #158a3cb7;
+}
+
+
+.btn-promary:hover{
+    position: static;
+    box-shadow: none
 }

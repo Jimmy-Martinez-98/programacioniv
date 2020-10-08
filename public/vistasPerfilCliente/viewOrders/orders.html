@@ -28,7 +28,7 @@
     </div>
     <div class="col-12 mb-3">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" v-for="orders in allOrders">
+            <a href="#" class="list-group-item list-group-item-action" v-for="orders in displayOrders">
                 <div class="form-row ">
                     <div class="col-12">
                         <div class="form-inline">
@@ -60,12 +60,30 @@
             </a>
 
         </div>
-    </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item" v-if="page!=1" @click="page--">
+                            <a class="page-link " type="button">&laquo; Anterior</a>
+                        </li>
 
-    <div class="row">
-        <div class="col-12">
-            
+                        <li class="page-item" :class="{'active': page==pageNumber}" v-for="pageNumber in  pages"
+                            :key="pageNumber" @click="page=pageNumber">
+                            <a class="page-link" type="button">{{pageNumber}}</a>
+                        </li>
+
+
+
+                        <li class="page-item " v-if="page< pages.length" @click="page++">
+                            <a class="page-link  " type="button">Siguiente &raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
+
+
 </div>
 <script src="viewOrders/js/viewOrder.js"></script>

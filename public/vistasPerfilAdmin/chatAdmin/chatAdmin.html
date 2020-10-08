@@ -11,13 +11,13 @@
 
 </style>
 <div class="container-fluid bg-dark">
-    <div class="row p-3" id="inbox">
-        <ul class="list-group col-3">
+    <div class="form-row p-3" id="inbox">
+        <ul class="list-group col-sm-3">
             <li class="list-group-item" v-for="items in users" v-on:click="openchat(items.uId)">
                 {{items.nombreUsuario}}
             </li>
         </ul>
-        <div class="card container-historial col-9 p-3" v-if="msgs!=''">
+        <div class="card container-historial col-sm-9 p-3 w-100" v-if="msgs!=''">
             <div class="card-header">
                 <h5>
                     <p v-if="displayName.nombreUsuario!=''">{{displayName.nombreUsuario}}</p>
@@ -25,7 +25,7 @@
                 </h5>
             </div>
             <div class="w-100 card-body" id="scroll">
-                <div class="lista">
+                <div class="lista w-100">
                     <ul class="listamsgs" v-for="item in msgs">
                         <div v-if="item.imagenMensaje!='' && item.Mensaje==='' ||item.imagenMensaje!=null">
                             <li v-if="item.De!=content.de" class="listamsgs-item text-break mr-auto mt-1">
@@ -39,18 +39,18 @@
                             <li v-if="item.De!=content.de" class="listamsgs-item text-break mr-auto">
                                 {{item.Mensaje}}
                             </li>
-                            <li v-else class="listamsgs-iteml text-break ml-auto mr-2">
+                            <li v-else class="listamsgs-iteml text-break ml-auto mr-1">
                                 {{item.Mensaje}}
                             </li>
                         </div>
                     </ul>
                 </div>
             </div>
-            <div class="row  mt-3">
-                <div class="col-12">
+            <div class="form-row  mt-3">
+                <div class="col-sm-12">
                     <div id="carga" class="center"></div>
                 </div>
-                <div class="col-12">
+                <div class="col-sm-12">
                     <div class=" form-inline d-flex justify-content-between">
                         <label class="imgIcon">
                             <img src="../img/iconImage.png" alt="Imagen" width="40px" height="40px">

@@ -104,21 +104,20 @@
 
 .listamsgs-item {
     padding: 10px;
-
-    margin: 5px;
-    width: 400px;
+    margin: 7px;
+    width: 150px;
     border-radius: 10px;
     background-color: rgb(190, 190, 190);
-    font-size: 14px;
+    font-size: 12px;
 
     font-family: "Roboto", sans-serif;
 }
 
 .listamsgs-iteml {
     padding: 10px;
-    margin: 5px;
-    width: 400px;
-    border-radius: 10px;
+    margin-top: 5px;
+    width: 150;
+    border-radius: 12px;
     background-color: rgba(73, 211, 38, 0.925);
     font-size: 14px;
     font-family: "Roboto", sans-serif;

@@ -1,9 +1,9 @@
 <!-- css of vuesax -->
 <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="newAccount/css/stilos.css">
-<div class="container mt-3 ">
-    <form class="card p-3" id="formCreate" @submit.prevent=" createUser">
+<link rel="stylesheet" href="../newAccount/css/stilos.css">
+<div class="container mt-3 " id="contenedor">
+    <form class="card p-3 border-0" id="formCreate" @submit.prevent=" createUser" id="form">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputType">Tipo de Vendedor</label>
@@ -43,7 +43,7 @@
                 <input type="date" class="form-control" id="date" required autocomplete="off" v-model="account.fecha">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary" id="crear">Crear</button>
         <div class="row mt-2">
             <div class="col-12">
                 <div id="alerta"></div>
