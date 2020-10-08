@@ -19,9 +19,9 @@ var appinfo = new Vue({
      * @function informacion
      */
     informacion: function () {
-      let user = firebaseAuth.currentUser;
-      let db = firebaseDB;
-      let data = [];
+      let user = firebaseAuth.currentUser,
+        db = firebaseDB,
+        data = [];
       if (user) {
         db.ref("descUsuario/").on("value", (snap) => {
           snap.forEach((element) => {
@@ -77,17 +77,17 @@ var appEdit = new Vue({
      * @function guardar
      */
     guardar: function () {
-      let key = this.modificarDatos.idDesc;
-      let data = this.jsonParse(
-        key,
-        this.modificarDatos.idU,
-        this.modificarDatos.imagen,
-        this.modificarDatos.descripcion,
-        this.modificarDatos.telefono,
-        this.modificarDatos.correo
-      );
+      let key = this.modificarDatos.idDesc,
+        data = this.jsonParse(
+          key,
+          this.modificarDatos.idU,
+          this.modificarDatos.imagen,
+          this.modificarDatos.descripcion,
+          this.modificarDatos.telefono,
+          this.modificarDatos.correo
+        ),
 
-      let db = firebaseDB;
+        db = firebaseDB;
       if (
         (this.modificarDatos.imagen != "" &&
           this.modificarDatos.descripcion != "" &&
@@ -140,8 +140,8 @@ var appEdit = new Vue({
      * @param {objec} e - Representa el cambio en el tag img
      */
     obtenerimagen(e) {
-      let file = e.target.files[0];
-      let upload = storage
+      let file = e.target.files[0],
+        upload = storage
         .ref()
         .child("datos/" + file.name)
         .put(file);
@@ -188,4 +188,3 @@ var appEdit = new Vue({
     },
   },
 });
-

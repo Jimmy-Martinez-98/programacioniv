@@ -38,8 +38,8 @@ var seccionfrutas = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addListaFrutos: function (producto) {
-      let user = firebaseAuth.currentUser;
-      let newKey = firebaseDB.ref().child("listaDeseos").push().key;
+      let user = firebaseAuth.currentUser,
+       newKey = firebaseDB.ref().child("listaDeseos").push().key;
       if (user) {
         firebaseDB.ref("listaDeseos/" + newKey).set({
           Arroba: producto.Arroba,

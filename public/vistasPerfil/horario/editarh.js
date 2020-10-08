@@ -14,9 +14,9 @@ var appleerH = new Vue({
   },
   methods: {
     verHorarios: function () {
-      let user = firebaseAuth.currentUser;
-      let db = firebaseDB;
-      let data = [];
+      let user = firebaseAuth.currentUser,
+        db = firebaseDB,
+        data = [];
       if (user) {
         db.ref("horarioTrabajo/").on("value", (snap) => {
           snap.forEach((element) => {

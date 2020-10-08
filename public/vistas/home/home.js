@@ -5,8 +5,8 @@
  * @instance objeto de instancia de Vue.js
  */
 
- //Carrucel Legumbres
- 
+//Carrucel Legumbres
+
 var app = new Vue({
   el: "#slider",
   data: {
@@ -23,7 +23,7 @@ var app = new Vue({
      */
     datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Legumbres").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Legumbres").limitToFirst(10).on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });
@@ -44,27 +44,27 @@ var app = new Vue({
     addlistaC: function (producto) {
       let user = firebaseAuth.currentUser;
       if (user) {
-        let key = firebaseDB.ref().child("listaDeseos/").push().key;
-        let data = {
-          Arroba: producto.Arroba,
-          Caja: producto.Caja,
-          Quintal: producto.Quintal,
-           categoria: producto.categoria,
-          descProducto: producto.descProducto,
-          idLista: key,
-          idProducto: producto.idProducto,
-          idUsuario: producto.idUsuario,
-          idUsuarioObtubo: user.uid,
-          imagen: producto.imagen,
-          libra: producto.libra,
-          nombreCooperativa: producto.nombreCooperativa,
-          nombreProducto: producto.nombreProducto,
-          nombreUsuario: producto.nombreUsuario,
-          precioLibra:producto.precioLibra,
-          precioArroba:producto.precioArroba,
-          precioQuintal:producto.precioQuintal,
-          precioCaja:producto.precioCaja
-        };
+        let key = firebaseDB.ref().child("listaDeseos/").push().key,
+          data = {
+            Arroba: producto.Arroba,
+            Caja: producto.Caja,
+            Quintal: producto.Quintal,
+            categoria: producto.categoria,
+            descProducto: producto.descProducto,
+            idLista: key,
+            idProducto: producto.idProducto,
+            idUsuario: producto.idUsuario,
+            idUsuarioObtubo: user.uid,
+            imagen: producto.imagen,
+            libra: producto.libra,
+            nombreCooperativa: producto.nombreCooperativa,
+            nombreProducto: producto.nombreProducto,
+            nombreUsuario: producto.nombreUsuario,
+            precioLibra: producto.precioLibra,
+            precioArroba: producto.precioArroba,
+            precioQuintal: producto.precioQuintal,
+            precioCaja: producto.precioCaja
+          };
         firebaseDB
           .ref("listaDeseos/" + key)
           .set(data)
@@ -83,10 +83,10 @@ var app = new Vue({
         this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo,icono) {
+    openNotificationCarrousel(msg, notiColor, titulo, icono) {
       const noti = this.$vs.notification({
         square: true,
-        icon:icono,
+        icon: icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,
@@ -145,12 +145,12 @@ var app = new Vue({
     addlistaC: function (producto) {
       let user = firebaseAuth.currentUser;
       if (user) {
-        let key = firebaseDB.ref().child("listaDeseos/").push().key;
-        let data = {
+        let key = firebaseDB.ref().child("listaDeseos/").push().key,
+         data = {
           Arroba: producto.Arroba,
           Caja: producto.Caja,
           Quintal: producto.Quintal,
-         
+
           categoria: producto.categoria,
           descProducto: producto.descProducto,
           idLista: key,
@@ -162,10 +162,10 @@ var app = new Vue({
           nombreCooperativa: producto.nombreCooperativa,
           nombreProducto: producto.nombreProducto,
           nombreUsuario: producto.nombreUsuario,
-          precioLibra:producto.precioLibra,
-          precioArroba:producto.precioArroba,
-          precioQuintal:producto.precioQuintal,
-          precioCaja:producto.precioCaja
+          precioLibra: producto.precioLibra,
+          precioArroba: producto.precioArroba,
+          precioQuintal: producto.precioQuintal,
+          precioCaja: producto.precioCaja
         };
         firebaseDB
           .ref("listaDeseos/" + key)
@@ -185,10 +185,10 @@ var app = new Vue({
         this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo,icono) {
+    openNotificationCarrousel(msg, notiColor, titulo, icono) {
       const noti = this.$vs.notification({
         square: true,
-        icon:icono,
+        icon: icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,
@@ -247,28 +247,27 @@ var app = new Vue({
     addlistaC: function (producto) {
       let user = firebaseAuth.currentUser;
       if (user) {
-        let key = firebaseDB.ref().child("listaDeseos/").push().key;
-        let data = {
-          Arroba: producto.Arroba,
-          Caja: producto.Caja,
-          Quintal: producto.Quintal,
-         
-          categoria: producto.categoria,
-          descProducto: producto.descProducto,
-          idLista: key,
-          idProducto: producto.idProducto,
-          idUsuario: producto.idUsuario,
-          idUsuarioObtubo: user.uid,
-          imagen: producto.imagen,
-          libra: producto.libra,
-          nombreCooperativa: producto.nombreCooperativa,
-          nombreProducto: producto.nombreProducto,
-          nombreUsuario: producto.nombreUsuario,
-          precioLibra:producto.precioLibra,
-          precioArroba:producto.precioArroba,
-          precioQuintal:producto.precioQuintal,
-          precioCaja:producto.precioCaja
-        };
+        let key = firebaseDB.ref().child("listaDeseos/").push().key,
+          data = {
+            Arroba: producto.Arroba,
+            Caja: producto.Caja,
+            Quintal: producto.Quintal,
+            categoria: producto.categoria,
+            descProducto: producto.descProducto,
+            idLista: key,
+            idProducto: producto.idProducto,
+            idUsuario: producto.idUsuario,
+            idUsuarioObtubo: user.uid,
+            imagen: producto.imagen,
+            libra: producto.libra,
+            nombreCooperativa: producto.nombreCooperativa,
+            nombreProducto: producto.nombreProducto,
+            nombreUsuario: producto.nombreUsuario,
+            precioLibra: producto.precioLibra,
+            precioArroba: producto.precioArroba,
+            precioQuintal: producto.precioQuintal,
+            precioCaja: producto.precioCaja
+          };
         firebaseDB
           .ref("listaDeseos/" + key)
           .set(data)
@@ -287,10 +286,10 @@ var app = new Vue({
         this.openNotificationCarrousel(msg, "primary", "Alerta!!!", "<i class='bx bx-info-square' ></i>");
       }
     },
-    openNotificationCarrousel(msg, notiColor, titulo,icono) {
+    openNotificationCarrousel(msg, notiColor, titulo, icono) {
       const noti = this.$vs.notification({
         square: true,
-        icon:icono,
+        icon: icono,
         color: notiColor,
         position: "top-rigth",
         title: titulo,

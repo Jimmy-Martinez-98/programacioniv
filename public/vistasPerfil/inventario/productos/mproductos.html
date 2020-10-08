@@ -59,15 +59,15 @@
 				<tbody>
 					<tr v-for="dateProducts in displayArticles" :key="dateProducts.idProducto">
 						<th scope="row">{{dateProducts.codeProducto}}</th>
-						<td >{{dateProducts.nombreProducto}}</td>
-						<td >{{dateProducts.descProducto}}</td>
-						<td >{{dateProducts.precioLibra}}</td>
-						<td >{{dateProducts.precioArroba}}</td>
-						<td >{{dateProducts.precioQuintal}}</td>
-						<td >{{dateProducts.precioCaja}}</td>
-						<td >{{dateProducts.existencias}}</td>
-						<td >{{dateProducts.categoria}}</td>
-						<td >
+						<td>{{dateProducts.nombreProducto}}</td>
+						<td>{{dateProducts.descProducto}}</td>
+						<td>{{dateProducts.precioLibra}}</td>
+						<td>{{dateProducts.precioArroba}}</td>
+						<td>{{dateProducts.precioQuintal}}</td>
+						<td>{{dateProducts.precioCaja}}</td>
+						<td>{{dateProducts.existencias}}</td>
+						<td>{{dateProducts.categoria}}</td>
+						<td>
 							<div class="d-flex justify-content-center">
 								<img :src="dateProducts.imagen" width="50" height="50" alt="">
 							</div>
@@ -240,11 +240,10 @@
 					<div class="container d-flex justify-content-center mb-3" style="width:80; height: 60;">
 						<div class="card">
 							<div class="card-body">
-								<img :src="agregar.imagen" required width="100%" height="90" alt="">
+								<img :src="agregar.imagen" id="imgP" required width="100%" height="90" alt="" hidden>
 							</div>
 							<div class="card-footer">
 								<input @change="subirImagen" required name="archivo" type="file" class="form-control">
-
 								<div class=" py-2" id="barra"></div>
 							</div>
 
@@ -379,5 +378,6 @@
 </script>
 
 
-<script src="public/vistasPerfil/inventario/productos/misproductos.js"></script>
-<script src="public/vistasPerfil/inventario/productos//modificarProducto.js"></script>
+<script src="public/vistasPerfil/inventario/productos/js/misproductos.js"></script>
+<script src="public/vistasPerfil/inventario/productos/js/modificarProducto.js"></script>
+<script src="public/vistasPerfil/inventario/productos/js/save.js"></script>

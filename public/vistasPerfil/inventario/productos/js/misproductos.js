@@ -40,8 +40,8 @@ var misproductosapp = new Vue({
      * @function productosmios
      */
     async productsInTable() {
-      let user = firebaseAuth.currentUser.uid
-      let todo = []
+      let user = firebaseAuth.currentUser.uid,
+        todo = [];
       await firebaseDB.ref('Productos')
         .on('value', snap => {
           todo = []
@@ -78,10 +78,10 @@ var misproductosapp = new Vue({
      * @param {object} articles -> representa el total de articulos de la db
      */
     paginate: function (articles) {
-      let page = this.page;
-      let perPage = this.perPage;
-      let from = (page * perPage) - perPage;
-      let to = (page * perPage);
+      let page = this.page,
+        perPage = this.perPage,
+        from = (page * perPage) - perPage,
+        to = (page * perPage);
       return articles.slice(from, to)
     },
 

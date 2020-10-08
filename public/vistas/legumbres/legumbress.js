@@ -54,8 +54,8 @@ var seccionlegumbre = new Vue({
      * @param {Int} producto Representa el identificador del producto seleccionado
      */
     addlistaL: function (producto) {
-      let user = firebaseAuth.currentUser;
-      let newKey = firebaseDB.ref().child("listaDeseos").push().key;
+      let user = firebaseAuth.currentUser,
+        newKey = firebaseDB.ref().child("listaDeseos").push().key;
       if (user) {
         firebaseDB.ref("listaDeseos/" + newKey).set({
           arroba: producto.arroba,

@@ -43,8 +43,8 @@ var newAccount = new Vue({
             }
 
             if (this.account.correo != '' && this.account.password != '' && this.name != '') {
-                let email = this.account.correo;
-                let password = this.account.password;
+                let email = this.account.correo,
+                    password = this.account.password;
                 firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => {
                     this.openNotification('Usuario Creado', 'primary');
                     this.limpiar()

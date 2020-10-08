@@ -19,8 +19,8 @@ var datosCuenta = new Vue({
      * @function traerdatosusuario
      */
     traerdatosusuario: function () {
-      let user = firebaseAuth.currentUser;
-      let datos = [];
+      let user = firebaseAuth.currentUser,
+        datos = [];
       if (user) {
 
         firebaseDB.ref("users/").on("value", (snap) => {
@@ -77,9 +77,9 @@ var datosCuenta = new Vue({
     },
     obtenerImagen(e) {
       let file = e.target.files[0];
-     const crypto = window.crypto || window.msCrypto;
-     var array = new Uint32Array(1);
-     crypto.getRandomValues(array); // Compliant for security-sensitive use cases
+      const crypto = window.crypto || window.msCrypto;
+      var array = new Uint32Array(1);
+      crypto.getRandomValues(array); // Compliant for security-sensitive use cases
       let upload = storage
         .ref()
         .child("Perfil/" + file.name + crypto.getRandomValues(array))

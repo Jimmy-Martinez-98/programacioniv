@@ -28,10 +28,10 @@ var SolicV = new Vue({
          */
         almacenar: function () {
 
-            let tipo = this.dataSoliV.selectU;
-            let nombreC = this.dataSoliV.nombreCoo;
-            let nombreP = this.dataSoliV.nombreP;
-            let correo = this.dataSoliV.correo;
+            let tipo = this.dataSoliV.selectU,
+                nombreC = this.dataSoliV.nombreCoo,
+                nombreP = this.dataSoliV.nombreP,
+                correo = this.dataSoliV.correo;
             if (tipo != '' && correo != '' && nombreC != '' || nombreP != '') {
                 if (tipo == 'Cooperativa') {
                     return firebaseDB

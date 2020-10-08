@@ -5,7 +5,7 @@
  * @instance objeto de instancia de Vue.js
  */
 var entradas = new Vue({
-el: "#Entradas",
+  el: "#Entradas",
   data() {
     return {
       seleccion: "",
@@ -66,8 +66,8 @@ el: "#Entradas",
      * @function obtenerProductos
      */
     obtenerProductos: function () {
-      let user = firebaseAuth.currentUser.uid;
-      let productos = [];
+      let user = firebaseAuth.currentUser.uid,
+        productos = [];
       firebaseDB.ref("/Productos").on("value", (snapshot) => {
         snapshot.forEach((element) => {
           if (user == element.val().idUsuario) {
@@ -109,10 +109,10 @@ el: "#Entradas",
     },
 
     paginate: function (entry) {
-      let page = this.page
-      let perPage = this.perPage
-      let from = (page * perPage) - perPage;
-      let to = (page * perPage);
+      let page = this.page,
+        perPage = this.perPage,
+        from = (page * perPage) - perPage,
+        to = (page * perPage);
       return entry.slice(from, to)
     },
 

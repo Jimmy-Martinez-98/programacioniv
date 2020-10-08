@@ -22,8 +22,8 @@ var appNueva = new Vue({
          * @function guardarInformacion
          */
         guardarInformacion: function () {
-            let user = firebaseAuth.currentUser;
-            let db = firebaseDB;
+            let user = firebaseAuth.currentUser,
+                db = firebaseDB;
             if (user) {
                 if (
                     (this.Information.imageInfo != "" &&
@@ -32,15 +32,15 @@ var appNueva = new Vue({
                         this.Information.correo != "")
                 ) {
                     let uId = user.uid;
-                    let key = db.ref().child("descUsuario/").push().key;
-                    let data = this.jsonParse(
-                        uId,
-                        key,
-                        this.Information.imageInfo,
-                        this.Information.description,
-                        this.Information.telefono,
-                        this.Information.correo,
-                    );
+                    key = db.ref().child("descUsuario/").push().key,
+                        data = this.jsonParse(
+                            uId,
+                            key,
+                            this.Information.imageInfo,
+                            this.Information.description,
+                            this.Information.telefono,
+                            this.Information.correo,
+                        );
                     db.ref("descUsuario/" + key)
                         .set(data)
                         .then(() => {
@@ -85,8 +85,8 @@ var appNueva = new Vue({
             return data;
         },
         obtenerimagenN(e) {
-            let file = e.target.files[0];
-            let upload = storage
+            let file = e.target.files[0],
+                upload = storage
                 .ref()
                 .child("datos/" + file.name)
                 .put(file);

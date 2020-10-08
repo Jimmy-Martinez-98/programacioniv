@@ -95,11 +95,11 @@ var editardirecciones = new Vue({
       };
       return data;
     },
-    limpiar:function(){
-      this.modDirec.idDireccion='';
-      this.modDirec.idUsuario='';
-      this.modDirec.direccion='';
-     
+    limpiar: function () {
+      this.modDirec.idDireccion = '';
+      this.modDirec.idUsuario = '';
+      this.modDirec.direccion = '';
+
     }
   },
 });
@@ -124,8 +124,8 @@ var nuevadireccion = new Vue({
      * @function almacenar
      */
     almacenar: function () {
-      let newKey = firebaseDB.ref().child("Direcciones/").push().key;
-      let data = this.jsonParse(newKey, user.uid, this.Ndireccion.Direccion);
+      let newKey = firebaseDB.ref().child("Direcciones/").push().key,
+        data = this.jsonParse(newKey, user.uid, this.Ndireccion.Direccion);
       if (user) {
         if (this.Direccion != "") {
           firebaseDB

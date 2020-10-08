@@ -19,7 +19,7 @@ var validarsession = new Vue({
       valor: "",
       session: "",
       datoscuenta: [],
-      active:0
+      active: 0
     }
   },
   /**
@@ -63,8 +63,8 @@ var validarsession = new Vue({
      * @function UsuarioLogueado
      */
     UsuarioLogueado: function () {
-      var dbchild = firebaseDB.ref("users/");
-      let uid = fireAuth.currentUser.uid;
+      let dbchild = firebaseDB.ref("users/"),
+        uid = fireAuth.currentUser.uid;
       dbchild.on("value", (snap) => {
         snap.forEach((element) => {
           if (uid === element.key) {
@@ -79,8 +79,8 @@ var validarsession = new Vue({
      * @function observarUsuario
      */
     observarUsuario: function () {
-      let role = [];
-      let user = firebaseAuth.currentUser.uid;
+      let role = [],
+        user = firebaseAuth.currentUser.uid;
 
       firebaseDB.ref("users/").on("value", (snap) => {
         snap.forEach((element) => {
@@ -99,9 +99,9 @@ var validarsession = new Vue({
       }
     },
 
-   
 
-  
+
+
     /**
      * Carga un archivo html en contenedor
      * @access public

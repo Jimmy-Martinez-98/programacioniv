@@ -24,8 +24,8 @@ var appHorarios = new Vue({
      * @function guardar_horario
      */
     guardarHorario: function () {
-      let user = firebaseAuth.currentUser;
-      let db = firebaseDB;
+      let user = firebaseAuth.currentUser,
+        db = firebaseDB;
       if (user) {
         console.log("si Hay");
         if (
@@ -35,17 +35,17 @@ var appHorarios = new Vue({
           this.horario.A != "" &&
           this.horario.dias != ""
         ) {
-          let uId = user.uid;
-          let key = db.ref().child("horarioTrabajo/").push().key;
-          let data = this.jsonParse(
-            key,
-            uId,
-            this.horario.horaDe,
-            this.horario.horaA,
-            this.horario.Dias,
-            this.horario.DE,
-            this.horario.A
-          );
+          let uId = user.uid,
+            key = db.ref().child("horarioTrabajo/").push().key,
+            data = this.jsonParse(
+              key,
+              uId,
+              this.horario.horaDe,
+              this.horario.horaA,
+              this.horario.Dias,
+              this.horario.DE,
+              this.horario.A
+            );
           db.ref("horarioTrabajo/" + key)
             .set(data, (error) => {
               if (error) {
@@ -67,10 +67,10 @@ var appHorarios = new Vue({
                 icon: "error",
               });
             });
-        }else{
+        } else {
           swal.fire({
-            text:'Complete los campos',
-            icon:'info'
+            text: 'Complete los campos',
+            icon: 'info'
           })
         }
       } else {
@@ -107,8 +107,7 @@ var appHorarios = new Vue({
     modificar: function () {
       firebaseDB
         .ref("horarioTrabajo/" + this.horario.idHorario)
-        .update(
-          {
+        .update({
             horaDe: this.horario.horaDe,
             DE: this.horario.DE,
             horaA: this.horario.horaA,
@@ -124,7 +123,7 @@ var appHorarios = new Vue({
                 title: "Horario Actualizado",
               });
               appHorarios.limpiar();
-             
+
             }
           }
         )

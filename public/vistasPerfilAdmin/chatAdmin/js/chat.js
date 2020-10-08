@@ -35,7 +35,6 @@ var inbox = new Vue({
      */
     computed: {
         updateChat: function () {
-           
             this.refChats = [];
         },
         returnNewArray: function () {
@@ -115,8 +114,8 @@ var inbox = new Vue({
          * @param {object} item - los usuarios que pasan el filtro de la funcion que llama a esta
          */
         evaluateUsers: function (item) {
-            let usuario = firebaseAuth.currentUser.uid;
-            let arr;
+            let usuario = firebaseAuth.currentUser.uid,
+                arr;
             this.refChats.forEach((element) => {
                 if (
                     (item.uId == element.De && usuario == element.Para) ||
@@ -222,11 +221,9 @@ var inbox = new Vue({
          * @param {object} e
          */
         obtenerImagen(e) {
-            let file = e.target.files[0];
-            let upload = storage
-                .ref()
-                .child("imageChat/" + file.name + Math.random())
-                .put(file);
+            let file = e.target.files[0],
+                upload = storage.ref().child("imageChat/" + file.name + Math.random()).put(file);
+            
             upload.on(
                 "state_changed",
                 (snapshot) => {
@@ -269,6 +266,5 @@ var inbox = new Vue({
                 }
             );
         },
-       
     },
 });

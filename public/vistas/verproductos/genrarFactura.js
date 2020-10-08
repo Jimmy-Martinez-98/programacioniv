@@ -52,9 +52,9 @@ var factura = new Vue({
         this.facturar.precioUnitario = this.precios.pCaja;
       }
       let multi = this.facturar.contador * this.facturar.precioUnitario;
-      console.log();
 
-      this.total=  parseFloat(multi).toFixed(2)
+
+      this.total = parseFloat(multi).toFixed(2)
       let date = new Date();
       this.fecha = date.toLocaleDateString();
     },
@@ -107,11 +107,11 @@ var factura = new Vue({
         .catch((err) => console.log(err));
     },
     saveDataFactura: function () {
-      let hoy = new Date();
-      let dosDias = 1000 * 60 * 60 * 24 * 2; //multiplicamos 1000 milisegundos por sesenta segundos, por sesenta minutos, por 24 horas y finalmente por 2 días.
-      let suma = hoy.getTime() + dosDias; //getTime devuelve milisegundos de esa fecha
-      let fechaEnDosDias = new Date(suma);
-      let fechaFinal =
+      let hoy = new Date(),
+        dosDias = 1000 * 60 * 60 * 24 * 2, //multiplicamos 1000 milisegundos por sesenta segundos, por sesenta minutos, por 24 horas y finalmente por 2 días.
+        suma = hoy.getTime() + dosDias, //getTime devuelve milisegundos de esa fecha
+        fechaEnDosDias = new Date(suma),
+        fechaFinal =
         fechaEnDosDias.getFullYear() +
         "/" +
         fechaEnDosDias.getMonth() +

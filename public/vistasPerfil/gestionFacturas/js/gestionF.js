@@ -76,11 +76,11 @@ var factura = new Vue({
          * @param {object} facturas -> representa el total de facturas de la db
          */
         paginate: function (facturas) {
-            let page = this.page;
-            let forPage = this.forPage;
-            let from = (page * forPage) - forPage;
-            let to = (pages * forPage);
-            return facturas.slice(from, to);
+            let page = this.page,
+                forPage = this.forPage,
+                from = (page * forPage) - forPage,
+                to = (pages * forPage),
+                return facturas.slice(from, to);
         },
 
 
@@ -131,14 +131,14 @@ var factura = new Vue({
             firebaseDB.ref('dataFacturas/' + id).update({
                 'estado': "Anulada"
             }).catch(() => {
-                 this.$vs.notification({
-                     square: true,
-                     progress: "auto",
-                     color: 'danger',
-                     title: "Ocurrio un error al intentar realizar la acción",
-                     position: 'bottom-center',
-                     icon: "<i class='bx error-circle'></i>"
-                 });
+                this.$vs.notification({
+                    square: true,
+                    progress: "auto",
+                    color: 'danger',
+                    title: "Ocurrio un error al intentar realizar la acción",
+                    position: 'bottom-center',
+                    icon: "<i class='bx error-circle'></i>"
+                });
             })
         }
     }
