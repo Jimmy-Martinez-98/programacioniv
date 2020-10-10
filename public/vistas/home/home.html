@@ -14,20 +14,17 @@
 
 <!-- carrusel legumbres-->
 <div id="slider" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <strong> Top 10 de legumbres</strong></p>
+	<h4> <strong> Top 10 de legumbres</strong></h4>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
-			v-for="(datos,index) in productos">
-			<div class="targeta ">
-				<img v-bind:src="datos.imagen" alt="">
-				<div class="cuerpotargeta" style="height: 155px;">
-					<a class="hole text-break" href="#" v-on:click="verProd(datos)">
+			v-for="(datos,index) in productos" :key="datos.idProducto">
+			<div class="card w-75">
+				<img v-bind:src="datos.imagen" alt="" class="card-img-top" height="150px">
+				<div class="card-body" style="height: 150px;">
+					<a class="hole text-break card-title text-center" href="#" v-on:click="verProd(datos)">
 						<h5> {{datos.nombreProducto}}</h5>
-
 					</a>
-					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
-					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
-					<p class="clasificacion mb-0">
+					<p class="clasificacion mb-0 card-subtitle text-center">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -45,26 +42,25 @@
 
 
 					</p>
-
 					<div class="row card-footer ">
-						<div class="col-12">
-							<p class="card-text float-left"
+						<div class="col-12 d-flex justify-content-between">
+							<p class="card-text "
 								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba!='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioArroba}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal!='' && datos.precioCaja==''">
 								${{datos.precioQuintal}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja!=''">
 								${{datos.precioCaja}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
@@ -88,20 +84,18 @@
 
 <!-- carrusel Verduras -->
 <div id="sliderverduras" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <em> Top 10 de Verduras</em></p>
+	<h4> <strong> Top 10 de Verduras</strong></h4>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos">
-			<div class="targeta ">
-				<img v-bind:src="datos.imagen" alt="">
-				<div class="cuerpotargeta" style="height: 155px;">
-					<a class="hole text-break" href="#" v-on:click="verProd(datos)">
+			<div class="card w-75">
+				<img v-bind:src="datos.imagen" alt="" class="card-img-top" height="150px">
+				<div class="card-body" style="height: 155px;">
+					<a class="hole text-break card-title text-center" href="#" v-on:click="verProd(datos)">
 						<h5> {{datos.nombreProducto}}</h5>
-
 					</a>
-					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
-					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
-					<p class="clasificacion mb-0">
+
+					<p class="clasificacion mb-0 card-subtitle text-center">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -121,28 +115,28 @@
 					</p>
 
 					<div class="row card-footer ">
-						<div class="col-12">
-							<p class="card-text float-left"
+						<div class="col-12 d-flex justify-content-between">
+							<p class="card-text "
 								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba!='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioArroba}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal!='' && datos.precioCaja==''">
 								${{datos.precioQuintal}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja!=''">
 								${{datos.precioCaja}}
 							</p>
-							<p class="card-text float-left"
-								v-else="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
+							<p class="card-text "
+								v-if="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
-							<em class="far fa-heart fav float-right" @click="addlistaC(datos)"></em>
+							<em class="far fa-heart fav " @click="addlistaC(datos)"></em>
 						</div>
 					</div>
 				</div>
@@ -162,20 +156,17 @@
 
 <!-- carrusel Frutas -->
 <div id="sliderfrutos" class="carousel slide bg-light mt-3 wow fadeIn" data-interval="false">
-	<p> <em> Top 10 de Frutas</em></p>
+	<h4> <strong> Top 10 de Frutas</strong></h4>
 	<div class="carousel-inner row w-100 mx-auto" role="listbox">
 		<div class="carousel-item py-2 col-12 col-sm-6 col-md-4 col-lg-3  " :class="{'active':index===0}"
 			v-for="(datos,index) in productos">
-			<div class="targeta ">
-				<img v-bind:src="datos.imagen" alt="">
-				<div class="cuerpotargeta" style="height: 155px;">
-					<a class="hole text-break" href="#" v-on:click="verProd(datos)">
+			<div class="card w-75">
+				<img v-bind:src="datos.imagen" alt="" class="card-img-top" height="150px">
+				<div class="card-body" style="height: 155px;">
+					<a class="hole text-break text-center card-title" href="#" v-on:click="verProd(datos)">
 						<h5> {{datos.nombreProducto}}</h5>
-
 					</a>
-					<a href="#" class="info" v-if="datos.nombreCooperativa==''"> {{datos.nombreU}}</a>
-					<a href="#" class="info text-break" v-else> {{datos.nombreCooperativa}}</a>
-					<p class="clasificacion mb-0">
+					<p class="clasificacion mb-0 card-subtitle text-center">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -190,33 +181,30 @@
 
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
 						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
-
-
 					</p>
-
 					<div class="row card-footer ">
-						<div class="col-12">
-							<p class="card-text float-left"
+						<div class="col-12 d-flex justify-content-between">
+							<p class="card-text text-center"
 								v-if="datos.precioLibra!='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioLibra}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba!='' && datos.precioQuintal=='' && datos.precioCaja==''">
 								${{datos.precioArroba}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal!='' && datos.precioCaja==''">
 								${{datos.precioQuintal}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra=='' && datos.precioArroba=='' && datos.precioQuintal=='' && datos.precioCaja!=''">
 								${{datos.precioCaja}}
 							</p>
-							<p class="card-text float-left"
+							<p class="card-text "
 								v-if="datos.precioLibra!='' && datos.precioArroba!='' && datos.precioQuintal!='' && datos.precioCaja!=''">
 								${{datos.precioLibra}}
 							</p>
-							<em class="far fa-heart fav float-right" @click="addlistaC(datos)"></em>
+							<em class="far fa-heart fav " @click="addlistaC(datos)"></em>
 						</div>
 					</div>
 				</div>

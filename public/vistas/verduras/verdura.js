@@ -140,7 +140,7 @@ var seccionverduras = new Vue({
       };
 
       sessionStorage.setItem("data", JSON.stringify(data));
-      location.href = "productos.html";
+         window.open("productos.html", "_blank");
     },
 
     /**

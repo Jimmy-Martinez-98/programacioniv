@@ -118,7 +118,7 @@ var seccionlegumbre = new Vue({
         info,
       };
       sessionStorage.setItem("data", JSON.stringify(data));
-      location.href = "productos.html";
+     window.open("productos.html", "_blank");
     },
 
     /**

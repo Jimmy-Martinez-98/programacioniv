@@ -13,7 +13,7 @@
 		<div class="row py-2 bg-ligth  wow fadeIn">
 			<div class="container bg-light forma mb-5">
 				<label for="">
-						<hr class="bg-dark">
+					<hr class="bg-dark">
 					Ordenar Por Precio:
 					<button @click="descP" class=" btn btn-outline-dark">
 						<img src="public/img/arrow-down.svg" alt="" width="32" height="32" title="Precio Descendiente">
@@ -21,19 +21,17 @@
 					<button @click="ascP" class="btn btn-outline-dark">
 						<img src="public/img/arrow-up.svg" alt="" width="32" height="32" title="Precio Ascendente">
 					</button>
-						<hr class="bg-dark">
+					<hr class="bg-dark">
 				</label>
 			</div>
-			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes">
-				<div class="targeta " style="height: 400;">
-					<img v-bind:src="clay.imagen" alt="">
-					<div class="cuerpotargeta">
-						<a class="hole text-break" href="#" @click="verProd(clay)">
+			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes":key="clay.idProducto">
+				<div class="card w-75" >
+					<img v-bind:src="clay.imagen" alt="" class="card-img-top" height="150px">
+					<div class="card-body">
+						<a class="hole text-break text-center card-title" href="#" @click="verProd(clay)">
 							<h4> {{clay.nombreProducto}}</h4>
 						</a>
-						<a href="#" class="info" v-if=" clay.nombreCooperativa==''"><span> {{clay.nombreU}}</span></a>
-						<a href="#" class="info" v-else> {{clay.nombreCooperativa}}</a>
-						<p class="clasificacion mb-0">
+						<p class="clasificacion mb-0 card-subtitle text-center">
 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 							<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -52,11 +50,25 @@
 
 						</p>
 						<div class="row ">
-							<div class="col-12 mt-3">
-								<p class="card-text float-left" v-if="clay.precioLibra==''">
+							<div class="col-12 mt-3 d-flex justify-content-between">
+								<p class="card-text "
+									v-if="clay.precioLibra!=='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja===''">
+									${{clay.precioLibra}}
+								</p>
+								<p class="card-text "
+									v-if="clay.precioLibra==='' && clay.precioArroba!=='' && clay.precioQuintal==='' && clay.precioCaja===''">
+									${{clay.precioArroba}}
+								</p>
+								<p class="card-text "
+									v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal!=='' && clay.precioCaja===''">
+									${{clay.precioQuintal}}
+								</p>
+								<p class="card-text "
+									v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja!==''">
 									${{clay.precioCaja}}
 								</p>
-								<p class="card-text float-left" v-else>
+								<p class="card-text "
+									v-if="clay.precioLibra!=='' && clay.precioArroba!=='' && clay.precioQuintal!=='' && clay.precioCaja!==''">
 									${{clay.precioLibra}}
 								</p>
 								<em class="far fa-heart fav float-right" @click="addlistaV(clay)"></em>

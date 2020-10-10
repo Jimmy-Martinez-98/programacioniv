@@ -79,21 +79,21 @@ var mostrardetalle = new Vue({
           this.openNotification(' ', 'primary', 'Producto añadido a la lista')
         });
       } else {
-        this.openNotification('','danger','Debes iniciar sesión para realizar esta acción')
+        this.openNotification('', 'danger', 'Debes iniciar sesión para realizar esta acción')
       }
     },
-       openNotification(msg, notiColor, titulo) {
-         const noti = this.$vs.notification({
-           square: true,
-           color: notiColor,
-           position: "bottom-center",
-           title: titulo,
-           text: msg,
-           progress: "auto",
-         });
+    openNotification(msg, notiColor, titulo) {
+      const noti = this.$vs.notification({
+        square: true,
+        color: notiColor,
+        position: "bottom-center",
+        title: titulo,
+        text: msg,
+        progress: "auto",
+      });
 
-         return noti;
-       },
+      return noti;
+    },
     /**
      * Es cuando le da click a  boton +
      * @access public
@@ -178,22 +178,10 @@ var mostrardetalle = new Vue({
 
           $("#staticBackdrop").modal("show");
         } else {
-          swal.fire({
-            title: "Ups..",
-            text: "debes escoger un tipo de compra para utilizar esta funcion",
-            icon: "info",
-          });
+           this.openNotification('', 'primary', 'Debes seleciconar una opcion de compra para realizar esta acción')
         }
       } else {
-        swal
-          .fire({
-            title: "Debes iniciar sesion para utilizar esta funcion",
-            text: "",
-            icon: "info",
-          })
-          .then(() => {
-            location.href = "login.html";
-          });
+        this.openNotification('', 'danger', 'Debes iniciar sesión para realizar esta acción')
       }
     },
     viewOwner: function (id) {

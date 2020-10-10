@@ -29,15 +29,13 @@
 	</div>
 	<div class="row py-2">
 		<div class="col-sm-4 wow fadeIn" v-for="fruto in fruta">
-			<div class="targeta " style="height: 400;">
-				<img v-bind:src="fruto.imagen" alt="">
-				<div class="cuerpotargeta">
-					<a class="hole text-break" href="#" @click="verProd(fruto)">
+			<div class="card w-75">
+				<img v-bind:src="fruto.imagen" alt="" class="card-img-top" height="150px">
+				<div class="card-body">
+					<a class="hole text-break card-title text-center" href="#" @click="verProd(fruto)">
 						<h4> {{fruto.nombreProducto}}</h4>
 					</a>
-					<a href="#" class="info" v-if=" fruto.nombrecooperativa==''"><span> {{fruto.nombreu}}</span></a>
-					<a href="#" class="info" v-else> {{fruto.nombrecooperativa}}</a>
-					<p class="clasificacion mb-0">
+					<p class="clasificacion mb-0 card-subtitle text-center">
 						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
@@ -57,11 +55,28 @@
 					</p>
 					<div class="card-footer">
 						<div class="row ">
-							<div class="col-12 mt-3">
-								<p class="card-text float-left  ">
+							<div class="col-12 mt-3 d-flex justify-content-between">
+								<p class="card-text "
+									v-if="fruto.precioLibra!='' && fruto.precioArroba=='' && fruto.precioQuintal=='' && fruto.precioCaja==''">
 									${{fruto.precioLibra}}
 								</p>
-								<em class="far fa-heart fav float-right" @click="addListaFrutos(fruto)"></em>
+								<p class="card-text "
+									v-if="fruto.precioLibra=='' && fruto.precioArroba!='' && fruto.precioQuintal=='' && fruto.precioCaja==''">
+									${{fruto.precioArroba}}
+								</p>
+								<p class="card-text "
+									v-if="fruto.precioLibra=='' && fruto.precioArroba=='' && fruto.precioQuintal!='' && fruto.precioCaja==''">
+									${{fruto.precioQuintal}}
+								</p>
+								<p class="card-text "
+									v-if="fruto.precioLibra=='' && fruto.precioArroba=='' && fruto.precioQuintal=='' && fruto.precioCaja!=''">
+									${{fruto.precioCaja}}
+								</p>
+								<p class="card-text "
+									v-if="fruto.precioLibra!='' && fruto.precioArroba!='' && fruto.precioQuintal!='' && fruto.precioCaja!=''">
+									${{fruto.precioLibra}}
+								</p>
+								<em class="far fa-heart fav " @click="addListaFrutos(fruto)"></em>
 							</div>
 						</div>
 					</div>
