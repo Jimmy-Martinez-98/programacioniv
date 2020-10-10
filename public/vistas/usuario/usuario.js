@@ -4,21 +4,23 @@
  * @license MIT Libre disttribucion
  * @instance objeto de instancia de Vue.js
  */
-var fbAuth = firebaseAuth;
+
 var appUsuario = new Vue({
   el: "#frm-usuarios",
-  data: {
-    //datos del usuario
-    usuario: {
-      nombreUsuario: "",
-      correo: "",
-      pass: "",
-      fechaRegistro: "",
-    },
-    //cuando selecciona que acepta la politica
-    verificarchek: "",
-    //para evaluar el cumplimiento de requisitos de contraseña
-    check: 0,
+  data() {
+    return {
+      usuario: {
+        nombreUsuario: "",
+        correo: "",
+        pass: "",
+        fechaRegistro: "",
+      },
+      //cuando selecciona que acepta la politica
+      verificarchek: "",
+      //para evaluar el cumplimiento de requisitos de contraseña
+      check: 0,
+
+    }
   },
 
   methods: {
@@ -44,7 +46,25 @@ var appUsuario = new Vue({
             let correo = this.usuario.correo,
               password = this.usuario.pass;
             if (emailRegex.test(this.usuario.correo)) {
-              this.saveUser(correo, password);
+
+              firebaseAuth.createUserWithEmailAndPassword(correo, password).then(() => {
+                  firebaseDB.ref("users/" + firebaseAuth.currentUser.uid).set({
+                    uId: firebaseAuth.currentUser.uid,
+                    nombreUsuario: appUsuario.usuario.nombreUsuario,
+                    correo: correo,
+                    fechaRegistro: appUsuario.usuario.fechaRegistro,
+                    role: 0,
+                  }).then(() => {
+                    this.enviarEmail()
+                  })
+
+                })
+                .catch(function (error) {
+                  // Handle Errors here.
+                  let errorCode = error.code;
+                  appUsuario.errorsCatch(errorCode);
+                });
+
             } else {
               document.getElementById("registrar").removeAttribute("hidden");
               document.getElementById("login").setAttribute("hidden", true);
@@ -74,39 +94,17 @@ var appUsuario = new Vue({
                   </div>`;
       }
     },
-    saveUser: function (correo, password) {
-      fbAuth
-        .createUserWithEmailAndPassword(correo, password)
-        .then(() => {
-          //Registra el usuario en la Base de Datos...
-          firebaseDB
-            .ref("users/" + firebaseAuth.currentUser.uid)
-            .set({
-              uId: firebaseAuth.currentUser.uid,
-              nombreUsuario: appusuario.usuario.nombreUsuario,
-              correo: appusuario.usuario.correo,
-              fechaRegistro: appusuario.usuario.fechaRegistro,
-              role: 0,
-            })
-            .then(() => {
-              this.enviarEmail();
-            })
-            .catch((error) => {
-              this.$vs.notification({
-                square: true,
-                color: notiColor,
-                position: "bottom-center",
-                title: error,
-                text: "",
-                progress: "auto",
-              });
-            });
-        })
-        .catch(function (error) {
-          // Handle Errors here.
-          let errorCode = error.code;
-          appUsuario.errorsCatch(errorCode);
-        });
+    /**
+     * Envia un correo a la direccion proporcionada en el formulario para poder verificarla
+     * @access public
+     * @function enviarEmail
+     */
+    enviarEmail() {
+      let user = firebaseAuth.currentUser;
+      console.log(user);
+      user.sendEmailVerification().then(() => {
+        location.href = "login.html"
+      });
     },
 
     /**
@@ -125,7 +123,9 @@ var appUsuario = new Vue({
                   </div>`;
         document.getElementById("login").setAttribute("hidden", true);
         document.getElementById("registrar").removeAttribute("hidden");
+
       } else if (errorCode == "auth / invalid-email") {
+
         document.getElementById("notificacion").innerHTML = `
                     <div class="alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -138,25 +138,7 @@ var appUsuario = new Vue({
       }
     },
 
-    /**
-     * Envia un correo a la direccion proporcionada en el formulario para poder verificarla
-     * @access public
-     * @function enviarEmail
-     */
-    enviarEmail() {
-      let user = firebaseAuth.currentUser;
-      user.sendEmailVerification().then(() => {
-        this.$vs.notification({
-          square: true,
-          color: "success",
-          position: "bottom-center",
-          title: "Verificacion de Cuenta",
-          text: "Se le a Enviado un Email a su Correo Electronico",
-          progress: "auto",
-        });
-        location.href = "login.html";
-      });
-    },
+
 
     /**
      * es cuando no acepta los terminos
