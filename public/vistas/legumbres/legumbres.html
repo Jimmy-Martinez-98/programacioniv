@@ -27,33 +27,34 @@
 	</div>
 	<div class="row py-2">
 		<div class="col-sm-4 wow fadeIn" v-for="le in legumbressss">
-			<div class="card w-75 d-flex justify-content-center">
-				<img v-bind:src="le.imagen" alt="" class="card-img-top" height="150px">
-				<div class="card-body">
-					<a class="hole text-break card-title text-center" href="#" @click="verProd(le)">
-						<h4> {{le.nombreProducto}}</h4>
-					</a>
+			<div class="card-group mb-1">
+				<div class="card w-75 d-flex justify-content-center">
+					<img v-bind:src="le.imagen" alt="" class="card-img-top" height="150px">
+					<div class="card-body">
+						<a class="hole text-break card-title text-center" href="#" @click="verProd(le)">
+							<h4> {{le.nombreProducto}}</h4>
+						</a>
 
-					<p class="clasificacion mb-0 card-subtitle text-center">
-						<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-						<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+						<p class="clasificacion mb-0 card-subtitle text-center">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+							<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
-						<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-						<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
 
-						<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-						<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+							<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
 
-						<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-						<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+							<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
 
-						<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-						<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+							<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
 
 
-					</p>
-					<div class="row px-3">
-						<div class="col-12 d-flex justify-content-between">
+						</p>
+						<div class="row px-3">
+							<div class="col-12 d-flex justify-content-between">
 								<p class="card-text "
 									v-if="le.precioLibra!='' && le.precioArroba=='' && le.precioQuintal=='' && le.precioCaja==''">
 									${{le.precioLibra}}
@@ -74,7 +75,8 @@
 									v-if="le.precioLibra!='' && le.precioArroba!='' && le.precioQuintal!='' && le.precioCaja!=''">
 									${{le.precioLibra}}
 								</p>
-							<em class="far fa-heart fav  " @click="addlistaL(le)"></em>
+								<em class="far fa-heart fav  " @click="addlistaL(le)"></em>
+							</div>
 						</div>
 					</div>
 				</div>

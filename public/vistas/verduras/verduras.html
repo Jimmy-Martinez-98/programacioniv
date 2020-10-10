@@ -24,54 +24,56 @@
 					<hr class="bg-dark">
 				</label>
 			</div>
-			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes":key="clay.idProducto">
-				<div class="card w-75" >
-					<img v-bind:src="clay.imagen" alt="" class="card-img-top" height="150px">
-					<div class="card-body">
-						<a class="hole text-break text-center card-title" href="#" @click="verProd(clay)">
-							<h4> {{clay.nombreProducto}}</h4>
-						</a>
-						<p class="clasificacion mb-0 card-subtitle text-center">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-							<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
+			<div class="col-sm-4 mt-3  wow fadeIn" v-for="clay in verdes" :key="clay.idProducto">
+				<div class="card-group mb-1">
+					<div class="card w-75">
+						<img v-bind:src="clay.imagen" alt="" class="card-img-top" height="150px">
+						<div class="card-body">
+							<a class="hole text-break text-center card-title" href="#" @click="verProd(clay)">
+								<h4> {{clay.nombreProducto}}</h4>
+							</a>
+							<p class="clasificacion mb-0 card-subtitle text-center">
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<label class="form-check-label" for="inlineCheckbox1">&#9733;</label>
 
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-							<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+								<label class="form-check-label" for="inlineCheckbox2">&#9733;</label>
 
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-							<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+								<label class="form-check-label" for="inlineCheckbox3">&#9733;</label>
 
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-							<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+								<label class="form-check-label" for="inlineCheckbox4">&#9733;</label>
 
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-							<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+								<label class="form-check-label" for="inlineCheckbox5">&#9733;</label>
 
 
-						</p>
-						<div class="row ">
-							<div class="col-12 mt-3 d-flex justify-content-between">
-								<p class="card-text "
-									v-if="clay.precioLibra!=='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja===''">
-									${{clay.precioLibra}}
-								</p>
-								<p class="card-text "
-									v-if="clay.precioLibra==='' && clay.precioArroba!=='' && clay.precioQuintal==='' && clay.precioCaja===''">
-									${{clay.precioArroba}}
-								</p>
-								<p class="card-text "
-									v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal!=='' && clay.precioCaja===''">
-									${{clay.precioQuintal}}
-								</p>
-								<p class="card-text "
-									v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja!==''">
-									${{clay.precioCaja}}
-								</p>
-								<p class="card-text "
-									v-if="clay.precioLibra!=='' && clay.precioArroba!=='' && clay.precioQuintal!=='' && clay.precioCaja!==''">
-									${{clay.precioLibra}}
-								</p>
-								<em class="far fa-heart fav float-right" @click="addlistaV(clay)"></em>
+							</p>
+							<div class="row ">
+								<div class="col-12 mt-3 d-flex justify-content-between">
+									<p class="card-text "
+										v-if="clay.precioLibra!=='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja===''">
+										${{clay.precioLibra}}
+									</p>
+									<p class="card-text "
+										v-if="clay.precioLibra==='' && clay.precioArroba!=='' && clay.precioQuintal==='' && clay.precioCaja===''">
+										${{clay.precioArroba}}
+									</p>
+									<p class="card-text "
+										v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal!=='' && clay.precioCaja===''">
+										${{clay.precioQuintal}}
+									</p>
+									<p class="card-text "
+										v-if="clay.precioLibra==='' && clay.precioArroba==='' && clay.precioQuintal==='' && clay.precioCaja!==''">
+										${{clay.precioCaja}}
+									</p>
+									<p class="card-text "
+										v-if="clay.precioLibra!=='' && clay.precioArroba!=='' && clay.precioQuintal!=='' && clay.precioCaja!==''">
+										${{clay.precioLibra}}
+									</p>
+									<em class="far fa-heart fav float-right" @click="addlistaV(clay)"></em>
+								</div>
 							</div>
 						</div>
 					</div>
