@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }
 
@@ -10,6 +10,7 @@ button:focus {
   border: none;
   outline: none;
 }
+
 .navbars {
   margin: 0;
   width: 100%;
@@ -21,10 +22,11 @@ a.btn-lg {
   color: white;
   position: static;
 }
+
 a.btn-lg:hover {
- position: static;
- transform: translate(0px,0px);
- color: #ffffff;
+  position: static;
+  transform: translate(0px, 0px);
+  color: #ffffff;
 }
 
 
@@ -42,19 +44,28 @@ a.btn-lg:hover {
   bottom: 0;
   transition: all 0.3s;
 }
+
 .nav-link:hover {
-  color: #000000;
+  color: white;
 }
 
 .activa:hover::before {
   width: 100%;
 }
 
+.nav-link {
+  color: white;
+}
+
+.fixed-top {
+  background-color: #5fb678ef;
+}
 
 @media (max-width: 992px) {
   .activa::before {
     display: none;
   }
+
   .nav-link:hover {
     color: #000000;
   }
@@ -62,6 +73,7 @@ a.btn-lg:hover {
   .activa:hover::before {
     display: none;
   }
+
   .activa:hover {
     display: block;
     background-color: rgba(255, 255, 255, 0.432);

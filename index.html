@@ -26,14 +26,14 @@
   <style>
     .activa {
       display: block;
-      background-color: rgba(255, 255, 255, 0.432);
+      background-color: rgba(247, 245, 245, 0.178);
       border-radius: 4px;
     }
 
   </style>
 
   <body>
-    <nav class="navbar navbar-expand-lg fixed-top  navbar-light " id="hola">
+    <nav class="navbar navbar-expand-lg fixed-top  " id="hola">
       <a class="navbar-brand" href="index.html"> <img height="50" src="public/img/logo2,0.png" alt=""></a>
 
       <button class="navbar-toggler boton" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -44,7 +44,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto uls">
           <li class="nav-item  lis" :class="{'activa':active==0}" @click="active = 0">
-            <a class="nav-item nav-link  as" id="home" href="#" @click="inicio">
+            <a class=" nav-link  as" id="home" href="#" @click="inicio">
               <h4>Inicio</h4> <span class="sr-only"></span>
             </a>
           </li>

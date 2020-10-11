@@ -41,17 +41,16 @@ body::-webkit-scrollbar-track {
 }
 
 
-#hola {
-    background: #5fb677;
 
+
+.fixed-top {
+    background-color: #5fb678ef;
+ 
 }
 
-.navbar-ligth:hover {
-    color: black;
-}
 
 ul.uls li.lis a.as {
-    color: black;
+   color: white;
     display: block;
 
 
@@ -85,8 +84,11 @@ li.lis a.as {
 .dropdown-menu {
     width: 100%;
     text-align: center;
+  color: white;
 }
-
+.dropdown-toggle{
+  color: white;
+}
 .container-sm {
     padding: 2%;
     background-color: rgb(219, 219, 219);
@@ -99,36 +101,6 @@ li.lis a.as {
 
 .fav:hover {
     color: red;
-}
-
-/* ***************** */
-/* targetas */
-.card {
-    box-shadow: 0px 1px 10px rgba(65, 170, 97, 0.2);
-    cursor: default;
-    transition: all 400ms ease;
-
-
-}
-
-.card:hover {
-    box-shadow: 1px 1px 20px rgba(95, 194, 120, 0.4);
- 
-}
-
-
-
-
-
-
-.card .card-body .hole {
-    color: black;
-    margin-top: 5px;
-}
-
-.card .card-body .hole:hover {
-    color: #5fb677;
-    cursor: pointer;
 }
 
 
@@ -233,7 +205,7 @@ footer {
     }
 
     .nav-link:hover {
-        color: #000000;
+        color: #fdfdfd;
     }
 
     li.lis a.as:hover::before {
@@ -242,7 +214,7 @@ footer {
 
     li.lis a.as:hover {
         display: block;
-        background-color: rgba(255, 255, 255, 0.432);
+        background-color: rgba(255, 255, 255, 0.233);
 
         border-radius: 4px;
     }
