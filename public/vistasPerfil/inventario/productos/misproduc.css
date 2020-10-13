@@ -18,3 +18,7 @@
   color: #ffffff;
  
 }
+
+.page-itema>.page-link:hover{
+  cursor: no-drop;
+}

@@ -46,11 +46,12 @@
             <div class="card shadow-lg">
                 <img :src="descripcion.imagen" class="card-img-top shadow-lg" alt="...">
                 <div class="card-body  ">
-                    <h5 class="card-title text-center">{{owner.nombreUsuario}}</h5>
+                    <h5 class="card-title text-center">Nombre:&nbsp; {{owner.nombreUsuario}}</h5>
                     <p class="card-text text-center">{{owner.selectU}}</p>
-                    <p class="card-text text-center">{{owner.correo}}</p>
-                    <p class="card-text text-center">{{owner.telefono}}</p>
+                    <p class="card-text text-center">Correo: &nbsp; {{owner.correo}}</p>
+                    <p class="card-text text-center">Telefono: &nbsp; {{owner.telefono}}</p>
                     <p class="card-text text-center">{{descripcion.descripcion}}</p>
+                    <p class="card-text text-center mt-3">Horario de Trabajo:&nbsp; {{horario.Dias}}: {{horario.horaDe}}{{horario.DE}} A {{horario.horaA}}{{horario.A}}</p>
                 </div>
             </div>
         </div>

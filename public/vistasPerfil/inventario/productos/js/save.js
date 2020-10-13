@@ -169,7 +169,7 @@ var guardarProducto = new Vue({
             var nueva = firebaseDB.ref().child("Productos/").push().key;
             this.agregar.idProducto = nueva;
         },
-        subirImagen: function (e) {
+        getImage: function (e) {
            
             let file = e.target.files[0];
             // === Client side ===
@@ -191,7 +191,7 @@ var guardarProducto = new Vue({
                     let img = document.getElementById("barra");
                     img.innerHTML = `<div class="d-flex align-items-center">
                                     <strong>Subiendo... ${progress}%</strong>
-                                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                                    <div class="spinner-grow ml-auto" role="status" aria-hidden="true"></div>
                                     </div>`;
                 },
                 (error) => {

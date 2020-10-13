@@ -15,7 +15,7 @@
 					class="form-control" style="width: 100%;" />
 			</div>
 		</div>
-		<div class="table-responsive mb-3 w-100" style="height: 300px;">
+		<div class="table-responsive mb-3 w-100" style="height: 500px;">
 			<table class="table table-striped  table-success mb-3" id="myTable">
 				<caption class="bg-light">
 					<div class="d-flex justify-content-between">
@@ -24,6 +24,9 @@
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li class="page-item" v-if="page!=1" @click="page--">
+									<a class="page-link " type="button">&laquo; Anterior</a>
+								</li>
+								<li class="page-itema" v-else aria-disabled="true">
 									<a class="page-link " type="button">&laquo; Anterior</a>
 								</li>
 
@@ -36,6 +39,9 @@
 
 								<li class="page-item " v-if="page< pages.length" @click="page++">
 									<a class="page-link  " type="button">Siguiente &raquo;</a>
+								</li>
+								<li class="page-itema " v-else>
+									<a class="page-link  " type="button" aria-disabled="true">Siguiente &raquo;</a>
 								</li>
 							</ul>
 						</nav>
@@ -243,8 +249,12 @@
 								<img :src="agregar.imagen" id="imgP" required width="100%" height="90" alt="" hidden>
 							</div>
 							<div class="card-footer">
-								<input @change="subirImagen" required name="archivo" type="file" class="form-control">
-								<div class=" py-2" id="barra"></div>
+								<label class="btn btn-outline-dark">
+									<em class="fa fa-upload" aria-hidden="true"></em>
+									&nbsp; Subir Imagen
+									<input type="file" @change="getImage" required hidden>
+								</label>
+								<div class=" py-2 mt-2" id="barra"></div>
 							</div>
 
 						</div>

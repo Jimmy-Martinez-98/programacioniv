@@ -17,13 +17,29 @@ var perfil = new Vue({
      * @access public
      * @event click#productos
      */
-    inventario: function () {
+    productos: function () {
       $(".contenidoP").load(
-        "public/vistasPerfil/inventario/navFacturaProductos.html",
+        "public/vistasPerfil/inventario/productos/mproductos.html",
         function (data) {
           $(this).html(data);
         }
       );
+    },
+    entradas: function () {
+      $(".contenidoP").load(
+        "public/vistasPerfil/inventario/entradas/entradas.html",
+        function (data) {
+          $(this).html(data);
+        }
+      );
+    },
+    salidas: function () {
+       $(".contenidoP").load(
+         "public/vistasPerfil/gestionFacturas/gestiuonF.html",
+         function (data) {
+           $(this).html(data);
+         }
+       );
     },
     hWork: function () {
       $(".contenidoP").load(

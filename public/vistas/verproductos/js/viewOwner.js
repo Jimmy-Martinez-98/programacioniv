@@ -3,6 +3,7 @@ var viewsOwners = new Vue({
   data: {
     owner: [],
     descripcion: [],
+    horario:[]
   },
   created: function () {
     this.view();
@@ -20,6 +21,7 @@ var viewsOwners = new Vue({
       var dataFromStorage = JSON.parse(sessionStorage.getItem("owner"));
       let id = dataFromStorage;
       this.getDataUser(id);
+      this.getTimeWork(id);
     },
     getDataUser: function (id) {
       let uid = id["id"];
@@ -43,5 +45,27 @@ var viewsOwners = new Vue({
           });
         });
     },
+    getTimeWork: function (id) {
+      let uid = id["id"];
+
+      firebaseDB
+        .ref("users/")
+        .orderByChild("uId")
+        .equalTo(uid)
+        .on("value", (snap) => {
+          snap.forEach((element) => {
+            this.owner = element.val();
+          });
+        });
+      firebaseDB
+        .ref("horarioTrabajo/")
+        .orderByChild("idU")
+        .equalTo(uid)
+        .on("value", (snap) => {
+          snap.forEach((element) => {
+            this.horario = element.val();
+          });
+        });
+    }
   },
 });
