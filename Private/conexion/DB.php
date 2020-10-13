@@ -1,6 +1,6 @@
 <?php
 class Conexion{
-    private $Conexion='', $result='';
+    private $conexion, $result;
 
     public function Conexion($server, $user, $pass, $db="db_appacademica"){
         $this->conexion = mysqli_connect($server,$user,$pass,$db) or die('NO pude conectarme al servidor de BD');
