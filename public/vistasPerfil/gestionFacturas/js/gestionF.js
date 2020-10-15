@@ -9,7 +9,7 @@ var factura = new Vue({
     data: {
         OwnerOfOrder: "",
         datos: [],
-        forPage: 6,
+        forPage: 7,
         pages: [],
         page: 1,
     },

@@ -22,8 +22,8 @@ var Pedidos = new Vue({
 		},
 	},
 	watch: {
-		update() { },
-		
+		update() {},
+
 		allOrders() {
 			this.setOrders();
 		},
@@ -52,8 +52,6 @@ var Pedidos = new Vue({
 		},
 
 		setOrders: function () {
-			console.log(this.allOrders);
-			
 			let numberOfPages = Math.ceil(this.allOrders.length / this.perPage);
 			this.pages = [];
 			for (let i = 1; i <= numberOfPages; i++) {
@@ -70,19 +68,16 @@ var Pedidos = new Vue({
 		},
 
 		busqueda: function () {
+
 			if (this.forSearch == "nombre") {
 				let data = [];
-				firebaseDB
-					.ref("/ordersClient")
-					.orderByChild("/producName")
-					.startAt(this.valor)
-					.on("value", (snap) => {
-						snap.forEach((element) => {
-							if (this.userVal == element.val().idClient) {
-								data.push(element.val());
-							}
-						});
+				firebaseDB.ref("/ordersClient").orderByChild("/producName").startAt(this.valor).on("value", (snap) => {
+					snap.forEach((element) => {
+						if (this.userVal == element.val().idClient) {
+							data.push(element.val());
+						}
 					});
+				});
 
 				this.allOrders = data;
 			} else if (this.forSearch == "fecha") {

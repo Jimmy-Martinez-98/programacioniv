@@ -15,6 +15,11 @@ var app = new Vue({
   created: function () {
     this.datoss();
   },
+  computed: {
+    display() {
+      return this.productos != ''
+    }
+  },
   methods: {
     /**
      * Trae todos  los productos
@@ -116,6 +121,26 @@ var app = new Vue({
   created: function () {
     this.datoss();
   },
+  computed: {
+    display: function () {
+      return this.productos != ''
+    },
+    displayPLibra: function () {
+      return this.productos.precioLibra != '' && this.productos.precioArroba == '' && this.productos.precioQuintal == '' && this.productos.precioCaja == ''
+    },
+    displayPArroba: function () {
+      return this.productos.precioLibra == '' && this.productos.precioArroba != '' && this.productos.precioQuintal == '' && this.productos.precioCaja == ''
+    },
+    displayPQuintal: function () {
+      return this.productos.precioLibra == '' && this.productos.precioArroba == '' && this.productos.precioQuintal != '' && this.productos.precioCaja == ''
+    },
+    displayPCaja: function () {
+      return this.productos.precioLibra == '' && this.productos.precioArroba == '' && this.productos.precioQuintal == '' && this.productos.precioCaja != ''
+    },
+    displayDefault: function () {
+      return this.productos.precioLibra != '' && this.productos.precioArroba != '' && this.productos.precioQuintal != '' && this.productos.precioCaja != ''
+    }
+  },
   methods: {
     /**
      * Trae todos  los productos
@@ -146,27 +171,27 @@ var app = new Vue({
       let user = firebaseAuth.currentUser;
       if (user) {
         let key = firebaseDB.ref().child("listaDeseos/").push().key,
-         data = {
-          Arroba: producto.Arroba,
-          Caja: producto.Caja,
-          Quintal: producto.Quintal,
+          data = {
+            Arroba: producto.Arroba,
+            Caja: producto.Caja,
+            Quintal: producto.Quintal,
 
-          categoria: producto.categoria,
-          descProducto: producto.descProducto,
-          idLista: key,
-          idProducto: producto.idProducto,
-          idUsuario: producto.idUsuario,
-          idUsuarioObtubo: user.uid,
-          imagen: producto.imagen,
-          libra: producto.libra,
-          nombreCooperativa: producto.nombreCooperativa,
-          nombreProducto: producto.nombreProducto,
-          nombreUsuario: producto.nombreUsuario,
-          precioLibra: producto.precioLibra,
-          precioArroba: producto.precioArroba,
-          precioQuintal: producto.precioQuintal,
-          precioCaja: producto.precioCaja
-        };
+            categoria: producto.categoria,
+            descProducto: producto.descProducto,
+            idLista: key,
+            idProducto: producto.idProducto,
+            idUsuario: producto.idUsuario,
+            idUsuarioObtubo: user.uid,
+            imagen: producto.imagen,
+            libra: producto.libra,
+            nombreCooperativa: producto.nombreCooperativa,
+            nombreProducto: producto.nombreProducto,
+            nombreUsuario: producto.nombreUsuario,
+            precioLibra: producto.precioLibra,
+            precioArroba: producto.precioArroba,
+            precioQuintal: producto.precioQuintal,
+            precioCaja: producto.precioCaja
+          };
         firebaseDB
           .ref("listaDeseos/" + key)
           .set(data)
@@ -217,6 +242,11 @@ var app = new Vue({
   },
   created: function () {
     this.datoss();
+  },
+  computed: {
+    display() {
+      return this.productos != ''
+    }
   },
   methods: {
     /**
@@ -308,4 +338,3 @@ var app = new Vue({
     },
   },
 });
-

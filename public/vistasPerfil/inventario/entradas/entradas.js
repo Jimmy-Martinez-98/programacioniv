@@ -21,7 +21,7 @@ var entradas = new Vue({
       allProducts: 0,
       page: 1,
       pages: [],
-      perPage: 4,
+      perPage: 7,
 
 
     }

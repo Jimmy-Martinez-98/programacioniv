@@ -67,6 +67,9 @@
                         <li class="page-item" v-if="page!=1" @click="page--">
                             <a class="page-link " type="button">&laquo; Anterior</a>
                         </li>
+                        <li class="page-item" v-else>
+                            <a class="page-link" aria-disabled="true" type="button">&laquo; Anterior</a>
+                        </li>
 
                         <li class="page-item" :class="{'active': page==pageNumber}" v-for="pageNumber in  pages"
                             :key="pageNumber" @click="page=pageNumber">
@@ -77,6 +80,9 @@
 
                         <li class="page-item " v-if="page< pages.length" @click="page++">
                             <a class="page-link  " type="button">Siguiente &raquo;</a>
+                        </li>
+                        <li class="page-item" v-else>
+                            <a class="page-link" aria-disabled="true" type="button">Siguiente &raquo;</a>
                         </li>
                     </ul>
                 </nav>
