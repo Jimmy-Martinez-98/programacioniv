@@ -22,19 +22,21 @@
 		<div class="container mb-3 " id="navi">
 			<nav class="navbar navbar-expand-lg navbar-light table-secondary" id="nav">
 				<ul class="navbar-nav m-auto">
-					<li class="nav-item " id="inventario">
-						<!-- <a class="nav-link" href="#" @click="inventario">Inventario</a> -->
-
-					</li>
 					<li class="nav-item dropdown" :class="{'active':active==0}" @click="active = 0">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-							aria-haspopup="true" aria-expanded="false">Inventario</a>
+							aria-haspopup="true" aria-expanded="false">Inventario </a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#" @click="productos">Productos</a>
-							<a class="dropdown-item" href="#" @click="entradas">Entradas</a>
-							<a class="dropdown-item" href="#" @click="salidas">Salidas</a>
+							<a class="dropdown-item" href="#" @click="viewProducts ">Mantenimiento Productos <em
+									class="fa fa-list-alt"></em></a>
+							<a class="dropdown-item" href="#" @click="viewEntradas">Entradas <em
+									class="fa fa-arrow-left" aria-hidden="true"></em></a>
+							<a class="dropdown-item" href="#" @click="viewGFactura">Gestion Facturas <em
+									class="fa fa-arrow-right" aria-hidden="true"></em></a>
+
 						</div>
 					</li>
+
+
 					<li class="nav-item " :class="{'active':active==1}" @click="active = 1" id="horario">
 						<a class="nav-link" href="#" @click="hWork">Horario de Trabajo</a>
 					</li>
@@ -44,6 +46,9 @@
 
 					<li class="nav-item " :class="{'active':active==3}" @click="active = 3" id="nosotros">
 						<a class="nav-link" href="#" @click="we">Nosotros</a>
+					</li>
+					<li class="nav-item " :class="{'active':active==4}" @click="active = 4" id="DatosBancarios">
+						<a class="nav-link" href="#" @click="datosBancarios">Datos bancarios</a>
 					</li>
 				</ul>
 			</nav>

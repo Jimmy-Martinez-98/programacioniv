@@ -7,39 +7,35 @@ var perfil = new Vue({
   el: '#navi',
   data() {
     return {
-      active: 4
+      active: 5
     }
 
   },
   methods: {
-    /**
-     * Carga el contenido del formulario productos
-     * @access public
-     * @event click#productos
-     */
-    productos: function () {
-      $(".contenidoP").load(
-        "public/vistasPerfil/inventario/productos/mproductos.html",
-        function (data) {
-          $(this).html(data);
-        }
-      );
+ 
+    viewProducts: function () {
+        $(".contenidoP").load(
+          "public/vistasPerfil/inventario/productos/mproductos.html",
+          function (data) {
+            $(this).html(data);
+          }
+        );
     },
-    entradas: function () {
-      $(".contenidoP").load(
-        "public/vistasPerfil/inventario/entradas/entradas.html",
-        function (data) {
-          $(this).html(data);
-        }
-      );
-    },
-    salidas: function () {
+    viewEntradas: function () {
        $(".contenidoP").load(
-         "public/vistasPerfil/gestionFacturas/gestiuonF.html",
+         "public/vistasPerfil/inventario/entradas/entradas.html",
          function (data) {
            $(this).html(data);
          }
        );
+    },
+    viewGFactura: function () {
+        $(".contenidoP").load(
+          "public/vistasPerfil/gestionFacturas/gestiuonF.html",
+          function (data) {
+            $(this).html(data);
+          }
+        )
     },
     hWork: function () {
       $(".contenidoP").load(
@@ -69,6 +65,19 @@ var perfil = new Vue({
     we: function () {
       $(".contenidoP").load(
         "public/vistasPerfil/contenido/nosotros.html",
+        function (data) {
+          $(this).html(data);
+        }
+      );
+    },
+    /**
+     * Carga el contenido del formulario Datos bancarios
+     * @access public
+     * @event click#datosBancarios
+     */
+    datosBancarios: function () {
+      $(".contenidoP").load(
+        "public/vistasPerfil/datosBancarios/datosBancarios.html",
         function (data) {
           $(this).html(data);
         }

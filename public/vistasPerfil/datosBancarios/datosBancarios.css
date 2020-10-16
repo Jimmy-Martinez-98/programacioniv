@@ -1,0 +1,17 @@
+* {
+font-family: "Roboto", sans-serif;
+}
+h1,
+p {
+  color: black;
+}
+p {
+  text-justify: auto;
+}
+div.bg {
+  background: #5fb677;
+}
+
+.btn-lg {
+  color: black;
+}

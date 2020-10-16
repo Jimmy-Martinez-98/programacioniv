@@ -5,19 +5,19 @@
  * @instance objeto de instancia de Vue.js
  * 
 /**
- * Mustra los productos en un carousel de targetas tiene la funcion de los botones
+ * Mustra los productos en un carousel de targetas
  * @access public
  *@function $('$slider').on('slide.bs.carousel', function () {})
 */
 $("#slider").on("slide.bs.carousel", function (e) {
-  let $e = $(e.relatedTarget),
-    idx = $e.index(),
-    itemsPerSlide = $(".carousel-item").length,
-    totalItems = $(".carousel-item").length;
+  var $e = $(e.relatedTarget);
+  var idx = $e.index();
+  var itemsPerSlide = $(".carousel-item").length;
+  var totalItems = $(".carousel-item").length;
 
   if (idx >= totalItems - (itemsPerSlide - 1)) {
-    let it = itemsPerSlide - (totalItems - idx);
-    for (let i = 0; i < it; i++) {
+    var it = itemsPerSlide - (totalItems - idx);
+    for (var i = 0; i < it; i++) {
       // agregar diapositivas para finalizar
       if (e.direction == "left") {
         $(".carousel-item").eq(i).appendTo(".carousel-inner");

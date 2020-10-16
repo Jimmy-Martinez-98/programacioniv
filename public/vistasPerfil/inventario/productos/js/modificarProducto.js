@@ -18,7 +18,7 @@ var confirmModificacion = new Vue({
       nombreCooperativa: "",
       nombreProducto: "",
       nombreUsuario: "",
-      
+
       pL: "",
       pA: "",
       pQ: "",
@@ -48,12 +48,10 @@ var confirmModificacion = new Vue({
             descProducto: confirmModificacion.modificacion.descProducto,
             existencias: confirmModificacion.modificacion.existencias,
             categoria: confirmModificacion.modificacion.categoria,
-           
             libra: confirmModificacion.modificacion.libra,
             Arroba: confirmModificacion.modificacion.arroba,
             Quintal: confirmModificacion.modificacion.quintal,
             Caja: confirmModificacion.modificacion.caja,
-          
             precioLibra: confirmModificacion.modificacion.pL,
             precioArroba: confirmModificacion.modificacion.pA,
             precioQuintal: confirmModificacion.modificacion.pQ,
@@ -80,6 +78,27 @@ var confirmModificacion = new Vue({
             );
           });
       }
+
+    },
+    limpiar: function () {
+      this.modificacion.arroba = false;
+      this.modificacion.caja = false;
+      this.modificacion.quintal = false;
+      this.modificacion.unidad = false;
+      this.modificacion.categoria = false;
+      this.modificacion.codeProducto = "";
+      this.modificacion.descProducto = "";
+      this.modificacion.existencias = "";
+      this.modificacion.fechaSubida = "";
+      this.modificacion.idProducto = "";
+      this.modificacion.idUsuario = "";
+      this.modificacion.imagen = "";
+      this.modificacion.libra = false;
+      this.modificacion.nombreCooperativa = "";
+      this.modificacion.nombreProducto = "";
+      this.modificacion.nombreU = "";
+      this.modificacion.precio = "";
+      this.modificacion.precioVenta = "";
     },
     verificarCheckBox: function () {
       if (this.modificacion.Unidad == false) {

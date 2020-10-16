@@ -13,48 +13,60 @@ var misproductosapp = new Vue({
 			perPage: 5,
 			articles: [],
 			pages: [],
+			agregar: {
+				arroba: false,
+				caja: false,
+				quintal: false,
+				unidad: false,
+				categoria: false,
+				codeProducto: "",
+				descProducto: "",
+				existencias: "",
+				fechaSubida: "",
+				idProducto: "",
+				idUsuario: "",
+				imagen: "",
+				libra: false,
+				nombreCooperativa: "",
+				nombreProducto: "",
+				nombreUsuario: "",
 
-		};
+				pL: "",
+				pA: "",
+				pQ: "",
+				pC: "",
+
+			},
+		}
 	},
+
 	created: function () {
 		this.productsInTable();
 	},
-	computed: {
-		displayArticles: function () {
-			return this.paginate(this.articles);
-		},
-		updateTable: function () {
-			this.productsInTable();
-		},
-	},
-	watch: {
-		updateTable() {},
-		articles() {
-			this.setArticles();
-		},
-	},
+
 	methods: {
 		/**
 		 * Mustra los productos del usuario
 		 * @access public
 		 * @function productosmios
 		 */
-		async productsInTable() {
-			let user = firebaseAuth.currentUser.uid,
-				todo = [];
-			await firebaseDB.ref("Productos").on("value", (snap) => {
-				todo = [];
-				snap.forEach((element) => {
-					if (user == element.val().idUsuario) {
-						todo.push(element.val());
-					}
+		productsInTable() {
+			let todo = [];
+			return firebaseAuth.onAuthStateChanged((user) => {
+				firebaseDB.ref("Productos").on("value", (snap) => {
+					todo = [];
+					snap.forEach((element) => {
+						if (user.uid == element.val().idUsuario) {
+							todo.push(element.val());
+						}
+					});
 				});
-			});
-			this.articles = todo;
+				misproductosapp.articles = todo;
+				if (this.valor == null) {
+					return misproductosapp.articles = todo;
+				}
+			})
 
-			if (this.valor == null) {
-				this.articles = todo;
-			}
 		},
 		/**
 		 * Muestra el numero de paginas
@@ -62,6 +74,7 @@ var misproductosapp = new Vue({
 		 * @function setArticles
 		 */
 		setArticles: function () {
+
 			let numberOfPages = Math.ceil(this.articles.length / this.perPage);
 			this.pages = [];
 			for (let i = 1; i <= numberOfPages; i++) {
@@ -88,7 +101,7 @@ var misproductosapp = new Vue({
 		 * @function busquedaProducto
 		 */
 		busquedaProducto: function () {
-			let user = firebase.auth().currentUser;
+			let user = firebaseAuth.currentUser;
 			let allProducts = [];
 			firebaseDB
 				.ref("Productos/")
@@ -142,6 +155,90 @@ var misproductosapp = new Vue({
 			this.modificacion.precio = "";
 			this.modificacion.precioVenta = "";
 		},
+
+		Guardar: function () {
+			if (
+				this.agregar.codeProducto != "" &&
+				this.agregar.nombreProducto &&
+				this.agregar.categoria != "" &&
+				this.agregar.descProducto != "" &&
+				this.agregar.existencias != "" &&
+				this.agregar.fechaSubida != "" &&
+				this.agregar.idProducto != "" &&
+				this.agregar.idUsuario != "" &&
+				this.agregar.imagen != "" &&
+				this.agregar.nombreUsuario != ""
+			) {
+
+				if (
+
+					this.agregar.pL == "" &&
+					this.agregar.pA == "" &&
+					this.agregar.pQ == "" &&
+					this.agregar.pC == "" &&
+					this.agregar.arroba == "" &&
+					this.agregar.caja == "" &&
+					this.agregar.quintal == "" &&
+					this.agregar.unidad == "" &&
+					this.agregar.categoria == ""
+				) {
+
+					guardarProducto.openNotificacion(
+						"danger",
+						"Espera!",
+						"Por Favor Espere A Que La Imagen Se Carge O Completa Los Campos Faltantes",
+						"<i class='bx bx-error-circle' ></i>"
+					);
+				} else if (this.agregar.pL != '' || this.agregar.pA != '' || this.agregar.pQ !== '' || this.agregar.pC != '') {
+					if (this.agregar.imagen != "") {
+						firebaseDB
+							.ref("Productos/" + this.agregar.idProducto)
+							.set({
+								idProducto: guardarProducto.agregar.idProducto,
+								codeProducto: guardarProducto.agregar.codeProducto,
+								nombreProducto: guardarProducto.agregar.nombreProducto,
+								descProducto: guardarProducto.agregar.descProducto,
+								existencias: guardarProducto.agregar.existencias,
+								categoria: guardarProducto.agregar.categoria,
+
+								libra: guardarProducto.agregar.libra,
+								Arroba: guardarProducto.agregar.arroba,
+								Quintal: guardarProducto.agregar.quintal,
+								Caja: guardarProducto.agregar.caja,
+								nombreUsuario: guardarProducto.agregar.nombreUsuario,
+								nombreCooperativa: guardarProducto.agregar.nombreCooperativa,
+								idUsuario: guardarProducto.agregar.idUsuario,
+								precioLibra: guardarProducto.agregar.pL,
+								precioArroba: guardarProducto.agregar.pA,
+								precioQuintal: guardarProducto.agregar.pQ,
+								precioCaja: guardarProducto.agregar.pC,
+								imagen: guardarProducto.agregar.imagen,
+							})
+							.then(() => {
+								guardarProducto.openNotificacion(
+									"success",
+									"Agregado!!",
+									"El Producto Fue Agregado Exitosamente",
+									"<i class='bx bx-select-multiple' ></i>"
+								);
+								this.limpiar();
+								this.displayArticles
+							});
+					} else {
+						guardarProducto.openNotificacion(
+							"danger",
+							"Ups...",
+							"Espera a que se carge la imagen",
+							"<i class='bx bx-info-circle' ></i>"
+						);
+					}
+				}
+			} else {
+				guardarProducto.openNotificacion('dark', 'Por favor complete los campos :)', '', "<i class='bx bx-info-circle' ></i>")
+			}
+
+		},
+
 		editar: function (id) {
 			confirmModificacion.modificacion.codeProducto = id.codeProducto;
 			confirmModificacion.modificacion.nombreProducto = id.nombreProducto;
@@ -160,7 +257,7 @@ var misproductosapp = new Vue({
 			confirmModificacion.modificacion.nombreCooperativa = id.nombreCooperativa;
 			confirmModificacion.modificacion.nombreProducto = id.nombreProducto;
 			confirmModificacion.modificacion.nombreUsuario = id.nombreUsuario;
-			confirmModificacion.modificacion.pU = id.precioUnidad;
+
 			confirmModificacion.modificacion.pL = id.precioLibra;
 			confirmModificacion.modificacion.pA = id.precioArroba;
 			confirmModificacion.modificacion.pQ = id.precioQuintal;
@@ -200,7 +297,7 @@ var misproductosapp = new Vue({
 							.catch((error) => {
 								swal.fire({
 									title: "Ups..",
-									text: "Ocurrio un error inesperdado",
+									text: "Ocurrio un error inesperdado" + error,
 									icon: "error",
 								});
 							});
@@ -208,5 +305,21 @@ var misproductosapp = new Vue({
 				});
 		},
 	},
-});
+	computed: {
+		displayArticles: function () {
+			return this.paginate(this.articles);
+		},
+		async update() {
+			await this.productsInTable()
+		}
+	},
+	watch: {
+		articles() {
+			return this.setArticles();
+		},
 
+		update() {
+
+		}
+	},
+});

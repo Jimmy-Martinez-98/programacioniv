@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+		<link rel="stylesheet" href="public/vistas/blog/css/libs/animate.css">
+		<link rel="stylesheet" href="public/vistasPerfil/datosBancarios/datosBancarios.css">
+		<title></title>
+	</head>
+
+	<body>
+
+		<div class="container bg wow fadeIn">
+			<form id="frm-datosBancarios">
+
+				<header>
+					<h3 class="d-flex justify-content-center">Datos bancarios</h3>
+					<hr>
+				</header>
+				<div class="form-row d-flex justify-content-center mb-3  bg-light rounded">
+					<div class="container py-2 jus">
+						
+						<div v-if="datosBancarios!=''">
+							<h2 class="d-flex justify-content-center">Primera cuenta de banco</h2>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Númmero de cuenta: {{datosBancarios.cuentaI}}</p>
+						</div>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Nombre del banco: {{datosBancarios.bancoI}}</p>
+						</div>
+						</div>
+						<div v-if="datosBancarios!=''">
+							<h2 class="d-flex justify-content-center">Segunda cuenta de banco</h2>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Número de cuenta: {{datosBancarios.cuentaII}}</p>
+						</div>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Nombre del banco: {{datosBancarios.bancoII}}</p>
+						</div>
+						</div>
+						<div v-if="datosBancarios!=''">
+							<h2 class="d-flex justify-content-center">Tercera cuenta de banco</h2>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Número de cuenta: {{datosBancarios.cuentaIII}}</p>
+						</div>
+						<div class="card-text mt-2">
+							<p class="d-flex justify-content-center">Nombre del banco: {{datosBancarios.bancoIII}}</p>
+						</div>
+						</div>
+						
+						<p class="text-justify" v-else>
+							Aun no hay datos bancarios
+						</p>
+					</div>
+				</div>
+
+				<div class="container mb-3 py-3">
+					<button type="button" v-if="datosBancarios==''" class="btn btn-primary btn-lg btn-block"
+						data-toggle="modal" data-target="#nuevoDatosBancarios">
+						Nuevos datos bancarios
+					</button>
+					<input type="button" v-else class="btn btn-secondary btn-lg btn-block" data-toggle='modal'
+						data-target="#modalmodificar" value="Modificar datos bancarios" @click="editardatosbancarios(datosBancarios)">
+				</div>
+
+
+			</form>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+		<script src="public/vistasPerfil/datosBancarios/datosBancarios.js"></script>
+		<script src="public/vistas/blog/dist/wow.js"></script>
+		<script>
+			var wow = new WOW(
+				{
+					boxClass: 'wow',      // animated element css class (default is wow)
+					animateClass: 'animated', // animation css class (default is animated)
+					offset: 0,          // distance to the element when triggering the animation (default is 0)
+				}
+			);
+			wow.init();
+		</script>
+
+	</body>
+
+</html>
+
+
+
+<!-- Modal Nuevos Datos bancarios-->
+<div class="modal fade " id="nuevoDatosBancarios" tabindex="-1" role="dialog" aria-labelledby="modDatBanc" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modDatBanc">Modificacion de datos bancarios</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1" class="d-flex justify-content-center">Nuevos datos bancarios</label>
+					<hr>
+					<div><label class="col-form-label d-flex justify-content-center">Primera cuenta de banco</label></div>
+					<div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." required class="form-control" v-model="NdatosBancarios.cuentaI" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." required class="form-control" v-model="NdatosBancarios.bancoI"></input>
+					   </div>
+					   <hr>
+					   <div><label class="col-form-label d-flex justify-content-center">Segunda cuenta de banco</label></div>
+					<div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." class="form-control" v-model="NdatosBancarios.cuentaII" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." class="form-control" v-model="NdatosBancarios.bancoII"></input>
+					   </div>
+					   <hr>
+					   <div><label class="col-form-label d-flex justify-content-center">Tercera cuenta de banco</label></div>
+					   <div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." class="form-control" v-model="NdatosBancarios.cuentaIII" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." class="form-control" v-model="NdatosBancarios.bancoIII"></input>
+					   </div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<input type="submit" class="btn btn-primary" @click="almacenar" value="Guardar ">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal Editar Datos bancarios-->
+<div class="modal fade" id="modalmodificar" tabindex="-1" role="dialog" aria-labelledby="modalmodificarLabel"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalmodificarLabel">Modificacion de datos bancarios</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1" class="d-flex justify-content-center">Datos bancarios</label>
+					<hr>
+					<div><label class="col-form-label d-flex justify-content-center">Primera cuenta de banco</label></div>
+					<div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." required class="form-control" v-model="modDatosBancarios.cuentaI" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." class="form-control" required v-model="modDatosBancarios.bancoI"></input>
+					   </div>
+					   <hr>
+					   <div><label class="col-form-label d-flex justify-content-center">Segunda cuenta de banco</label></div>
+					<div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." class="form-control" v-model="modDatosBancarios.cuentaII" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." class="form-control" v-model="modDatosBancarios.bancoII"></input>
+					   </div>
+					   <hr>
+					   <div><label class="col-form-label d-flex justify-content-center">Tercera cuenta de banco</label></div>
+					   <div class="form-group d-flex justify-content-center">
+						Número de cuenta: <input placeholder="123..." class="form-control" v-model="modDatosBancarios.cuentaIII" ></input>
+					   </div>
+					   <div class="form-group d-flex justify-content-center">
+						Nombre del banco: <input placeholder="AAaa..." class="form-control" v-model="modDatosBancarios.bancoIII"></input>
+					   </div>
+				</div>
+			</div>
+			<div class="modal-footer ">
+				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" @click="actualizar">Guardar Cambios</button>
+			</div>
+		</div>
+	</div>
+</div>
