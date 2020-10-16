@@ -23,7 +23,7 @@ var app = new Vue({
      */
     datoss: function () {
       let dataP = [];
-      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Legumbres").on("value", (snap) => {
+      firebaseDB.ref("Productos/").orderByChild("categoria").equalTo("Legumbres").limitToFirst(10).on("value", (snap) => {
         snap.forEach((element) => {
           dataP.push(element.val());
         });
