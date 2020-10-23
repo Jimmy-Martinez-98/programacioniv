@@ -1,54 +1,38 @@
 <!-- css of vuesax -->
 <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="../newAccount/css/stilos.css">
+<link rel="stylesheet" href="newAccount/css/stilos.css">
 <div class="container mt-3 " id="contenedor">
     <form class="card p-3 border-0" id="formCreate" @submit.prevent=" createUser" id="form">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputType">Tipo de Vendedor</label>
                 <select required id="input" class="form-control" v-model="typeSeller">
-                    <option selected>selecciona...</option>
+                    <option selected value="">selecciona...</option>
                     <option value="cooperativa">Cooperativa</option>
                     <option value="productor">Productor Pequeño</option>
                 </select>
             </div>
-            <div class="form-group col-md-6" v-if="typeSeller=='cooperativa'" aria-placeholder="seleccione...">
-                <label for="inputNameUser">Nombre Cooperativa</label>
-                <input type="text" class="form-control" id="inputNameUser" v-model="cooperativa" autocomplete="off">
+            <div class="col-md-6" v-if="typeSeller==='cooperativa'">
+                <label for="ipname">Nombre Cooperativa</label>
+                <input type="text" class="form-control" id="ipname" v-model="account.name">
             </div>
-            <div class="form-group col-md-6" v-if="typeSeller=='productor'">
-                <div>
-                    <label for="inputNameUser">Nombre Productor Pequeño</label>
-                    <input type="text" class="form-control" id="inputNameUserproductor" v-model="productor"
-                        autocomplete="off">
+          
+            <div class="form-group  col-md-6">
+                <label>Correo</label>
+                <v-select :options="options" v-model="selectU"></v-select>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-block" id="crear">Crear</button>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="alerta"></div>
+                    </div>
                 </div>
             </div>
         </div>
+</div>
 
-
-
-        <div class="form-row">
-            <div class="form-group  col-md-6">
-                <label for="inputemail">Correo</label>
-                <input required type="email" class="form-control" id="inputemail" autocomplete="off"
-                    v-model="account.correo">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="pass">Contraseña</label>
-                <input type="password" class="form-control" id="pass" required autocomplete="off" v-model="account.password">
-            </div>
-            <div class="form-group col-md-12">
-                <label for="date">Fecha de Registro</label>
-                <input type="date" class="form-control" id="date" required autocomplete="off" v-model="account.fecha">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" id="crear">Crear</button>
-        <div class="row mt-2">
-            <div class="col-12">
-                <div id="alerta"></div>
-            </div>
-        </div>
-    </form>
+</form>
 </div>
 <script src="newAccount/js/newAccount.js"></script>

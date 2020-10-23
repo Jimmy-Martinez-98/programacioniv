@@ -1,4 +1,10 @@
 /**
+ * @author Jimmy Martinez <jimmimartinez215@gmail.com>
+ * @file guardar.js-> Sirve para guardar datos de la direccion del usuario
+ * @license MIT Libre disttribucion
+ * @instance objeto de instancia de Vue.js
+ */
+/**
  * enviar solictud de vendedor al nodo de chat
  */
 var user = firebaseAuth.currentUser;
@@ -11,15 +17,14 @@ var SolicV = new Vue({
                 para: "",
                 selectU: "",
                 nombreCoo: "",
-                nombreP: '',
                 correo: "",
 
             },
-
         }
-
     },
-
+    created() {
+        this.getEmailUser()
+    },
     methods: {
         /** 
          * @access public
@@ -27,20 +32,19 @@ var SolicV = new Vue({
          * Funcion para enviar y almacenar la sovitud de vendedor en el nodo de chat
          */
         almacenar: function () {
-
-            let tipo = this.dataSoliV.selectU,
-                nombreC = this.dataSoliV.nombreCoo,
-                nombreP = this.dataSoliV.nombreP,
-                correo = this.dataSoliV.correo;
-            if (tipo != '' && correo != '' && nombreC != '' || nombreP != '') {
+            let tipo = this.dataSoliV.selectU;
+            let nombreC = this.dataSoliV.nombreCoo;
+            let nombreP = this.dataSoliV.nombreP;
+            let correo = this.dataSoliV.correo;
+            if (tipo !== '' && correo !== '' && nombreC !== '') {
                 if (tipo == 'Cooperativa') {
                     return firebaseDB
                         .ref("/chat")
                         .push({
                             De: user.uid,
                             Para: "73BoHGyTnzYYYCtUK1q5aoGrhas2",
-                            Mensaje: "tipo de suario: " + tipo + "\n" +
-                                ", Nombre: " + nombreC + "\n" +
+                            Mensaje: "tipo de suario: " + tipo +
+                                ", Nombre: " + nombreC +
                                 ", Correo: " + correo,
                         })
                         .then(() => {
@@ -74,9 +78,14 @@ var SolicV = new Vue({
             }
 
         },
-        closeX: function () {
-            this.limpieza()
+        getEmailUser: function () {
+            firebaseAuth.onAuthStateChanged((user) => {
+                if (user) {
+                    this.dataSoliV.correo = user.email
+                }
+            })
         },
+
         closebtn: function () {
             this.limpieza()
         },

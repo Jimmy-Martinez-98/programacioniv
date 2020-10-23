@@ -1,18 +1,22 @@
+Vue.component('v-select', VueSelect.VueSelect);
 var newAccount = new Vue({
     el: '#formCreate',
     data: {
         account: {
             name: '',
-            correo: '',
-            password: '',
-            fecha: ''
         },
         typeSeller: '',
         productor: '',
-        cooperativa: ''
+        cooperativa: '',
+        options: [],
+        admin: '',
+        selectU: '',
+        users: []
+
     },
     created: function () {
         this.getUserLog();
+
     },
 
     methods: {
@@ -21,7 +25,8 @@ var newAccount = new Vue({
                 if (user) {
                     // User is signed in.
                     console.log('ook');
-
+                    newAccount.getUSers(user.uid)
+                    newAccount.admin = user.uid;
                 } else {
                     // No user is signed in.
                     location.href = "../../login.html";
@@ -29,56 +34,35 @@ var newAccount = new Vue({
             });
         },
         createUser: function () {
-            if (this.productor != '' && this.cooperativa == '') {
-                this.account.name = this.productor;
-            } else if (this.productor == '' && this.cooperativa != '') {
-                this.account.name = this.cooperativa
-            } else if (this.productor != '' && this.cooperativa != '') {
-                if (this.typeSeller == 'cooperativa') {
-                    this.name = this.cooperativa
-                    this.productor == null
-                } else if (this.typeSeller == 'productor') {
-                    this.account.name = this.productor
-                }
-            }
+            if (this.selectU !== '' && this.typeSeller !== '') {
+                this.users.forEach(element => {
+                    if (element.correo === this.selectU) {
+                        if (this.typeSeller === 'cooperativa') {
+                            if (this.account.name !== '') {
+                                firebaseDB.ref('users/' + element.uId).update({
+                                    role: 1,
+                                    nombreCooperativa: newAccount.account.name
+                                }).then(() => {
+                                    this.openNotification('Cuenta Creada!!!', 'success')
+                                }).catch((e) => {
+                                    this.openNotification('Fallo al crear cuenta', 'danger')
+                                });
+                            }
+                        } else {
+                            firebaseDB.ref('users/' + element.uId).update({
+                                role: 1,
+                                tipoU: 'Productor Pequeño'
+                            }).then(() => {
+                                this.openNotification('Cuenta Creada!!!', 'success')
+                            }).catch((e) => {
+                                this.openNotification('Fallo al crear cuenta', 'danger')
+                            });
+                        }
 
-            if (this.account.correo != '' && this.account.password != '' && this.name != '') {
-                let email = this.account.correo,
-                    password = this.account.password;
-                firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => {
-                    this.openNotification('Usuario Creado', 'primary');
-                    this.limpiar()
-                }).catch(function (error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    if (errorCode == "auth/email-already-in-use") {
-                        document.getElementById("alerta").innerHTML = `
-                            <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>  
-                            Dirección de Correo Electronico Ya Existe
-                        </div>`;
-                    } else if (errorCode == "auth / invalid-email") {
-                        document.getElementById("alerta").innerHTML = `
-                            <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            Direccion de Correo Electronico Invalido
-                        </div>`;
                     }
-                    // ...
                 });
-
             } else {
-                document.getElementById("alerta").innerHTML = `
-                            <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>  
-                            Complete Los Campos Vacios
-                        </div>`;
+
             }
 
         },
@@ -105,6 +89,18 @@ var newAccount = new Vue({
             this.productor = '';
             this.cooperativa = '';
 
+        },
+        getUSers: function (user) {
+            firebaseDB.ref('users/').on('value', snap => {
+                snap.forEach(element => {
+                    if (element.val().uId !== user) {
+                        this.options.push(element.val().correo);
+                        this.users.push(element.val());
+                    }
+
+
+                });
+            })
         }
     }
 })

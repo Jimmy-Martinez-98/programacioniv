@@ -105,7 +105,7 @@
 .listamsgs-item {
     padding: 10px;
     margin: 7px;
-    width: 150px;
+    width: 170px;
     border-radius: 10px;
     background-color: rgb(190, 190, 190);
     font-size: 12px;
@@ -116,7 +116,7 @@
 .listamsgs-iteml {
     padding: 10px;
     margin-top: 5px;
-    width: 150;
+    width: 170px;
     border-radius: 12px;
     background-color: rgba(73, 211, 38, 0.925);
     font-size: 14px;
